@@ -1,30 +1,24 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import style from './Header.module.css';
+import Navigation from './Navigation';
+import MobileNavigation from './MobileNavigation';
+
+import style from './Header.module.scss';
 
 const Header = () => {
   return (
-    <nav className={style.container}>
-      <div className={style.navGroupe}>
-        <span className={style.logo}>
-          pe<span className={style.logo_accent}>t</span>ly
-        </span>
+    <section className={style.section}>
+      <span className={style.logo}>
+        pe<span className={style.logo_accent}>t</span>ly
+      </span>
 
-        <NavLink to="/news" className={style.nav_item}>
-          <span>News</span>
-        </NavLink>
-
-        <NavLink to="/notices" className={style.nav_item}>
-          <span>Find pet</span>
-        </NavLink>
-
-        <NavLink to="/friends" className={style.nav_item}>
-          <span>Our friends</span>
-        </NavLink>
+      <div className={style.navGroup}>
+        <Navigation />
+        <MobileNavigation />
       </div>
 
-      <div className={style.authGroupe}>
+      <div className={style.authGroup}>
         {'if authorized' && (
           <>
             <NavLink to="/user" className={style.auth_item}>
@@ -48,7 +42,7 @@ const Header = () => {
           </>
         )}
       </div>
-    </nav>
+    </section>
   );
 };
 

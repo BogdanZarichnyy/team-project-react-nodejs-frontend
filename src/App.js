@@ -8,7 +8,7 @@ export const App = () => {
     <Suspense fallback={<span>Loading</span>}>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          {/* <Route path="/test" element={<Test />} /> */}
+          <Route path="/test" element={<span>test</span>} />
         </Route>
 
         <Route path="*" element={<span>Not Found</span>} />

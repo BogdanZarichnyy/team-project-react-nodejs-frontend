@@ -1,0 +1,144 @@
+// @media screen and (min-width: 1280px) {}
+.section {
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navGroup {
+}
+
+.nav_list {
+  font-family: 'Manrope-Medium';
+
+  display: flex;
+  gap: 80px;
+  align-items: center;
+}
+
+.nav_item {
+  text-decoration: none;
+  font-size: 20px;
+  color: #181c27;
+
+  transition: 250ms;
+}
+
+.nav_item:is(:hover, :focus) {
+  color: #f59256;
+  /* text-decoration: underline; */
+  /* border-bottom: 1px solid #f59256; */
+}
+
+.authGroup {
+  margin-left: auto;
+  font-family: 'Manrope-Medium';
+
+  display: flex;
+  gap: 20px;
+}
+
+.auth_item {
+  padding: 10px 28px;
+
+  font-size: 20px;
+  text-decoration: none;
+  color: #fff;
+
+  background-color: #f59256;
+
+  border: 2px solid #f59256;
+  border-radius: 40px;
+}
+
+.auth_item__secondary {
+  color: #181c27;
+  background-color: #fff;
+}
+
+.logo {
+  margin-right: 80px;
+
+  font-family: 'Poppins-Bold';
+
+  font-size: 32px;
+  font-weight: bold;
+  color: #111;
+}
+
+.logo_accent {
+  color: #f59256;
+}
+
+.navGroup .MobileNavigation {
+  display: none;
+}
+
+@media screen and (max-width: 1279px) {
+  .navGroup .MobileNavigation {
+    display: flex;
+    align-items: center;
+  }
+
+  .navGroup .MobileNavigation .burgerIcon {
+    position: absolute;
+    right: 37px;
+    cursor: pointer;
+  }
+
+  .navGroup .Navigation {
+    display: none;
+  }
+
+  .navGroup nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    flex-grow: 1;
+
+    width: 100%;
+    height: 100vh;
+    padding-top: 160px;
+
+    position: absolute;
+    left: 0;
+    top: 0px;
+    z-index: -1;
+
+    background-color: #fdf7f2;
+  }
+
+  .navGroup nav ul li span {
+    font-size: 48px;
+  }
+
+  .authGroup {
+    margin-right: 60px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .navGroup nav ul {
+    top: 0;
+    z-index: -1;
+
+    gap: 40px;
+
+    padding-top: 200px;
+    height: 100vh;
+  }
+
+  .navGroup nav ul li span {
+    font-size: 32px;
+  }
+}
+// @media screen and (min-width: 768px) and (max-width: 1279px) {
+// }
+
+// @media screen and (max-width: 767px) {
+// }
