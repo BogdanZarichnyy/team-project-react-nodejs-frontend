@@ -1,0 +1,100 @@
+@mixin phone {
+  @media screen and (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: 1280px) {
+    @content;
+  }
+}
+
+@mixin toDesktop {
+  @media screen and (max-width: 1279px) {
+    @content;
+  }
+}
+
+//to center element
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+//to add fonts
+@mixin font-size(
+  $font-size,
+  $font-weight: normal,
+  $line-height: initial,
+  $letter-spacing: initial
+) {
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+}
+
+//for pretitle
+@mixin pre-title {
+  color: getColor('font-clr1');
+  text-transform: uppercase;
+  @include desktop {
+    font-size: 30px;
+    line-height: 34px;
+    letter-spacing: 0.04em;
+  }
+  @include tablet {
+    font-size: 26px;
+    line-height: 30px;
+  }
+  @include phone {
+    font-size: 18px;
+    line-height: 21px;
+  }
+}
+
+//for title
+@mixin title {
+  color: getColor('font-clr1');
+  text-transform: uppercase;
+  font-weight: 900;
+  @include desktop {
+    font-size: 50px;
+    line-height: calc(61 / 50);
+  }
+  @include tablet {
+    font-size: 30px;
+    line-height: calc(37 / 30);
+  }
+  @include phone {
+    font-size: 18px;
+    line-height: calc(22 / 18);
+  }
+}
+
+//for 2x images
+@mixin bg-adapt-2x {
+  @media screen and (min-device-pixel-ratio: 2),
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    @content;
+  }
+}
+
+@mixin bg-adapt-3x {
+  @media screen and (min-device-pixel-ratio: 3),
+    (-webkit-min-device-pixel-ratio: 3),
+    (min-resolution: 288dpi),
+    (min-resolution: 3dppx) {
+    @content;
+  }
+}
