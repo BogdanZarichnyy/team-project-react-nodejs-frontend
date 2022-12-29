@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import SharedLayout from './Components/SharedLayout/SharedLayout';
 
-function App() {
+export const App = () => {
   return (
-    <></>
-  );
-}
+    <Suspense fallback={<span>Loading</span>}>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          {/* <Route path="/test" element={<Test />} /> */}
+        </Route>
 
-export default App;
+        <Route path="*" element={<span>Not Found</span>} />
+      </Routes>
+    </Suspense>
+  );
+};
