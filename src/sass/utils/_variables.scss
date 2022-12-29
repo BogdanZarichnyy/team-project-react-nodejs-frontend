@@ -1,0 +1,17 @@
+$colors: (
+  'clr-bg': #fdf7f2,
+  'clr-accent': #f59256,
+  'clr-black': #111111,
+  'clr-gray': #11111199,
+  'clr-blue': #3091eb,
+  'clr-white': #ffffff,
+);
+
+@function getColor($color) {
+  @return map-get($colors, $color);
+}
+//color: getColor('clr-main');
+
+$drop-shadow: drop-shadow(7 4 14px #31150412);
+
+$time-distribution-function: cubic-bezier(0.4, 0, 0.2, 1);
