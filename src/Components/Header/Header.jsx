@@ -1,47 +1,35 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState } from 'react';
 
 import Navigation from './Navigation';
 import MobileNavigation from './MobileNavigation';
 
 import style from './Header.module.scss';
+import AuthGroup from './AuthGroup';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
+  const [openMobileMenu, setOpenMobileMenu] = useState(false);
+
+  const onOpenMobileMenu = () => setOpenMobileMenu(!openMobileMenu);
+
+  if (openMobileMenu) {
+    console.log('in mobile menu');
+  }
+
   return (
     <section className={style.section}>
-      <span className={style.logo}>
-        pe<span className={style.logo_accent}>t</span>ly
-      </span>
+      <NavLink to="/home">
+        <span className={style.logo}>
+          pe<span className={style.logo_accent}>t</span>ly
+        </span>
+      </NavLink>
 
       <div className={style.navGroup}>
         <Navigation />
-        <MobileNavigation />
+        <MobileNavigation onOpenMobileMenu={onOpenMobileMenu} />
       </div>
 
-      <div className={style.authGroup}>
-        {'if authorized' && (
-          <>
-            <NavLink to="/user" className={style.auth_item}>
-              Acсount
-            </NavLink>
-          </>
-        )}
-
-        {'if NOT authorized' && (
-          <>
-            <NavLink to="/login" className={style.auth_item}>
-              <span>Login</span>
-            </NavLink>
-
-            <NavLink
-              to="/register"
-              className={`${style.auth_item} ${style.auth_item__secondary}`}
-            >
-              <span>Registration</span>
-            </NavLink>
-          </>
-        )}
-      </div>
+      <div className={style.authGroup}>{!openMobileMenu && <AuthGroup />}</div>
     </section>
   );
 };
