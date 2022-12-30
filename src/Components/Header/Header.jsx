@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 import Navigation from './Navigation';
 import MobileNavigation from './MobileNavigation';
 
-import style from './Header.module.scss';
 import AuthGroup from './AuthGroup';
 import { NavLink } from 'react-router-dom';
+
+import style from './Header.module.scss';
 
 const Header = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
