@@ -15,13 +15,13 @@
 }
 .title {
   margin-bottom: 40px;
-  font-weight: 700;
+  font-family: 'Manrope-Bold';
   font-size: 24px;
   line-height: 33px;
   letter-spacing: 0.04em;
   color: getColor('clr-black');
   @include tablet {
-    font-weight: 500;
+    font-family: 'Manrope-Medium';
     font-size: 36px;
     line-height: 49px;
   }
@@ -40,7 +40,6 @@
   @include tablet {
     padding: 60px 80px 40px 80px;
     background-color: getColor('clr-white');
-    // background-color: rgb(156, 147, 147);
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   }
   @include desktop {
@@ -52,7 +51,7 @@
 .descr,
 .link {
   margin-top: 40px;
-  font-weight: 400;
+  font-family: 'Manrope-Regular';
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 0.04em;

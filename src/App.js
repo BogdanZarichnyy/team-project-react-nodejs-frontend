@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import SharedLayout from './components/SharedLayout/SharedLayout';
+import SharedLayout from './Components/SharedLayout/SharedLayout';
 import LoginPage from './pages/LoginPage/LoginPage';
 
 import './App.css';
