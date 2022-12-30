@@ -50,24 +50,20 @@ const OurFriends = () => {
                         </span>
                       )}
                     </p>
-                    {!workTime.length ? (
-                      <span>No mode of operation</span>
-                    ) : (
-                      <ul className={s.dropdownContent}>
-                        {workTime.map(({ day, open, close }) => (
-                          <li className={s.dropdownItem} key={day}>
-                            <span>{day}</span>
-                            <span>
-                              {open}-{close}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+                    <ul className={s.dropdownContent}>
+                      {workTime.map(({ day, open, close }) => (
+                        <li className={s.dropdownItem} key={day}>
+                          <span>{day}</span>
+                          <span>
+                            {open}-{close}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </li>
                 <li className={s.itemCard}>
-                  <p>Adress:</p>
+                  <p>Address:</p>
                   {!address.length ? (
                     <span>----------------------------------</span>
                   ) : (
