@@ -6,6 +6,9 @@
   align-items: center;
 
   height: 48px;
+
+  position: relative;
+  z-index: 100;
 }
 
 .container {
@@ -119,7 +122,7 @@
 
   .navGroup .MobileNavigation .burger {
     position: absolute;
-    right: 37px;
+    right: 15px;
     cursor: pointer;
     background-color: transparent;
     border: none;

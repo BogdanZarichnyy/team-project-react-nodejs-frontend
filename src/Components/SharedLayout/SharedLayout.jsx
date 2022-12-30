@@ -6,7 +6,6 @@ import AddPetModal from '../AddPetModal/AddPetModal';
 
 import style from './SharedLayout.module.scss';
 
-
 const SharedLayout = () => {
   return (
     <div className={style.layoutContainer}>
