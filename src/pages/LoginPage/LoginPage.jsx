@@ -1,5 +1,5 @@
 import AuthLayout from '../../layouts/AuthLayout';
-import LoginForm from '../../Components/LoginForm/LoginForm';
+import LoginForm from '../../components/LoginForm/LoginForm';
 import s from '../LoginPage/LoginPage.module.scss';
 import { NavLink } from 'react-router-dom';
 

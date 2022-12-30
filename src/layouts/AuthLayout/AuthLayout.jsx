@@ -1,5 +1,5 @@
-// import Header from '../../Components/Headertest/Header';
-import Header from '../../Components/Header/Header';
+// import Header from '../../components/Headertest/Header';
+import Header from '../../components/Header/Header';
 import s from '../../layouts/AuthLayout/AuthLayout.module.scss';
 
 const AuthLayout = ({ children }) => {
