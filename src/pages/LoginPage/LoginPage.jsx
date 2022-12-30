@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 const LoginPage = () => {
   return (
-    // <AuthLayout>
+    <AuthLayout>
     <div className={s.containerForm}>
       <div className={s.card}>
         <h1 className={s.title}>LOGIN</h1>
@@ -19,7 +19,7 @@ const LoginPage = () => {
         </div>
       </div>
     </div>
-    // </AuthLayout>
+    </AuthLayout>
   );
 };
 
