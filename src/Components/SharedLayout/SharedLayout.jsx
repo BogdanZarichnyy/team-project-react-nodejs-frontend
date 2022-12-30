@@ -1,9 +1,11 @@
 import { Outlet } from 'react-router-dom';
 
-import Header from '../Header/Header';
+import Header from '../Header';
 import ModalContent from '../Modal/ModalContent/ModalContent';
 import AddPetModal from '../AddPetModal/AddPetModal';
-import style from './SharedLayout.module.css';
+
+import style from './SharedLayout.module.scss';
+
 
 const SharedLayout = () => {
   return (

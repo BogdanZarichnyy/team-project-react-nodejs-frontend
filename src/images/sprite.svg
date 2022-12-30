@@ -6,9 +6,9 @@
 <symbol id="crossIconCloseModal" viewBox="0 0 31 32">
 <path d="M18.051 16l12.058-12.058c0.238-0.278 0.363-0.636 0.349-1.002s-0.166-0.713-0.425-0.972c-0.259-0.259-0.606-0.411-0.972-0.425s-0.724 0.11-1.002 0.349l-12.058 12.058-12.058-12.073c-0.274-0.274-0.645-0.428-1.033-0.428s-0.759 0.154-1.033 0.428c-0.274 0.274-0.428 0.645-0.428 1.033s0.154 0.759 0.428 1.033l12.073 12.058-12.073 12.058c-0.152 0.13-0.276 0.291-0.363 0.471s-0.136 0.377-0.144 0.577 0.026 0.4 0.099 0.587c0.073 0.187 0.184 0.356 0.326 0.498s0.311 0.253 0.498 0.326 0.386 0.107 0.587 0.099c0.2-0.008 0.397-0.057 0.577-0.144s0.341-0.211 0.471-0.363l12.073-12.058 12.058 12.058c0.278 0.238 0.636 0.363 1.002 0.349s0.713-0.166 0.972-0.425c0.259-0.259 0.411-0.606 0.425-0.972s-0.11-0.724-0.349-1.002l-12.058-12.058z"></path>
 </symbol>
-<symbol id="crossIconCloseHomeModal" viewBox="0 0 32 32">
-<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.2" d="M24 8l-16 16"></path>
-<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.2" d="M8 8l16 16"></path>
+<symbol id="crossIconCloseHomeModal" viewBox="-5 -1 40 40">
+<path d="M30 10L10 30" stroke="#212121" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10 10L30 30" stroke="#212121" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 </symbol>
 <symbol id="BIGPlusIconadding-pets-pic" viewBox="0 0 32 32">
 <path stroke-linejoin="miter" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.2549" d="M16 30.85v-14.85M16 16v-14.85M16 16h14.85M16 16h-14.85"></path>
@@ -45,7 +45,7 @@
 <symbol id="searchIcon" viewBox="0 0 32 32">
 <path d="M20.667 18.667h-1.053l-0.373-0.36c1.307-1.52 2.093-3.493 2.093-5.64 0-4.787-3.88-8.667-8.667-8.667s-8.667 3.88-8.667 8.667c0 4.787 3.88 8.667 8.667 8.667 2.147 0 4.12-0.787 5.64-2.093l0.36 0.373v1.053l6.667 6.653 1.987-1.987-6.653-6.667zM12.667 18.667c-3.32 0-6-2.68-6-6s2.68-6 6-6c3.32 0 6 2.68 6 6s-2.68 6-6 6z"></path>
 </symbol>
-<symbol id="burgerMenuIcon" viewBox="0 0 32 32">
+<symbol id="burgerMenuIcon" viewBox="-5 -1 32 32">
 <path d="M4 22.667c0 0.736 0.597 1.333 1.333 1.333h21.333c0.736 0 1.333-0.597 1.333-1.333s-0.597-1.333-1.333-1.333h-21.333c-0.736 0-1.333 0.597-1.333 1.333zM4 16c0 0.736 0.597 1.333 1.333 1.333h21.333c0.736 0 1.333-0.597 1.333-1.333s-0.597-1.333-1.333-1.333h-21.333c-0.736 0-1.333 0.597-1.333 1.333zM5.333 8c-0.736 0-1.333 0.597-1.333 1.333s0.597 1.333 1.333 1.333h21.333c0.736 0 1.333-0.597 1.333-1.333s-0.597-1.333-1.333-1.333h-21.333z"></path>
 </symbol>
 <symbol id="userDefaultCircleIcon" viewBox="0 0 32 32">
