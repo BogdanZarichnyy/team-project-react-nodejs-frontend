@@ -8,6 +8,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
     "axios": "^1.2.2",
+    "classnames": "^2.3.2",
     "eslint": "^8.30.0",
     "modern-normalize": "^1.1.0",
     "prop-types": "^15.8.1",

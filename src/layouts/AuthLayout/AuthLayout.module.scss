@@ -1,0 +1,16 @@
+@import '../../sass/utils/mixins';
+
+.layout {
+  background-image: url('./img/font_phoneSize.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom;
+  width: 100%;
+  height: 100vh;
+  @include tablet {
+    background-image: url('./img/font_tabletSize.svg');
+  }
+  @include desktop {
+    background-image: url('./img/font_desktopSize.svg');
+  }
+}
