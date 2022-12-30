@@ -1,0 +1,10 @@
+@import '../../sass/utils/variables';
+
+.layoutContainer {
+  padding: 20px 16px;
+  background-color: getColor('clr-bg');
+}
+
+.outlets {
+  margin-top: 60px;
+}

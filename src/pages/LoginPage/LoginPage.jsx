@@ -5,21 +5,21 @@ import { NavLink } from 'react-router-dom';
 
 const LoginPage = () => {
   return (
-    <AuthLayout>
-      <div className={s.containerForm}>
-        <div className={s.card}>
-          <h1 className={s.title}>LOGIN</h1>
-          <LoginForm />
+    // <AuthLayout>
+    <div className={s.containerForm}>
+      <div className={s.card}>
+        <h1 className={s.title}>LOGIN</h1>
+        <LoginForm />
 
-          <div className={s.blockLinkAuth}>
-            <p className={s.descr}>Already have an account?&nbsp;</p>
-            <NavLink className={s.link} to="/registration">
-              Register
-            </NavLink>
-          </div>
+        <div className={s.blockLinkAuth}>
+          <p className={s.descr}>Already have an account?&nbsp;</p>
+          <NavLink className={s.link} to="/registration">
+            Register
+          </NavLink>
         </div>
       </div>
-    </AuthLayout>
+    </div>
+    // </AuthLayout>
   );
 };
 
