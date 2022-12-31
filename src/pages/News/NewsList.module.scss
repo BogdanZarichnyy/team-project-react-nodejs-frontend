@@ -1,0 +1,93 @@
+@import '../../sass/utils/mixins';
+@import '../../sass/utils/variables';
+@import '../../sass/utils/container';
+
+.articleTitle {
+    margin-bottom: 16px;
+
+    @include font-size(24px, 700, 1.38);
+    color: getColor('clr-black');
+}
+
+.title {
+    font-size: 24px;
+    line-height: 1.38;
+    text-align: center;
+    margin-bottom: 28px;
+
+    @include tablet {
+        font-size: 48px;
+        margin-bottom: 40px;
+    }
+
+    @include desktop {
+        margin-bottom: 60px;
+    }
+}
+
+.articlelist {
+    @include flex-center;
+    flex-direction: column;
+    gap: 40px 0;
+    height: 100%;
+
+    @include tablet {
+        @include flex-center;
+        flex-direction: row;
+
+        flex-wrap: wrap;
+        gap: 60px 32px;
+    }
+
+    @include desktop {
+        justify-content: center;
+    }
+}
+
+.articleItem {
+    width: 280px;
+    height: 100%;
+
+    font-size: 16px;
+
+    @include tablet {
+        width: 336px;
+    }
+}
+
+.gradient {
+    display: block;
+    margin-bottom: 4px;
+    height: 8px;
+    background: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
+    border-radius: 40px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.articleDescription {
+    margin-bottom: 20px;
+
+    @include font-size(16px, 400, 1.38);
+    color: rgb(17, 19, 33);
+}
+
+.articleMeta {
+    display: flex;
+    justify-content: space-between;
+}
+
+.metaDate {
+    @include font-size(16px, 400, 1.38);
+    color: rgba(17, 17, 17, 0.6);
+}
+
+.metaLink {
+    @include font-size(16px, 500, 1.38);
+    text-decoration: underline;
+    color: getColor('clr-accent');
+
+    &:hover,
+    &:focus {
+        color: var('GRADIENT');
+    }
+}
