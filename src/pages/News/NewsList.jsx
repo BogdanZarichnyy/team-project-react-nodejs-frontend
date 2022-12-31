@@ -1,4 +1,4 @@
-import styles from './NewsList.module.scss';
+import styles from './newsList.module.scss';
 import newsArticle from '../../news.json';
 import SearchInput from '../../сomponents/SearchInput/SearchInput';
 

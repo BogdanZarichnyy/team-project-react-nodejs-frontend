@@ -10,8 +10,7 @@ const OurFriendsPages = lazy(() =>
   import('./pages/OurFriendsPages/OurFriendsPages')
 );
 
-const NewsList = lazy(() => import('./pages/News/NewsList'));
-
+const NewsList = lazy(() => import('./pages/News/newsList'));
 
 export const App = () => {
   return (
