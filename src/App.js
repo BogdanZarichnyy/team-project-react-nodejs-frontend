@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import SharedLayout from './components/SharedLayout/SharedLayout';
+import SharedLayout from './сomponents/SharedLayout/SharedLayout';
 import LoginPage from './pages/LoginPage/LoginPage';
 
 import './App.css';
@@ -9,7 +9,9 @@ import './App.css';
 const OurFriendsPages = lazy(() =>
   import('./pages/OurFriendsPages/OurFriendsPages')
 );
+
 const NewsList = lazy(() => import('./pages/News/NewsList'));
+
 
 export const App = () => {
   return (
