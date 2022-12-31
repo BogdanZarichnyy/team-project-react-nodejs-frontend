@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import NavigationLinks from './NavigationLinks';
 
+import PhoneAuthGroup from './PhoneAuthGroup';
+
 import sprite from '../../images/sprite.svg';
 import style from './Header.module.scss';
-import PhoneAuthGroup from './PhoneAuthGroup';
 
 const MobileNavigation = ({ onOpenMobileMenu }) => {
   const [open, setOpen] = useState(false);
-
   const closeMobileMenu = () => setOpen(false);
 
   return (
@@ -33,8 +33,15 @@ const MobileNavigation = ({ onOpenMobileMenu }) => {
 
       {open && (
         <>
-          <PhoneAuthGroup />
-          <NavigationLinks isMobile={true} closeMobileMenu={closeMobileMenu} />
+          <PhoneAuthGroup
+            closeMobileMenu={closeMobileMenu}
+            onOpenMobileMenu={onOpenMobileMenu}
+          />
+          <NavigationLinks
+            isMobile={true}
+            closeMobileMenu={closeMobileMenu}
+            onOpenMobileMenu={onOpenMobileMenu}
+          />
         </>
       )}
     </nav>

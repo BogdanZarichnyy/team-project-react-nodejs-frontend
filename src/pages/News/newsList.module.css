@@ -1,0 +1,132 @@
+.container {
+  margin-left: auto;
+  margin-right: auto;
+}
+@media screen and (max-width: 767px) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+    min-width: 320px;
+    width: 100%;
+    max-width: 480px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .container {
+    padding-left: 32px;
+    padding-right: 32px;
+    width: 768px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+    width: 1280px;
+  }
+}
+
+.articleTitle {
+  margin-bottom: 16px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.38;
+  letter-spacing: initial;
+  color: #111111;
+}
+
+.title {
+  font-size: 24px;
+  line-height: 1.38;
+  text-align: center;
+  margin-bottom: 28px;
+}
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 48px;
+    margin-bottom: 40px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .title {
+    margin-bottom: 60px;
+  }
+}
+
+.articlelist {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 40px 0;
+  height: 100%;
+}
+@media screen and (min-width: 768px) {
+  .articlelist {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 60px 32px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .articlelist {
+    justify-content: center;
+  }
+}
+
+.articleItem {
+  width: 280px;
+  height: 100%;
+  font-size: 16px;
+}
+@media screen and (min-width: 768px) {
+  .articleItem {
+    width: 336px;
+  }
+}
+
+.gradient {
+  display: block;
+  margin-bottom: 4px;
+  height: 8px;
+  background: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
+  border-radius: 40px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.articleDescription {
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.38;
+  letter-spacing: initial;
+  color: rgb(17, 19, 33);
+}
+
+.articleMeta {
+  display: flex;
+  justify-content: space-between;
+}
+
+.metaDate {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.38;
+  letter-spacing: initial;
+  color: rgba(17, 17, 17, 0.6);
+}
+
+.metaLink {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.38;
+  letter-spacing: initial;
+  text-decoration: underline;
+  color: #f59256;
+}
+.metaLink:hover, .metaLink:focus {
+  color: var("GRADIENT");
+}/*# sourceMappingURL=newsList.module.css.map */

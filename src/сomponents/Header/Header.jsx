@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Navigation from './Navigation';
 import MobileNavigation from './MobileNavigation';
@@ -10,12 +10,17 @@ import style from './Header.module.scss';
 
 const Header = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
+  const [matches, setMatches] = useState(
+    window.matchMedia('(min-width: 1280px)').matches
+  );
+
+  useEffect(() => {
+    window
+      .matchMedia('(min-width: 1280px)')
+      .addEventListener('change', e => setMatches(e.matches));
+  }, []);
 
   const onOpenMobileMenu = () => setOpenMobileMenu(!openMobileMenu);
-
-  if (openMobileMenu) {
-    console.log('in mobile menu');
-  }
 
   return (
     <section className={style.section}>
@@ -30,7 +35,9 @@ const Header = () => {
         <MobileNavigation onOpenMobileMenu={onOpenMobileMenu} />
       </div>
 
-      <div className={style.authGroup}>{!openMobileMenu && <AuthGroup />}</div>
+      <div className={style.authGroup}>
+        {(!openMobileMenu || matches) && <AuthGroup />}
+      </div>
     </section>
   );
 };

@@ -1,0 +1,42 @@
+.form {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.formSearch {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+@media screen and (min-width: 768px) {
+  .formSearch {
+    width: 608px;
+  }
+}
+
+.inputSearch {
+  padding: 9px 12px;
+  font-weight: 500;
+  font-size: 16px;
+  border: none;
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+  color: #535353;
+  background-color: #ffffff;
+}
+
+.btnSearch {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  top: 11px;
+  right: 12px;
+  border: none;
+  border-radius: 50%;
+  background-color: inherit;
+}
+@media screen and (min-width: 768px) {
+  .btnSearch {
+    top: 17px;
+    right: 92px;
+  }
+}/*# sourceMappingURL=SearchInput.module.css.map */

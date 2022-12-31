@@ -1,0 +1,18 @@
+.layout {
+  background-image: url("./img/font_phoneSize.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom;
+  width: 100%;
+  height: 100vh;
+}
+@media screen and (min-width: 768px) {
+  .layout {
+    background-image: url("./img/font_tabletSize.svg");
+  }
+}
+@media screen and (min-width: 1280px) {
+  .layout {
+    background-image: url("./img/font_desktopSize.svg");
+  }
+}/*# sourceMappingURL=AuthLayout.module.css.map */
