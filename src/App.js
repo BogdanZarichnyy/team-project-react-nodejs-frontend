@@ -9,7 +9,9 @@ import './App.css';
 const OurFriendsPages = lazy(() =>
   import('./pages/OurFriendsPages/OurFriendsPages')
 );
-const NewsList = lazy(() => import('./pages/News/newsList'));
+
+const NewsList = lazy(() => import('./pages/News/NewsList'));
+
 
 export const App = () => {
   return (
@@ -17,9 +19,9 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/friends" element={<OurFriendsPages />} />
+          <Route path="/news" element={<NewsList />} />
         </Route>
-        <Route path="/friends" element={<OurFriendsPages />} />
-        <Route path="/news" element={<NewsList />} />
 
         <Route path="*" element={<span>Not Found</span>} />
       </Routes>
