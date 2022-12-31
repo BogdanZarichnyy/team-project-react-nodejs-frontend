@@ -2,10 +2,14 @@ import AuthGroupLinks from './AuthGroupLinks';
 
 import style from './Header.module.scss';
 
-const PhoneAuthGroup = () => {
+const PhoneAuthGroup = ({ closeMobileMenu, onOpenMobileMenu }) => {
   return (
     <div className={style.PhoneAuth}>
-      <AuthGroupLinks />
+      <AuthGroupLinks
+        isMobile={true}
+        closeMobileMenu={closeMobileMenu}
+        onOpenMobileMenu={onOpenMobileMenu}
+      />
     </div>
   );
 };
