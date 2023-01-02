@@ -9,12 +9,14 @@ import style from './SharedLayout.module.scss';
 const SharedLayout = () => {
   return (
     <div className={style.layoutContainer}>
-      <Header />
+      <div className={style.headerContainer}>
+        <Header />
+      </div>
 
       <>
         <ModalContent
           trigger={props => (
-            <button type="button" {...props}>
+            <button style={{ position: 'absolute' }} type="button" {...props}>
               Add pet
             </button>
           )}

@@ -24,7 +24,7 @@ const Header = () => {
 
   return (
     <section className={style.section}>
-      <NavLink to="/home">
+      <NavLink to="/">
         <span className={style.logo}>
           pe<span className={style.logo_accent}>t</span>ly
         </span>
