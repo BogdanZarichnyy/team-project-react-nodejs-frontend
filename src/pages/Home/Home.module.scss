@@ -1,0 +1,39 @@
+@import '../../sass/utils/mixins';
+
+.layout {
+  max-width: 1600px;
+  margin-inline: auto;
+  height: calc(100vh - 148px);
+  background-image: url('../../images/home/home_desktop@2x.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+
+  @include toDesktop {
+    background-image: url('../../images/home/home_tablet@2x.webp');
+    // background-position: bottom -130px center;
+    background-position: top 100px center;
+  }
+
+  @include phone {
+    height: calc(100vh - 142px);
+    background-image: url('../../images/home/home_mobile@2x.webp');
+    background-position: top;
+  }
+}
+
+.title {
+  width: 600px;
+  margin-left: 16px;
+
+  font-family: 'Manrope-Bold';
+  font-size: 68px;
+  line-height: 100px;
+
+  @include phone {
+    width: 280px;
+
+    font-size: 32px;
+    line-height: 138%;
+  }
+}

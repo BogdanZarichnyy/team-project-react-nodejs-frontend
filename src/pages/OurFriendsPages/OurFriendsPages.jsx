@@ -50,16 +50,18 @@ const OurFriends = () => {
                         </span>
                       )}
                     </p>
-                    <ul className={s.dropdownContent}>
-                      {workTime.map(({ day, open, close }) => (
-                        <li className={s.dropdownItem} key={day}>
-                          <span>{day}</span>
-                          <span>
-                            {open}-{close}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
+                    {!!workTime.length && (
+                      <ul className={s.dropdownContent}>
+                        {workTime.map(({ day, open, close }) => (
+                          <li className={s.dropdownItem} key={day}>
+                            <span>{day}</span>
+                            <span>
+                              {open}-{close}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </li>
                 <li className={s.itemCard}>

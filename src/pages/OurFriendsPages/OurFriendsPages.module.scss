@@ -9,6 +9,7 @@
 
 
 .tittle {
+    font-family: 'Manrope-Bold';
     font-size: 24px;
     line-height: 1.38;
     text-align: center;
@@ -23,6 +24,7 @@
 }
 
 .list {
+    font-family: 'Manrope-Regular';
 @include flex-center;
 flex-direction: column;
 gap: 12px;
@@ -40,7 +42,7 @@ gap: 12px;
 }
 
 .item {
-width: 280px;
+width: 300px;
 height: 192px;
 
 font-size: 12px;
