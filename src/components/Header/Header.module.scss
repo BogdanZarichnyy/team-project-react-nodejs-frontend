@@ -6,6 +6,7 @@
   align-items: center;
 
   height: 48px;
+  min-width: 280px !important;
 
   position: relative;
   z-index: 100;
@@ -142,11 +143,12 @@
     gap: 60px;
     flex-grow: 1;
 
-    width: calc(100% + 32px);
+    width: 100vw;
+
     height: calc(100vh - 20px);
 
-    margin-left: -16px;
-    margin-right: -16px;
+    margin-left: calc((768px - 100vw) / 2);
+    // margin-right: -16px;
     padding-top: 160px;
 
     position: absolute;
@@ -189,7 +191,8 @@
     gap: 40px;
 
     padding-top: 200px;
-    // height: calc(100vh - 20px);
+
+    margin-left: calc((480px - 100vw) / 2);
   }
 
   .navGroup nav ul li span {
@@ -224,5 +227,11 @@
   .userIcon {
     width: 20px;
     height: 20px;
+  }
+
+  @media screen and (max-width: 510px) {
+    .navGroup nav ul {
+      margin-left: -16px;
+    }
   }
 }

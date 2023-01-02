@@ -23,7 +23,7 @@ const Header = () => {
   const onOpenMobileMenu = () => setOpenMobileMenu(!openMobileMenu);
 
   return (
-    <section className={style.section}>
+    <section className={style.section + ' container'}>
       <NavLink to="/">
         <span className={style.logo}>
           pe<span className={style.logo_accent}>t</span>ly
