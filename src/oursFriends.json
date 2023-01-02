@@ -1,0 +1,295 @@
+[{
+  "_id": "63ad9078b5b9f1fae72c35a7",
+  "name": "ЛКП “ЛЕВ”",
+  "logo": "./images/oursFriends/lkp-lev.png",
+  "workTime": [
+	{
+      "day": "MN",
+      "open": "08:00",
+      "close": "19:00"
+    },
+    {
+	  "day": "TU",
+      "open": "08:00",
+      "close": "19:00"
+    },
+    {
+	  "day": "WE",
+      "open": "08:00",
+      "close": "19:00"
+    },
+    {
+	  "day": "TH",
+      "open": "08:00",
+      "close": "19:00"
+    },
+    {
+	  "day": "FR",
+      "open": "08:00",
+      "close": "19:00"
+    },
+    {
+	  "day": "SA",
+      "open": "08:00",
+      "close": "19:00"
+    },
+    {
+	  "day": "SU",
+      "open": "08:00",
+      "close": "19:00"
+    }
+  ],
+  "address": "Promuslova Street, 56",
+  "url": "http://surl.li/efsqx",
+  "email": "lkplev@gmail.com",
+  "phone": "032-293-30-41"
+},{
+  "_id": "63ad94c3b5b9f1fae72c35a8",
+  "name": "Барбос",
+  "logo": "./images/oursFriends/barbos.png",
+  "workTime": [
+	{
+      "day": "MN",
+      "open": "08:00",
+      "close": "20:00"
+    },
+    {
+	  "day": "TU",
+      "open": "08:00",
+      "close": "20:00"
+    },
+    {
+	  "day": "WE",
+      "open": "08:00",
+      "close": "20:00"
+    },
+    {
+	  "day": "TH",
+      "open": "08:00",
+      "close": "20:00"
+    },
+    {
+	  "day": "FR",
+      "open": "08:00",
+      "close": "20:00"
+    },
+    {
+	  "day": "SA",
+      "open": "08:00",
+      "close": "20:00"
+    },
+    {
+	  "day": "SU",
+      "open": "08:00",
+      "close": "20:00"
+    }
+  ],
+  "address": "Grigorenka Street, 25",
+  "url": "http://surl.li/efodf",
+  "email": "barbos@gmail.com",
+  "phone": "+380-66-488-04-80"
+},{
+  "_id": "63ad9590b5b9f1fae72c35a9",
+  "name": "Whiskas",
+  "logo": "./images/oursFriends/whiskas.png",
+  "workTime": [],
+  "address": "",
+  "email": "whiskas@gmail.com",
+  "phone": "0–800–500–155"
+},{
+  "_id": "63ad95ceb5b9f1fae72c35aa",
+  "name": "Happy paw",
+  "logo": "./images/oursFriends/happy-paw.png",
+  "workTime": [
+	{
+      "day": "MN",
+      "open": "09:00",
+      "close": "20:00"
+    },
+    {
+	  "day": "TU",
+      "open": "09:00",
+      "close": "20:00"
+    },
+    {
+	  "day": "WE",
+      "open": "09:00",
+      "close": "20:00"
+    },
+    {
+	  "day": "TH",
+      "open": "09:00",
+      "close": "20:00"
+    },
+    {
+	  "day": "FR",
+      "open": "09:00",
+      "close": "20:00"
+    },
+    {
+	  "day": "SA",
+      "open": "09:00",
+      "close": "20:00"
+    },
+    {
+	  "day": "SU",
+      "open": "09:00",
+      "close": "20:00"
+    }
+  ],
+  "address": "Chota Rystaveli Street, 44",
+  "url": "http://surl.li/efoed",
+  "email": "hello@happypaw.ua",
+  "phone": "+380-44-290-03-29"
+},{
+  "_id": "63ad969bb5b9f1fae72c35ab",
+  "name": "PetHelp",
+  "logo": "./images/oursFriends/pet-help.png",
+  "workTime": [],
+  "address": "",
+  "email": "pithelp.ukr@gmail.com",
+  "phone": ""
+},{
+  "_id": "63ad972bb5b9f1fae72c35ac",
+  "name": "Сіріус",
+  "logo": "./images/oursFriends/sirius.png",
+  "workTime": [
+	{
+      "day": "MN",
+      "open": "11:00",
+      "close": "16:00"
+    },
+    {
+	  "day": "TU",
+      "open": "11:00",
+      "close": "16:00"
+    },
+    {
+	  "day": "WE",
+      "open": "11:00",
+      "close": "16:00"
+    },
+    {
+	  "day": "TH",
+      "open": "11:00",
+      "close": "16:00"
+    },
+    {
+	  "day": "FR",
+      "open": "11:00",
+      "close": "16:00"
+    },
+    {
+	  "day": "SA",
+      "open": "11:00",
+      "close": "16:00"
+    },
+    {
+	  "day": "SU",
+      "open": "11:00",
+      "close": "16:00"
+    }
+  ],
+  "address": "Fedorivka, Kyiv Oblast",
+  "url": "http://surl.li/efoek",
+  "email": "dogcat.sirius@gmail.com",
+  "phone": "+380-93-193-40-69"
+},{
+  "_id": "63ad97a3b5b9f1fae72c35ad",
+  "name": "PURINA",
+  "logo": "./images/oursFriends/purina.png",
+  "workTime": [],
+  "address": "",
+  "email": "info@ua.nestle.com",
+  "phone": "1-800-778-74-62"
+},{
+  "_id": "63ad9804b5b9f1fae72c35ae",
+  "name": "Josera",
+  "logo": "./images/oursFriends/josera.png",
+  "workTime": [
+	{
+      "day": "MN",
+      "open": "09:00",
+      "close": "16:00"
+    },
+    {
+	  "day": "TU",
+      "open": "09:00",
+      "close": "16:00"
+    },
+    {
+	  "day": "WE",
+      "open": "09:00",
+      "close": "16:00"
+    },
+    {
+	  "day": "TH",
+      "open": "09:00",
+      "close": "16:00"
+    },
+    {
+	  "day": "FR",
+      "open": "09:00",
+      "close": "16:00"
+    },
+    {
+	  "day": "SA",
+      "open": "09:00",
+      "close": "16:00"
+    },
+    {
+	  "day": "SU",
+      "open": "09:00",
+      "close": "16:00"
+    }
+  ],
+  "address": "Sholom-Aleikhema St, 11",
+  "url": "http://surl.li/efoes",
+  "email": "info@josera.ua",
+  "phone": "0-800-40-90-60"
+},{
+  "_id": "63ad9864b5b9f1fae72c35af",
+  "name": "LICO",
+  "logo": "./images/oursFriends/lico.png",
+  "workTime": [
+	{
+      "day": "MN",
+      "open": "09:00",
+      "close": "20:00"
+    },
+    {
+	  "day": "TU",
+      "open": "09:00",
+      "close": "20:00"
+    },
+    {
+	  "day": "WE",
+      "open": "09:00",
+      "close": "20:00"
+    },
+    {
+	  "day": "TH",
+      "open": "09:00",
+      "close": "20:00"
+    },
+    {
+	  "day": "FR",
+      "open": "09:00",
+      "close": "20:00"
+    },
+    {
+	  "day": "SA",
+      "open": "09:00",
+      "close": "20:00"
+    },
+    {
+	  "day": "SU",
+      "open": "09:00",
+      "close": "20:00"
+    }
+  ],
+  "address": "Dryhetiv Street, 77",
+  "url": "http://surl.li/efoet",
+  "email": "lico@gmail.com",
+  "phone": "+380-97-509-80-05"
+}]

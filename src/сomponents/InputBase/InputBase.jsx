@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import s from './Input.module.scss';
+import s from './InputBase.module.scss';
 
 const InputBase = ({
   type,
