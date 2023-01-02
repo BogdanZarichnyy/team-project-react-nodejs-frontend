@@ -1,12 +1,11 @@
 $colors: (
   'clr-bg': #fdf7f2,
   'clr-accent': #f59256,
-  'clr-accent-active': #ff6101,
+  'clr-accent-opacity': #f5925680,
   'clr-black': #111111,
   'clr-gray': #11111199,
   'clr-blue': #3091eb,
   'clr-white': #ffffff,
-  'clr-text-second': #181c27,
 );
 
 @function getColor($color) {
@@ -15,5 +14,6 @@ $colors: (
 //color: getColor('clr-main');
 
 $drop-shadow: drop-shadow(7 4 14px #31150412);
+$drop-shadow-light: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
 
 $time-distribution-function: cubic-bezier(0.4, 0, 0.2, 1);

@@ -1,0 +1,14 @@
+@import '../../../sass/utils/variables';
+@import '../../../sass/utils/mixins';
+
+.avatarContainer {
+  margin: 0 7px;
+
+  @include tablet {
+    margin: 0 0 0 52px;
+  }
+}
+
+.avatarImage {
+  filter: $drop-shadow-light;
+}

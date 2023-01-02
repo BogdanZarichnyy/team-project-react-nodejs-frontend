@@ -1,0 +1,41 @@
+@import '../../../sass/utils/variables';
+@import '../../../sass/utils/mixins';
+
+.logOutButton {
+  @include flex-center;
+
+  margin-top: 42px;
+  margin-left: auto;
+  gap: 8px;
+  font-family: 'Manrope-Medium';
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+  color: getColor('clr-gray');
+  background-color: transparent;
+  border: none;
+  @include transition-animation(all);
+
+  @include tablet {
+    margin-top: 33px;
+    margin-left: 0;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:active {
+    color: getColor('clr-black');
+    .logOutIcon {
+      fill: getColor('clr-accent-opacity');
+    }
+  }
+}
+
+.logOutIcon {
+  width: 18px;
+  height: 18px;
+  fill: getColor('clr-accent');
+  @include transition-animation(all);
+}

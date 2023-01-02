@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import SharedLayout from './сomponents/SharedLayout/SharedLayout';
 import LoginPage from './pages/LoginPage/LoginPage';
+import Profile from './pages/Profile';
 
 import './App.css';
 
@@ -12,7 +13,6 @@ const OurFriendsPages = lazy(() =>
 
 const NewsList = lazy(() => import('./pages/News/NewsList'));
 
-
 export const App = () => {
   return (
     <Suspense fallback={<span>Loading</span>}>
@@ -21,6 +21,7 @@ export const App = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/friends" element={<OurFriendsPages />} />
           <Route path="/news" element={<NewsList />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
 
         <Route path="*" element={<span>Not Found</span>} />
