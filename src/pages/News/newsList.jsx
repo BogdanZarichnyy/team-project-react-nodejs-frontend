@@ -1,6 +1,6 @@
 import styles from './NewsList.module.scss';
 import newsArticle from '../../news.json';
-import SearchInput from '../../сomponents/SearchInput/SearchInput';
+import SearchInput from '../../сomponents/SearchInput';
 
 const NewsList = () => {
   return (

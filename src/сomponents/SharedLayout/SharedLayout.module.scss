@@ -1,8 +1,11 @@
 @import '../../sass/utils/variables';
 
 .layoutContainer {
-  padding: 20px 16px;
   background-color: getColor('clr-bg');
+}
+
+.headerContainer {
+  padding: 20px 16px;
 }
 
 .outlets {
