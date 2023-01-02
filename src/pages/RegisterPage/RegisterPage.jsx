@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import AuthLayout from '../../layouts/AuthLayout';
-import RegisterFormStepOne from '../../сomponents/Auth/RegisterFormStepOne';
-import RegisterFormStepTwo from '../../сomponents/Auth/RegisterFormStepTwo';
+import RegisterFormStepOne from '../../components/Auth/RegisterFormStepOne';
+import RegisterFormStepTwo from '../../components/Auth/RegisterFormStepTwo';
 
 const RegisterPage = () => {
   const [step, setStep] = useState(1);
