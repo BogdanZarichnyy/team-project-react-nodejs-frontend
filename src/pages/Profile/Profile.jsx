@@ -2,6 +2,7 @@ import ProfilePet from '../../сomponents/Profile/ProfilePet';
 import ProfileAvatar from '../../сomponents/Profile/ProfileAvatar';
 import ProfileContactsList from '../../сomponents/Profile/ProfileContactsList';
 import AddPetButton from '../../сomponents/AddPetButton';
+import { ModalProvider } from '../../сomponents/ModalRework';
 
 import s from './Profile.module.scss';
 
@@ -17,7 +18,9 @@ const Profile = () => {
           My information:
         </h2>
         <div className={s.profileThumb}>
-          <ProfileAvatar />
+          <ModalProvider>
+            <ProfileAvatar />
+          </ModalProvider>
           <ProfileContactsList />
         </div>
       </section>

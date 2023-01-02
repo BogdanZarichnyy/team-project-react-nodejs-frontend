@@ -1,25 +1,34 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Avatar from 'react-avatar-edit';
 
 import ProfileAvatarAddButton from '../ProfileAvatarAddButton';
 import ProfileAvatarChangeButton from '../ProfileAvatarChangeButton';
-import ModalContent from '../../../сomponents/Modal';
-import { useModal } from '../../ModalCustom/ModalCustom';
+import { ModalContext } from '../../ModalRework';
 
 import s from './ProfileAvatar.module.scss';
 
 const ProfileAvatar = () => {
   const [img, setImg] = useState(null); // props.personalInfo.profileImg.length ? props.personalInfo.profileImg : ''
-  const [open, setOpen] = useState(false);
 
-  const props = useModal();
+  const { modal, handleModal } = useContext(ModalContext);
 
-  console.log(props);
+  console.log(handleModal);
 
   const handleClickOpen = () => {
-    console.log('openclicked');
-    setOpen(true);
-    // handleToggleModal();
+    handleModal(
+      <Avatar
+        width={280}
+        height={280}
+        imageHeight={253}
+        minCropRadius={50}
+        exportQuality={1.0}
+        onCrop={onCrop}
+        onClose={onClose}
+        label={'Click or Drag image here!'}
+        onBeforeFileLoad={onBeforeFileLoad}
+        className={s.avatarField}
+      />
+    );
   };
 
   const onClose = () => {
@@ -45,17 +54,6 @@ const ProfileAvatar = () => {
         <ProfileAvatarAddButton {...{ handleClickOpen }} />
       )}
       {img && <ProfileAvatarChangeButton {...{ handleClickOpen }} />}
-
-      <ModalContent>
-        <Avatar
-          width={230}
-          height={230}
-          onCrop={onCrop}
-          onClose={onClose}
-          label={'Click or Drag image here!'}
-          onBeforeFileLoad={onBeforeFileLoad}
-        />
-      </ModalContent>
     </div>
   );
 };
