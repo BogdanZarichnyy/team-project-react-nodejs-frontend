@@ -1,10 +1,12 @@
-import styles from './newsList.module.scss';
+import styles from './NewsList.module.scss';
 import newsArticle from '../../news.json';
+import SearchInput from '../../сomponents/SearchInput';
 
 const NewsList = () => {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>News</h2>
+      <SearchInput />
       <ul className={styles.articlelist}>
         {newsArticle.map(({ _id, title, url, info, date }) => (
           <li className={styles.articleItem} key={_id}>

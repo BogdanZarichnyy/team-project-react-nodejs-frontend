@@ -3,6 +3,7 @@
 @import '../../sass/utils/container';
 
 .articleTitle {
+    font-family: 'Manrope-Medium';
     margin-bottom: 16px;
 
     @include font-size(24px, 700, 1.38);
@@ -10,6 +11,7 @@
 }
 
 .title {
+    font-family: 'Manrope-Bold';
     font-size: 24px;
     line-height: 1.38;
     text-align: center;
@@ -26,6 +28,7 @@
 }
 
 .articlelist {
+    font-family: 'Manrope-Regular';
     @include flex-center;
     flex-direction: column;
     gap: 40px 0;

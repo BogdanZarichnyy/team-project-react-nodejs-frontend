@@ -42,7 +42,7 @@ const OurFriends = () => {
                     <p className={s.dropdownSbt}>Time:</p>
                     <p>
                       {!workTime.length ? (
-                        <span>----------------------------------</span>
+                        <span>----------------------</span>
                       ) : (
                         <span>
                           {workTime[getNowDate() - 1].open} -
@@ -50,16 +50,20 @@ const OurFriends = () => {
                         </span>
                       )}
                     </p>
-                    <ul className={s.dropdownContent}>
-                      {workTime.map(({ day, open, close }) => (
-                        <li className={s.dropdownItem} key={day}>
-                          <span>{day}</span>
-                          <span>
-                            {open}-{close}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
+                    {!workTime.length ? (
+                      <span>------------</span>
+                    ) : (
+                      <ul className={s.dropdownContent}>
+                        {workTime.map(({ day, open, close }) => (
+                          <li className={s.dropdownItem} key={day}>
+                            <span>{day}</span>
+                            <span>
+                              {open}-{close}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </li>
                 <li className={s.itemCard}>
