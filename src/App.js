@@ -12,6 +12,8 @@ const OurFriendsPages = lazy(() =>
   import('./pages/OurFriendsPages/OurFriendsPages')
 );
 
+const NoticesPage = lazy(() => import('./pages/NoticesPage'));
+
 const NewsList = lazy(() => import('./pages/News/NewsList'));
 
 export const App = () => {
@@ -24,6 +26,7 @@ export const App = () => {
           <Route path="register" element={<RegisterPage />} />
           <Route path="friends" element={<OurFriendsPages />} />
           <Route path="news" element={<NewsList />} />
+          <Route path="/notices" element={<NoticesPage />} />
         </Route>
 
         <Route path="*" element={<span>Not Found</span>} />

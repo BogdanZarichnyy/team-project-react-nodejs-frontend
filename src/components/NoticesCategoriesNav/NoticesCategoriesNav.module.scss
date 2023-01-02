@@ -1,0 +1,68 @@
+@import '../../sass/utils/variables';
+@import '../../sass/utils/mixins';
+
+.noticesNavigation {
+    margin-bottom: 30px;
+}
+
+.noticesList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    padding: 0;
+    margin: 0;
+
+    list-style: none;
+}
+
+.noticesLink,
+.noticesLinkCurrent {
+    display: block;
+
+    padding: 8px 28px;
+    
+    border: 2px solid getColor('clr-accent');
+    border-radius: 40px;
+    background-color: getColor('clr-white');
+
+    font-family: 'Manrope-Medium';
+    font-size: 14px;
+    line-height: 1.36;
+    text-decoration: none;
+
+    color: getColor('clr-black');
+
+    @include transition-animation(all);
+
+    &:hover,
+    &:focus {
+        background-color: getColor('clr-accent');
+        color: getColor('clr-white');
+    }
+}
+
+.noticesLinkCurrent {
+    background-color: getColor('clr-accent');
+    color: getColor('clr-white');
+}
+
+@include tablet {
+    .noticesNavigation {
+        max-width: 476px;
+        margin-bottom: 0;
+    }
+
+    .noticesLink,
+    .noticesLinkCurrent {
+        padding: 10px 28px;
+        font-size: 20px;
+        line-height: 1.35;
+    }
+}
+
+@include desktop {
+    .noticesNavigation {
+        max-width: 1020px;
+    }
+}
