@@ -25,7 +25,7 @@ export const App = () => {
           <Route path="register" element={<RegisterPage />} />
           <Route path="friends" element={<OurFriendsPages />} />
           <Route path="news" element={<NewsList />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
 
         <Route path="*" element={<span>Not Found</span>} />
