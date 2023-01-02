@@ -1,8 +1,8 @@
-import ProfilePet from '../../сomponents/Profile/ProfilePet';
-import ProfileAvatar from '../../сomponents/Profile/ProfileAvatar';
-import ProfileContactsList from '../../сomponents/Profile/ProfileContactsList';
-import AddPetButton from '../../сomponents/AddPetButton';
-import { ModalProvider } from '../../сomponents/ModalRework';
+import ProfilePet from '../../components/Profile/ProfilePet';
+import ProfileAvatar from '../../components/Profile/ProfileAvatar';
+import ProfileContactsList from '../../components/Profile/ProfileContactsList';
+import AddPetButton from '../../components/AddPetButton';
+import { ModalProvider } from '../../components/ModalRework';
 
 import s from './Profile.module.scss';
 
