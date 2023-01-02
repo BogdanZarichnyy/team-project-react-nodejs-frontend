@@ -14,7 +14,7 @@ const SearchInput = () => {
           styles={s.inputSearch}
         />
         <button type="submit" className={s.btnSearch}>
-          <svg width="16" height="16">
+          <svg width="17" height="17">
             <use href={`${sprite}#searchIcon`}></use>
           </svg>
         </button>
