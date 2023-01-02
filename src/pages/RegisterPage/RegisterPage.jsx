@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import AuthLayout from '../../layouts/AuthLayout';
 import RegisterFormStepOne from '../../сomponents/Auth/RegisterFormStepOne';
 import RegisterFormStepTwo from '../../сomponents/Auth/RegisterFormStepTwo';
