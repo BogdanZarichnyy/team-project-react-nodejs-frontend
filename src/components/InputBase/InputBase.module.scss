@@ -1,0 +1,28 @@
+@import '../../sass/utils/mixins';
+@import '../../sass/utils/variables';
+.input {
+  width: 100%;
+  max-width: 458px;
+  height: 40px;
+
+  background-color: getColor('clr-bg');
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  padding: 14px 11px;
+
+  font-family: 'Manrope-Regular';
+  font-size: 14px;
+  line-height: 19px;
+
+  @include tablet {
+    height: 52px;
+    padding: 14px 32px;
+
+    font-size: 18px;
+    line-height: 25px;
+  }
+}
+
+.black {
+  background-color: #000;
+}
