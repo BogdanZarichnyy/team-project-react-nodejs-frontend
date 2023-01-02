@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import s from '../LoginForm/LoginForm.module.scss';
-import InputBase from '../InputBase/InputBase';
-import ButtonBase from '../ButtonBase';
+import InputBase from '../../InputBase/InputBase';
+import ButtonBase from '../../ButtonBase/ButtonBase';
 
 const initialValues = {
   email: '',
   password: '',
+  confirmPassword: '',
 };
 
 const validationSchema = Yup.object({
@@ -19,17 +20,23 @@ const validationSchema = Yup.object({
     .min(10, 'Password must be at least 10 characters long')
     .max(60, 'Password must be 60 characters maximum')
     .required('Required field to fill!'),
+  confirmPassword: Yup.string()
+    .min(10, 'Password must be at least 10 characters long')
+    .max(60, 'Password must be 60 characters maximum')
+    .required('Required field to fill!'),
 });
 
-const LoginForm = () => {
+const RegisterFormStepOne = ({ onNext }) => {
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit: values => console.log(values),
   });
-
   const { values, handleChange, handleSubmit } = formik;
 
+  useEffect(() => {
+    console.log(values);
+  }, [values]);
   return (
     <form
       className={s.form}
@@ -47,15 +54,24 @@ const LoginForm = () => {
         onChange={handleChange}
       />
       <InputBase
-        styles={s.inputSecondBottomMargin}
+        styles={s.inputBottomMargin}
         type="password"
         name="password"
         placeholder="Password"
         value={values.password}
         onChange={handleChange}
       />
-      <ButtonBase type="submit" text="login" />
+      <InputBase
+        styles={s.inputSecondBottomMargin}
+        type="password"
+        name="confirmPassword"
+        placeholder="Confirm Password"
+        value={values.confirmPassword}
+        onChange={handleChange}
+      />
+      <ButtonBase onClick={onNext} type="button" text="Next" />
     </form>
   );
 };
-export default LoginForm;
+
+export default RegisterFormStepOne;

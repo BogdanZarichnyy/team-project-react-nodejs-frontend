@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import SharedLayout from './сomponents/SharedLayout';
 import LoginPage from './pages/LoginPage/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 
 import './App.css';
 
@@ -18,6 +19,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="/friends" element={<OurFriendsPages />} />
           <Route path="/news" element={<NewsList />} />
         </Route>
