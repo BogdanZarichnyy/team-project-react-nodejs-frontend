@@ -123,7 +123,7 @@
 
   .navGroup .MobileNavigation .burger {
     position: absolute;
-    right: 15px;
+    right: 32px;
     cursor: pointer;
     background-color: transparent;
     border: none;
@@ -229,9 +229,13 @@
     height: 20px;
   }
 
-  @media screen and (max-width: 510px) {
-    .navGroup nav ul {
-      margin-left: -16px;
-    }
+  .navGroup .MobileNavigation .burger {
+    right: 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .navGroup nav ul {
+    margin-left: 0px;
   }
 }

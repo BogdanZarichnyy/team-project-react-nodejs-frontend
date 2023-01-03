@@ -10,14 +10,27 @@ const MobileNavigation = ({ onOpenMobileMenu }) => {
   const [open, setOpen] = useState(false);
   const closeMobileMenu = () => setOpen(false);
 
+  function lockScroll() {
+    document.body.classList.toggle('NotScroll');
+  }
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: -40,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <nav className={style.MobileNavigation}>
       <button
         type="button"
         className={style.burger}
         onClick={() => {
+          scrollToTop();
           setOpen(!open);
           onOpenMobileMenu();
+          lockScroll();
         }}
       >
         {open ? (
