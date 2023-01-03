@@ -16,7 +16,7 @@ const RegisterPage = () => {
       {step === 1 ? (
         <RegisterFormStepOne onNext={() => setStep(2)} />
       ) : (
-        <RegisterFormStepTwo />
+        <RegisterFormStepTwo onNext={() => setStep(1)} />
       )}
     </AuthLayout>
   );

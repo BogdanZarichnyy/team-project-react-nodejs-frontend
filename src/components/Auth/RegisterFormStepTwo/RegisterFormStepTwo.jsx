@@ -18,7 +18,7 @@ const validationSchema = Yup.object({
   phone: Yup.number(),
 });
 
-const RegisterFormStepTwo = () => {
+const RegisterFormStepTwo = ({ onNext }) => {
   const formik = useFormik({
     initialValues,
     validationSchema,
@@ -60,6 +60,7 @@ const RegisterFormStepTwo = () => {
         onChange={handleChange}
       />
       <ButtonBase type="submit" text="Register" />
+      <ButtonBase onClick={onNext} type="button" text="Back" isLigth />
     </form>
   );
 };

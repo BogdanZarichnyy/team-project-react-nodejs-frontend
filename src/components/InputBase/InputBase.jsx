@@ -8,12 +8,12 @@ const InputBase = ({
   value,
   styles = {},
   onChange,
-  isBlack = false,
+  isLigth = false,
   placeholder,
 }) => {
   return (
     <input
-      className={classNames(s.input, styles, isBlack && s.black)}
+      className={classNames(s.input, styles, isLigth && s.ligth)}
       type={type}
       name={name}
       value={value}
