@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-// import style from '../Header.module.scss';
 import style from './NavigationLinks.module.scss';
 
 const NavigationLinks = ({ isMobile, closeMobileMenu }) => {
