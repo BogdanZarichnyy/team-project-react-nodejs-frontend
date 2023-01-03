@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import s from './NoticesCategoriesNav.module.scss';
 
 export default function NoticesCategoriesNav() {
-    const [isLogedIn, setisLoggedIn] = useState(false);
+    const [isLogedIn, setisLoggedIn] = useState(true);
 
     return (
         <nav className={s.noticesNavigation}> 

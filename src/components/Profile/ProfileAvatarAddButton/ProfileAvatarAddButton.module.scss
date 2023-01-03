@@ -1,0 +1,30 @@
+@import '../../../sass/utils/variables';
+@import '../../../sass/utils/mixins';
+
+.avatarAddButton {
+  @include flex-center;
+
+  width: 233px;
+  height: 233px;
+  background-color: getColor('clr-bg');
+  border: none;
+  border-radius: 50%;
+  @include transition-animation(all);
+
+  &:hover {
+    .avatarAddIcon {
+      fill: getColor('clr-black');
+    }
+  }
+
+  &:active {
+    filter: $drop-shadow-light;
+  }
+}
+
+.avatarAddIcon {
+  width: 71px;
+  height: 71px;
+  fill: getColor('clr-gray');
+  @include transition-animation(all);
+}

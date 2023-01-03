@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
 import s from './NoticesCategoriesItem.module.scss';
-import sprite from '../../images/sprite.svg';
-import img from '../../images/about.png';
+import sprite from '../../../images/sprite.svg';
+import img from '../../../images/about.png';
 
 export default function NoticesCategoriesItem({isAddedByMe}) {
     const [addedToFavorite, setAddedToFavorite] = useState(false);
-    const [isLogedIn, setisLoggedIn] = useState(false);
+    const [isLogedIn, setisLoggedIn] = useState(true);
 
     const clickAddFavorite = (event) => {
         if (!isLogedIn) {

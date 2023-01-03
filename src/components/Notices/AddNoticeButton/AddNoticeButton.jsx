@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import sprite from '../../images/sprite.svg';
+import sprite from '../../../images/sprite.svg';
 
 import s from './AddNoticeButton.module.scss';
 
 export default function AddNoticeButton() {
-    const [isLogedIn, setisLoggedIn] = useState(false);
+    const [isLogedIn, setisLoggedIn] = useState(true);
 
     const clickAddPetButton = (event) => {
         if (!isLogedIn) {
@@ -15,7 +15,6 @@ export default function AddNoticeButton() {
         }
 
         event.preventDefault()
-        console.log('Modal is open!')
     }
 
     return (

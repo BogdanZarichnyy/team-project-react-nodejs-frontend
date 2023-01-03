@@ -1,7 +1,7 @@
-import AddNoticeButton from '../../components/AddNoticeButton';
+import AddNoticeButton from '../../components/Notices/AddNoticeButton';
 import SearchInput from '../../components/SearchInput';
-import NoticesCategoriesNav from '../../components/NoticesCategoriesNav';
-import NoticeCategoriesList from '../../components/NoticesCategoriesList';
+import NoticesCategoriesNav from '../../components/Notices/NoticesCategoriesNav';
+import NoticeCategoriesList from '../../components/Notices/NoticesCategoriesList';
 
 import s from './NoticesPage.module.scss';
 
