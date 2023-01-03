@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-import style from './Header.module.scss';
+import style from '../Header.module.scss';
 
 const NavigationLinks = ({ isMobile, closeMobileMenu }) => {
   const animateFrom = { opacity: 0, y: -40 };

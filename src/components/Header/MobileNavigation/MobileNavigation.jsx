@@ -1,10 +1,10 @@
 import React from 'react';
-import NavigationLinks from './NavigationLinks';
+import NavigationLinks from '../NavigationLinks';
 
-import PhoneAuthGroup from './PhoneAuthGroup';
+import PhoneAuthGroup from '../PhoneAuthGroup';
 
-import sprite from '../../images/sprite.svg';
-import style from './Header.module.scss';
+import sprite from '../../../images/sprite.svg';
+import style from '../Header.module.scss';
 
 const MobileNavigation = ({ open, setOpen }) => {
   const closeMobileMenu = () => setOpen(false);
