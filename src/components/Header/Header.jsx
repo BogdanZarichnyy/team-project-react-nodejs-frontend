@@ -22,6 +22,10 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
+    if (matches) {
+      setOpen(false);
+    }
+
     if (matches && open) {
       document.body.classList.remove('NotScroll');
     }
