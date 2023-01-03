@@ -20,6 +20,20 @@ const Header = () => {
       .addEventListener('change', e => setMatches(e.matches));
   }, []);
 
+  useEffect(() => {
+    if (matches && openMobileMenu) {
+      // document.body.classList.toggle('NotScroll');
+      document.body.classList.remove('NotScroll');
+    }
+    if (!openMobileMenu) {
+      document.body.classList.remove('NotScroll');
+    }
+
+    if (openMobileMenu && !matches) {
+      document.body.classList.add('NotScroll');
+    }
+  }, [matches, openMobileMenu]);
+
   const onOpenMobileMenu = () => setOpenMobileMenu(!openMobileMenu);
 
   return (
