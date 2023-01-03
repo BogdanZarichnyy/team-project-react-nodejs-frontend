@@ -1,0 +1,21 @@
+@import '../../../sass/utils/variables';
+@import '../../../sass/utils/mixins';
+
+.noticeList {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+    gap: 32px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+@include tablet {
+    .noticeList{
+        justify-content: flex-start;
+    }    
+}
