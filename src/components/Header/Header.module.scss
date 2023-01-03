@@ -18,66 +18,11 @@
   align-items: center;
 }
 
-.nav_list {
-  font-family: 'Manrope-Medium';
-
-  display: flex;
-  gap: 80px;
-  align-items: center;
-}
-
-.nav_item {
-  text-decoration: none;
-  font-size: 20px;
-  color: getColor('clr-text-second');
-
-  transition: 250ms;
-}
-
-.nav_item:is(:hover, :focus) {
-  color: getColor('clr-accent');
-}
-
 .authGroup {
   margin-left: auto;
   font-family: 'Manrope-Medium';
 
   display: flex;
-}
-
-.auth_item {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-
-  padding: 10px 28px;
-
-  font-size: 16px;
-  text-decoration: none;
-  color: getColor('clr-white');
-
-  background-color: getColor('clr-accent');
-
-  border: 2px solid getColor('clr-accent');
-  border-radius: 40px;
-
-  transition: 250ms;
-}
-
-.auth_item:is(:hover, :focus) {
-  background-color: getColor('clr-accent-active');
-  border: 2px solid getColor('clr-accent-active');
-}
-
-.auth_item__secondary {
-  color: getColor('clr-text-second');
-  background-color: getColor('clr-white');
-  transition: 250ms;
-}
-
-.auth_item__secondary:is(:hover, :focus) {
-  background-color: getColor('clr-white');
-  border: 2px solid getColor('clr-accent-active');
 }
 
 .logo {
@@ -98,21 +43,11 @@
   display: none;
 }
 
-.PhoneAuth {
-  display: none;
-}
-
 .authGroup .Auth {
   display: flex;
   gap: 20px;
 
   height: 44px;
-}
-
-.userIcon {
-  width: 28px;
-  height: 28px;
-  fill: getColor('clr-white');
 }
 
 @include toDesktop {
@@ -148,7 +83,6 @@
     height: calc(100vh - 20px);
 
     margin-left: calc((768px - 100vw) / 2);
-    // margin-right: -16px;
     padding-top: 160px;
 
     position: absolute;
@@ -165,13 +99,6 @@
 
   .authGroup {
     margin-right: 60px;
-  }
-
-  .auth_item {
-    padding: 11px 28px;
-    height: 44px;
-
-    font-size: 16px;
   }
 }
 
@@ -199,34 +126,8 @@
     font-size: 32px;
   }
 
-  .PhoneAuth {
-    position: absolute;
-    left: 0;
-
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-
-    margin-top: 135px;
-    width: 100%;
-
-    align-items: center;
-  }
-
   .authGroup .Auth {
     display: none;
-  }
-
-  .auth_item {
-    padding: 8px 28px;
-    height: 35px;
-
-    font-size: 14px;
-  }
-
-  .userIcon {
-    width: 20px;
-    height: 20px;
   }
 
   .navGroup .MobileNavigation .burger {

@@ -1,0 +1,22 @@
+@import '../../../sass/utils/variables';
+@import '../../../sass/utils/mixins';
+
+.nav_list {
+  font-family: 'Manrope-Medium';
+
+  display: flex;
+  gap: 80px;
+  align-items: center;
+}
+
+.nav_item {
+  text-decoration: none;
+  font-size: 20px;
+  color: getColor('clr-text-second');
+
+  transition: 250ms;
+}
+
+.nav_item:is(:hover, :focus) {
+  color: getColor('clr-accent');
+}

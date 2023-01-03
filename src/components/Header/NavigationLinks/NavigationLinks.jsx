@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-import style from './Header.module.scss';
+import style from './NavigationLinks.module.scss';
 
-const NavigationLinks = ({ isMobile, closeMobileMenu, onOpenMobileMenu }) => {
+const NavigationLinks = ({ isMobile, closeMobileMenu }) => {
   const animateFrom = { opacity: 0, y: -40 };
   const animateTo = { opacity: 1, y: 0 };
 
@@ -21,7 +21,6 @@ const NavigationLinks = ({ isMobile, closeMobileMenu, onOpenMobileMenu }) => {
         transition={{ delay: 0.05 }}
         onClick={() => {
           isMobile && closeMobileMenu();
-          isMobile && onOpenMobileMenu();
         }}
       >
         <NavLink to="/news" className={style.nav_item}>
@@ -35,7 +34,6 @@ const NavigationLinks = ({ isMobile, closeMobileMenu, onOpenMobileMenu }) => {
         transition={{ delay: 0.1 }}
         onClick={() => {
           isMobile && closeMobileMenu();
-          isMobile && onOpenMobileMenu();
         }}
       >
         <NavLink to="/notices" className={style.nav_item}>
@@ -49,7 +47,6 @@ const NavigationLinks = ({ isMobile, closeMobileMenu, onOpenMobileMenu }) => {
         transition={{ delay: 0.2 }}
         onClick={() => {
           isMobile && closeMobileMenu();
-          isMobile && onOpenMobileMenu();
         }}
       >
         <NavLink to="/friends" className={style.nav_item}>

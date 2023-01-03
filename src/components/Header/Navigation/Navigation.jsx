@@ -1,6 +1,6 @@
-import NavigationLinks from './NavigationLinks';
+import NavigationLinks from '../NavigationLinks';
 
-import style from './Header.module.scss';
+import style from '../Header.module.scss';
 
 const Navigation = () => {
   return (
