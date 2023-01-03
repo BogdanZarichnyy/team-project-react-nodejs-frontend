@@ -1,0 +1,21 @@
+@import '../../../sass/utils/mixins';
+
+.PhoneAuth {
+  display: none;
+}
+
+@include phone {
+  .PhoneAuth {
+    position: absolute;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+    margin-top: 135px;
+    width: 100%;
+
+    align-items: center;
+  }
+}

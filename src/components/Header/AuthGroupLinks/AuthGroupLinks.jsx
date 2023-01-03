@@ -1,7 +1,8 @@
 import { NavLink } from 'react-router-dom';
 
 import sprite from '../../../images/sprite.svg';
-import style from '../Header.module.scss';
+
+import style from './AuthGroupLinks.module.scss';
 
 const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
   return (

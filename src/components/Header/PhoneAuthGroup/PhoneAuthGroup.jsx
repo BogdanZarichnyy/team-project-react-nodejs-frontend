@@ -1,6 +1,7 @@
 import AuthGroupLinks from '../AuthGroupLinks';
 
-import style from '../Header.module.scss';
+// import style from '../Header.module.scss';
+import style from './PhoneAuthGroup.module.scss';
 
 const PhoneAuthGroup = ({ closeMobileMenu }) => {
   return (
