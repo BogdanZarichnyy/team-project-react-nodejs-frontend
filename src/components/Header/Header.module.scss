@@ -119,7 +119,7 @@
 
     padding-top: 200px;
 
-    margin-left: calc((480px - 100vw) / 2);
+    margin-left: calc((320px - 100vw) / 2);
   }
 
   .navGroup nav ul li span {
@@ -135,8 +135,8 @@
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 320px) {
   .navGroup nav ul {
-    margin-left: 0px;
+    margin-left: 0;
   }
 }
