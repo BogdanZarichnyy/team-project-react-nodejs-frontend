@@ -31,8 +31,6 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
             tag="NavLink"
             to="/login"
             className={style.authPrimaryBtn}
-            padding="10px 28px"
-            fontSize="16px"
             onClick={() => {
               isMobile && closeMobileMenu();
             }}
@@ -40,21 +38,9 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
             Login
           </PrimaryButton>
 
-          <PrimaryButton
-            tag="button"
-            type="submit"
-            className={style.authPrimaryBtn}
-            padding="10.5px 30%"
-            fontSize="20px"
-            onClick={e => console.log(e)}
-          >
-            Next
-          </PrimaryButton>
-
           <SecondaryButton
-            tag="a"
-            href="/"
-            color="#4fdb2f"
+            tag="NavLink"
+            to="/register"
             className={style.authPrimaryBtn}
             onClick={() => {
               isMobile && closeMobileMenu();
