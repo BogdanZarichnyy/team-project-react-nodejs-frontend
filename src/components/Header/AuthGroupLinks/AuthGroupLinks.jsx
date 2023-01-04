@@ -1,17 +1,18 @@
-import { NavLink } from 'react-router-dom';
-
 import sprite from '../../../images/sprite.svg';
 
 import style from './AuthGroupLinks.module.scss';
+import PrimaryButton from '../../Buttons/PrimaryButton';
+import SecondaryButton from '../../Buttons/SecondaryButton';
 
 const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
   return (
     <>
       {'if authorized' && (
         <>
-          <NavLink
+          <PrimaryButton
+            tag="NavLink"
             to="/user"
-            className={style.auth_item}
+            className={style.authPrimaryBtn}
             onClick={() => {
               isMobile && closeMobileMenu();
             }}
@@ -20,31 +21,33 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
               <use href={sprite + '#userDefaultCircleIcon'} />
             </svg>
             Acсount
-          </NavLink>
+          </PrimaryButton>
         </>
       )}
 
       {'if NOT authorized' && (
         <>
-          <NavLink
+          <PrimaryButton
+            tag="NavLink"
             to="/login"
-            className={style.auth_item}
+            className={style.authPrimaryBtn}
             onClick={() => {
               isMobile && closeMobileMenu();
             }}
           >
-            <span>Login</span>
-          </NavLink>
+            Login
+          </PrimaryButton>
 
-          <NavLink
+          <SecondaryButton
+            tag="NavLink"
             to="/register"
-            className={`${style.auth_item} ${style.auth_item__secondary}`}
+            className={style.authPrimaryBtn}
             onClick={() => {
               isMobile && closeMobileMenu();
             }}
           >
-            <span>Registration</span>
-          </NavLink>
+            Registration
+          </SecondaryButton>
         </>
       )}
     </>
