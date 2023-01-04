@@ -1,0 +1,107 @@
+@import '../../../sass/utils/variables';
+@import '../../../sass/utils/mixins';
+
+.contactThumb {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1px;
+}
+
+.contactForm {
+  @include flex-center;
+  margin-left: auto;
+}
+
+.contactType,
+.contactInput {
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+
+  @include tablet {
+    font-size: 18px;
+    line-height: 25px;
+  }
+}
+
+.contactType {
+  font-family: 'Manrope-Medium';
+}
+
+.contactInput {
+  width: 155px;
+  height: 24px;
+  padding-left: 16px;
+  font-family: 'Manrope-Regular';
+  border: 1px solid getColor('clr-accent-opacity');
+  border-radius: 40px;
+  outline: none;
+  @include transition-animation(all);
+
+  @include tablet {
+    width: 216px;
+    height: 32px;
+    margin-left: 24px;
+    padding-left: 12px;
+  }
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
+
+  &:disabled {
+    // &::-webkit-datetime-edit {
+    //   color: transparent;
+    // }
+    background-color: transparent;
+    border: none;
+  }
+
+  &:focus {
+    background-color: getColor('clr-bg');
+  }
+}
+
+.contactButton {
+  @include flex-center;
+
+  width: 20px;
+  height: 20px;
+  margin-left: 13px;
+  background-color: getColor('clr-bg');
+  border: none;
+  border-radius: 50%;
+  backdrop-filter: blur(2px);
+  @include transition-animation(all);
+
+  @include tablet {
+    width: 32px;
+    height: 32px;
+    margin-left: 24px;
+  }
+
+  &:enabled:active {
+    filter: $drop-shadow-light;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+
+    .contactPenIcon {
+      fill: getColor('clr-gray');
+    }
+  }
+}
+
+.contactPenIcon {
+  width: 12.5px;
+  height: 12.5px;
+  fill: getColor('clr-accent');
+
+  @include tablet {
+    width: 15.2px;
+    height: 15.2px;
+  }
+}

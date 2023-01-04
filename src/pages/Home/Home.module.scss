@@ -1,6 +1,8 @@
 @import '../../sass/utils/mixins';
 
 .layout {
+  max-width: 1600px;
+  margin-inline: auto;
   height: calc(100vh - 148px);
   background-image: url('../../images/home/home_desktop@2x.webp');
   background-repeat: no-repeat;
@@ -9,8 +11,8 @@
 
   @include toDesktop {
     background-image: url('../../images/home/home_tablet@2x.webp');
-
-    background-position: top -70px center;
+    // background-position: bottom -130px center;
+    background-position: top 100px center;
   }
 
   @include phone {

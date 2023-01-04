@@ -1,0 +1,108 @@
+@import '../../../sass/utils/variables';
+@import '../../../sass/utils/mixins';
+
+.petItem {
+  position: relative;
+  margin-bottom: 20px;
+  padding: 16px 20px 40px;
+  background-color: getColor('clr-white');
+  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  border-radius: 20px;
+  width: 280px;
+
+  @include tablet {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 22px;
+    padding: 20px;
+    width: 100%;
+    gap: 32px;
+  }
+
+  @include tablet {
+    border-radius: 40px;
+  }
+}
+
+.petIamge {
+  margin-bottom: 20px;
+  width: 240px;
+  height: 240px;
+  border-radius: 20px;
+
+  @include tablet {
+    width: 161px;
+    height: 161px;
+  }
+}
+
+.petFeature {
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 0.04em;
+
+  &:not(:last-child) {
+    margin-bottom: 12px;
+  }
+
+  @include tablet {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+.petFeatureDetail {
+  font-family: 'Manrope-Regular';
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+
+  @include tablet {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+.petDeleteButton {
+  position: absolute;
+  right: 20px;
+  top: 272px;
+  @include flex-center;
+  background-color: transparent;
+  border: none;
+  @include transition-animation(all);
+
+  @include tablet {
+    top: 20px;
+    width: 44px;
+    height: 44px;
+    background-color: getColor('clr-bg');
+    border-radius: 50%;
+
+    &:active {
+      box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.11);
+    }
+  }
+
+  &:hover {
+    .petDeleteIcon {
+      fill: getColor('clr-black');
+    }
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.petDeleteIcon {
+  width: 16.5px;
+  height: 17.5px;
+  fill: getColor('clr-gray');
+  @include transition-animation(all);
+
+  @include tablet {
+    width: 19.5px;
+    height: 21px;
+  }
+}
