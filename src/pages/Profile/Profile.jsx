@@ -1,15 +1,29 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerUserFetch } from '../../store/user/userSlice';
+
 import ProfilePet from '../../components/Profile/ProfilePet';
 import ProfileAvatar from '../../components/Profile/ProfileAvatar';
 import ProfileContactsList from '../../components/Profile/ProfileContactsList';
 import AddPetButton from '../../components/AddPetButton';
-import { ModalProvider } from '../../components/ModalRework';
 
 import s from './Profile.module.scss';
 
 const Profile = () => {
+  const dispatch = useDispatch();
+  const currentUser = useSelector(state => state.user);
+
   const handleAddPet = () => {
     console.log('handleAddPet');
   };
+
+  useEffect(() => {
+    dispatch(
+      registerUserFetch({ email: 'email', password: 'pas', displayName: 'DN' })
+    );
+  }, [dispatch]);
+
+  console.log(currentUser);
 
   return (
     <section className={`container ${s.containerDesktop}`}>
@@ -18,9 +32,7 @@ const Profile = () => {
           My information:
         </h2>
         <div className={s.profileThumb}>
-          <ModalProvider>
-            <ProfileAvatar />
-          </ModalProvider>
+          <ProfileAvatar />
           <ProfileContactsList />
         </div>
       </section>
