@@ -1,0 +1,45 @@
+.PhoneInput {
+  width: 100%;
+  max-width: 458px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.PhoneInputInput {
+  outline: none !important;
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  background: #fdf7f2;
+  border-radius: 40px;
+  height: 40px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: rgba(17, 17, 17, 0.6);
+  padding-left: 52px;
+}
+
+.PhoneInputCountry {
+  position: absolute;
+  top: 12px;
+  left: 15px;
+}
+
+.PhoneInputInput:focus {
+  border: 2px solid blue;
+  color: rgb(12, 1, 1);
+}
+
+@media screen and (min-width: 768px) {
+  .PhoneInputInput {
+    height: 52px;
+    padding: 14px 32px 14px 72px;
+    font-size: 18px;
+    line-height: 25px;
+  }
+  .PhoneInputCountry {
+    top: 18px;
+    left: 32px;
+  }
+}

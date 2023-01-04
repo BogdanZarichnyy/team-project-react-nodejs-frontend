@@ -1,32 +1,18 @@
 import React from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import 'react-phone-number-input/style.css';
 
-import s from '../LoginForm/LoginForm.module.scss';
+import s from '../Auth.module.scss';
+// import s from '../RegisterFormStepTwo/RegisterFormStepTwo.module.scss';
 import InputBase from '../../InputBase/InputBase';
 import ButtonBase from '../../ButtonBase/ButtonBase';
+import ErrorText from '../../ErrorText';
+import PhoneInput from 'react-phone-number-input';
+// import flags from 'react-phone-number-input/flags';
 
-const initialValues = {
-  name: '',
-  city: '',
-  phone: '',
-};
-
-const validationSchema = Yup.object({
-  name: Yup.string(),
-  city: Yup.string(),
-  phone: Yup.number(),
-});
-
-const RegisterFormStepTwo = ({ onNext }) => {
-  const formik = useFormik({
-    initialValues,
-    validationSchema,
-    onSubmit: values => console.log(values),
-  });
-
-  const { values, handleChange, handleSubmit } = formik;
-
+const RegisterFormStepTwo = ({ onNext, formik }) => {
+  const { values, handleChange, handleSubmit, errors, touched, setFieldValue } =
+    formik;
+  console.log(values.phone.length);
   return (
     <form
       className={s.form}
@@ -35,6 +21,7 @@ const RegisterFormStepTwo = ({ onNext }) => {
         handleSubmit();
       }}
     >
+      {touched.name && errors.name ? <ErrorText text={errors.name} /> : null}
       <InputBase
         styles={s.inputBottomMargin}
         type="name"
@@ -43,6 +30,7 @@ const RegisterFormStepTwo = ({ onNext }) => {
         value={values.name}
         onChange={handleChange}
       />
+      {touched.city && errors.city ? <ErrorText text={errors.city} /> : null}
       <InputBase
         styles={s.inputBottomMargin}
         type="name"
@@ -51,13 +39,30 @@ const RegisterFormStepTwo = ({ onNext }) => {
         value={values.city}
         onChange={handleChange}
       />
-      <InputBase
+      {touched.phone && errors.phone ? <ErrorText text={errors.phone} /> : null}
+      {/* <InputBase
         styles={s.inputSecondBottomMargin}
         type="phone"
         name="phone"
         placeholder="Mobile phone"
         value={values.phone}
         onChange={handleChange}
+      /> */}
+      <PhoneInput
+        // className={s.inputPhone}
+        placeholder="Mobile phone"
+        name="phone"
+        international
+        defaultCountry="UA"
+        value={values.phone}
+        onChange={value => setFieldValue('phone', value, true)}
+        // containerStyle={{
+        //   border: '10px solid black',
+        // }}
+        // inputStyle={{
+        //   background: 'lightblue',
+        // }}
+        // style={{ border: 'none', background: 'content-box' }}
       />
       <ButtonBase type="submit" text="Register" />
       <ButtonBase onClick={onNext} type="button" text="Back" isLigth />
