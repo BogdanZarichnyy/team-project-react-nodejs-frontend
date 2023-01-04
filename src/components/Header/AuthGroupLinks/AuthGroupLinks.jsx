@@ -12,9 +12,7 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
           <PrimaryButton
             tag="NavLink"
             to="/user"
-            className="authPrimaryBtn"
-            padding="10px 28px"
-            fontSize="16px"
+            className={style.authPrimaryBtn}
             onClick={() => {
               isMobile && closeMobileMenu();
             }}
@@ -32,7 +30,9 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
           <PrimaryButton
             tag="NavLink"
             to="/login"
-            className="authPrimaryBtn"
+            className={style.authPrimaryBtn}
+            padding="10px 28px"
+            fontSize="16px"
             onClick={() => {
               isMobile && closeMobileMenu();
             }}
@@ -40,11 +40,22 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
             Login
           </PrimaryButton>
 
+          <PrimaryButton
+            tag="button"
+            type="submit"
+            className={style.authPrimaryBtn}
+            padding="10.5px 30%"
+            fontSize="20px"
+            onClick={e => console.log(e)}
+          >
+            Next
+          </PrimaryButton>
+
           <SecondaryButton
-            tag="NavLink"
-            to="/register"
-            // color="#4fdb2f"
-            className="authPrimaryBtn"
+            tag="a"
+            href="/"
+            color="#4fdb2f"
+            className={style.authPrimaryBtn}
             onClick={() => {
               isMobile && closeMobileMenu();
             }}

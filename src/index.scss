@@ -53,12 +53,3 @@ button {
 .NotScroll {
   overflow: hidden;
 }
-
-@include phone {
-  .authPrimaryBtn {
-    padding: 8px 28px;
-    height: 35px;
-
-    font-size: 14px;
-  }
-}

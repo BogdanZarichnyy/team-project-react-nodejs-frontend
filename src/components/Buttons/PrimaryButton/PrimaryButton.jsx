@@ -10,17 +10,15 @@ const PrimaryButton = ({
   href,
   buttonType,
   onClick,
-  onSubmit,
   className,
 }) => {
   return (
     <>
       {tag === undefined && (
         <div
-          className={`${style.primaryButton} ${className}`}
+          className={[style.primaryButton, className].join(' ')}
           style={{ padding, fontSize }}
           onClick={onClick}
-          onSubmit={onSubmit}
         >
           {children}
         </div>
@@ -29,10 +27,9 @@ const PrimaryButton = ({
       {tag === 'NavLink' && (
         <NavLink
           to={to}
-          className={`${style.primaryButton} ${className}`}
+          className={[className, style.primaryButton].join(' ')}
           style={{ padding, fontSize }}
           onClick={onClick}
-          onSubmit={onSubmit}
         >
           {children}
         </NavLink>
@@ -41,10 +38,9 @@ const PrimaryButton = ({
       {tag === 'a' && (
         <a
           href={href}
-          className={`${style.primaryButton} ${className}`}
+          className={[style.primaryButton, className].join(' ')}
           style={{ padding, fontSize }}
           onClick={onClick}
-          onSubmit={onSubmit}
         >
           {children}
         </a>
@@ -53,10 +49,9 @@ const PrimaryButton = ({
       {tag === 'button' && (
         <button
           type={buttonType}
-          className={`${style.primaryButton} ${className}`}
+          className={[style.primaryButton, className].join(' ')}
           style={{ padding, fontSize }}
           onClick={onClick}
-          onSubmit={onSubmit}
         >
           {children}
         </button>

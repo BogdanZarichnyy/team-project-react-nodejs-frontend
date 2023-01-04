@@ -1,9 +1,6 @@
 @import '../../../sass/utils/mixins';
 @import '../../../sass/utils/variables';
 
-.authButton {
-}
-
 .auth_item {
   display: flex;
   gap: 12px;
@@ -58,5 +55,12 @@
   .userIcon {
     width: 20px;
     height: 20px;
+  }
+
+  .authPrimaryBtn {
+    padding: 8px 28px !important;
+    height: 35px !important;
+
+    font-size: 14px !important;
   }
 }
