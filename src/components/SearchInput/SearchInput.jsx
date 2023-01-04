@@ -1,11 +1,12 @@
 import React from 'react';
+import classNames from 'classnames';
 import s from './SearchInput.module.scss';
 import InputBase from '../InputBase/InputBase';
 import sprite from '../../images/sprite.svg';
 
-const SearchInput = () => {
+const SearchInput = ({styles}) => {
   return (
-    <form className={s.form}>
+    <form className={classNames(s.form, styles)}>
       <div className={s.formSearch}>
         <InputBase
           type="text"

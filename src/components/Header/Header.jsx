@@ -9,7 +9,8 @@ import { NavLink } from 'react-router-dom';
 import style from './Header.module.scss';
 
 const Header = () => {
-  const [openMobileMenu, setOpenMobileMenu] = useState(false);
+  const [open, setOpen] = useState(false);
+
   const [matches, setMatches] = useState(
     window.matchMedia('(min-width: 1280px)').matches
   );
@@ -20,11 +21,32 @@ const Header = () => {
       .addEventListener('change', e => setMatches(e.matches));
   }, []);
 
-  const onOpenMobileMenu = () => setOpenMobileMenu(!openMobileMenu);
+  useEffect(() => {
+    if (matches) {
+      setOpen(false);
+    }
+
+    if (matches && open) {
+      document.body.classList.remove('NotScroll');
+    }
+    if (!open) {
+      document.body.classList.remove('NotScroll');
+    }
+
+    if (open && !matches) {
+      document.body.classList.add('NotScroll');
+    }
+  }, [matches, open]);
 
   return (
     <section className={style.section + ' container'}>
-      <NavLink to="/">
+      <NavLink
+        to="/"
+        onClick={() => {
+          console.log('click on logo');
+          setOpen(false);
+        }}
+      >
         <span className={style.logo}>
           pe<span className={style.logo_accent}>t</span>ly
         </span>
@@ -32,11 +54,11 @@ const Header = () => {
 
       <div className={style.navGroup}>
         <Navigation />
-        <MobileNavigation onOpenMobileMenu={onOpenMobileMenu} />
+        <MobileNavigation open={open} setOpen={setOpen} />
       </div>
 
       <div className={style.authGroup}>
-        {(!openMobileMenu || matches) && <AuthGroup />}
+        {(!open || matches) && <AuthGroup />}
       </div>
     </section>
   );

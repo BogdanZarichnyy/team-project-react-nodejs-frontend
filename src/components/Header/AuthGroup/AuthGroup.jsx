@@ -1,7 +1,7 @@
 import React from 'react';
-import AuthGroupLinks from './AuthGroupLinks';
+import AuthGroupLinks from '../AuthGroupLinks';
 
-import style from './Header.module.scss';
+import style from '../Header.module.scss';
 
 const AuthGroup = () => {
   return (

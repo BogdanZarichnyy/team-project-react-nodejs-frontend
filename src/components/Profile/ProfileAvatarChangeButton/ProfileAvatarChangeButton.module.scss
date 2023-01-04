@@ -1,0 +1,33 @@
+@import '../../../sass/utils/variables';
+@import '../../../sass/utils/mixins';
+
+.avatarChangeButton {
+  display: flex;
+  margin-top: 12px;
+  margin-left: auto;
+  gap: 4px;
+  font-family: 'Manrope-Regular';
+  font-size: 12px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+  background-color: transparent;
+  border: none;
+  @include transition-animation(all);
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:active {
+    .avatarChangeIcon {
+      fill: getColor('clr-accent-opacity');
+    }
+  }
+}
+
+.avatarChangeIcon {
+  width: 20px;
+  height: 20px;
+  fill: getColor('clr-accent');
+  @include transition-animation(all);
+}

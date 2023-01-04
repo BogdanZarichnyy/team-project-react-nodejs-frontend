@@ -1,14 +1,24 @@
-import React, { useState } from 'react';
-import NavigationLinks from './NavigationLinks';
+import React from 'react';
+import NavigationLinks from '../NavigationLinks';
 
-import PhoneAuthGroup from './PhoneAuthGroup';
+import PhoneAuthGroup from '../PhoneAuthGroup';
 
-import sprite from '../../images/sprite.svg';
-import style from './Header.module.scss';
+import sprite from '../../../images/sprite.svg';
+import style from '../Header.module.scss';
 
-const MobileNavigation = ({ onOpenMobileMenu }) => {
-  const [open, setOpen] = useState(false);
+const MobileNavigation = ({ open, setOpen }) => {
   const closeMobileMenu = () => setOpen(false);
+
+  function lockScroll() {
+    document.body.classList.toggle('NotScroll');
+  }
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: -40,
+      behavior: 'smooth',
+    });
+  };
 
   return (
     <nav className={style.MobileNavigation}>
@@ -16,8 +26,9 @@ const MobileNavigation = ({ onOpenMobileMenu }) => {
         type="button"
         className={style.burger}
         onClick={() => {
+          scrollToTop();
+          lockScroll();
           setOpen(!open);
-          onOpenMobileMenu();
         }}
       >
         {open ? (
@@ -33,15 +44,8 @@ const MobileNavigation = ({ onOpenMobileMenu }) => {
 
       {open && (
         <>
-          <PhoneAuthGroup
-            closeMobileMenu={closeMobileMenu}
-            onOpenMobileMenu={onOpenMobileMenu}
-          />
-          <NavigationLinks
-            isMobile={true}
-            closeMobileMenu={closeMobileMenu}
-            onOpenMobileMenu={onOpenMobileMenu}
-          />
+          <PhoneAuthGroup closeMobileMenu={closeMobileMenu} />
+          <NavigationLinks isMobile={true} closeMobileMenu={closeMobileMenu} />
         </>
       )}
     </nav>

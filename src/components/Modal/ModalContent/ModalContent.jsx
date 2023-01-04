@@ -5,7 +5,7 @@ const ModalContent = ({
   children,
   trigger,
   className,
-  closeBtn = false,
+  closeBtn = true,
   style,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

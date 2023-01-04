@@ -62,7 +62,7 @@ const ModalCustom = ({
           <div className={s.Modal} style={modalStyle}>
             {defaultBtn && (
               <button className={s.closeModal} onClick={handleToggleModal}>
-                <SvgIconClose size={'100%'} />
+                <SvgIconClose size={'100%'} style={{ fill: '#111111' }} />
               </button>
             )}
             {children}
