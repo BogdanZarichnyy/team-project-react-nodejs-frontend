@@ -24,6 +24,12 @@
     box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
     color:#535353;
     background-color: getColor('clr-white');
+    outline: 1px solid getColor('clr-accent');
+    cursor: pointer;
+    &:hover,
+    &:focus {
+        border: 1px solid getColor('clr-accent');
+    }
 
     @include tablet {
         padding: 9px 20px;

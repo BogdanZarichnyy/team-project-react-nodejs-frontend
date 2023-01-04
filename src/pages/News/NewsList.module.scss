@@ -97,9 +97,10 @@
     @include font-size(16px, 500, 1.38);
     text-decoration: underline;
     color: getColor('clr-accent');
+    @include transition-animation(all);
 
     &:hover,
     &:focus {
-        color: var('GRADIENT');
+        color: #ff634e;
     }
 }
