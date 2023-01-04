@@ -1,11 +1,11 @@
 import React from 'react';
 import AuthGroupLinks from '../AuthGroupLinks';
 
-import style from '../Header.module.scss';
+import s from '../Header.module.scss';
 
 const AuthGroup = () => {
   return (
-    <div className={style.Auth}>
+    <div className={s.Auth}>
       <AuthGroupLinks />
     </div>
   );
