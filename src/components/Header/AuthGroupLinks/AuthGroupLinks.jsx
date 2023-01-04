@@ -1,9 +1,8 @@
-import { NavLink } from 'react-router-dom';
-
 import sprite from '../../../images/sprite.svg';
 
 import style from './AuthGroupLinks.module.scss';
 import PrimaryButton from '../../Buttons/PrimaryButton';
+import SecondaryButton from '../../Buttons/SecondaryButton';
 
 const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
   return (
@@ -41,16 +40,17 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
             Login
           </PrimaryButton>
 
-          <PrimaryButton
+          <SecondaryButton
             tag="NavLink"
             to="/register"
+            // color="#4fdb2f"
             className="authPrimaryBtn"
             onClick={() => {
               isMobile && closeMobileMenu();
             }}
           >
             Registration
-          </PrimaryButton>
+          </SecondaryButton>
         </>
       )}
     </>
