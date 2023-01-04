@@ -1,10 +1,10 @@
 import NavigationLinks from '../NavigationLinks';
 
-import style from '../Header.module.scss';
+import s from '../Header.module.scss';
 
 const Navigation = () => {
   return (
-    <nav className={style.Navigation}>
+    <nav className={s.Navigation}>
       <NavigationLinks />
     </nav>
   );
