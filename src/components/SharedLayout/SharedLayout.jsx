@@ -14,7 +14,7 @@ const SharedLayout = () => {
       </div>
 
       <div className={style.outlets}>
-        <>
+        {/* <>
           <ModalContent
             trigger={props => (
               <button style={{ position: 'absolute' }} type="button" {...props}>
@@ -24,7 +24,7 @@ const SharedLayout = () => {
           >
             <AddPetModal></AddPetModal>
           </ModalContent>
-        </>
+        </> */}
         <Outlet />
       </div>
     </div>
