@@ -43,7 +43,6 @@ const Header = () => {
       <NavLink
         to="/"
         onClick={() => {
-          console.log('click on logo');
           setOpen(false);
         }}
       >
