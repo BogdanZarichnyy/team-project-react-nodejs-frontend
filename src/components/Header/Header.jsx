@@ -6,7 +6,7 @@ import MobileNavigation from './MobileNavigation';
 import AuthGroup from './AuthGroup';
 import { NavLink } from 'react-router-dom';
 
-import style from './Header.module.scss';
+import s from './Header.module.scss';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -39,7 +39,7 @@ const Header = () => {
   }, [matches, open]);
 
   return (
-    <section className={style.section + ' container'}>
+    <section className={s.section + ' container'}>
       <NavLink
         to="/"
         onClick={() => {
@@ -47,19 +47,17 @@ const Header = () => {
           setOpen(false);
         }}
       >
-        <span className={style.logo}>
-          pe<span className={style.logo_accent}>t</span>ly
+        <span className={s.logo}>
+          pe<span className={s.logo_accent}>t</span>ly
         </span>
       </NavLink>
 
-      <div className={style.navGroup}>
+      <div className={s.navGroup}>
         <Navigation />
         <MobileNavigation open={open} setOpen={setOpen} />
       </div>
 
-      <div className={style.authGroup}>
-        {(!open || matches) && <AuthGroup />}
-      </div>
+      <div className={s.authGroup}>{(!open || matches) && <AuthGroup />}</div>
     </section>
   );
 };

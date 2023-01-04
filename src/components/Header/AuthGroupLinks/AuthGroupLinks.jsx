@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 
 import sprite from '../../../images/sprite.svg';
 
-import style from './AuthGroupLinks.module.scss';
+import s from './AuthGroupLinks.module.scss';
 
 const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
   return (
@@ -11,12 +11,12 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
         <>
           <NavLink
             to="/user"
-            className={style.auth_item}
+            className={s.auth_item}
             onClick={() => {
               isMobile && closeMobileMenu();
             }}
           >
-            <svg className={style.userIcon} width="28px" height="28px">
+            <svg className={s.userIcon} width="28px" height="28px">
               <use href={sprite + '#userDefaultCircleIcon'} />
             </svg>
             Acсount
@@ -28,7 +28,7 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
         <>
           <NavLink
             to="/login"
-            className={style.auth_item}
+            className={s.auth_item}
             onClick={() => {
               isMobile && closeMobileMenu();
             }}
@@ -38,7 +38,7 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
 
           <NavLink
             to="/register"
-            className={`${style.auth_item} ${style.auth_item__secondary}`}
+            className={`${s.auth_item} ${s.auth_item__secondary}`}
             onClick={() => {
               isMobile && closeMobileMenu();
             }}

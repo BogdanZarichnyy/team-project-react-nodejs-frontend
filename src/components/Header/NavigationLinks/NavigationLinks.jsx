@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-import style from './NavigationLinks.module.scss';
+import s from './NavigationLinks.module.scss';
 
 const NavigationLinks = ({ isMobile, closeMobileMenu }) => {
   const animateFrom = { opacity: 0, y: -40 };
@@ -13,7 +13,7 @@ const NavigationLinks = ({ isMobile, closeMobileMenu }) => {
     <motion.ul
       initial={animateFromForUl}
       animate={animateTo}
-      className={style.nav_list}
+      className={s.nav_list}
     >
       <motion.li
         initial={animateFrom}
@@ -23,7 +23,7 @@ const NavigationLinks = ({ isMobile, closeMobileMenu }) => {
           isMobile && closeMobileMenu();
         }}
       >
-        <NavLink to="/news" className={style.nav_item}>
+        <NavLink to="/news" className={s.nav_item}>
           <span>News</span>
         </NavLink>
       </motion.li>
@@ -36,7 +36,7 @@ const NavigationLinks = ({ isMobile, closeMobileMenu }) => {
           isMobile && closeMobileMenu();
         }}
       >
-        <NavLink to="/notices" className={style.nav_item}>
+        <NavLink to="/notices" className={s.nav_item}>
           <span>Find pet</span>
         </NavLink>
       </motion.li>
@@ -49,7 +49,7 @@ const NavigationLinks = ({ isMobile, closeMobileMenu }) => {
           isMobile && closeMobileMenu();
         }}
       >
-        <NavLink to="/friends" className={style.nav_item}>
+        <NavLink to="/friends" className={s.nav_item}>
           <span>Our friends</span>
         </NavLink>
       </motion.li>
