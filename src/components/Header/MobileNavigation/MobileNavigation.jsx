@@ -32,11 +32,11 @@ const MobileNavigation = ({ open, setOpen }) => {
         }}
       >
         {open ? (
-          <svg className={style.burgerIcon} width="40" height="40">
+          <svg className={style.burgerIcon}>
             <use href={sprite + '#crossIconCloseHomeModal'} />
           </svg>
         ) : (
-          <svg className={style.burgerIcon} width="40" height="40">
+          <svg className={style.burgerIcon}>
             <use href={sprite + '#burgerMenuIcon'} />
           </svg>
         )}

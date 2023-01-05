@@ -59,12 +59,15 @@
   .navGroup .MobileNavigation .burger {
     position: absolute;
     right: 32px;
+
     cursor: pointer;
     background-color: transparent;
     border: none;
   }
 
   .navGroup .MobileNavigation .burgerIcon {
+    width: 40px;
+    height: 40px;
     fill: getColor('clr-black');
   }
 
