@@ -1,50 +1,57 @@
-import { NavLink } from 'react-router-dom';
-
 import sprite from '../../../images/sprite.svg';
 
-import style from './AuthGroupLinks.module.scss';
+
+import s from './AuthGroupLinks.module.scss';
+import PrimaryButton from '../../Buttons/PrimaryButton';
+import SecondaryButton from '../../Buttons/SecondaryButton';
 
 const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
   return (
     <>
       {'if authorized' && (
         <>
-          <NavLink
+          <PrimaryButton
+            tag="NavLink"
             to="/user"
-            className={style.auth_item}
+            className={s.auth_item}
+            className={s.authPrimaryBtn}
             onClick={() => {
               isMobile && closeMobileMenu();
             }}
           >
-            <svg className={style.userIcon} width="28px" height="28px">
+            <svg className={s.userIcon} width="28px" height="28px">
               <use href={sprite + '#userDefaultCircleIcon'} />
             </svg>
             Acсount
-          </NavLink>
+          </PrimaryButton>
         </>
       )}
 
       {'if NOT authorized' && (
         <>
-          <NavLink
+          <PrimaryButton
+            tag="NavLink"
             to="/login"
-            className={style.auth_item}
+            className={s.auth_item}
+            className={s.authPrimaryBtn}
             onClick={() => {
               isMobile && closeMobileMenu();
             }}
           >
-            <span>Login</span>
-          </NavLink>
+            Login
+          </PrimaryButton>
 
-          <NavLink
+          <SecondaryButton
+            tag="NavLink"
             to="/register"
-            className={`${style.auth_item} ${style.auth_item__secondary}`}
+            className={`${s.auth_item} ${s.auth_item__secondary}`}
+            className={s.authPrimaryBtn}
             onClick={() => {
               isMobile && closeMobileMenu();
             }}
           >
-            <span>Registration</span>
-          </NavLink>
+            Registration
+          </SecondaryButton>
         </>
       )}
     </>

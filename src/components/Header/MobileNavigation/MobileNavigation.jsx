@@ -4,7 +4,7 @@ import NavigationLinks from '../NavigationLinks';
 import PhoneAuthGroup from '../PhoneAuthGroup';
 
 import sprite from '../../../images/sprite.svg';
-import style from '../Header.module.scss';
+import s from '../Header.module.scss';
 
 const MobileNavigation = ({ open, setOpen }) => {
   const closeMobileMenu = () => setOpen(false);
@@ -21,10 +21,10 @@ const MobileNavigation = ({ open, setOpen }) => {
   };
 
   return (
-    <nav className={style.MobileNavigation}>
+    <nav className={s.MobileNavigation}>
       <button
         type="button"
-        className={style.burger}
+        className={s.burger}
         onClick={() => {
           scrollToTop();
           lockScroll();
@@ -32,11 +32,12 @@ const MobileNavigation = ({ open, setOpen }) => {
         }}
       >
         {open ? (
-          <svg className={style.burgerIcon}>
+          <svg className={s.burgerIcon}>
             <use href={sprite + '#crossIconCloseHomeModal'} />
           </svg>
         ) : (
-          <svg className={style.burgerIcon}>
+          <svg className={s.burgerIcon}>
+
             <use href={sprite + '#burgerMenuIcon'} />
           </svg>
         )}
