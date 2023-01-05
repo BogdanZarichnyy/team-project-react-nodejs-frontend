@@ -1,4 +1,9 @@
+@import '../../sass/utils/mixins';
+@import '../../sass/utils/variables';
 .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
 
   max-width: 458px;
@@ -10,9 +15,15 @@
   border: transparent;
 
   color: #ffffff;
-  font-family: 'Manrope';
-  font-weight: 500;
+  font-family: 'Manrope-Bold';
   font-size: 20px;
   line-height: 27px;
   letter-spacing: 0.04em;
+}
+
+.ligth {
+  color: black;
+  background: getColor('clr-white');
+  border: 2px solid #f59256;
+  margin-top: 16px;
 }

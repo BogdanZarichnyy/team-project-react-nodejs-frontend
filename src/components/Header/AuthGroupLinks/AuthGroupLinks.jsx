@@ -1,6 +1,5 @@
 import sprite from '../../../images/sprite.svg';
 
-
 import s from './AuthGroupLinks.module.scss';
 import PrimaryButton from '../../Buttons/PrimaryButton';
 import SecondaryButton from '../../Buttons/SecondaryButton';
@@ -13,8 +12,7 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
           <PrimaryButton
             tag="NavLink"
             to="/user"
-            className={s.auth_item}
-            className={s.authPrimaryBtn}
+            className={s.authBtn}
             onClick={() => {
               isMobile && closeMobileMenu();
             }}
@@ -32,8 +30,7 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
           <PrimaryButton
             tag="NavLink"
             to="/login"
-            className={s.auth_item}
-            className={s.authPrimaryBtn}
+            className={s.authBtn}
             onClick={() => {
               isMobile && closeMobileMenu();
             }}
@@ -44,8 +41,7 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
           <SecondaryButton
             tag="NavLink"
             to="/register"
-            className={`${s.auth_item} ${s.auth_item__secondary}`}
-            className={s.authPrimaryBtn}
+            className={s.authBtn}
             onClick={() => {
               isMobile && closeMobileMenu();
             }}

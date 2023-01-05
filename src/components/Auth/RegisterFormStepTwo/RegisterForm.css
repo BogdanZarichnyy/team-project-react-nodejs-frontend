@@ -1,0 +1,63 @@
+.react-tel-input {
+  max-width: 458px;
+  margin-bottom: 40px;
+  position: relative;
+}
+.react-tel-input .form-control {
+  width: 100%;
+  outline: none !important;
+  border: 1px solid rgba(245, 146, 86, 0.5) !important;
+  background: #fdf7f2;
+  border-radius: 40px;
+  height: 40px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: rgba(17, 17, 17, 0.6);
+}
+
+.react-tel-input .country-list {
+  background: #fdf7f2;
+  border-radius: 15px;
+}
+.react-tel-input .country-list .country.highlight {
+  background-color: #f59256;
+  margin: 2px 0 10px 0px;
+  border: 1px solid rgba(245, 146, 86, 0.5) !important;
+}
+
+.form-control:focus {
+  border: 2px solid #015ecc !important;
+  color: rgb(12, 1, 1);
+}
+.react-tel-input .flag-dropdown {
+  background-color: inherit;
+  border: none;
+}
+
+.react-tel-input .selected-flag {
+  width: 0;
+  padding: 0;
+}
+
+.react-tel-input .selected-flag .flag {
+  left: 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .react-tel-input .form-control {
+    height: 52px;
+    padding: 14px 32px 14px 72px;
+    font-size: 18px;
+    line-height: 25px;
+  }
+  .PhoneInputCountry {
+    top: 18px;
+    left: 32px;
+  }
+  .react-tel-input .selected-flag .flag {
+    left: 32px;
+  }
+}

@@ -16,7 +16,6 @@ const MobileNavigation = ({ open, setOpen }) => {
   const scrollToTop = () => {
     window.scrollTo({
       top: -40,
-      behavior: 'smooth',
     });
   };
 
@@ -32,11 +31,11 @@ const MobileNavigation = ({ open, setOpen }) => {
         }}
       >
         {open ? (
-          <svg className={s.burgerIcon} width="40" height="40">
+          <svg className={s.burgerIcon}>
             <use href={sprite + '#crossIconCloseHomeModal'} />
           </svg>
         ) : (
-          <svg className={s.burgerIcon} width="40" height="40">
+          <svg className={s.burgerIcon}>
             <use href={sprite + '#burgerMenuIcon'} />
           </svg>
         )}

@@ -26,6 +26,8 @@
 }
 
 .logo {
+  z-index: 1;
+
   margin-right: 80px;
 
   font-family: 'Poppins-Bold';
@@ -59,12 +61,16 @@
   .navGroup .MobileNavigation .burger {
     position: absolute;
     right: 32px;
+    z-index: 1;
+
     cursor: pointer;
     background-color: transparent;
     border: none;
   }
 
   .navGroup .MobileNavigation .burgerIcon {
+    width: 40px;
+    height: 40px;
     fill: getColor('clr-black');
   }
 
@@ -88,7 +94,6 @@
     position: absolute;
     left: 0;
     top: 0px;
-    z-index: -1;
 
     background-color: #fdf7f2;
   }
@@ -113,7 +118,6 @@
 
   .navGroup nav ul {
     top: 0;
-    z-index: -1;
 
     gap: 40px;
 

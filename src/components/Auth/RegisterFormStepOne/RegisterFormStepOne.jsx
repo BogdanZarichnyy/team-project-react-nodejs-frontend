@@ -1,42 +1,24 @@
-import React, { useEffect } from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-
-import s from '../LoginForm/LoginForm.module.scss';
+import React, { useState } from 'react'; // , { useEffect }
 import InputBase from '../../InputBase/InputBase';
 import ButtonBase from '../../ButtonBase/ButtonBase';
+import ErrorText from '../../ErrorText';
 
-const initialValues = {
-  email: '',
-  password: '',
-  confirmPassword: '',
-};
+import s from '../Auth.module.scss';
 
-const validationSchema = Yup.object({
-  email: Yup.string()
-    .email('Please enter a valid e-mail')
-    .required('Required field to fill!'),
-  password: Yup.string()
-    .min(10, 'Password must be at least 10 characters long')
-    .max(60, 'Password must be 60 characters maximum')
-    .required('Required field to fill!'),
-  confirmPassword: Yup.string()
-    .min(10, 'Password must be at least 10 characters long')
-    .max(60, 'Password must be 60 characters maximum')
-    .required('Required field to fill!'),
-});
+const RegisterFormStepOne = ({ onNext, formik }) => {
+  const [isErrors, setIsErrors] = useState(false);
 
-const RegisterFormStepOne = ({ onNext }) => {
-  const formik = useFormik({
-    initialValues,
-    validationSchema,
-    onSubmit: values => console.log(values),
-  });
-  const { values, handleChange, handleSubmit } = formik;
+  const { values, handleChange, handleSubmit, errors } = formik;
 
-  useEffect(() => {
-    console.log(values);
-  }, [values]);
+  const validateFields = () => {
+    if (errors.email || errors.password || errors.confirmPassword) {
+      setIsErrors(true);
+    } else {
+      onNext();
+    }
+  };
+
+  // console.log(errors);
   return (
     <form
       className={s.form}
@@ -45,6 +27,7 @@ const RegisterFormStepOne = ({ onNext }) => {
         handleSubmit();
       }}
     >
+      {isErrors && errors.email && <ErrorText text={errors.email} />}
       <InputBase
         styles={s.inputBottomMargin}
         type="email"
@@ -53,6 +36,7 @@ const RegisterFormStepOne = ({ onNext }) => {
         value={values.email}
         onChange={handleChange}
       />
+      {isErrors && errors.password && <ErrorText text={errors.password} />}
       <InputBase
         styles={s.inputBottomMargin}
         type="password"
@@ -60,7 +44,12 @@ const RegisterFormStepOne = ({ onNext }) => {
         placeholder="Password"
         value={values.password}
         onChange={handleChange}
+        autocomplete="new-password"
+        id="new-password"
       />
+      {isErrors && errors.confirmPassword && (
+        <ErrorText text={errors.confirmPassword} />
+      )}
       <InputBase
         styles={s.inputSecondBottomMargin}
         type="password"
@@ -68,8 +57,11 @@ const RegisterFormStepOne = ({ onNext }) => {
         placeholder="Confirm Password"
         value={values.confirmPassword}
         onChange={handleChange}
+        autocomplete="new-password"
+        id="new-password"
       />
-      <ButtonBase onClick={onNext} type="button" text="Next" />
+
+      <ButtonBase onClick={validateFields} type="button" text="Next" />
     </form>
   );
 };
