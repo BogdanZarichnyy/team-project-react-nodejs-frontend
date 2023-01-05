@@ -1,5 +1,5 @@
-@import '../../sass/utils/mixins';
-@import '../../sass/utils/variables';
+@import '../../../sass/utils/mixins';
+@import '../../../sass/utils/variables';
 .input {
   width: 100%;
   max-width: 458px;
@@ -21,8 +21,4 @@
     font-size: 18px;
     line-height: 25px;
   }
-}
-
-.ligth {
-  background-color: rgb(192, 182, 182);
 }

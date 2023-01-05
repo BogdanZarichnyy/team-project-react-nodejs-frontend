@@ -1,1 +1,1 @@
-export { default } from './AuthGroupLinks.jsx';
+export { default } from './AuthGroupLinks';

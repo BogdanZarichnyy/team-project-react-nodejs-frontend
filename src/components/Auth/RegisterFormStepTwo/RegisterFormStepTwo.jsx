@@ -1,32 +1,16 @@
 import React from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
-import s from '../LoginForm/LoginForm.module.scss';
 import InputBase from '../../InputBase/InputBase';
 import ButtonBase from '../../ButtonBase/ButtonBase';
+import ErrorText from '../../ErrorText';
 
-const initialValues = {
-  name: '',
-  city: '',
-  phone: '',
-};
+import s from '../Auth.module.scss';
 
-const validationSchema = Yup.object({
-  name: Yup.string(),
-  city: Yup.string(),
-  phone: Yup.number(),
-});
-
-const RegisterFormStepTwo = () => {
-  const formik = useFormik({
-    initialValues,
-    validationSchema,
-    onSubmit: values => console.log(values),
-  });
-
-  const { values, handleChange, handleSubmit } = formik;
-
+const RegisterFormStepTwo = ({ onNext, formik }) => {
+  const { values, handleChange, handleSubmit, errors, touched, setFieldValue } =
+    formik;
   return (
     <form
       className={s.form}
@@ -35,6 +19,7 @@ const RegisterFormStepTwo = () => {
         handleSubmit();
       }}
     >
+      {touched.name && errors.name ? <ErrorText text={errors.name} /> : null}
       <InputBase
         styles={s.inputBottomMargin}
         type="name"
@@ -43,6 +28,7 @@ const RegisterFormStepTwo = () => {
         value={values.name}
         onChange={handleChange}
       />
+      {touched.city && errors.city ? <ErrorText text={errors.city} /> : null}
       <InputBase
         styles={s.inputBottomMargin}
         type="name"
@@ -51,15 +37,19 @@ const RegisterFormStepTwo = () => {
         value={values.city}
         onChange={handleChange}
       />
-      <InputBase
-        styles={s.inputSecondBottomMargin}
-        type="phone"
-        name="phone"
+      {touched.phone && errors.phone ? <ErrorText text={errors.phone} /> : null}
+
+      <PhoneInput
         placeholder="Mobile phone"
+        name="phone"
+        country={'ua'}
+        enableAreaCodes={true}
         value={values.phone}
-        onChange={handleChange}
+        onChange={value => setFieldValue('phone', value, true)}
       />
+
       <ButtonBase type="submit" text="Register" />
+      <ButtonBase onClick={onNext} type="button" text="Back" isLigth />
     </form>
   );
 };
