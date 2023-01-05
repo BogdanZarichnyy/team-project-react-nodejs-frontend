@@ -6,6 +6,7 @@ const ModalHook = () => {
 
   let handleModal = (content = false) => {
     setModal(!modal);
+
     if (content) {
       setModalContent(content);
     }

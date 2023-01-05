@@ -1,11 +1,12 @@
 import { useContext, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import classNames from 'classnames';
 import { ModalContext } from '../ModalContext';
 import sprite from '../../../images/sprite.svg';
 
 import s from './ModalComponent.module.scss';
 
-const ModalComponent = () => {
+const ModalComponent = ({styles}) => {
   let { modalContent, handleModal, modal } = useContext(ModalContext);
 
   useEffect(() => {
@@ -34,7 +35,7 @@ const ModalComponent = () => {
   return modal
     ? createPortal(
         <div className={s.backdrop} onClick={handleBackdropClick}>
-          <div className={s.modalBody}>
+          <div className={classNames(s.modalBody, styles)}>
             <button
               className={s.modalCloseButton}
               onClick={() => handleModal()}

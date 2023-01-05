@@ -119,6 +119,8 @@
 }
 
 .petInfoLItem {
+    display: flex;
+
     max-width: 296px;
     word-wrap: break-word;
 }
@@ -145,23 +147,11 @@
 }
 
 .petInfoLType {
-    display: flex;
+    width: 90px;
 }
 
 .petInfoLValue {
     max-width: 155px;
-}
-
-.petInfoLValueBreed {    
-    margin-left: 40px;    
-}
-
-.petInfoLValuePlace {
-    margin-left: 43px;
-}
-
-.petInfoLValueAge {
-    margin-left: 55px;
 }
 
 .noticeButtonsThumb,
@@ -271,17 +261,5 @@
 
     .petInfoLValue {
         max-width: 160px;
-    }
-
-    .petInfoLValueBreed {
-        margin-left: 37px;
-    }
-    
-    .petInfoLValuePlace {
-        margin-left: 40px;
-    }
-    
-    .petInfoLValueAge {
-        margin-left: 52px;
     }
 }
