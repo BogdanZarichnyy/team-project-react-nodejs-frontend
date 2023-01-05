@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom';
+import CookiesPopup from '../CookiesPopup';
 
 import Header from '../Header';
 
@@ -14,6 +15,8 @@ const SharedLayout = () => {
       <div className={style.outlets}>
         <Outlet />
       </div>
+
+      <CookiesPopup />
     </div>
   );
 };
