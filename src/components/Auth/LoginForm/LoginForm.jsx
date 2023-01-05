@@ -41,8 +41,8 @@ const LoginForm = () => {
   const { values, handleChange, handleSubmit, handleBlur, touched, errors } =
     formik;
 
-  console.log(touched);
-  console.log(errors);
+  // console.log(touched);
+  // console.log(errors);
 
   return (
     <form className={s.form} onSubmit={handleSubmit}>
