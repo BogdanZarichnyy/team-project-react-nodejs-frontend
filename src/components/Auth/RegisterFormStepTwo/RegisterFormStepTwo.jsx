@@ -1,18 +1,16 @@
 import React from 'react';
-import 'react-phone-number-input/style.css';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
-import s from '../Auth.module.scss';
-// import s from '../RegisterFormStepTwo/RegisterFormStepTwo.module.scss';
 import InputBase from '../../InputBase/InputBase';
 import ButtonBase from '../../ButtonBase/ButtonBase';
 import ErrorText from '../../ErrorText';
-import PhoneInput from 'react-phone-number-input';
-// import flags from 'react-phone-number-input/flags';
+
+import s from '../Auth.module.scss';
 
 const RegisterFormStepTwo = ({ onNext, formik }) => {
   const { values, handleChange, handleSubmit, errors, touched, setFieldValue } =
     formik;
-  console.log(values.phone.length);
   return (
     <form
       className={s.form}
@@ -40,30 +38,16 @@ const RegisterFormStepTwo = ({ onNext, formik }) => {
         onChange={handleChange}
       />
       {touched.phone && errors.phone ? <ErrorText text={errors.phone} /> : null}
-      {/* <InputBase
-        styles={s.inputSecondBottomMargin}
-        type="phone"
-        name="phone"
-        placeholder="Mobile phone"
-        value={values.phone}
-        onChange={handleChange}
-      /> */}
+
       <PhoneInput
-        // className={s.inputPhone}
         placeholder="Mobile phone"
         name="phone"
-        international
-        defaultCountry="UA"
+        country={'ua'}
+        enableAreaCodes={true}
         value={values.phone}
         onChange={value => setFieldValue('phone', value, true)}
-        // containerStyle={{
-        //   border: '10px solid black',
-        // }}
-        // inputStyle={{
-        //   background: 'lightblue',
-        // }}
-        // style={{ border: 'none', background: 'content-box' }}
       />
+
       <ButtonBase type="submit" text="Register" />
       <ButtonBase onClick={onNext} type="button" text="Back" isLigth />
     </form>

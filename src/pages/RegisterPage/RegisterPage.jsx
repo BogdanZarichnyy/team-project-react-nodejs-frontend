@@ -18,6 +18,12 @@ const initialValues = {
 const validationSchema = Yup.object().shape({
   email: Yup.string()
     .email('Please enter a valid e-mail')
+    // .matches(
+    //   /^[a-z0-9._]{1}[a-z0-9._-]+)+@[a-z0-9._-]+\.([a-z0-9._-]*[a-z0-9._]+)$/,
+    //   'Is not in correct format'
+    // )
+    .min(10, 'Email must be at least 10 characters long')
+    .max(63, 'Email must be 63 characters maximum')
     .required('Required field to fill!'),
   password: Yup.string()
     .min(7, 'Password must be at least 7 characters long')
@@ -30,7 +36,7 @@ const validationSchema = Yup.object().shape({
   city: Yup.string().required('Required field to fill!'),
   phone: Yup.string()
     .required('Required field to fill!')
-    .min(13, 'Number must be 12 characters minimum'),
+    .min(12, 'Number must be 12 characters minimum'),
 });
 
 const RegisterPage = () => {

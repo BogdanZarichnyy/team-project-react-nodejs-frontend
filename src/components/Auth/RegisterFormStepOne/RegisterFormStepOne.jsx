@@ -1,8 +1,9 @@
 import React, { useState } from 'react'; // , { useEffect }
-import s from '../Auth.module.scss';
 import InputBase from '../../InputBase/InputBase';
 import ButtonBase from '../../ButtonBase/ButtonBase';
 import ErrorText from '../../ErrorText';
+
+import s from '../Auth.module.scss';
 
 const RegisterFormStepOne = ({ onNext, formik }) => {
   const [isErrors, setIsErrors] = useState(false);
@@ -17,7 +18,7 @@ const RegisterFormStepOne = ({ onNext, formik }) => {
     }
   };
 
-  console.log(errors);
+  // console.log(errors);
   return (
     <form
       className={s.form}
