@@ -1,12 +1,10 @@
-import sprite from '../../../images/sprite.svg';
+import IconComponent from '../../IconComponent';
 import s from './ProfileAvatarChangeButton.module.scss';
 
 const ProfileAvatarChangeButton = ({ handleClickOpen }) => {
   return (
     <button className={s.avatarChangeButton} onClick={handleClickOpen}>
-      <svg className={s.avatarChangeIcon}>
-        <use id="i-cross-lg4" href={`${sprite}#cameraEditPhotoIcon`} />
-      </svg>
+      <IconComponent iconname="i-cross-lg4" classname={s.avatarChangeIcon} />
       Edit photo
     </button>
   );

@@ -4,7 +4,7 @@ import s from './SearchInput.module.scss';
 import InputBase from '../InputBase/InputBase';
 import sprite from '../../images/sprite.svg';
 
-const SearchInput = ({styles}) => {
+const SearchInput = ({ styles }) => {
   return (
     <form className={classNames(s.form, styles)}>
       <div className={s.formSearch}>
