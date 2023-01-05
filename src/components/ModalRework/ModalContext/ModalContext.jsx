@@ -5,11 +5,11 @@ import ModalComponent from '../ModalComponent';
 let ModalContext;
 let { Provider } = (ModalContext = createContext());
 
-let ModalProvider = ({ children }) => {
+let ModalProvider = ({ children, styles }) => {
   let { modal, handleModal, modalContent } = useModal();
   return (
     <Provider value={{ modal, handleModal, modalContent }}>
-      <ModalComponent />
+      <ModalComponent styles={styles} />
       {children}
     </Provider>
   );

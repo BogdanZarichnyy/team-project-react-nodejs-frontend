@@ -2,6 +2,10 @@
 @import '../../sass/utils/variables';
 @import '../../sass/utils/container';
 
+.modalProvider {
+    height: 813px;   
+}
+
 .title {
     margin-top: 0;
     margin-bottom: 28px;
@@ -19,6 +23,10 @@
 }
 
 @include tablet {
+    .modalProvider {
+        height: 885px;
+        width: 608px;
+        }
     .title {
         font-size: 48px;
     
