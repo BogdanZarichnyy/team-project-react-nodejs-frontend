@@ -1,4 +1,4 @@
-import sprite from '../../../images/sprite.svg';
+import IconComponent from '../../IconComponent';
 
 import s from './ProfilePet.module.scss';
 
@@ -25,9 +25,7 @@ const ProfilePet = ({ pet: { _id, photo, name, date, breed, comments } }) => {
         </p>
       </div>
       <button className={s.petDeleteButton} onClick={handleDelete}>
-        <svg className={s.petDeleteIcon}>
-          <use id="trashIconGrey" href={`${sprite}#trashIconGrey`} />
-        </svg>
+        <IconComponent iconname="trashIconGrey" classname={s.petDeleteIcon} />
       </button>
     </li>
   );

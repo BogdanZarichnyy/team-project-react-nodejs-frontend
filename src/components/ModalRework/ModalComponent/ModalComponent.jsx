@@ -1,12 +1,13 @@
 import { useContext, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { ModalContext } from '../ModalContext';
-import sprite from '../../../images/sprite.svg';
+import IconComponent from '../../IconComponent';
 
 import s from './ModalComponent.module.scss';
 
 const ModalComponent = () => {
-  let { modalContent, handleModal, modal } = useContext(ModalContext);
+  let { modalContent, handleModal, modal, modalStyle, submit } =
+    useContext(ModalContext);
 
   useEffect(() => {
     function handleToggleModalByEsc(evt) {
@@ -34,27 +35,28 @@ const ModalComponent = () => {
   return modal
     ? createPortal(
         <div className={s.backdrop} onClick={handleBackdropClick}>
-          <div className={s.modalBody}>
+          <div className={`${s.modalBody} ${modalStyle}`}>
             <button
               className={s.modalCloseButton}
               onClick={() => handleModal()}
             >
-              <svg className={s.modalCloseIcon}>
-                <use
-                  id="crossIconCloseModal"
-                  href={`${sprite}#crossIconCloseModal`}
-                />
-              </svg>
+              <IconComponent
+                iconname="crossIconCloseModal"
+                classname={s.modalCloseIcon}
+              />
             </button>
             <div>{modalContent}</div>
-            <button
-              className={s.modalConfirmButton}
-              onClick={() => handleModal()}
-            >
-              <svg className={s.modalConfirmIcon}>
-                <use id="checkedIcon" href={`${sprite}#checkedIcon`} />
-              </svg>
-            </button>
+            {submit && (
+              <button
+                className={s.modalConfirmButton}
+                onClick={() => handleModal()}
+              >
+                <IconComponent
+                  iconname="checkedIcon"
+                  classname={s.modalConfirmIcon}
+                />
+              </button>
+            )}
           </div>
         </div>,
         document.querySelector('#modal')

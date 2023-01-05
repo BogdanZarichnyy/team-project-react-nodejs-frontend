@@ -1,6 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { registerUserFetch } from '../../store/user/userSlice';
+import {
+  loginUserFetch,
+  getUserFetch,
+  updateUserFetch,
+} from '../../store/user/userSlice';
 
 import ProfilePet from '../../components/Profile/ProfilePet';
 import ProfileAvatar from '../../components/Profile/ProfileAvatar';
@@ -11,19 +15,19 @@ import s from './Profile.module.scss';
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const currentUser = useSelector(state => state.user);
+  const { photo, name, email, birthday, phone, city } = useSelector(
+    state => state.user.userData
+  );
 
   const handleAddPet = () => {
-    console.log('handleAddPet');
-  };
-
-  useEffect(() => {
+    //LOGIN
     dispatch(
-      registerUserFetch({ email: 'email', password: 'pas', displayName: 'DN' })
+      loginUserFetch({
+        email: 'baba@mail.com',
+        password: 'baba123',
+      })
     );
-  }, [dispatch]);
-
-  console.log(currentUser);
+  };
 
   return (
     <section className={`container ${s.containerDesktop}`}>
@@ -32,7 +36,7 @@ const Profile = () => {
           My information:
         </h2>
         <div className={s.profileThumb}>
-          <ProfileAvatar />
+          <ProfileAvatar {...{ photo }} />
           <ProfileContactsList />
         </div>
       </section>
