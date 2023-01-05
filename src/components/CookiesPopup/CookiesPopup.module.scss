@@ -1,7 +1,7 @@
 @import '../../sass/utils/variables';
 @import '../../sass/utils/mixins';
 
-.popupWrapper {
+.cookiePopupWrapper {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -13,7 +13,7 @@
 
   background-color: getColor('clr-text-second');
 }
-.popupWrapper::before {
+.cookiePopupWrapper::before {
   content: '';
 
   background-image: url(../../images/CookiesPopup/cookie.webp);
@@ -58,6 +58,7 @@
   font-family: 'Manrope-Regular';
   font-size: 16px;
   padding-left: 180px;
+  padding-right: 30px;
 }
 
 .messageLink {
