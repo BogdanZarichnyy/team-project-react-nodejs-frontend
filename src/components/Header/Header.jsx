@@ -45,10 +45,9 @@ const Header = () => {
         onClick={() => {
           setOpen(false);
         }}
+        className={s.logo}
       >
-        <span className={s.logo}>
-          pe<span className={s.logo_accent}>t</span>ly
-        </span>
+        pe<span className={s.logo_accent}>t</span>ly
       </NavLink>
 
       <div className={s.navGroup}>
