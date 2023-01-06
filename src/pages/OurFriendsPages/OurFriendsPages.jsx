@@ -29,7 +29,7 @@ const OurFriends = () => {
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <div className={s.loading}>Loading...</div>;
   } else {
     return (
       <div className={s.container}>

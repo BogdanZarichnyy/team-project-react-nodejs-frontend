@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import classNames from 'classnames';
 import { ModalContext } from '../ModalContext';
+
 import IconComponent from '../../IconComponent';
 
 import s from './ModalComponent.module.scss';
@@ -9,6 +10,7 @@ import s from './ModalComponent.module.scss';
 const ModalComponent = () => {
   let { modalContent, handleModal, modal, modalStyle, submit } =
     useContext(ModalContext);
+
 
   useEffect(() => {
     function handleToggleModalByEsc(evt) {
@@ -36,7 +38,9 @@ const ModalComponent = () => {
   return modal
     ? createPortal(
         <div className={s.backdrop} onClick={handleBackdropClick}>
+
           <div className={`${s.modalBody} ${modalStyle}`}>
+
             <button
               className={s.modalCloseButton}
               onClick={() => handleModal()}
