@@ -5,6 +5,9 @@ import * as Yup from 'yup';
 import AuthLayout from '../../layouts/AuthLayout';
 import RegisterFormStepOne from '../../components/Auth/RegisterFormStepOne';
 import RegisterFormStepTwo from '../../components/Auth/RegisterFormStepTwo';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { registerUserFetch } from '../../store/user';
 
 const initialValues = {
   email: '',
@@ -32,7 +35,9 @@ const validationSchema = Yup.object().shape({
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .required('Required field to fill!'),
-  name: Yup.string().required('Required field to fill!'),
+  name: Yup.string()
+    .required('Required field to fill!')
+    .matches(/^[a-zA-z ]+$/, 'In this field must be contain only letters'),
   city: Yup.string().required('Required field to fill!'),
   phone: Yup.string()
     .required('Required field to fill!')
@@ -40,7 +45,20 @@ const validationSchema = Yup.object().shape({
 });
 
 const RegisterPage = () => {
+  const dispatch = useDispatch();
+  // const navigate = useNavigate();
   const [step, setStep] = useState(1);
+
+  const handleRegister = async values => {
+    try {
+      await dispatch(
+        registerUserFetch({ ...values, phone: '+' + values.phone })
+      );
+      // navigate('/user');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const formik = useFormik({
     initialValues,
@@ -48,7 +66,7 @@ const RegisterPage = () => {
     validateOnMount: true,
     validateOnBlur: true,
     validateOnChange: true,
-    onSubmit: values => console.log(values),
+    onSubmit: handleRegister,
   });
 
   return (

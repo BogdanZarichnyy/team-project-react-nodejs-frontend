@@ -18,10 +18,10 @@ const RegisterFormStepOne = ({ onNext, formik }) => {
     }
   };
 
-  // console.log(errors);
   return (
     <form
       className={s.form}
+      // onSubmit={handleSubmit()}
       onSubmit={e => {
         e.preventDefault();
         handleSubmit();
