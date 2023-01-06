@@ -9,6 +9,8 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { registerUserFetch } from '../../store/user';
 
+import s from '../../components/Auth/Auth.module.scss';
+
 const initialValues = {
   email: '',
   password: '',
@@ -46,15 +48,20 @@ const validationSchema = Yup.object().shape({
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
 
   const handleRegister = async values => {
+    const phone = '+' + values.phone;
+    const { confirmPassword, ...userData } = values;
     try {
       await dispatch(
-        registerUserFetch({ ...values, phone: '+' + values.phone })
+        registerUserFetch({
+          ...userData,
+          phone,
+        })
       );
-      // navigate('/user');
+      navigate('/user');
     } catch (error) {
       console.log(error);
     }
@@ -76,11 +83,13 @@ const RegisterPage = () => {
       nawLink="/login"
       textNawLink="Login"
     >
-      {step === 1 ? (
-        <RegisterFormStepOne formik={formik} onNext={() => setStep(2)} />
-      ) : (
-        <RegisterFormStepTwo formik={formik} onNext={() => setStep(1)} />
-      )}
+      <form className={s.form} onSubmit={formik.handleSubmit}>
+        {step === 1 ? (
+          <RegisterFormStepOne formik={formik} onNext={() => setStep(2)} />
+        ) : (
+          <RegisterFormStepTwo formik={formik} onNext={() => setStep(1)} />
+        )}
+      </form>
     </AuthLayout>
   );
 };
