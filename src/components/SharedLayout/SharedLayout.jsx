@@ -1,24 +1,24 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-// import {  useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
-// import { getUserSelector, getUserLoadingSelector } from '../../store/user';
+import { getUserLoadingSelector } from '../../store/user';
 import { getUserFetch } from '../../store/user/userSlice';
 
 import CookiesPopup from '../CookiesPopup';
 import Header from '../Header';
+import Loader from '../LoaderV1/Loader';
 
 import style from './SharedLayout.module.scss';
 
 const SharedLayout = () => {
   const dispatch = useDispatch();
-  // const userData = useSelector(getUserSelector);
-  // const isDataLoading = useSelector(getUserLoadingSelector);
+  const isDataLoading = useSelector(getUserLoadingSelector);
+  console.log(isDataLoading);
 
   useEffect(() => {
     dispatch(getUserFetch());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch]);
 
   const isSeenCookieBar = document.cookie
     .split('; ')
@@ -30,11 +30,7 @@ const SharedLayout = () => {
         <Header />
       </div>
 
-      {/* {!isDataLoading && ( */}
-      <div className={style.outlets}>
-        <Outlet />
-      </div>
-      {/* )} */}
+      <div className={style.outlets}>{!false ? <Outlet /> : <Loader />}</div>
 
       {!isSeenCookieBar && <CookiesPopup />}
     </div>

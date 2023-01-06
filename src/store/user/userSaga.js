@@ -51,7 +51,6 @@ function* workGetCurrentUser() {
   try {
     const token = yield select(getUserTokenSelector);
     const { user } = yield call(getCurrentUser, token);
-    yield console.log('Saga User response');
     yield put(getUserSuccess(user));
   } catch (error) {
     yield getUserFailure(error.message);
