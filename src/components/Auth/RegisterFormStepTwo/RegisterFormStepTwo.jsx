@@ -9,16 +9,9 @@ import ErrorText from '../../ErrorText';
 import s from '../Auth.module.scss';
 
 const RegisterFormStepTwo = ({ onNext, formik }) => {
-  const { values, handleChange, handleSubmit, errors, touched, setFieldValue } =
-    formik;
+  const { values, handleChange, errors, touched, setFieldValue } = formik;
   return (
-    <form
-      className={s.form}
-      onSubmit={e => {
-        e.preventDefault();
-        handleSubmit();
-      }}
-    >
+    <>
       {touched.name && errors.name ? <ErrorText text={errors.name} /> : null}
       <InputBase
         styles={s.inputBottomMargin}
@@ -50,7 +43,7 @@ const RegisterFormStepTwo = ({ onNext, formik }) => {
 
       <ButtonBase type="submit" text="Register" />
       <ButtonBase onClick={onNext} type="button" text="Back" isLigth />
-    </form>
+    </>
   );
 };
 

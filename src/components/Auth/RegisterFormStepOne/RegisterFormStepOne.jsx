@@ -8,7 +8,7 @@ import s from '../Auth.module.scss';
 const RegisterFormStepOne = ({ onNext, formik }) => {
   const [isErrors, setIsErrors] = useState(false);
 
-  const { values, handleChange, handleSubmit, errors } = formik;
+  const { values, handleChange, errors } = formik;
 
   const validateFields = () => {
     if (errors.email || errors.password || errors.confirmPassword) {
@@ -18,15 +18,8 @@ const RegisterFormStepOne = ({ onNext, formik }) => {
     }
   };
 
-  // console.log(errors);
   return (
-    <form
-      className={s.form}
-      onSubmit={e => {
-        e.preventDefault();
-        handleSubmit();
-      }}
-    >
+    <>
       {isErrors && errors.email && <ErrorText text={errors.email} />}
       <InputBase
         styles={s.inputBottomMargin}
@@ -62,7 +55,7 @@ const RegisterFormStepOne = ({ onNext, formik }) => {
       />
 
       <ButtonBase onClick={validateFields} type="button" text="Next" />
-    </form>
+    </>
   );
 };
 
