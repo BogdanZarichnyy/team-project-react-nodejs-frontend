@@ -1,3 +1,5 @@
+import { Outlet } from "react-router-dom";
+
 import AddNoticeButton from '../../components/Notices/AddNoticeButton';
 import SearchInput from '../../components/SearchInput';
 import NoticesCategoriesNav from '../../components/Notices/NoticesCategoriesNav';
@@ -14,7 +16,7 @@ export default function NoticesPage() {
         <NoticesCategoriesNav />
         <AddNoticeButton />
       </div>
-      <NoticeCategoriesList />
+      <Outlet />   
     </div>
   );
 }

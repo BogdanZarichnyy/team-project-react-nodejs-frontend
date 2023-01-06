@@ -1,8 +1,10 @@
 import { useState, useContext } from 'react';
+import { useSelector } from 'react-redux';
 
 import ModalNotice from '../ModalNotice'
 import IconComponent from '../../IconComponent';
 import { ModalContext } from '../../ModalRework';
+import { getUserTokenSelector } from '../../../store/user';
 
 import s from './NoticesCategoriesItem.module.scss';
 import img from '../../../images/about.png';
@@ -10,7 +12,7 @@ import img from '../../../images/about.png';
 
 export default function NoticesCategoriesItem({isAddedByMe}) {
     const [addedToFavorite, setAddedToFavorite] = useState(false);
-    const [isLogedIn, setisLoggedIn] = useState(true);
+    const isLogedIn = useSelector(getUserTokenSelector);
 
     const { handleModal } = useContext(ModalContext);
 

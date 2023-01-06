@@ -1,14 +1,15 @@
 import { useContext, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import { ModalContext } from '../../ModalRework';
 import AddPetForm from '../../ModalPet/AddPetForm/AddPetForm';
-
-import sprite from '../../../images/sprite.svg';
+import { getUserTokenSelector } from '../../../store/user';
+import IconComponent from '../../IconComponent';
 
 import s from './AddNoticeButton.module.scss';
 
 export default function AddNoticeButton() {
-  const [isLogedIn, setisLoggedIn] = useState(true);
+  const isLogedIn = useSelector(getUserTokenSelector);
 
   const { handleModal } = useContext(ModalContext);
 
@@ -34,9 +35,7 @@ export default function AddNoticeButton() {
         onMouseDown={clickAddPetButton}
         onClick={handleClickOpen}
       >
-        <svg className={s.addIcon}>
-          <use id="i-plusIcon5" href={`${sprite}#i-plusIcon5`}></use>
-        </svg>
+        <IconComponent classname={s.addIcon} iconname="i-plusIcon5"/>
       </button>
     </div>
   );
