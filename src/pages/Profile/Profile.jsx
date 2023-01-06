@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   loginUserFetch,
   getUserFetch,
@@ -15,9 +15,6 @@ import s from './Profile.module.scss';
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const { photo, name, email, birthday, phone, city } = useSelector(
-    state => state.user.userData
-  );
 
   const handleAddPet = () => {
     //LOGIN
@@ -36,7 +33,7 @@ const Profile = () => {
           My information:
         </h2>
         <div className={s.profileThumb}>
-          <ProfileAvatar {...{ photo }} />
+          <ProfileAvatar />
           <ProfileContactsList />
         </div>
       </section>

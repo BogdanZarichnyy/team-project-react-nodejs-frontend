@@ -1,20 +1,24 @@
 import { useState, useContext, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+
 import Avatar from 'react-avatar-edit';
 
 import ProfileAvatarAddButton from '../ProfileAvatarAddButton';
 import ProfileAvatarChangeButton from '../ProfileAvatarChangeButton';
 import { ModalContext } from '../../ModalRework';
+import { getUserAvatarSelector } from '../../../store/user';
 
 import s from './ProfileAvatar.module.scss';
 
-const ProfileAvatar = ({ photo }) => {
-  const [img, setImg] = useState(null); // props.personalInfo.profileImg.length ? props.personalInfo.profileImg : ''
-
+const ProfileAvatar = () => {
+  const photo = useSelector(getUserAvatarSelector);
+  const [img, setImg] = useState(photo ? photo : null); //TODO проверить работоспособность
   const { handleModal } = useContext(ModalContext);
 
-  useEffect(() => {
-    photo ?? setImg(photo);
-  }, [photo]);
+  // TODO Удалить, если юзстейт работает корректно.
+  // useEffect(() => {
+  //   photo ?? setImg(photo);
+  // }, [photo]);
 
   const handleClickOpen = () => {
     handleModal(

@@ -1,4 +1,4 @@
-import { call, put, takeLatest, all, select } from 'redux-saga/effects';
+import { call, put, takeLatest, all, select, cancel } from 'redux-saga/effects';
 import {
   registerUser,
   logOutUser,
@@ -50,9 +50,16 @@ function* workLogOutUserFetch() {
 function* workGetCurrentUser() {
   try {
     const token = yield select(getUserTokenSelector);
-    const { user } = yield call(getCurrentUser, token);
-    yield console.log('Saga User response');
-    yield put(getUserSuccess(user));
+    // if (!token) {
+    //   yield cancel(workGetCurrentUser);
+    // }
+    //TODO решить с вариантом реализации.
+    if (token) {
+      const { user } = yield call(getCurrentUser, token);
+      yield console.log('Saga User response');
+      yield put(getUserSuccess(user));
+    }
+    yield getUserFailure();
   } catch (error) {
     yield getUserFailure(error.message);
   }
