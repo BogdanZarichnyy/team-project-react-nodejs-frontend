@@ -17,18 +17,29 @@
     flex-direction: column;
     font-family: 'Manrope-Regular';
 
+    @include tablet {
+        width: 443px;
+        padding: 0;
+    }
+
 }
 
 .title {
     font-size: 24px;
     margin-bottom: 40px;
     text-align: center;   
+    @include tablet {
+        font-size: 36px;
+    }
 }
 
 .subtitle {
     font-size: 16px;
     margin-bottom: 20px;
     text-align: center;  
+    @include tablet {
+        font-size: 20px;
+        }
 }
 
 .listButton {
@@ -59,6 +70,10 @@
     color: getColor('clr-black');
 
     @include transition-animation(all);
+
+    @include tablet {
+        font-size: 20px;
+        }
 }
 
 .styledRadio:hover + .itemRadio,
@@ -120,6 +135,9 @@
     text-align: left;
     font-size: 18px;
     line-height: 26px;
+    @include tablet {
+        font-size: 24px;
+        }
 }
 
 .labelStar {
@@ -128,10 +146,16 @@
 
 .input {
     margin-bottom: 16px;
+    @include tablet {
+        margin-bottom: 28px;
+        }
 }
 
 .input::placeholder {
     font-size: 14px;
+    @include tablet {
+        font-size: 16px;
+        }
 }
 
 
@@ -141,12 +165,18 @@
     border: solid 1px #f59256;
     background: #fff;
     color: #111111;
+    @include tablet {
+        font-size: 20px;
+        }
 }
 
 .buttonNext {
     border-radius: 40px;
     font-size: 16px;
     font-family: 'Manrope-Regular';
+    @include tablet {
+        font-size: 20px;
+        }
 }
 
 .buttonWrapper {
@@ -154,7 +184,11 @@
     flex-direction: column;
     gap: 12px;
     
-    // margin-top: 40px;
+    @include tablet {
+        flex-direction: row;
+        align-items: center;
+        padding: 0 20px;
+    }
 }
 
 .avatarWrapper {

@@ -23,7 +23,7 @@ export default function AddNoticeButton() {
   };
 
   const handleClickOpen = () => {
-    handleModal(<AddPetForm />);
+    handleModal(<AddPetForm />, s.modalBody);
   };
 
   return (
