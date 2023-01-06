@@ -1,7 +1,6 @@
 import React from 'react';
 import ButtonBase from '../../ButtonBase/ButtonBase';
 import InputBase from '../../InputBase/InputBase';
-import ProfileAvatarAddButton from '../../Profile/ProfileAvatarAddButton';
 import sprite from '../../../images/sprite.svg';
 import s from './AddPetForm.module.scss';
 import ErrorText from '../../ErrorText';
