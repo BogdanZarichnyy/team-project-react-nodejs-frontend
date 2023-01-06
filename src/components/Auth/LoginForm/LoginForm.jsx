@@ -1,4 +1,6 @@
-import React from 'react'; // , { useState }
+import React from 'react';
+import { useDispatch } from 'react-redux';
+
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
@@ -6,6 +8,8 @@ import s from '../Auth.module.scss';
 import InputBase from '../../InputBase/InputBase';
 import ButtonBase from '../../ButtonBase/ButtonBase';
 import ErrorText from '../../ErrorText';
+
+import { loginUserFetch } from '../../../store/user';
 
 const initialValues = {
   email: '',
@@ -29,6 +33,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues,
     validationSchema,
@@ -41,11 +46,18 @@ const LoginForm = () => {
   const { values, handleChange, handleSubmit, handleBlur, touched, errors } =
     formik;
 
+  const handleLogin = e => {
+    e.preventDefault();
+    const email = e.target.elements.email.value;
+    const password = e.target.elements.password.value;
+    dispatch(loginUserFetch({ email, password }));
+  };
+
   // console.log(touched);
   // console.log(errors);
 
   return (
-    <form className={s.form} onSubmit={handleSubmit}>
+    <form className={s.form} onSubmit={handleLogin}>
       {touched.email && errors.email ? <ErrorText text={errors.email} /> : null}
       <InputBase
         styles={s.inputBottomMargin}

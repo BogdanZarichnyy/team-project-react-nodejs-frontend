@@ -1,16 +1,18 @@
-import sprite from '../../../images/sprite.svg';
+import { useDispatch } from 'react-redux';
+import { logOutUserFetch } from '../../../store/user/userSlice';
+import IconComponent from '../../IconComponent';
 import s from './ProfileLogOutButton.module.scss';
 
 const ProfileLogOutButton = () => {
+  const dispatch = useDispatch();
+
   const handleLogOut = () => {
-    console.log('logout');
+    dispatch(logOutUserFetch());
   };
 
   return (
     <button className={s.logOutButton} onClick={handleLogOut}>
-      <svg className={s.logOutIcon}>
-        <use id="plus" href={`${sprite}#logoutUserIcon`} />
-      </svg>
+      <IconComponent iconname="logoutUserIcon" classname={s.logOutIcon} />
       Log Out
     </button>
   );
