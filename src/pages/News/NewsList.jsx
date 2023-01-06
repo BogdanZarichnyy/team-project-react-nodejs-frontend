@@ -1,4 +1,4 @@
-import styles from './NewsList.module.scss';
+import s from './NewsList.module.scss';
 import SearchInput from '../../components/SearchInput';
 import { useEffect, useState } from 'react';
 
@@ -26,27 +26,27 @@ const NewsList = () => {
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <div className={s.loading}>Loading...</div>;
   } else {
     return (
-      <div className={styles.container}>
-        <h2 className={styles.title}>News</h2>
+      <div className={s.container}>
+        <h2 className={s.title}>News</h2>
         <SearchInput />
-        <ul className={styles.articlelist}>
+        <ul className={s.articlelist}>
           {news.map(({ _id, title, url, info, date }) => (
-            <li className={styles.articleItem} key={_id}>
-              <span className={styles.gradient}></span>
-              <h3 className={styles.articleTitle}>{title}</h3>
-              <p className={styles.articleDescription}>{info}</p>
-              <p className={styles.articleMeta}>
-                <span className={styles.metaDate}>
+            <li className={s.articleItem} key={_id}>
+              <span className={s.gradient}></span>
+              <h3 className={s.articleTitle}>{title}</h3>
+              <p className={s.articleDescription}>{info}</p>
+              <p className={s.articleMeta}>
+                <span className={s.metaDate}>
                   {date?.split('T').shift().split('-').join('/')}
                 </span>
                 <a
                   href={url}
                   target="_blank"
                   rel="noreferrer noopener nofollow"
-                  className={styles.metaLink}
+                  className={s.metaLink}
                 >
                   Read more...
                 </a>

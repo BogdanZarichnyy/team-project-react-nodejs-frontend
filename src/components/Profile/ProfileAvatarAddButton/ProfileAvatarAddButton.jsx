@@ -1,12 +1,10 @@
-import sprite from '../../../images/sprite.svg';
+import IconComponent from '../../IconComponent';
 import s from './ProfileAvatarAddButton.module.scss';
 
 const ProfileAvatarAddButton = ({ handleClickOpen }) => {
   return (
     <button className={s.avatarAddButton} onClick={handleClickOpen}>
-      <svg className={s.avatarAddIcon}>
-        <use id="i-cross-lg4" href={`${sprite}#i-cross-lg4`} />
-      </svg>
+      <IconComponent classname={s.avatarAddIcon} iconname="i-cross-lg4" />
     </button>
   );
 };

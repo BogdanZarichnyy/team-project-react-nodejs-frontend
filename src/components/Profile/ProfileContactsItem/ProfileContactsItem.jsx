@@ -1,17 +1,28 @@
 import { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-import sprite from '../../../images/sprite.svg';
+import { updateUserFetch } from '../../../store/user';
+import IconComponent from '../../IconComponent';
 
 import s from './ProfileContactsItem.module.scss';
 
 const ProfileContactsItem = ({
   name,
   type,
+  value,
+  valKey,
   activeContact,
   setActiveContact,
 }) => {
   const ref = useRef();
   const [val, setVal] = useState('');
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/.test(value)
+      ? setVal(value.substring(0, 10))
+      : setVal(value);
+  }, [value]);
 
   useEffect(() => {
     ref.current.focus();
@@ -29,7 +40,7 @@ const ProfileContactsItem = ({
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('fetching data');
+    dispatch(updateUserFetch({ [valKey]: val }));
     setActiveContact(null);
   };
 
@@ -47,9 +58,10 @@ const ProfileContactsItem = ({
         />
         {activeContact === name ? (
           <button className={s.contactButton} type="submit">
-            <svg className={s.contactPenIcon}>
-              <use id="checkedIcon" href={`${sprite}#checkedIcon`} />
-            </svg>
+            <IconComponent
+              iconname="checkedIcon"
+              classname={s.contactPenIcon}
+            />
           </button>
         ) : (
           <button
@@ -58,9 +70,10 @@ const ProfileContactsItem = ({
             onClick={handleClick}
             disabled={activeContact !== name && activeContact ? true : false}
           >
-            <svg className={s.contactPenIcon}>
-              <use id="editPenIcon" href={`${sprite}#editPenIcon`} />
-            </svg>
+            <IconComponent
+              iconname="editPenIcon"
+              classname={s.contactPenIcon}
+            />
           </button>
         )}
       </form>
