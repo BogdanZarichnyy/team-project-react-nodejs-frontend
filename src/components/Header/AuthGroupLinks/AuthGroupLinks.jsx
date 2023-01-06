@@ -3,11 +3,15 @@ import sprite from '../../../images/sprite.svg';
 import s from './AuthGroupLinks.module.scss';
 import PrimaryButton from '../../Buttons/PrimaryButton';
 import SecondaryButton from '../../Buttons/SecondaryButton';
+import { useSelector } from 'react-redux';
+import { getUserSelector } from '../../../store/user/userSelectors';
 
 const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
+  const userData = useSelector(getUserSelector);
+
   return (
     <>
-      {'if authorized' && (
+      {userData._id && (
         <>
           <PrimaryButton
             tag="NavLink"
@@ -25,7 +29,7 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
         </>
       )}
 
-      {'if NOT authorized' && (
+      {!userData._id && (
         <>
           <PrimaryButton
             tag="NavLink"

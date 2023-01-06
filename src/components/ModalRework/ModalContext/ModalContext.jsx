@@ -10,6 +10,7 @@ let ModalProvider = ({ children }) => {
   return (
     <Provider value={{ modal, handleModal, modalContent, modalStyle, submit }}>
       <ModalComponent />
+
       {children}
     </Provider>
   );

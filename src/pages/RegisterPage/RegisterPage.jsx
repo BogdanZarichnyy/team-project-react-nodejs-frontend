@@ -5,6 +5,11 @@ import * as Yup from 'yup';
 import AuthLayout from '../../layouts/AuthLayout';
 import RegisterFormStepOne from '../../components/Auth/RegisterFormStepOne';
 import RegisterFormStepTwo from '../../components/Auth/RegisterFormStepTwo';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { registerUserFetch } from '../../store/user';
+
+import s from '../../components/Auth/Auth.module.scss';
 
 const initialValues = {
   email: '',
@@ -32,7 +37,9 @@ const validationSchema = Yup.object().shape({
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .required('Required field to fill!'),
-  name: Yup.string().required('Required field to fill!'),
+  name: Yup.string()
+    .required('Required field to fill!')
+    .matches(/^[a-zA-z ]+$/, 'In this field must be contain only letters'),
   city: Yup.string().required('Required field to fill!'),
   phone: Yup.string()
     .required('Required field to fill!')
@@ -40,7 +47,25 @@ const validationSchema = Yup.object().shape({
 });
 
 const RegisterPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
+
+  const handleRegister = async values => {
+    const phone = '+' + values.phone;
+    const { confirmPassword, ...userData } = values;
+    try {
+      await dispatch(
+        registerUserFetch({
+          ...userData,
+          phone,
+        })
+      );
+      navigate('/user');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const formik = useFormik({
     initialValues,
@@ -48,7 +73,7 @@ const RegisterPage = () => {
     validateOnMount: true,
     validateOnBlur: true,
     validateOnChange: true,
-    onSubmit: values => console.log(values),
+    onSubmit: handleRegister,
   });
 
   return (
@@ -58,11 +83,13 @@ const RegisterPage = () => {
       nawLink="/login"
       textNawLink="Login"
     >
-      {step === 1 ? (
-        <RegisterFormStepOne formik={formik} onNext={() => setStep(2)} />
-      ) : (
-        <RegisterFormStepTwo formik={formik} onNext={() => setStep(1)} />
-      )}
+      <form className={s.form} onSubmit={formik.handleSubmit}>
+        {step === 1 ? (
+          <RegisterFormStepOne formik={formik} onNext={() => setStep(2)} />
+        ) : (
+          <RegisterFormStepTwo formik={formik} onNext={() => setStep(1)} />
+        )}
+      </form>
     </AuthLayout>
   );
 };
