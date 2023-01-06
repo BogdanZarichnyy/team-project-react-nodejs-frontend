@@ -1,6 +1,7 @@
+import IconComponent from '../../IconComponent';
+
 import s from './ModalNotice.module.scss';
 import img from '../../../images/about.png';
-import sprite from '../../../images/sprite.svg';
 
 export default function ModalNotice({ isAddedTofavorite, onClick }) {
 
@@ -50,10 +51,8 @@ export default function ModalNotice({ isAddedTofavorite, onClick }) {
                 <div className={s.noticeButtonsThumb}>
                     <a className={s.noticeContactButton} href="tell:+380971234567">Contact</a>
                     <button className={s.noticeFavoriteButton} onClick={onClick}> {isAddedTofavorite ? 'Remove from' : 'Add to'}
-                        <svg className={s.favoriteIcon}>
-                            <use id="favoriteIcon" href={`${sprite}#favoriteIcon`} ></use>
-                        </svg>
-                     </button>
+                        <IconComponent classname={s.favoriteIcon} iconname="favoriteIcon"/>
+                    </button>
                 </div>
             </div>            
         </>        

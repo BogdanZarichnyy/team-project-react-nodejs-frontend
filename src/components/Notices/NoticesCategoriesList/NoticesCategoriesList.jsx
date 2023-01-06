@@ -7,7 +7,7 @@ export default function NoticeCategoriesList() {
 
     return (
         <ul className={s.noticeList}> 
-            <ModalProvider styles={s.modalThumbNoticesPage}>   
+            <ModalProvider>   
                 <NoticesCategoriesItem isAddedByMe={false} />
                 <NoticesCategoriesItem isAddedByMe={true}/>
                 <NoticesCategoriesItem isAddedByMe={false}/>

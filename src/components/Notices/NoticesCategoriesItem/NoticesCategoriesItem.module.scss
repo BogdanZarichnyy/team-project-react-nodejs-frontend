@@ -30,10 +30,8 @@
     top: 20px;
 
     padding: 6px 50px 7px 20px;
-    margin: 0;
 
     font-family: 'Manrope-Medium';
-
     font-size: 12px;
     line-height: 1.25;
     letter-spacing: 0.04em;
@@ -97,8 +95,6 @@
     background-color: transparent;
     border: none;
     outline: none;
-
-    cursor: pointer;
 }
 
 .noticeDecription {
@@ -106,7 +102,6 @@
 }
 
 .noticeTitle {
-    margin-top: 0;
     margin-bottom: 20px;
     overflow-wrap: break-word;
 
@@ -122,6 +117,7 @@
     display: flex;
 
     max-width: 296px;
+
     word-wrap: break-word;
 }
 
@@ -129,16 +125,10 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-
-    padding: 0;
-
-    list-style: none;
 }
 
 .petInfoLType,
 .petInfoLValue {
-    margin: 0;
-
     font-family: 'Manrope-Medium';
     font-size: 16px;
     line-height: 1.38;
@@ -185,8 +175,6 @@
     border: 2px solid getColor('clr-accent');
     border-radius: 40px;
 
-    cursor: pointer;
-
     @include transition-animation(all);
 
     &:hover,
@@ -197,9 +185,7 @@
 }
 
 .noticeDeleteButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center; 
     gap: 15px;
 
     &:hover,
@@ -223,14 +209,18 @@
     }
 }
 
+.modalBody {
+    width: 280px;
+    min-height: 874px;
+}
+
 @include tablet {
     .noticeItem {
         width: 336px;
     }
         
     .noticeThumb {
-        width: 336px;
-        
+        width: 336px;        
     }
         
     .noticeImage {
@@ -243,6 +233,11 @@
 
     .petInfoLValue {
         max-width: 205px;
+    }
+
+    .modalBody {
+        width: 704px;
+        min-height: 540px;
     }
 }
 

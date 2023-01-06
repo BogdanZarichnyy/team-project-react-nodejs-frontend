@@ -1,10 +1,12 @@
 import { useState, useContext } from 'react';
 
 import ModalNotice from '../ModalNotice'
-import s from './NoticesCategoriesItem.module.scss';
-import sprite from '../../../images/sprite.svg';
-import img from '../../../images/about.png';
+import IconComponent from '../../IconComponent';
 import { ModalContext } from '../../ModalRework';
+
+import s from './NoticesCategoriesItem.module.scss';
+import img from '../../../images/about.png';
+
 
 export default function NoticesCategoriesItem({isAddedByMe}) {
     const [addedToFavorite, setAddedToFavorite] = useState(false);
@@ -25,7 +27,7 @@ export default function NoticesCategoriesItem({isAddedByMe}) {
 
     const handleClickOpen = () => {
         handleModal(
-            <ModalNotice onClick={clickAddFavorite} isAddedTofavorite={addedToFavorite} />
+            <ModalNotice onClick={clickAddFavorite} isAddedTofavorite={addedToFavorite} />, s.modalBody
         );
     };
 
@@ -38,13 +40,13 @@ export default function NoticesCategoriesItem({isAddedByMe}) {
                     <div className={s.noticeFavoriteButtonThumb}>
                         <button className={s.noticeFavoriteButton} onClick={clickAddFavorite}>
                             {addedToFavorite ?
-                                <svg className={s.removeFavoriteIcon}>
-                                    <use id="trashIcon" href={`${sprite}#trashIcon`} ></use>
-                                </svg>
+                                <>
+                                    <IconComponent classname={s.removeFavoriteIcon} iconname="trashIcon"/>
+                                </>
                                 :
-                                <svg className={s.favoriteIcon}>
-                                    <use id="favoriteIcon" href={`${sprite}#favoriteIcon`} ></use>
-                                </svg>
+                                <>
+                                    <IconComponent classname={s.favoriteIcon} iconname="favoriteIcon"/>
+                                </>
                             }                            
                         </button>
                     </div>                    
@@ -68,10 +70,9 @@ export default function NoticesCategoriesItem({isAddedByMe}) {
                     <div className={isAddedByMe ? s.personalNoticeButtonsThumb : s.noticeButtonsThumb}>
                         <button className={s.noticeLearnMoreButton} onClick={handleClickOpen}>Learn more</button>
                         {isAddedByMe &&
-                            <button className={s.noticeDeleteButton}>Delete
-                                <svg className={s.trashIcon}>
-                                    <use id="trashIcon" href={`${sprite}#trashIcon`} ></use>
-                                </svg>
+                            <button className={s.noticeDeleteButton}>
+                                Delete
+                                <IconComponent classname={s.trashIcon} iconname="trashIcon"/>
                             </button>
                         }                        
                     </div>                    

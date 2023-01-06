@@ -9,11 +9,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-
-    padding: 0;
-    margin: 0;
-
-    list-style: none;
 }
 
 .noticesLink,
@@ -29,7 +24,6 @@
     font-family: 'Manrope-Medium';
     font-size: 14px;
     line-height: 1.36;
-    text-decoration: none;
 
     color: getColor('clr-black');
 

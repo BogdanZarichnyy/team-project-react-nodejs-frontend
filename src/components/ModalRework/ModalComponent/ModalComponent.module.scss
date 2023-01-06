@@ -17,8 +17,6 @@
 .modalBody {
   position: relative;
 
-  width: 280px;
-  height: 280px;
   @include flex-center;
   background-color: getColor('clr-white');
   border-radius: 40px;
