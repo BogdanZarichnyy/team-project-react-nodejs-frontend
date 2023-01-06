@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 import Navigation from './Navigation';
 import MobileNavigation from './MobileNavigation';
-
 import AuthGroup from './AuthGroup';
-import { NavLink } from 'react-router-dom';
 
 import s from './Header.module.scss';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
-
   const [matches, setMatches] = useState(
     window.matchMedia('(min-width: 1280px)').matches
   );
