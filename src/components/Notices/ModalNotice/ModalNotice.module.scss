@@ -1,0 +1,229 @@
+@import '../../../sass/utils/variables';
+@import '../../../sass/utils/mixins';
+
+.modalThumb {
+    padding: 60px 20px 40px;
+}
+
+.noticeThumb {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    margin-bottom: 16px;
+    border-radius: 0px 0px 40px 40px;
+    overflow: hidden;
+}
+
+.noticeImage {
+    display: block;
+    object-fit: cover;
+        
+    width: 240px;
+    height: 240px;
+}
+
+.categoryType {
+    position: absolute;
+    top: 20px;
+
+    padding: 6px 53px 6px 20px;
+    margin: 0;
+
+    font-family: 'Manrope-Medium';
+
+    font-size: 12px;
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+
+    color: getColor('clr-black');
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(2px);
+    border-radius: 0 40px 40px 0;
+}
+
+// .noticeDecription {
+//     width: 240px;
+// }
+
+.noticeTitle {
+    margin-bottom: 16px;
+    overflow-wrap: break-word;
+
+    font-family: 'Manrope-Bold';
+    font-size: 24px;
+    line-height: 1.38;
+    letter-spacing: -0.01em;
+    
+    color: getColor('clr-black');
+}
+
+.petInfoList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 28px;
+}
+
+.petInfoLItem {
+    display: flex;
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+.petInfoLType,
+.petInfoLTypeComment,
+.petInfoLValue,
+.petInfoLValueComment {
+    margin: 0;
+    width: 120px;
+
+    font-family: 'Manrope-Bold';
+    font-size: 14px;
+    line-height: 1.36;
+
+    color: getColor('clr-black');
+}
+
+.petInfoLValue,
+.petInfoLValueComment {
+    width: 120px;
+
+    font-family: 'Manrope-Medium';    
+}
+
+.petInfoLTypeComment {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.noticeButtonsThumb {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.noticeContactButton,
+.noticeFavoriteButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 40px;
+
+    padding: 7px 80px;
+
+    font-family: 'Manrope-Medium';
+    font-size: 16px;
+    line-height: 1.38;
+    letter-spacing: 0.04em;
+    color: getColor('clr-white');
+
+    background-color: getColor('clr-accent');
+    border: 2px solid getColor('clr-accent');
+    border-radius: 40px;
+
+    cursor: pointer;
+
+    @include transition-animation(all);
+
+    &:hover,
+    &:focus {
+        background-color: getColor('clr-accent-active');
+        border: 2px solid getColor('clr-accent-active');
+    }
+}
+
+.noticeFavoriteButton {    
+    gap: 15px;
+
+    padding: 7px 45px;
+
+    color: getColor('clr-black');
+    background-color: getColor('clr-white');
+
+    &:hover,
+    &:focus {
+        background-color: getColor('clr-white');
+        border: 2px solid getColor('clr-accent-active');
+    }
+}
+
+.favoriteIcon {
+    width: 16px;
+    height: 16px;
+
+    fill: getColor('clr-accent');
+}
+
+@include tablet {
+    .modalInfoWrapper {
+        display: flex;
+        gap: 20px;
+
+        margin-bottom: 28px;
+    }
+
+    .modalThumb {
+        padding: 32px 20px;
+    }
+
+    .noticeThumb {
+        width: 288px;
+        height: 328px;
+
+        margin-bottom: 0;
+    }
+
+    .noticeImage {    
+        width: 288px;
+        height: 328px;
+    }
+
+    .noticeTitle {
+        margin-bottom: 20px;
+        max-width: 300px;
+
+        font-size: 28px;
+        line-height: 1.36;
+    }
+
+    .petInfoList {
+        margin-bottom: 0;
+    }
+
+    .petInfoLType,
+    .petInfoLValue,
+    .petInfoLTypeComment,
+    .petInfoLValueComment {
+        font-size: 16px;
+        line-height: 1.36;
+    } 
+
+    .petInfoLValue {
+        width: 235px;    
+    }
+
+    .petInfoLTypeComment {
+        line-height: 1.5;
+        letter-spacing: 0.04em;
+        margin-bottom: 32px;
+    }
+
+    .noticeButtonsThumb {
+        flex-direction: row-reverse;
+        margin-right: 20px;
+    }
+
+    .noticeContactButton,
+    .noticeFavoriteButton {
+        width: 160px;
+
+        padding: 5px 44px;
+    }
+
+    .noticeFavoriteButton {
+        gap: 8px;
+        padding: 5px 10px;
+    }
+}

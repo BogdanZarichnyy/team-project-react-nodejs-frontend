@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Avatar from 'react-avatar-edit';
 
 import ProfileAvatarAddButton from '../ProfileAvatarAddButton';
@@ -7,10 +7,14 @@ import { ModalContext } from '../../ModalRework';
 
 import s from './ProfileAvatar.module.scss';
 
-const ProfileAvatar = () => {
+const ProfileAvatar = ({ photo }) => {
   const [img, setImg] = useState(null); // props.personalInfo.profileImg.length ? props.personalInfo.profileImg : ''
 
   const { handleModal } = useContext(ModalContext);
+
+  useEffect(() => {
+    photo ?? setImg(photo);
+  }, [photo]);
 
   const handleClickOpen = () => {
     handleModal(
@@ -25,7 +29,9 @@ const ProfileAvatar = () => {
         label={'Click or Drag image here!'}
         onBeforeFileLoad={onBeforeFileLoad}
         className={s.avatarField}
-      />
+      />,
+      s.modalBody,
+      true //TODO этот компонент заменить на хэндлер отправки картинки на сервер, передам ему img и прокинуть его в кнопку
     );
   };
 
