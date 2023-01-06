@@ -1,5 +1,7 @@
-.react-tel-input {
+.react-tel-input,
+.css-2b097c-container {
   max-width: 458px;
+  width: 100%;
   margin-bottom: 40px;
   position: relative;
 }

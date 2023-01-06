@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+import ua from '../../../constants/ua.json';
+import Select from 'react-select';
 
 import InputBase from '../../InputBase/InputBase';
 import ButtonBase from '../../ButtonBase/ButtonBase';
@@ -9,7 +11,28 @@ import ErrorText from '../../ErrorText';
 import s from '../Auth.module.scss';
 
 const RegisterFormStepTwo = ({ onNext, formik }) => {
+  const [filteredCities, setFilteredCities] = useState([]);
+
+  const searchCity = value => {
+    if (!value.length) {
+      setFilteredCities([]);
+      return;
+    }
+    const filteredCities = ua.reduce((acc, el) => {
+      if (el.city.toLowerCase().startsWith(value)) {
+        acc.push({
+          value: `${el.city}, ${el.admin_name}`,
+          label: `${el.city}, ${el.admin_name}`,
+        });
+        return acc;
+      }
+      return acc;
+    }, []);
+    setFilteredCities(filteredCities);
+  };
+
   const { values, handleChange, errors, touched, setFieldValue } = formik;
+
   return (
     <>
       {touched.name && errors.name ? <ErrorText text={errors.name} /> : null}
@@ -21,14 +44,16 @@ const RegisterFormStepTwo = ({ onNext, formik }) => {
         value={values.name}
         onChange={handleChange}
       />
-      {touched.city && errors.city ? <ErrorText text={errors.city} /> : null}
-      <InputBase
-        styles={s.inputBottomMargin}
-        type="name"
+      {/* {touched.city && errors.city ? <ErrorText text={errors.city} /> : null} */}
+      <Select
         name="city"
         placeholder="City, region"
-        value={values.city}
-        onChange={handleChange}
+        isClearable={false}
+        onChange={({ value }) => setFieldValue('city', value, true)}
+        onInputChange={searchCity}
+        options={filteredCities}
+        closeMenuOnSelect
+        loadingMessage={true}
       />
       {touched.phone && errors.phone ? <ErrorText text={errors.phone} /> : null}
 
