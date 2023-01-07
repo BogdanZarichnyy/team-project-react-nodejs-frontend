@@ -31,8 +31,7 @@
 
     &:hover,
     &:focus {
-        background-color: getColor('clr-accent');
-        color: getColor('clr-white');
+        border: 2px solid getColor('clr-accent-active');
     }
 }
 

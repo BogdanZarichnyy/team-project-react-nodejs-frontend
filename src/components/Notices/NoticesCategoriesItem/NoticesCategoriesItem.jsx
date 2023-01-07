@@ -1,18 +1,20 @@
 import { useState, useContext } from 'react';
 import { useSelector } from 'react-redux';
+import moment from 'moment';
 
 import ModalNotice from '../ModalNotice'
 import IconComponent from '../../IconComponent';
 import { ModalContext } from '../../ModalRework';
-import { getUserTokenSelector } from '../../../store/user';
+import { getUserTokenSelector, getUserSelector } from '../../../store/user';
 
 import s from './NoticesCategoriesItem.module.scss';
-import img from '../../../images/about.png';
+import defaultImage from '../../../images/defaultImage.png';
 
 
-export default function NoticesCategoriesItem({isAddedByMe}) {
+export default function NoticesCategoriesItem({notice}) {
     const [addedToFavorite, setAddedToFavorite] = useState(false);
     const isLogedIn = useSelector(getUserTokenSelector);
+    const user = useSelector(getUserSelector);
 
     const { handleModal } = useContext(ModalContext);
 
@@ -29,7 +31,7 @@ export default function NoticesCategoriesItem({isAddedByMe}) {
 
     const handleClickOpen = () => {
         handleModal(
-            <ModalNotice onClick={clickAddFavorite} isAddedTofavorite={addedToFavorite} />, s.modalBody
+            <ModalNotice onClick={clickAddFavorite} notice={notice} />, s.modalBody
         );
     };
 
@@ -37,8 +39,8 @@ export default function NoticesCategoriesItem({isAddedByMe}) {
         <>
             <li className={s.noticeItem}>
                 <div className={s.noticeThumb}>
-                    <img className={s.noticeImage} src={img} alt="Pet"/>
-                    <p className={s.categoryType}>In good hands</p>
+                    <img className={s.noticeImage} src={notice.photo === '' ? defaultImage : notice.photo} alt="Pet"/>
+                    <p className={s.categoryType}>{notice.category}</p>
                     <div className={s.noticeFavoriteButtonThumb}>
                         <button className={s.noticeFavoriteButton} onClick={clickAddFavorite}>
                             {addedToFavorite ?
@@ -53,30 +55,37 @@ export default function NoticesCategoriesItem({isAddedByMe}) {
                         </button>
                     </div>                    
                 </div>
-                <div className={s.noticeDecription}>
-                    <h3 className={s.noticeTitle}>Сute dog looking for a home</h3>
+                <div className={user._id === notice.owner._id ? s.noticeDecriptionOwner : s.noticeDecription}>
+                    <h3 className={s.noticeTitle}>{notice.addTitle}</h3>
                     <ul className={s.petInfoList}>
                         <li className={s.petInfoLItem}>
                             <p className={s.petInfoLType}>Breed:</p>
-                            <p className={s.petInfoLValue}>Pomeranian</p>
+                            <p className={s.petInfoLValue}>{notice.breed}</p>
                         </li>
                         <li className={s.petInfoLItem}>
                             <p className={s.petInfoLType}>Place:</p>
-                            <p className={s.petInfoLValue}>Lviv</p>
+                            <p className={s.petInfoLValue}>{notice.location}</p>
                         </li>
                         <li className={s.petInfoLItem}>
                             <p className={s.petInfoLType}>Age:</p>
-                            <p className={s.petInfoLValue}>one year</p>
+                            <p className={s.petInfoLValue}>{moment(notice.birthDate).startOf('day').fromNow(true)}</p>
                         </li>
+                        {notice.price !== null && 
+                            <li className={s.petInfoLItem}>
+                                <p className={s.petInfoLType}>Sell:</p>
+                                <p className={s.petInfoLValue}>{notice.price} $</p>
+                            </li>
+                        }                        
                     </ul>
-                    <div className={isAddedByMe ? s.personalNoticeButtonsThumb : s.noticeButtonsThumb}>
+                    <div className={s.noticeButtonsThumb}>
                         <button className={s.noticeLearnMoreButton} onClick={handleClickOpen}>Learn more</button>
-                        {isAddedByMe &&
+                        {user._id === notice.owner._id && 
                             <button className={s.noticeDeleteButton}>
                                 Delete
-                                <IconComponent classname={s.trashIcon} iconname="trashIcon"/>
-                            </button>
-                        }                        
+                            <IconComponent classname={s.trashIcon} iconname="trashIcon"/>
+                        </button>
+                        }
+                                               
                     </div>                    
                 </div>
             </li>
