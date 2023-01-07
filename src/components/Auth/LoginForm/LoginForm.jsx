@@ -10,6 +10,7 @@ import ButtonBase from '../../ButtonBase/ButtonBase';
 import ErrorText from '../../ErrorText';
 
 import { loginUserFetch } from '../../../store/user';
+import { useNavigate } from 'react-router-dom';
 
 const initialValues = {
   email: '',
@@ -27,37 +28,38 @@ const validationSchema = Yup.object().shape({
     .max(63, 'Email must be 63 characters maximum')
     .required('Required field to fill!'),
   password: Yup.string()
-    .min(7, 'Password must be at least 10 characters long')
-    .max(32, 'Password must be 60 characters maximum')
+    .min(7, 'Password must be at least 7 characters long')
+    .max(32, 'Password must be 32 characters maximum')
     .required('Required field to fill!'),
 });
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogin = async values => {
+    try {
+      await dispatch(loginUserFetch(values));
+      navigate('/user');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const formik = useFormik({
     initialValues,
     validationSchema,
     validateOnMount: true,
     validateOnChange: true,
     validateOnBlur: true,
-    onSubmit: values => console.log(values),
+    onSubmit: handleLogin,
   });
 
   const { values, handleChange, handleSubmit, handleBlur, touched, errors } =
     formik;
 
-  const handleLogin = e => {
-    e.preventDefault();
-    const email = e.target.elements.email.value;
-    const password = e.target.elements.password.value;
-    dispatch(loginUserFetch({ email, password }));
-  };
-
-  // console.log(touched);
-  // console.log(errors);
-
   return (
-    <form className={s.form} onSubmit={handleLogin}>
+    <form className={s.form} onSubmit={handleSubmit}>
       {touched.email && errors.email ? <ErrorText text={errors.email} /> : null}
       <InputBase
         styles={s.inputBottomMargin}
