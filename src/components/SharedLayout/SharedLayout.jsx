@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
-import { getUserLoadingSelector } from '../../store/user';
+// import { getUserLoadingSelector } from '../../store/user';
 import { getUserFetch } from '../../store/user/userSlice';
 
 import CookiesPopup from '../CookiesPopup';
@@ -13,8 +13,8 @@ import style from './SharedLayout.module.scss';
 
 const SharedLayout = () => {
   const dispatch = useDispatch();
-  const isDataLoading = useSelector(getUserLoadingSelector);
-  console.log(isDataLoading);
+  // const isDataLoading = useSelector(getUserLoadingSelector);
+  // console.log('isDataLoading', isDataLoading);
 
   useEffect(() => {
     dispatch(getUserFetch());
