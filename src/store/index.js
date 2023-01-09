@@ -1,11 +1,13 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
 
-//TODO import slice and rootSaga later
 import { rootSaga } from './rootSaga';
 import userReducer from './user/userSlice';
+import adsSlice from './ads/adsSlice';
+import newsSlice from './news/newsSlice';
+import friendsSlice from './friends/friendsSlice';
 
 let sagaMiddleware = createSagaMiddleware();
 const middleware = [sagaMiddleware];
@@ -16,8 +18,22 @@ const persistConfig = {
   whitelist: ['token'],
 };
 
+const combinedReducer = combineReducers({
+  user: persistReducer(persistConfig, userReducer),
+  ads: adsSlice,
+  news: newsSlice,
+  friends: friendsSlice,
+});
+
+const rootReducer = (state, action) => {
+  if (action.type === 'user/logOutUserSuccess') {
+    state = undefined;
+  }
+  return combinedReducer(state, action);
+};
+
 export const store = configureStore({
-  reducer: { user: persistReducer(persistConfig, userReducer) },
+  reducer: rootReducer,
   middleware,
   devTools: process.env.NODE_ENV === 'development',
 });

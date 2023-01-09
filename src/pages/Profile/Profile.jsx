@@ -1,10 +1,13 @@
 import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import {
-  loginUserFetch,
-  getUserFetch,
-  updateUserFetch,
-} from '../../store/user/userSlice';
+  getSellAdsFetch,
+  getFoundAdsFetch,
+  getShareAdsFetch,
+  addNewAdsFetch,
+} from '../../store/ads/adsSlice';
+
+import { getFriendsFetch } from '../../store/friends';
 
 import ProfilePet from '../../components/Profile/ProfilePet';
 import ProfileAvatar from '../../components/Profile/ProfileAvatar';
@@ -12,18 +15,31 @@ import ProfileContactsList from '../../components/Profile/ProfileContactsList';
 import AddPetButton from '../../components/AddPetButton';
 
 import s from './Profile.module.scss';
+import axios from 'axios';
 
 const Profile = () => {
   const dispatch = useDispatch();
 
-  const handleAddPet = () => {
-    //LOGIN
-    dispatch(
-      loginUserFetch({
-        email: 'baba@mail.com',
-        password: 'baba123',
-      })
+  const handleAddPet = async () => {
+    // const data = await axios.get(
+    //   'https://test-team-project-react-nodejs-production.up.railway.app/api/ads?category=sale'
+    // );
+    const data = await axios.get(
+      'https://test-team-project-react-nodejs-production.up.railway.app/api/ads',
+      {},
+      {
+        params: {
+          category: 'sale',
+        },
+      }
     );
+    // const data = await fetch(
+    //   'https://test-team-project-react-nodejs-production.up.railway.app/api/ads?' +
+    //     new URLSearchParams({
+    //       category: 'sale',
+    //     })
+    // );
+    console.log(data);
   };
 
   return (
