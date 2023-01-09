@@ -21,9 +21,9 @@ const Profile = () => {
   const dispatch = useDispatch();
 
   const handleAddPet = async () => {
-    // const data = await axios.get(
-    //   'https://test-team-project-react-nodejs-production.up.railway.app/api/notices?category=sale'
-    // );
+    const data = await axios.get(
+      'https://test-team-project-react-nodejs-production.up.railway.app/api/notices?category=sale'
+    );
 
     dispatch();
     console.log(data);

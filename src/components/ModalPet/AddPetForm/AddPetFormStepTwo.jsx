@@ -5,7 +5,6 @@ import sprite from '../../../images/sprite.svg';
 import s from './AddPetForm.module.scss';
 import ErrorText from '../../ErrorText';
 import IconComponent from '../../IconComponent';
-import { formData } from './AddPetForm';
 
 const AddPetFormStepTwo = ({ onNext, formik }) => {
   const photoRef = useRef();

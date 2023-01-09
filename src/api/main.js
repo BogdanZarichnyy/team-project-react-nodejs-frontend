@@ -9,7 +9,7 @@ export const userApi = axios.create({
 
 export const adsApi = axios.create({
   // withCredentials: true,
-  baseURL: `${BASE_URL}ads/`,
+  baseURL: `${BASE_URL}notices/`,
 });
 
 export const friendsApi = axios.create({
