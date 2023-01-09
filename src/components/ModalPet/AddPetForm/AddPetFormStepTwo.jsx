@@ -1,22 +1,49 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ButtonBase from '../../ButtonBase/ButtonBase';
 import InputBase from '../../InputBase/InputBase';
 import sprite from '../../../images/sprite.svg';
 import s from './AddPetForm.module.scss';
 import ErrorText from '../../ErrorText';
+import IconComponent from '../../IconComponent';
 
 const AddPetFormStepTwo = ({ onNext, formik }) => {
-  const { values, handleChange, handleSubmit, errors, touched } = formik;
-  console.log(values);
+  const photoRef = useRef();
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [previewPhoto, setPreviewPhoto] = useState(null);
+  const [fileName, setFileName] = useState('');
+  const { values, handleChange, errors, touched, setFieldValue } = formik;
+
+  useEffect(() => {
+    if (!selectedFile) {
+      setPreviewPhoto(null);
+      return;
+    }
+
+    const objUrl = URL.createObjectURL(selectedFile);
+    setPreviewPhoto(objUrl);
+
+    return () => URL.revokeObjectURL(objUrl);
+  }, [selectedFile]);
+
+  const handlePhotoChange = e => {
+    const file = e.target.files[0];
+    if (!e.target.files || e.target.files.length === 0) {
+      setSelectedFile(null);
+      return;
+    }
+    setSelectedFile(file);
+
+    const reader = new FileReader();
+
+    reader.onloadend = () => setFileName(file.name);
+    if (file.name !== fileName) {
+      reader.readAsDataURL(file);
+      setFieldValue('photo', file);
+    }
+  };
 
   return (
-    <form
-      className={s.form}
-      onSubmit={e => {
-        e.preventDefault();
-        handleSubmit();
-      }}
-    >
+    <>
       <h2 className={s.title}>Add pet</h2>
       <fieldset className={s.sexWrapper}>
         <legend className={s.label}>
@@ -29,7 +56,9 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
             id="male"
             name="sex"
             alt="male"
-            value={values.male}
+            value="male"
+            onChange={handleChange}
+            error={errors.options}
           />
           <span className={s.sexIcon}>
             <svg>
@@ -45,8 +74,9 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
             id="female"
             name="sex"
             alt="female"
-            value={values.female}
+            value="female"
             onChange={handleChange}
+            error={errors.options}
           />
           <span className={s.sexIcon}>
             <svg>
@@ -71,7 +101,7 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
         value={values.location}
         onChange={handleChange}
       />
-      {values.category === 'sell' && (
+      {values.category === 'sale' && (
         <>
           <label className={s.label} htmlFor="price">
             Price<span className={s.labelStar}>*</span>:
@@ -90,22 +120,35 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
           />
         </>
       )}
-      <label className={s.label} htmlFor="image">
-        Load the pet’s image:
+      <label className={s.label} htmlFor="photo">
+        Load the pet’s photo:
       </label>
-      <div className={s.avatarWrapper}>
-        <svg className={s.avatarIcon}>
-          <use href={`${sprite}#i-cross-lg4`}></use>
-          <input
-            className={s.avatarInput}
-            type="file"
-            id="image"
-            name="image"
-            accept=".jpg,.png"
-          />
-        </svg>
-      </div>
-
+      {previewPhoto ? (
+        <img
+          src={previewPhoto}
+          alt="Pet"
+          onClick={() => photoRef.current.click()}
+        />
+      ) : (
+        <div
+          className={s.avatarWrapper}
+          onClick={() => photoRef.current.click()}
+        >
+          <IconComponent iconname="i-cross-lg4" classname={s.avatarIcon} />
+        </div>
+      )}
+      <input
+        className={s.avatarInput}
+        type="file"
+        id="photo"
+        name="photo"
+        accept=".jpg,.png"
+        onChange={e => {
+          handleChange(e);
+          handlePhotoChange(e);
+        }}
+        ref={photoRef}
+      />
       <label className={s.label} htmlFor="comments">
         Comments
       </label>
@@ -132,7 +175,7 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
         />
         <ButtonBase styles={s.buttonNext} type="submit" text="Done" />
       </div>
-    </form>
+    </>
   );
 };
 

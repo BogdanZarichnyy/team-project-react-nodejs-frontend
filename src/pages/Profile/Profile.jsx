@@ -1,10 +1,13 @@
 import { useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
-  loginUserFetch,
-  getUserFetch,
-  updateUserFetch,
-} from '../../store/user/userSlice';
+  getSellAdsFetch,
+  getFoundAdsFetch,
+  getShareAdsFetch,
+  addNewAdsFetch,
+} from '../../store/ads/adsSlice';
+
+import { getFriendsFetch } from '../../store/friends';
 
 import ProfilePet from '../../components/Profile/ProfilePet';
 import ProfileAvatar from '../../components/Profile/ProfileAvatar';
@@ -12,21 +15,18 @@ import ProfileContactsList from '../../components/Profile/ProfileContactsList';
 import AddPetButton from '../../components/AddPetButton';
 
 import s from './Profile.module.scss';
+import axios from 'axios';
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const { photo, name, email, birthday, phone, city } = useSelector(
-    state => state.user.userData
-  );
 
-  const handleAddPet = () => {
-    //LOGIN
-    dispatch(
-      loginUserFetch({
-        email: 'baba@mail.com',
-        password: 'baba123',
-      })
+  const handleAddPet = async () => {
+    const data = await axios.get(
+      'https://test-team-project-react-nodejs-production.up.railway.app/api/notices?category=sale'
     );
+
+    dispatch();
+    console.log(data);
   };
 
   return (
@@ -36,7 +36,7 @@ const Profile = () => {
           My information:
         </h2>
         <div className={s.profileThumb}>
-          <ProfileAvatar {...{ photo }} />
+          <ProfileAvatar />
           <ProfileContactsList />
         </div>
       </section>
