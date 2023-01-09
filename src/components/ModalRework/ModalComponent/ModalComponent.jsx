@@ -1,6 +1,5 @@
 import { useContext, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import classNames from 'classnames';
 import { ModalContext } from '../ModalContext';
 
 import IconComponent from '../../IconComponent';

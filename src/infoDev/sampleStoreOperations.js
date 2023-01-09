@@ -24,6 +24,14 @@ export const sampleUser2 = {
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjVlZGIyM2RiMDk3YjdlNGI1OWI0ZSIsImlhdCI6MTY3Mjg2NzI1MCwiZXhwIjoxNjcyODY4MTUwfQ.ql2x8W_Hf_Pu20I_1Gj2aCZ6KROWhPxgBmHMW1xYnug',
 };
 
+export const adsCategories = ['sale', 'inGoodHands', 'lostFound'];
+
+//Добавил isLogged
+//Исправил error
+//Добавил получение 'sale', 'inGoodHands', 'lostFound'
+//Бодавил получение друзей и новостей
+//Перенести validationSchema в отдельный файл в формах
+
 //1. Register New User
 // To register new user import dependecies and pass dispatch function into button handler:
 
@@ -60,7 +68,7 @@ export const sampleUser2 = {
 // 3. Get Current User
 
 // import { useDispatch } from 'react-redux';
-// import { getUserFetch } from '../../store/user/userSlice';
+// import { getUserFetch } from '../../store/user';
 
 // const dispatch = useDispatch();
 
@@ -69,10 +77,54 @@ export const sampleUser2 = {
 // 3. Update Current User
 
 // import { useDispatch } from 'react-redux';
-// import { updateUserFetch } from '../../store/user/userSlice';
+// import { updateUserFetch } from '../../store/user';
 
 // const dispatch = useDispatch();
 
 // dispatch( updateUserFetch({
 //   name: 'mario',
 // }))
+
+// 4. Get News
+
+// import { useDispatch } from 'react-redux';
+// import { getNewsFetch } from '../../store/news';
+
+// const dispatch = useDispatch();
+
+//   dispatch(getNewsFetch());
+
+// 5. Get Friends
+
+// import { useDispatch } from 'react-redux';
+// import { getFriendsFetch } from '../../store/friends';
+
+// const dispatch = useDispatch();
+
+// dispatch(getFriendsFetch());
+
+//===============================================================
+// Sale ad response example
+// {
+//   "owner": {
+//     "_id": "63b96e75369f66e5822e988f",
+//     "email": "kurtkanavati@gmail.com",
+//     "phone": "1110001110"
+//   },
+//   "passport": "",
+//   "_id": "63b768119348e50277b8ed04",
+//   "name": "Dugy",
+//   "family": "dog",
+//   "category": "sale",
+//   "breed": "Dvornyazhka",
+//   "birthDate": "2001-11-12T00:00:00.000Z",
+//   "addTitle": "Sale cute dog",
+//   "photo": "",
+//   "sex": "male",
+//   "comments": "",
+//   "location": "Kyiv",
+//   "price": null,
+//   "follovers": [],
+//   "createdAt": "2023-01-06T00:15:13.155Z",
+//   "updatedAt": "2023-01-06T00:15:13.155Z"
+// },

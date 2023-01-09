@@ -1,15 +1,15 @@
 import { all, call } from 'redux-saga/effects';
 
-// import { lostPetsSagas } from './lostPets/lostPetsSaga';
-// import { sellPetsSagas } from './lostPets/sellPetsSaga';
-// import { sharePetsSagas } from './lostPets/sharePetsSaga';
-import { userSagas } from './user/userSaga';
+import { adsSagas } from './ads';
+import { userSagas } from './user';
+import { newsSagas } from './news';
+import { friendsSagas } from './friends';
 
 export function* rootSaga() {
   yield all([
-    // call(lostPetsSagas),
-    // call(sellPetsSagas),
-    // call(sharePetsSagas),
+    call(adsSagas),
     call(userSagas),
+    call(newsSagas),
+    call(friendsSagas),
   ]);
 }

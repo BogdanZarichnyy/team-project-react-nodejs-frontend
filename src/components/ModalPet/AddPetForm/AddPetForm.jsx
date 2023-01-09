@@ -1,23 +1,32 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { parse } from 'date-fns';
 
 import AddPetFormStepOne from './AddPetFormStepOne';
 import AddPetFormStepTwo from './AddPetFormStepTwo';
+import { addNewAdsFetch } from '../../../store/ads';
+import { useDispatch } from 'react-redux';
+
+import s from './AddPetForm.module.scss';
 
 const today = new Date().toLocaleDateString();
-
+// Изменил имена некоторых полей, как в беке
+// Сделал добавление каритинки и превью добавленной картинки
+// Переписал логику выбора пола животного
+// Сделал отправку на бек
+// Надо стилизировать теперь картинку после добавления.
+// Пришлось отключить валидацию, тк форма не сабмитилась и не выкидывала ошибок. Я не разбирался, что не так, моя задача отправлять на бек запрос.
 const initialValues = {
   category: '',
-  titleName: '',
-  petName: '',
-  petDayOfBirth: '',
+  addTitle: '',
+  name: '',
+  birthDate: '',
   breed: '',
   sex: '',
   location: '',
   price: '',
-  image: '',
+  photo: '',
   comments: '',
 };
 
@@ -76,24 +85,53 @@ const validationSchema = Yup.object({
 
 const AddPetForm = () => {
   const [step, setStep] = useState(1);
+  const formRef = useRef();
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues,
-    validationSchema,
-    validateOnMount: true,
-    validateOnBlur: true,
-    validateOnChange: true,
-    onSubmit: values => console.log(values),
+    // validationSchema,
+    // validateOnMount: true,
+    // validateOnBlur: true,
+    // validateOnChange: true,
+    onSubmit: values => {
+      const formData = new FormData();
+      const keys = Object.keys(values);
+
+      for (let key of keys) {
+        formData.append(key, values[key]);
+      }
+      //======================================================
+      console.log(values);
+      for (let [key, val] of formData) {
+        console.log(key, val);
+      }
+
+      // dispatch(addNewAdsFetch(values));
+      fetch(
+        'https://test-team-project-react-nodejs-production.up.railway.app/api/ads',
+        {
+          method: 'POST',
+          headers: {
+            Authorization:
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjk5MTZmNDg2ODQ5MzMwODkyYWY2OSIsImlhdCI6MTY3MzIxNTU2OCwiZXhwIjoxNjczMjE2NDY4fQ.CMNB9OhiZhB7J2oUDRhEjhiMSUC4cbmJRKYTonXZZEE',
+            // 'Content-Type': 'multipart/form-data',
+          },
+          body: values,
+        }
+      ).then(data => console.log(data));
+      //======================================================
+    },
   });
 
   return (
-    <>
+    <form className={s.form} onSubmit={formik.handleSubmit} ref={formRef}>
       {step === 1 ? (
         <AddPetFormStepOne formik={formik} onNext={() => setStep(2)} />
       ) : (
         <AddPetFormStepTwo formik={formik} onNext={() => setStep(1)} />
       )}
-    </>
+    </form>
   );
 };
 

@@ -24,4 +24,5 @@ export {
   getUserErrorSelector,
   getUserAvatarSelector,
   getUserTokenSelector,
+  getUserLoggedSelector,
 } from './userSelectors';
