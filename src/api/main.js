@@ -22,15 +22,22 @@ export const newsApi = axios.create({
   baseURL: `${BASE_URL}news/`,
 });
 
+export const petsApi = axios.create({
+  // withCredentials: true,
+  baseURL: `${BASE_URL}pets/`,
+});
+
 const token = () => {
   const setToken = token => {
     userApi.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     adsApi.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    petsApi.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   };
 
   const unsetToken = () => {
     userApi.defaults.headers.common['Authorization'] = '';
     adsApi.defaults.headers.common['Authorization'] = '';
+    petsApi.defaults.headers.common['Authorization'] = '';
   };
 
   return { setToken, unsetToken };

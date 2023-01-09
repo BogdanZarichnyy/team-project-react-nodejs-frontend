@@ -19,6 +19,11 @@ export const getFoundAds = async () => {
 
 export const addNewAds = async adsData => {
   const { data } = await adsApi.post(null, adsData).catch(apiErrorHandler);
+  return data;
+};
+
+export const deleteAds = async adsData => {
+  const { data } = await adsApi.delete(null, adsData).catch(apiErrorHandler);
   console.log('api', data);
   return data;
 };

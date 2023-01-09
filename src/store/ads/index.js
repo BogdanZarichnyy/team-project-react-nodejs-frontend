@@ -11,6 +11,9 @@ export {
   addNewAdsFetch,
   addNewAdsSuccess,
   addNewAdsFailure,
+  deleteAdsFetch,
+  deleteAdsSuccess,
+  deleteAdsFailure,
 } from './adsSlice';
 
 export { adsSagas } from './adsSaga';

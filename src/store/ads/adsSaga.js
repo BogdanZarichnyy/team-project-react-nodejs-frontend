@@ -4,6 +4,7 @@ import {
   getSellAds,
   getFoundAds,
   addNewAds,
+  deleteAds,
 } from '../../api/adsApi';
 import {
   getSellAdsSuccess,
@@ -14,6 +15,8 @@ import {
   getShareAdsFailure,
   addNewAdsSuccess,
   addNewAdsFailure,
+  deleteAdsSuccess,
+  deleteAdsFailure,
 } from './adsSlice';
 
 function* workGetSellAdsFetch({ payload }) {
@@ -53,6 +56,16 @@ function* workAddNewAdsFetch({ payload }) {
   }
 }
 
+function* workDeleteAdsFetch({ payload }) {
+  try {
+    const data = yield call(deleteAds, payload);
+    console.log('saga', data);
+    yield put(addNewAdsSuccess(data));
+  } catch (error) {
+    yield put(addNewAdsFailure(error.message));
+  }
+}
+
 function* watchGetSellAds() {
   yield takeLatest('ads/getSellAdsFetch', workGetSellAdsFetch);
 }
@@ -69,11 +82,16 @@ function* watchAddNewAds() {
   yield takeLatest('ads/addNewAdsFetch', workAddNewAdsFetch);
 }
 
+function* watchDeleteAds() {
+  yield takeLatest('ads/deleteAdsFetch', workDeleteAdsFetch);
+}
+
 export function* adsSagas() {
   yield all([
     call(watchGetSellAds),
     call(watchGetFoundAds),
     call(watchGetShareAds),
     call(watchAddNewAds),
+    call(watchDeleteAds),
   ]);
 }

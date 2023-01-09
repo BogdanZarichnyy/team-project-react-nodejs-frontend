@@ -62,6 +62,20 @@ const adsSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
+    deleteAdsFetch: state => {
+      state.isLoading = true;
+    },
+    deleteAdsSuccess: (state, { payload }) => {
+      state[payload.category] = state[payload.category].filter(
+        obj => obj.id !== payload.id
+      );
+      state.isLoading = false;
+      state.error = false;
+    },
+    deleteAdsFailure: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
   },
 });
 
@@ -78,6 +92,9 @@ export const {
   addNewAdsFetch,
   addNewAdsSuccess,
   addNewAdsFailure,
+  deleteAdsFetch,
+  deleteAdsSuccess,
+  deleteAdsFailure,
 } = adsSlice.actions;
 
 export default adsSlice.reducer;

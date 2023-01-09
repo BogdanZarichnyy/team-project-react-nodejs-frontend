@@ -4,7 +4,7 @@ import {
   getSellAdsFetch,
   getFoundAdsFetch,
   getShareAdsFetch,
-  addNewAdsFetch,
+  deleteAdsFetch,
 } from '../../store/ads/';
 
 import { getFriendsFetch } from '../../store/friends';
@@ -15,13 +15,18 @@ import ProfileContactsList from '../../components/Profile/ProfileContactsList';
 import AddPetButton from '../../components/AddPetButton';
 
 import s from './Profile.module.scss';
-import axios from 'axios';
 
 const Profile = () => {
   const dispatch = useDispatch();
 
   const handleAddPet = async () => {
-    dispatch(getFoundAdsFetch());
+    // dispatch(getFoundAdsFetch());
+    // dispatch(
+    //   deleteAdsFetch({
+    //     _id: '63b768619348e50277b8ed08',
+    //     category: 'lostFound',
+    //   })
+    // );
   };
 
   return (

@@ -101,7 +101,7 @@ const AddPetForm = () => {
 
       dispatch(addNewAdsFetch(formData));
 
-      // handleModal();
+      handleModal();
     },
   });
 

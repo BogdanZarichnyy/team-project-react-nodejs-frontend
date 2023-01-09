@@ -12,6 +12,7 @@ const initialState = {
     favoritesAds: [],
     accessToken: '',
   },
+  userPets: [],
   token: '',
   isLoggedIn: false,
   isLoading: false,
@@ -84,6 +85,30 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
+    addPetFetch: state => {
+      state.isLoading = true;
+    },
+    addPetSuccess: (state, { payload }) => {
+      state.userPets = [payload, ...state.userPets];
+      state.isLoading = false;
+      state.error = false;
+    },
+    addPetFailure: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
+    deletePetFetch: state => {
+      state.isLoading = true;
+    },
+    deletePetSuccess: (state, { payload }) => {
+      state.userPets = state.userPets.filter(obj => obj.id !== payload.id);
+      state.isLoading = false;
+      state.error = false;
+    },
+    deletePetFailure: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
   },
 });
 
@@ -103,6 +128,12 @@ export const {
   updateUserFetch,
   updateUserSuccess,
   updateUserFailure,
+  addPetFetch,
+  addPetSuccess,
+  addPetFailure,
+  deletePetFetch,
+  deletePetSuccess,
+  deletePetFailure,
 } = userSlice.actions;
 
 export default userSlice.reducer;

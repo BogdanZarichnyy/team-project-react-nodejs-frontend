@@ -28,7 +28,7 @@ export const getCurrentUser = async persistedToken => {
 
 export const updateCurrentUser = async userData => {
   const { data } = await userApi
-    .patch('users/profile', userData)
+    .patch('profile', userData)
     .catch(apiErrorHandler);
   return data;
 };

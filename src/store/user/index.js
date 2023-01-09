@@ -14,6 +14,12 @@ export {
   updateUserFetch,
   updateUserSuccess,
   updateUserFailure,
+  addPetFetch,
+  addPetSuccess,
+  addPetFailure,
+  deletePetFetch,
+  deletePetSuccess,
+  deletePetFailure,
 } from './userSlice';
 
 export { userSagas } from './userSaga';

@@ -103,7 +103,7 @@ export const adsCategories = ['sale', 'inGoodHands', 'lostFound'];
 
 // dispatch(getFriendsFetch());
 
-// 6. Get Lost/Found pets
+// 6. Get inGoodHands pets
 
 // import { useDispatch } from 'react-redux';
 // import { getShareAdsFetch } from '../../store/ads';

@@ -6,6 +6,7 @@ import {
   getCurrentUser,
   updateCurrentUser,
 } from '../../api/userApi';
+import { addNewPet, deletePet } from '../../api/petApi';
 import { getUserTokenSelector } from './userSelectors';
 import {
   registerUserSuccess,
@@ -18,6 +19,10 @@ import {
   getUserFailure,
   updateUserSuccess,
   updateUserFailure,
+  addPetSuccess,
+  addPetFailure,
+  deletePetSuccess,
+  deletePetFailure,
 } from './userSlice';
 
 function* workRegisterUserFetch({ payload }) {
@@ -72,6 +77,26 @@ function* workUpdateCurrentUser({ payload }) {
   }
 }
 
+function* workAddPet({ payload }) {
+  try {
+    const data = yield call(addNewAds, payload);
+    console.log('saga', data);
+    yield put(addNewAdsSuccess(data));
+  } catch (error) {
+    yield put(addNewAdsFailure(error.message));
+  }
+}
+
+function* workDeletePet({ payload }) {
+  try {
+    const data = yield call(deleteAds, payload);
+    console.log('saga', data);
+    yield put(addNewAdsSuccess(data));
+  } catch (error) {
+    yield put(addNewAdsFailure(error.message));
+  }
+}
+
 function* watchRegisterUser() {
   yield takeLatest('user/registerUserFetch', workRegisterUserFetch);
 }
@@ -87,8 +112,17 @@ function* watchLogOutUser() {
 function* watchGetCurrentUser() {
   yield takeLatest('user/getUserFetch', workGetCurrentUser);
 }
+
 function* watchUpdateCurrentUser() {
   yield takeLatest('user/updateUserFetch', workUpdateCurrentUser);
+}
+
+function* watchAddPet() {
+  yield takeLatest('user/addPetFetch', workAddPet);
+}
+
+function* watchAddPet() {
+  yield takeLatest('user/deletePetFetch', workDeletePet);
 }
 
 export function* userSagas() {
@@ -98,5 +132,7 @@ export function* userSagas() {
     call(watchLogOutUser),
     call(watchGetCurrentUser),
     call(watchUpdateCurrentUser),
+    call(watchAddPet),
+    call(watchDeletePet),
   ]);
 }
