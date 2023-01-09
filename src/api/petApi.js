@@ -6,7 +6,7 @@ export const addNewPet = async adsData => {
 };
 
 export const deletePet = async adsData => {
-  const { data } = await petsApi.delete(null, adsData).catch(apiErrorHandler);
+  const { data } = await petsApi.delete(`${adsData}`).catch(apiErrorHandler);
   console.log('api', data);
   return data;
 };

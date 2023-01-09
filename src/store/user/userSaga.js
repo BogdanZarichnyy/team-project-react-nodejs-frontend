@@ -79,21 +79,21 @@ function* workUpdateCurrentUser({ payload }) {
 
 function* workAddPet({ payload }) {
   try {
-    const data = yield call(addNewAds, payload);
+    const { data } = yield call(addNewPet, payload);
     console.log('saga', data);
-    yield put(addNewAdsSuccess(data));
+    yield put(addPetSuccess(data));
   } catch (error) {
-    yield put(addNewAdsFailure(error.message));
+    yield put(addPetFailure(error.message));
   }
 }
 
 function* workDeletePet({ payload }) {
   try {
-    const data = yield call(deleteAds, payload);
+    const { data } = yield call(deletePet, payload);
     console.log('saga', data);
-    yield put(addNewAdsSuccess(data));
+    yield put(deletePetSuccess(data));
   } catch (error) {
-    yield put(addNewAdsFailure(error.message));
+    yield put(deletePetFailure(error.message));
   }
 }
 
@@ -121,7 +121,7 @@ function* watchAddPet() {
   yield takeLatest('user/addPetFetch', workAddPet);
 }
 
-function* watchAddPet() {
+function* watchDeletePet() {
   yield takeLatest('user/deletePetFetch', workDeletePet);
 }
 
