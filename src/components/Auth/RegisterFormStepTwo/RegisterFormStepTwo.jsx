@@ -53,7 +53,6 @@ const RegisterFormStepTwo = ({ onNext, formik }) => {
         onInputChange={searchCity}
         options={filteredCities}
         closeMenuOnSelect
-        inputValue="gggg"
         loadingMessage={true}
         className="city-select-container"
         classNamePrefix="city-select"
@@ -65,6 +64,7 @@ const RegisterFormStepTwo = ({ onNext, formik }) => {
         placeholder="Mobile phone"
         name="phone"
         country={'ua'}
+        disableDropdown
         enableAreaCodes={true}
         value={values.phone}
         onChange={value => setFieldValue('phone', value, true)}

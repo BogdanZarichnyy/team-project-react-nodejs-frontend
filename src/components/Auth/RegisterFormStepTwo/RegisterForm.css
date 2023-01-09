@@ -69,8 +69,13 @@
 }
 
 .react-tel-input .flag-dropdown {
-  background-color: inherit;
-  border: none;
+  background-color: inherit !important;
+  border: none !important;
+}
+
+.react-tel-input .flag-dropdown:hover,
+.react-tel-input .flag-dropdown:focus {
+  cursor: auto !important;
 }
 
 .react-tel-input .selected-flag {
@@ -80,6 +85,11 @@
 
 .react-tel-input .selected-flag .flag {
   left: 15px;
+}
+
+.react-tel-input .selected-flag:hover,
+.react-tel-input .selected-flag:focus {
+  background-color: inherit !important;
 }
 
 .city-select__menu {
@@ -102,13 +112,12 @@
     font-size: 18px !important;
     line-height: 25px !important;
     height: 52px !important;
-    padding: 14px 32px 14px 72px;
-    padding: 14px 32px 14px 72px;
+    padding: 14px 32px 14px 72px !important;
     font-size: 18px;
     line-height: 25px;
   }
   .city-select__control {
-    padding: 14px 32px 14px 32px;
+    padding: 14px 32px 14px 32px !important;
   }
   .css-tj5bde-Svg {
     width: 25px;
