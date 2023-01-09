@@ -103,6 +103,33 @@ export const adsCategories = ['sale', 'inGoodHands', 'lostFound'];
 
 // dispatch(getFriendsFetch());
 
+// 6. Get Lost/Found pets
+
+// import { useDispatch } from 'react-redux';
+// import { getShareAdsFetch } from '../../store/ads';
+
+// const dispatch = useDispatch();
+
+// dispatch(getShareAdsFetch());
+
+// 7. Get Sell pets
+
+// import { useDispatch } from 'react-redux';
+// import { getSellAdsFetch } from '../../store/ads';
+
+// const dispatch = useDispatch();
+
+// dispatch(getSellAdsFetch());
+
+// 8. Get Lost/Found pets
+
+// import { useDispatch } from 'react-redux';
+// import { getFoundAdsFetch } from '../../store/ads';
+
+// const dispatch = useDispatch();
+
+// dispatch(getFoundAdsFetch());
+
 //===============================================================
 // Sale ad response example
 // {

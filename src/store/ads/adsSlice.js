@@ -54,7 +54,7 @@ const adsSlice = createSlice({
       state.isLoading = true;
     },
     addNewAdsSuccess: (state, { payload }) => {
-      state[payload.category] = [...state[payload.category], payload];
+      state[payload.category] = [payload, ...state[payload.category]];
       state.isLoading = false;
       state.error = false;
     },
