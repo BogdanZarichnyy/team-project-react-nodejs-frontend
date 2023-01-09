@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { parse } from 'date-fns';
@@ -7,16 +7,12 @@ import AddPetFormStepOne from './AddPetFormStepOne';
 import AddPetFormStepTwo from './AddPetFormStepTwo';
 import { addNewAdsFetch } from '../../../store/ads';
 import { useDispatch } from 'react-redux';
+import { ModalContext } from '../../ModalRework';
 
 import s from './AddPetForm.module.scss';
 
 const today = new Date().toLocaleDateString();
-// Изменил имена некоторых полей, как в беке
-// Сделал добавление каритинки и превью добавленной картинки
-// Переписал логику выбора пола животного
-// Сделал отправку на бек
-// Надо стилизировать теперь картинку после добавления.
-// Пришлось отключить валидацию, тк форма не сабмитилась и не выкидывала ошибок. Я не разбирался, что не так, моя задача отправлять на бек запрос.
+
 const initialValues = {
   category: '',
   addTitle: '',
@@ -26,7 +22,7 @@ const initialValues = {
   sex: '',
   location: '',
   price: '',
-  photo: '',
+  photo: {},
   comments: '',
 };
 
@@ -87,6 +83,7 @@ const AddPetForm = () => {
   const [step, setStep] = useState(1);
   const formRef = useRef();
   const dispatch = useDispatch();
+  const { handleModal } = useContext(ModalContext);
 
   const formik = useFormik({
     initialValues,
@@ -101,26 +98,10 @@ const AddPetForm = () => {
       for (let key of keys) {
         formData.append(key, values[key]);
       }
-      //======================================================
-      // console.log(values);
-      for (let [key, val] of formData) {
-        console.log(key, val);
-      }
 
-      // dispatch(addNewAdsFetch(values));
-      fetch(
-        'https://test-team-project-react-nodejs-production.up.railway.app/api/notices',
-        {
-          method: 'POST',
-          headers: {
-            Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjk5MTZmNDg2ODQ5MzMwODkyYWY2OSIsImlhdCI6MTY3MzI2NDA1MCwiZXhwIjoxNjczMzUwNDUwfQ.OszRW6XMXzEIXRBJQERg1k-hVYfOHRxmqVbYq6MvrVE',
-          },
-          body: formData,
-        }
-      ).then(data => console.log(data));
+      dispatch(addNewAdsFetch(formData));
 
-      //======================================================
+      // handleModal();
     },
   });
 

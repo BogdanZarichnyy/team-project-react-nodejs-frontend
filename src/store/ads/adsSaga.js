@@ -18,8 +18,9 @@ import {
 
 function* workGetSellAdsFetch({ payload }) {
   try {
-    const { user } = yield call(getSellAds);
-    yield put(getSellAdsSuccess(user));
+    const data = yield call(getSellAds);
+    console.log(data);
+    yield put(getSellAdsSuccess(data));
   } catch (error) {
     yield put(getSellAdsFailure(error.message));
   }
@@ -27,8 +28,8 @@ function* workGetSellAdsFetch({ payload }) {
 
 function* workGetFoundAdsFetch({ payload }) {
   try {
-    const { user } = yield call(getFoundAds);
-    yield put(getFoundAdsSuccess(user));
+    const data = yield call(getFoundAds);
+    yield put(getFoundAdsSuccess(data));
   } catch (error) {
     yield put(getFoundAdsFailure(error.message));
   }
@@ -36,8 +37,8 @@ function* workGetFoundAdsFetch({ payload }) {
 
 function* workGetShareAdsFetch() {
   try {
-    const { user } = yield call(getShareAds);
-    yield put(getShareAdsSuccess(user));
+    const data = yield call(getShareAds);
+    yield put(getShareAdsSuccess(data));
   } catch (error) {
     yield put(getShareAdsFailure(error.message));
   }
@@ -45,15 +46,15 @@ function* workGetShareAdsFetch() {
 
 function* workAddNewAdsFetch({ payload }) {
   try {
-    const { user } = yield call(addNewAds, payload);
-    yield put(addNewAdsSuccess(user));
+    const { ad } = yield call(addNewAds, payload);
+    yield put(addNewAdsSuccess(ad));
   } catch (error) {
     yield put(addNewAdsFailure(error.message));
   }
 }
 
 function* watchGetSellAds() {
-  yield takeLatest('ads/getGetSellAdsFetch', workGetSellAdsFetch);
+  yield takeLatest('ads/getSellAdsFetch', workGetSellAdsFetch);
 }
 
 function* watchGetFoundAds() {
