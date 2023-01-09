@@ -95,31 +95,31 @@ const AddPetForm = () => {
     // validateOnBlur: true,
     // validateOnChange: true,
     onSubmit: values => {
-      const formData = new FormData();
       const keys = Object.keys(values);
+      const formData = new FormData();
 
       for (let key of keys) {
         formData.append(key, values[key]);
       }
       //======================================================
-      console.log(values);
+      // console.log(values);
       for (let [key, val] of formData) {
         console.log(key, val);
       }
 
       // dispatch(addNewAdsFetch(values));
       fetch(
-        'https://test-team-project-react-nodejs-production.up.railway.app/api/ads',
+        'https://test-team-project-react-nodejs-production.up.railway.app/api/notices',
         {
           method: 'POST',
           headers: {
             Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjk5MTZmNDg2ODQ5MzMwODkyYWY2OSIsImlhdCI6MTY3MzIxNTU2OCwiZXhwIjoxNjczMjE2NDY4fQ.CMNB9OhiZhB7J2oUDRhEjhiMSUC4cbmJRKYTonXZZEE',
-            // 'Content-Type': 'multipart/form-data',
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjk5MTZmNDg2ODQ5MzMwODkyYWY2OSIsImlhdCI6MTY3MzI2NDA1MCwiZXhwIjoxNjczMzUwNDUwfQ.OszRW6XMXzEIXRBJQERg1k-hVYfOHRxmqVbYq6MvrVE',
           },
-          body: values,
+          body: formData,
         }
       ).then(data => console.log(data));
+
       //======================================================
     },
   });
