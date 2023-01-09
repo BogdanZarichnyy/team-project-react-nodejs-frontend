@@ -128,3 +128,28 @@ export const adsCategories = ['sale', 'inGoodHands', 'lostFound'];
 //   "createdAt": "2023-01-06T00:15:13.155Z",
 //   "updatedAt": "2023-01-06T00:15:13.155Z"
 // },
+
+// Response create new Ad
+// ad : {owner: {_id: "63b9916f486849330892af69", email: "boba@mail.com", phone: "+380939393933"},…}
+// message : "Created new ad"
+// ad object:
+// addTitle: "Doggo for sale"
+// birthDate: "2022-12-12T00:00:00.000Z"
+// breed: "Doggo"
+// category: "inGoodHands"
+// comments: "Good boy"
+// createdAt: "2023-01-09T11:35:16.935Z"
+// family: ""
+// follovers: []
+// location: "Odessa"
+// name: "Daggo"
+// owner:  {_id: "63b9916f486849330892af69", email: "boba@mail.com", phone: "+380939393933"}
+// email: "boba@mail.com"
+// phone: "+380939393933"
+// _id: "63b9916f486849330892af69"
+// passport: ""
+// photo: "C:\\fakepath\\Screenshot 2023-01-09 at 00.08.36.png"
+// price: null
+// sex: "male"
+// updatedAt: "2023-01-09T11:35:17.087Z"
+// _id: "63bbfbf4e64b75ea428bd2d7"

@@ -26,14 +26,14 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
   }, [selectedFile]);
 
   const handlePhotoChange = e => {
+    const file = e.target.files[0];
     if (!e.target.files || e.target.files.length === 0) {
       setSelectedFile(null);
       return;
     }
-    setSelectedFile(e.target.files[0]);
+    setSelectedFile(file);
 
     const reader = new FileReader();
-    const file = e.target.files[0];
 
     reader.onloadend = () => setFileName(file.name);
     if (file.name !== fileName) {
@@ -144,8 +144,8 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
         name="photo"
         accept=".jpg,.png"
         onChange={e => {
-          handlePhotoChange(e);
           handleChange(e);
+          handlePhotoChange(e);
         }}
         ref={photoRef}
       />
