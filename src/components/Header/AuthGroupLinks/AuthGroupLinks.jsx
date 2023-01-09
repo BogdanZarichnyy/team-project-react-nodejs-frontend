@@ -4,14 +4,14 @@ import s from './AuthGroupLinks.module.scss';
 import PrimaryButton from '../../Buttons/PrimaryButton';
 import SecondaryButton from '../../Buttons/SecondaryButton';
 import { useSelector } from 'react-redux';
-import { getUserSelector } from '../../../store/user/userSelectors';
+import { getUserLoggedSelector } from '../../../store/user/userSelectors';
 
 const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
-  const userData = useSelector(getUserSelector);
+  const isLoggedIn = useSelector(getUserLoggedSelector);
 
   return (
     <>
-      {userData._id && (
+      {isLoggedIn && (
         <>
           <PrimaryButton
             tag="NavLink"
@@ -29,7 +29,7 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
         </>
       )}
 
-      {!userData._id && (
+      {!isLoggedIn && (
         <>
           <PrimaryButton
             tag="NavLink"
