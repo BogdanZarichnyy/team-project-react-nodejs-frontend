@@ -9,15 +9,10 @@ const AddPetFormStepOne = ({ onNext, formik }) => {
   let { handleModal } = useContext(ModalContext);
   const [isErrors, setIsErrors] = useState(false);
 
-  const { values, handleChange, handleSubmit, errors } = formik;
+  const { values, handleChange, errors } = formik;
 
   const validateFields = () => {
-    if (
-      errors.titleName ||
-      errors.petName ||
-      errors.petDayOfBirth ||
-      errors.breed
-    ) {
+    if (errors.addTitle || errors.name || errors.birthDate || errors.breed) {
       setIsErrors(true);
     } else {
       onNext();
@@ -25,13 +20,7 @@ const AddPetFormStepOne = ({ onNext, formik }) => {
   };
 
   return (
-    <form
-      className={s.form}
-      onSubmit={e => {
-        e.preventDefault();
-        handleSubmit();
-      }}
-    >
+    <>
       <h2 className={s.title}>Add pet</h2>
       <p className={s.subtitle}>
         Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
@@ -44,7 +33,7 @@ const AddPetFormStepOne = ({ onNext, formik }) => {
             type="radio"
             name="category"
             id="lost-found"
-            value="lost-found"
+            value="lostFound"
             className={s.styledRadio}
             onChange={handleChange}
           />
@@ -55,7 +44,7 @@ const AddPetFormStepOne = ({ onNext, formik }) => {
             type="radio"
             name="category"
             id="for-free"
-            value="for-free"
+            value="inGoodHands"
             className={s.styledRadio}
             onChange={handleChange}
           />
@@ -66,7 +55,7 @@ const AddPetFormStepOne = ({ onNext, formik }) => {
             type="radio"
             name="category"
             id="sell"
-            value="sell"
+            value="sale"
             className={s.styledRadio}
             onChange={handleChange}
           />
@@ -77,38 +66,36 @@ const AddPetFormStepOne = ({ onNext, formik }) => {
       <label className={s.label}>
         Tittle of ad<span className={s.labelStar}>*</span>
       </label>
-      {isErrors && errors.titleName && <ErrorText text={errors.titleName} />}
+      {isErrors && errors.addTitle && <ErrorText text={errors.addTitle} />}
       <InputBase
         styles={s.input}
         type="text"
-        name="titleName"
+        name="addTitle"
         placeholder="Type pet name"
-        value={values.titleName}
+        value={values.addTitle}
         onChange={handleChange}
         required
       />
       <label className={s.label}>Name pet</label>
-      {isErrors && errors.petName && <ErrorText text={errors.petName} />}
+      {isErrors && errors.name && <ErrorText text={errors.name} />}
       <InputBase
         styles={s.input}
         type="text"
-        name="petName"
+        name="name"
         placeholder="Type pet name"
-        value={values.petName}
+        value={values.name}
         onChange={handleChange}
       />
       <label className={s.label}>Day of birth</label>
-      {isErrors && errors.petDayOfBirth && (
-        <ErrorText text={errors.petDayOfBirth} />
-      )}
+      {isErrors && errors.birthDate && <ErrorText text={errors.birthDate} />}
       <InputBase
         styles={s.input}
         type="text"
-        id="petDayOfBirth"
-        name="petDayOfBirth"
+        id="birthDate"
+        name="birthDate"
         placeholder="Type day of birth"
         data-pattern="**.**.****"
-        value={values.petDayOfBirth}
+        value={values.birthDate}
         onChange={handleChange}
       />
 
@@ -137,7 +124,7 @@ const AddPetFormStepOne = ({ onNext, formik }) => {
           text="Next"
         />
       </div>
-    </form>
+    </>
   );
 };
 

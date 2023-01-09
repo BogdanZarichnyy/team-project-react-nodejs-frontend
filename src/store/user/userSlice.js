@@ -13,6 +13,7 @@ const initialState = {
     accessToken: '',
   },
   token: '',
+  isLoggedIn: false,
   isLoading: false,
   error: false,
 };
@@ -26,9 +27,12 @@ const userSlice = createSlice({
     },
     registerUserSuccess: (state, { payload }) => {
       state.userData = payload;
+      state.isLoggedIn = true;
       state.isLoading = false;
+      state.error = false;
     },
     registerUserFailure: (state, { payload }) => {
+      state.isLoggedIn = true;
       state.isLoading = false;
       state.error = payload;
     },
@@ -38,9 +42,12 @@ const userSlice = createSlice({
     loginUserSuccess: (state, { payload }) => {
       state.userData = payload;
       state.token = payload.accessToken;
+      state.isLoggedIn = true;
       state.isLoading = false;
+      state.error = false;
     },
     loginUserFailure: (state, { payload }) => {
+      state.isLoggedIn = false;
       state.isLoading = false;
       state.error = payload;
     },
@@ -49,7 +56,9 @@ const userSlice = createSlice({
     },
     getUserSuccess: (state, { payload }) => {
       state.userData = payload;
+      state.isLoggedIn = true;
       state.isLoading = false;
+      state.error = false;
     },
     getUserFailure: (state, { payload }) => {
       state.isLoading = false;
@@ -58,22 +67,7 @@ const userSlice = createSlice({
     logOutUserFetch: state => {
       state.isLoading = true;
     },
-    logOutUserSuccess: state => {
-      state.userData = {
-        userId: '',
-        name: '',
-        email: '',
-        photo: '',
-        birthday: '',
-        phone: '',
-        city: '',
-        favoritesAds: [],
-        accessToken: '',
-      };
-      state.token = '';
-      state.isLoading = false;
-      state.error = false;
-    },
+    logOutUserSuccess: () => {},
     logOutUserFailure: (state, { payload }) => {
       state.isLoading = false;
       state.error = payload;
@@ -84,6 +78,7 @@ const userSlice = createSlice({
     updateUserSuccess: (state, { payload }) => {
       state.userData = payload;
       state.isLoading = false;
+      state.error = false;
     },
     updateUserFailure: (state, { payload }) => {
       state.isLoading = false;

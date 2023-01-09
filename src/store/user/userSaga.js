@@ -25,7 +25,7 @@ function* workRegisterUserFetch({ payload }) {
     const { user } = yield call(registerUser, payload);
     yield put(registerUserSuccess(user));
   } catch (error) {
-    yield registerUserFailure(error.message);
+    yield put(registerUserFailure(error.message));
   }
 }
 
@@ -34,7 +34,7 @@ function* workLoginUserFetch({ payload }) {
     const { user } = yield call(loginUser, payload);
     yield put(loginUserSuccess(user));
   } catch (error) {
-    yield loginUserFailure(error.message);
+    yield put(loginUserFailure(error.message));
   }
 }
 
@@ -43,18 +43,23 @@ function* workLogOutUserFetch() {
     yield call(logOutUser);
     yield put(logOutUserSuccess());
   } catch (error) {
-    yield logOutUserFailure(error.message);
+    yield put(logOutUserFailure(error.message));
   }
 }
 
 function* workGetCurrentUser() {
   try {
     const token = yield select(getUserTokenSelector);
-    const { user } = yield call(getCurrentUser, token);
-    yield console.log('Saga User response');
-    yield put(getUserSuccess(user));
+
+    if (!token) {
+      const error = new Error('Token not found');
+      yield put(getUserFailure(error.message));
+    } else {
+      const { user } = yield call(getCurrentUser, token);
+      yield put(getUserSuccess(user));
+    }
   } catch (error) {
-    yield getUserFailure(error.message);
+    yield put(getUserFailure(error.message));
   }
 }
 
@@ -63,7 +68,7 @@ function* workUpdateCurrentUser({ payload }) {
     const { user } = yield call(updateCurrentUser, payload);
     yield put(updateUserSuccess(user));
   } catch (error) {
-    yield updateUserFailure(error.message);
+    yield put(updateUserFailure(error.message));
   }
 }
 

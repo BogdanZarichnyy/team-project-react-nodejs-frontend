@@ -1,23 +1,28 @@
-import React, { useState } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { parse } from 'date-fns';
 
 import AddPetFormStepOne from './AddPetFormStepOne';
 import AddPetFormStepTwo from './AddPetFormStepTwo';
+import { addNewAdsFetch } from '../../../store/ads';
+import { useDispatch } from 'react-redux';
+import { ModalContext } from '../../ModalRework';
+
+import s from './AddPetForm.module.scss';
 
 const today = new Date().toLocaleDateString();
 
 const initialValues = {
   category: '',
-  titleName: '',
-  petName: '',
-  petDayOfBirth: '',
+  addTitle: '',
+  name: '',
+  birthDate: '',
   breed: '',
   sex: '',
   location: '',
   price: '',
-  image: '',
+  photo: {},
   comments: '',
 };
 
@@ -76,24 +81,38 @@ const validationSchema = Yup.object({
 
 const AddPetForm = () => {
   const [step, setStep] = useState(1);
+  const formRef = useRef();
+  const dispatch = useDispatch();
+  const { handleModal } = useContext(ModalContext);
 
   const formik = useFormik({
     initialValues,
-    validationSchema,
-    validateOnMount: true,
-    validateOnBlur: true,
-    validateOnChange: true,
-    onSubmit: values => console.log(values),
+    // validationSchema,
+    // validateOnMount: true,
+    // validateOnBlur: true,
+    // validateOnChange: true,
+    onSubmit: values => {
+      const keys = Object.keys(values);
+      const formData = new FormData();
+
+      for (let key of keys) {
+        formData.append(key, values[key]);
+      }
+
+      dispatch(addNewAdsFetch(formData));
+
+      // handleModal();
+    },
   });
 
   return (
-    <>
+    <form className={s.form} onSubmit={formik.handleSubmit} ref={formRef}>
       {step === 1 ? (
         <AddPetFormStepOne formik={formik} onNext={() => setStep(2)} />
       ) : (
         <AddPetFormStepTwo formik={formik} onNext={() => setStep(1)} />
       )}
-    </>
+    </form>
   );
 };
 
