@@ -22,23 +22,10 @@ const Profile = () => {
 
   const handleAddPet = async () => {
     // const data = await axios.get(
-    //   'https://test-team-project-react-nodejs-production.up.railway.app/api/ads?category=sale'
+    //   'https://test-team-project-react-nodejs-production.up.railway.app/api/notices?category=sale'
     // );
-    const data = await axios.get(
-      'https://test-team-project-react-nodejs-production.up.railway.app/api/ads',
-      {},
-      {
-        params: {
-          category: 'sale',
-        },
-      }
-    );
-    // const data = await fetch(
-    //   'https://test-team-project-react-nodejs-production.up.railway.app/api/ads?' +
-    //     new URLSearchParams({
-    //       category: 'sale',
-    //     })
-    // );
+
+    dispatch();
     console.log(data);
   };
 
