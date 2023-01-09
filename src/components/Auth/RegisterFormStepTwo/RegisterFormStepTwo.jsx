@@ -44,7 +44,7 @@ const RegisterFormStepTwo = ({ onNext, formik }) => {
         value={values.name}
         onChange={handleChange}
       />
-      {/* {touched.city && errors.city ? <ErrorText text={errors.city} /> : null} */}
+      {touched.city && errors.city ? <ErrorText text={errors.city} /> : null}
       <Select
         name="city"
         placeholder="City, region"
@@ -53,7 +53,11 @@ const RegisterFormStepTwo = ({ onNext, formik }) => {
         onInputChange={searchCity}
         options={filteredCities}
         closeMenuOnSelect
+        inputValue="gggg"
         loadingMessage={true}
+        className="city-select-container"
+        classNamePrefix="city-select"
+        showNewOptionAtTop={false}
       />
       {touched.phone && errors.phone ? <ErrorText text={errors.phone} /> : null}
 

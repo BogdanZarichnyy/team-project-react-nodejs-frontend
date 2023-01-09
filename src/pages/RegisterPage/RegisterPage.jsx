@@ -40,7 +40,9 @@ const validationSchema = Yup.object().shape({
   name: Yup.string()
     .required('Required field to fill!')
     .matches(/^[a-zA-z ]+$/, 'In this field must be contain only letters'),
-  city: Yup.string().required('Required field to fill!'),
+  city: Yup.string().required(
+    'Required field to fill! Please, choose one option from list!'
+  ),
   phone: Yup.string()
     .required('Required field to fill!')
     .min(12, 'Number must be 12 characters minimum'),
