@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
-// import { getUserLoadingSelector } from '../../store/user';
+import { getUserLoadingSelector } from '../../store/user';
 import { getUserFetch } from '../../store/user/userSlice';
 
 import CookiesPopup from '../CookiesPopup';
@@ -13,8 +13,7 @@ import style from './SharedLayout.module.scss';
 
 const SharedLayout = () => {
   const dispatch = useDispatch();
-  // const isDataLoading = useSelector(getUserLoadingSelector);
-  // console.log('isDataLoading', isDataLoading);
+  const isDataLoading = useSelector(getUserLoadingSelector);
 
   useEffect(() => {
     dispatch(getUserFetch());
@@ -30,7 +29,9 @@ const SharedLayout = () => {
         <Header />
       </div>
 
-      <div className={style.outlets}>{!false ? <Outlet /> : <Loader />}</div>
+      <div className={style.outlets}>
+        {!isDataLoading ? <Outlet /> : <Loader />}
+      </div>
 
       {!isSeenCookieBar && <CookiesPopup />}
     </div>

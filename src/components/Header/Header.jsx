@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { useSelector } from 'react-redux';
+import { getUserLoadingSelector } from '../../store/user';
+
 import Navigation from './Navigation';
 import MobileNavigation from './MobileNavigation';
 import AuthGroup from './AuthGroup';
@@ -12,6 +15,8 @@ const Header = () => {
   const [matches, setMatches] = useState(
     window.matchMedia('(min-width: 1280px)').matches
   );
+
+  const isDataLoading = useSelector(getUserLoadingSelector);
 
   useEffect(() => {
     window
@@ -53,7 +58,9 @@ const Header = () => {
         <MobileNavigation open={open} setOpen={setOpen} />
       </div>
 
-      <div className={s.authGroup}>{(!open || matches) && <AuthGroup />}</div>
+      <div className={s.authGroup}>
+        {(!open || matches) && !isDataLoading && <AuthGroup />}
+      </div>
     </section>
   );
 };
