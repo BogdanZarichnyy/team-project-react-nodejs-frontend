@@ -25,4 +25,5 @@ export {
   getSellAdsSelector,
   getFoundAdsSelector,
   getShareAdsSelector,
+  createSelectorFunc,
 } from './adsSelectors';

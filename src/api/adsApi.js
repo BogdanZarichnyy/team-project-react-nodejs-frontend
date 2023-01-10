@@ -32,7 +32,7 @@ export const deleteAds = async adsData => {
 
 export const toggleFavoriteAds = async adsData => {
   const { data } = await adsApi
-    .post(`favorites/${adsData}`)
+    .post(`/favorites/${adsData}`)
     .catch(apiErrorHandler);
   console.log('api', data);
   return data;

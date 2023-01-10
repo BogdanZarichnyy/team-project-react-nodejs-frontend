@@ -80,11 +80,10 @@ const adsSlice = createSlice({
       state.isLoading = true;
     },
     toggleFavoriteSuccess: (state, { payload }) => {
-      const favoriteItem = state[payload.category].indexOf({
-        _id: payload._id,
-      });
-      console.log('favoriteItem', favoriteItem);
-      state[payload.category].favoriteItem = payload;
+      const favoriteItem = state[payload.category].findIndex(
+        obj => obj._id === payload._id
+      );
+      state[payload.category][favoriteItem] = payload;
       state.isLoading = false;
       state.error = false;
     },

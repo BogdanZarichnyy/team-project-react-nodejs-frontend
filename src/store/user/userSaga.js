@@ -125,16 +125,6 @@ function* workRestorePasswordUserFetch({ payload }) {
   }
 }
 
-function* workRestorePasswordUserFetch({ payload }) {
-  try {
-    yield call(restorePassword, payload);
-    yield put(restorePasswordSuccess());
-  } catch (error) {
-    console.log({ error });
-    yield put(restorePasswordFailure(error.message));
-  }
-}
-
 function* watchRegisterUser() {
   yield takeLatest('user/registerUserFetch', workRegisterUserFetch);
 }

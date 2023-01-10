@@ -67,11 +67,10 @@ function* workDeleteAdsFetch({ payload }) {
   }
 }
 
-function* workToggleFavoriteFetch() {
+function* workToggleFavoriteFetch({ payload }) {
   try {
-    const { data } = yield call(toggleFavoriteAds);
-    console.log('saga', data);
-    yield put(toggleFavoriteSuccess(data));
+    const { ad } = yield call(toggleFavoriteAds, payload);
+    yield put(toggleFavoriteSuccess(ad));
   } catch (error) {
     yield put(toggleFavoriteFailure(error.message));
   }
