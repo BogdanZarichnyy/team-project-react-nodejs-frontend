@@ -75,7 +75,7 @@ const validationSchema = Yup.object({
       'Only number characters and $ are allowed, e.g. 50$'
     )
     .required('Field is required!'),
-  image: Yup.mixed().required('Image is required! (jpg, jpeg, png)'),
+  photo: Yup.mixed().required('Image is required! (jpg, jpeg, png)'),
   comments: Yup.string().min(8).max(120).required('Field is required!'),
 });
 
@@ -87,7 +87,7 @@ const AddPetForm = () => {
 
   const formik = useFormik({
     initialValues,
-    // validationSchema,
+    validationSchema,
     validateOnMount: true,
     validateOnBlur: true,
     validateOnChange: true,

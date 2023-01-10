@@ -1,10 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import ButtonBase from '../../ButtonBase/ButtonBase';
-import InputBase from '../../InputBase/InputBase';
-import sprite from '../../../images/sprite.svg';
-import s from './AddPetForm.module.scss';
-import ErrorText from '../../ErrorText';
-import IconComponent from '../../IconComponent';
+import s from './AddPetProfile.module.scss';
+import ErrorText from '../ErrorText';
+import IconComponent from '../IconComponent';
+import ButtonBase from '../ButtonBase/ButtonBase';
 
 const AddPetFormStepTwo = ({ onNext, formik }) => {
   const photoRef = useRef();
@@ -51,84 +49,8 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
   return (
     <>
       <h2 className={s.title}>Add pet</h2>
-      <fieldset className={s.sexWrapper}>
-        <legend className={s.label}>
-          The sex<span className={s.labelStar}>*</span>:
-        </legend>
-        <label htmlFor="male" className={s.sexLabel}>
-          <input
-            className={s.sexInput}
-            type="radio"
-            id="male"
-            name="sex"
-            alt="male"
-            value="male"
-            onChange={handleChange}
-            error={errors.options}
-          />
-          <span className={s.sexIcon}>
-            <svg>
-              <use href={`${sprite}#maleIconColored`}></use>
-            </svg>
-          </span>
-          <span className={s.sexText}>Male</span>
-        </label>
-        <label htmlFor="female" className={s.sexLabel}>
-          <input
-            className={s.sexInput}
-            type="radio"
-            id="female"
-            name="sex"
-            alt="female"
-            value="female"
-            onChange={handleChange}
-            error={errors.options}
-          />
-          <span className={s.sexIcon}>
-            <svg>
-              <use href={`${sprite}#femaleIconColored`}></use>
-            </svg>
-          </span>
-          <span className={s.sexText}>Female</span>
-        </label>
-      </fieldset>
-      <label className={s.label} htmlFor="location">
-        Location<span className={s.labelStar}>*</span>:
-      </label>
-      {touched.location && errors.location ? (
-        <ErrorText text={errors.location} />
-      ) : null}
-      <InputBase
-        styles={s.input}
-        type="text"
-        name="location"
-        id="location"
-        placeholder="Type location"
-        value={values.location}
-        onChange={handleChange}
-      />
-      {values.category === 'sale' && (
-        <>
-          <label className={s.label} htmlFor="price">
-            Price<span className={s.labelStar}>*</span>:
-          </label>
-          {touched.price && errors.price ? (
-            <ErrorText text={errors.price} />
-          ) : null}
-          <InputBase
-            styles={s.input}
-            type="text"
-            name="price"
-            id="price"
-            placeholder="Type price"
-            value={values.price}
-            onChange={handleChange}
-          />
-        </>
-      )}
-      <label className={s.label} htmlFor="photo">
-        Load the pet’s photo:
-      </label>
+      <p className={s.subtitle}>Add photo and some comments</p>
+      <label className={s.label} htmlFor="photo"></label>
       {previewPhoto ? (
         <img
           src={previewPhoto}

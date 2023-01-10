@@ -1,9 +1,8 @@
 @import '../../../sass/utils/variables';
 @import '../../../sass/utils/mixins';
 
- .modalBody {
-    height: 813px;
-    width: 280px;
+.modalBody {
+    padding: 40px 20px;
 }
 
 .buttonThumb {
@@ -63,8 +62,7 @@
 
 @include tablet {
     .modalBody {
-        height: 885px;
-        width: 608px;
+        padding: 40px 80px;
     }
 
     .buttonThumb {
