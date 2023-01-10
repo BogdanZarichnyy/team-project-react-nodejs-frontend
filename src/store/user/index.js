@@ -20,6 +20,9 @@ export {
   deletePetFetch,
   deletePetSuccess,
   deletePetFailure,
+  getPetsFetch,
+  getPetsSuccess,
+  getPetsFailure,
 } from './userSlice';
 
 export { userSagas } from './userSaga';
@@ -31,4 +34,5 @@ export {
   getUserAvatarSelector,
   getUserTokenSelector,
   getUserLoggedSelector,
+  getPetsSelector,
 } from './userSelectors';

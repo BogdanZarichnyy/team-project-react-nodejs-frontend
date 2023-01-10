@@ -5,6 +5,7 @@ import {
   getFoundAds,
   addNewAds,
   deleteAds,
+  toggleFavoriteAds,
 } from '../../api/adsApi';
 import {
   getSellAdsSuccess,
@@ -17,12 +18,13 @@ import {
   addNewAdsFailure,
   deleteAdsSuccess,
   deleteAdsFailure,
+  toggleFavoriteSuccess,
+  toggleFavoriteFailure,
 } from './adsSlice';
 
 function* workGetSellAdsFetch({ payload }) {
   try {
     const data = yield call(getSellAds);
-    console.log(data);
     yield put(getSellAdsSuccess(data));
   } catch (error) {
     yield put(getSellAdsFailure(error.message));
@@ -41,7 +43,6 @@ function* workGetFoundAdsFetch({ payload }) {
 function* workGetShareAdsFetch() {
   try {
     const data = yield call(getShareAds);
-    console.log('saga', data);
     yield put(getShareAdsSuccess(data));
   } catch (error) {
     yield put(getShareAdsFailure(error.message));
@@ -60,10 +61,19 @@ function* workAddNewAdsFetch({ payload }) {
 function* workDeleteAdsFetch({ payload }) {
   try {
     const data = yield call(deleteAds, payload);
-    console.log('saga', data);
     yield put(deleteAdsSuccess(data));
   } catch (error) {
     yield put(deleteAdsFailure(error.message));
+  }
+}
+
+function* workToggleFavoriteFetch() {
+  try {
+    const { data } = yield call(toggleFavoriteAds);
+    console.log('saga', data);
+    yield put(toggleFavoriteSuccess(data));
+  } catch (error) {
+    yield put(toggleFavoriteFailure(error.message));
   }
 }
 
@@ -87,6 +97,10 @@ function* watchDeleteAds() {
   yield takeLatest('ads/deleteAdsFetch', workDeleteAdsFetch);
 }
 
+function* watchToggleFavoriteAds() {
+  yield takeLatest('ads/toggleFavoriteFetch', workToggleFavoriteFetch);
+}
+
 export function* adsSagas() {
   yield all([
     call(watchGetSellAds),
@@ -94,5 +108,6 @@ export function* adsSagas() {
     call(watchGetShareAds),
     call(watchAddNewAds),
     call(watchDeleteAds),
+    call(watchToggleFavoriteAds),
   ]);
 }

@@ -7,7 +7,7 @@ import {
   updateCurrentUser,
   updateAvatarUser,
 } from '../../api/userApi';
-import { addNewPet, deletePet } from '../../api/petApi';
+import { addNewPet, deletePet, getAllPets } from '../../api/petApi';
 import { getUserTokenSelector } from './userSelectors';
 import {
   registerUserSuccess,
@@ -24,6 +24,8 @@ import {
   addPetFailure,
   deletePetSuccess,
   deletePetFailure,
+  getPetsSuccess,
+  getPetsFailure,
 } from './userSlice';
 
 function* workRegisterUserFetch({ payload }) {
@@ -79,11 +81,6 @@ function* workUpdateCurrentUser({ payload }) {
     }
     yield put(updateUserSuccess(data.user));
   } catch (error) {
-    // if (payload instanceof FormData) {
-    //   yield put(updateUserFailure({ error: error.message, avatar: true }));
-    // } else {
-    //   yield put(updateUserFailure({ error: error.message, avatar: false }));
-    // }
     yield put(updateUserFailure(error));
   }
 }
@@ -91,7 +88,6 @@ function* workUpdateCurrentUser({ payload }) {
 function* workAddPet({ payload }) {
   try {
     const { data } = yield call(addNewPet, payload);
-    console.log('saga', data);
     yield put(addPetSuccess(data));
   } catch (error) {
     yield put(addPetFailure(error.message));
@@ -100,11 +96,19 @@ function* workAddPet({ payload }) {
 
 function* workDeletePet({ payload }) {
   try {
-    const { data } = yield call(deletePet, payload);
-    console.log('saga', data);
-    yield put(deletePetSuccess(data));
+    const { ad } = yield call(deletePet, payload);
+    yield put(deletePetSuccess(ad));
   } catch (error) {
     yield put(deletePetFailure(error.message));
+  }
+}
+
+function* workGetPets() {
+  try {
+    const data = yield call(getAllPets);
+    yield put(getPetsSuccess(data));
+  } catch (error) {
+    yield put(getPetsFailure(error.message));
   }
 }
 
@@ -136,6 +140,10 @@ function* watchDeletePet() {
   yield takeLatest('user/deletePetFetch', workDeletePet);
 }
 
+function* watchGetPets() {
+  yield takeLatest('user/getPetsFetch', workGetPets);
+}
+
 export function* userSagas() {
   yield all([
     call(watchRegisterUser),
@@ -145,5 +153,6 @@ export function* userSagas() {
     call(watchUpdateCurrentUser),
     call(watchAddPet),
     call(watchDeletePet),
+    call(watchGetPets),
   ]);
 }

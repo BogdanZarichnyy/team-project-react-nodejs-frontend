@@ -14,6 +14,9 @@ export {
   deleteAdsFetch,
   deleteAdsSuccess,
   deleteAdsFailure,
+  toggleFavoriteFetch,
+  toggleFavoriteSuccess,
+  toggleFavoriteFailure,
 } from './adsSlice';
 
 export { adsSagas } from './adsSaga';

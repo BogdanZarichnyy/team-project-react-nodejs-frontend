@@ -12,11 +12,10 @@ import s from './ProfileAvatar.module.scss';
 
 const ProfileAvatar = () => {
   const photo = useSelector(getUserAvatarSelector);
-  const [img, setImg] = useState(photo ? photo : null); //TODO проверить работоспособность
+  const [img, setImg] = useState(photo ? photo : null);
   const { handleModal } = useContext(ModalContext);
   const formData = new FormData();
 
-  // TODO Удалить, если юзстейт работает корректно.
   useEffect(() => {
     photo ?? setImg(photo);
   }, [photo]);

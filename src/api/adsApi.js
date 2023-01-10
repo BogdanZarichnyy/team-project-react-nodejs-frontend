@@ -29,3 +29,11 @@ export const deleteAds = async adsData => {
   console.log('api', data);
   return data;
 };
+
+export const toggleFavoriteAds = async adsData => {
+  const { data } = await adsApi
+    .post(`favorites/${adsData}`)
+    .catch(apiErrorHandler);
+  console.log('api', data);
+  return data;
+};
