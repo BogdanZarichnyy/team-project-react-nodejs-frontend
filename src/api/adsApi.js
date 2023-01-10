@@ -2,7 +2,7 @@ import { adsApi, apiErrorHandler } from './main';
 
 export const getShareAds = async () => {
   const { data } = await adsApi
-    .get('?category=inGoodhands')
+    .get('?category=inGoodHands')
     .catch(apiErrorHandler);
   return data;
 };

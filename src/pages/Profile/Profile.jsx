@@ -20,12 +20,7 @@ const Profile = () => {
 
   const handleAddPet = async () => {
     // dispatch(getFoundAdsFetch());
-    // dispatch(
-    //   deleteAdsFetch({
-    //     _id: '63b768619348e50277b8ed08',
-    //     category: 'lostFound',
-    //   })
-    // );
+    dispatch(getShareAdsFetch());
   };
 
   return (

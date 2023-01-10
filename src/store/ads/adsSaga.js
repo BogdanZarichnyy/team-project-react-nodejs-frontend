@@ -41,6 +41,7 @@ function* workGetFoundAdsFetch({ payload }) {
 function* workGetShareAdsFetch() {
   try {
     const data = yield call(getShareAds);
+    console.log('saga', data);
     yield put(getShareAdsSuccess(data));
   } catch (error) {
     yield put(getShareAdsFailure(error.message));
@@ -60,9 +61,9 @@ function* workDeleteAdsFetch({ payload }) {
   try {
     const data = yield call(deleteAds, payload);
     console.log('saga', data);
-    yield put(addNewAdsSuccess(data));
+    yield put(deleteAdsSuccess(data));
   } catch (error) {
-    yield put(addNewAdsFailure(error.message));
+    yield put(deleteAdsFailure(error.message));
   }
 }
 
