@@ -27,38 +27,42 @@ export default function ModalNotice({ notice, onClick }) {
                                 <p className={s.petInfoLType}>Birthday:</p>
                                 <p className={s.petInfoLValue}>{moment(notice.birthDate).format('DD.MM.YYYY')}</p>
                             </li>
-                            <li className={s.petInfoLItem}>
+                            {notice.family !== '' &&
+                                <li className={s.petInfoLItem}>
                                 <p className={s.petInfoLType}>Species:</p>
                                 <p className={s.petInfoLValue}>{notice.family}</p>
-                            </li>
+                                </li>
+                            }
                             <li className={s.petInfoLItem}>
                                 <p className={s.petInfoLType}>Breed:</p>
                                 <p className={s.petInfoLValue}>{notice.breed}</p>
                             </li>
                             <li className={s.petInfoLItem}>
-                                <p className={s.petInfoLType}>Location:</p>
+                                <p className={s.petInfoLType}>Place:</p>
                                 <p className={s.petInfoLValue}>{notice.location}</p>
                             </li>
                             <li className={s.petInfoLItem}>
                                 <p className={s.petInfoLType}>The sex:</p>
                                 <p className={s.petInfoLValue}>{notice.sex}</p>
                             </li>
-                            <li className={s.petInfoLItem}>
-                                <p className={s.petInfoLType}>Passport:</p>
-                                <p className={s.petInfoLValueLink}><a className={s.petInfoLValueLink} href={notice.passport}>View file</a></p>
-                            </li>
+                            {notice.passport !== '' &&
+                                <li className={s.petInfoLItem}>
+                                    <p className={s.petInfoLType}>Passport:</p>
+                                    <p className={s.petInfoLValueLink}><a className={s.petInfoLValueLink} href={notice.passport}>View file</a></p>
+                                </li>
+                            }
                             <li className={s.petInfoLItem}>
                                 <p className={s.petInfoLType}>Email:</p>
-                                <p className={s.petInfoLValue}>{notice.owner.email}</p>
+                                <p className={s.petInfoLValue}>{notice?.owner?.email}</p>
                             </li>
                             <li className={s.petInfoLItem}>
                                 <p className={s.petInfoLType}>Phone:</p>
-                                <p className={s.petInfoLValue}>{notice.owner.phone}</p>
+                                <p className={s.petInfoLValue}>{notice?.owner?.phone}</p>
                             </li>
-                            {notice.price === '' && 
+                            {notice.price !== null && notice.price !== '' && 
                                 <li className={s.petInfoLItem}>
                                     <p className={s.petInfoLType}>Sell:</p>
-                                    <p className={s.petInfoLValue}>{notice.price} $</p>
+                                    <p className={s.petInfoLValue}>{notice.price}</p>
                                 </li>
                             } 
                         </ul>
@@ -68,7 +72,7 @@ export default function ModalNotice({ notice, onClick }) {
                     <p className={s.petInfoLTypeComment}>Comments: <span className={s.petInfoLValueComment}>{notice.comments}</span></p>
                 }                
                 <div className={s.noticeButtonsThumb}>
-                    <a className={s.noticeContactButton} href={`tell:${notice.owner.phone}`}>Contact</a>
+                    <a className={s.noticeContactButton} href={`tell:${notice?.owner?.phone}`}>Contact</a>
                     <button className={s.noticeFavoriteButton} onClick={onClick}>Add to
                         <IconComponent classname={s.favoriteIcon} iconname="favoriteIcon"/>
                     </button>

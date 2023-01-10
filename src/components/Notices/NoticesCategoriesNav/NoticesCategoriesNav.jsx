@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import { getUserTokenSelector } from '../../../store/user';
+import { getUserLoggedSelector } from '../../../store/user';
 
 import s from './NoticesCategoriesNav.module.scss';
 
 export default function NoticesCategoriesNav() {
-    const isLogedIn = useSelector(getUserTokenSelector);
+    const isLoggedIn = useSelector(getUserLoggedSelector);
 
     return (
         <nav className={s.noticesNavigation}> 
@@ -32,7 +32,7 @@ export default function NoticesCategoriesNav() {
                         sell
                     </NavLink>
                 </li>
-                {isLogedIn &&
+                {isLoggedIn &&
                     <>
                         <li className={s.noticesListItem}>
                             <NavLink

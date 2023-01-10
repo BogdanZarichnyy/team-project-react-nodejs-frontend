@@ -55,7 +55,7 @@ export default function NoticesCategoriesItem({notice}) {
                         </button>
                     </div>                    
                 </div>
-                <div className={user._id === notice.owner._id ? s.noticeDecriptionOwner : s.noticeDecription}>
+                <div className={user._id === notice?.owner?._id ? s.noticeDecriptionOwner : s.noticeDecription}>
                     <h3 className={s.noticeTitle}>{notice.addTitle}</h3>
                     <ul className={s.petInfoList}>
                         <li className={s.petInfoLItem}>
@@ -70,16 +70,16 @@ export default function NoticesCategoriesItem({notice}) {
                             <p className={s.petInfoLType}>Age:</p>
                             <p className={s.petInfoLValue}>{moment(notice.birthDate).startOf('day').fromNow(true)}</p>
                         </li>
-                        {notice.price !== null && 
+                        {notice.price !== null && notice.price !== '' &&
                             <li className={s.petInfoLItem}>
                                 <p className={s.petInfoLType}>Sell:</p>
-                                <p className={s.petInfoLValue}>{notice.price} $</p>
+                                <p className={s.petInfoLValue}>{notice.price}</p>
                             </li>
                         }                        
                     </ul>
                     <div className={s.noticeButtonsThumb}>
                         <button className={s.noticeLearnMoreButton} onClick={handleClickOpen}>Learn more</button>
-                        {user._id === notice.owner._id && 
+                        {user._id === notice?.owner?._id && 
                             <button className={s.noticeDeleteButton}>
                                 Delete
                             <IconComponent classname={s.trashIcon} iconname="trashIcon"/>

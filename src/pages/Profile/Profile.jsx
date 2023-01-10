@@ -5,7 +5,7 @@ import {
   getFoundAdsFetch,
   getShareAdsFetch,
   addNewAdsFetch,
-} from '../../store/ads/adsSlice';
+} from '../../store/ads/';
 
 import { getFriendsFetch } from '../../store/friends';
 
@@ -21,12 +21,7 @@ const Profile = () => {
   const dispatch = useDispatch();
 
   const handleAddPet = async () => {
-    const data = await axios.get(
-      'https://test-team-project-react-nodejs-production.up.railway.app/api/notices?category=sale'
-    );
-
-    dispatch();
-    console.log(data);
+    dispatch(getFoundAdsFetch());
   };
 
   return (

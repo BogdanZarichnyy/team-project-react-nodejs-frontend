@@ -1,81 +1,50 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import s from './NoticesCategoriesList.module.scss';
 import { ModalProvider } from '../../ModalRework';
-
+import { getSellAdsSelector, getFoundAdsSelector, getShareAdsSelector } from '../../../store/ads/index';
+import { getSellAdsFetch, getShareAdsFetch, getFoundAdsFetch  } from '../../../store/ads';
 import NoticesCategoriesItem from '../NoticesCategoriesItem/NoticesCategoriesItem';
 
-export default function NoticeCategoriesList({categoryType}) {
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [notices, setNotices] = useState([]);
+export default function NoticeCategoriesList({ categoryType }) {
+    const dispatch = useDispatch();
+    const noticesSell = useSelector(getSellAdsSelector);
+    const noticesFound = useSelector(getFoundAdsSelector);
+    const noticesShare = useSelector(getShareAdsSelector);
+    
 
     useEffect(() => {
-        if (categoryType === 'for-free') {
-            fetch(
-            'https://test-team-project-react-nodejs-production.up.railway.app/api/ads'
-            )
-            .then(res => res.json())
-            .then(
-            result => {
-            setIsLoaded(true);
-            setNotices(result);
-            },
-            error => {
-            setIsLoaded(true);
-            setError(error);
-            }
-        )
-        } else if (categoryType === 'sell') {
-            fetch(
-            'https://test-team-project-react-nodejs-production.up.railway.app/api/ads?category=sale'
-            )
-            .then(res => res.json())
-            .then(
-            result => {
-            setIsLoaded(true);
-            setNotices(result);
-            },
-            error => {
-            setIsLoaded(true);
-            setError(error);
-            }
-        )
-        } else if (categoryType === 'lost-found') { 
-            fetch(
-                'https://test-team-project-react-nodejs-production.up.railway.app/api/ads?category=lostFound'
-            )
-            .then(res => res.json())
-            .then(
-            result => {
-            setIsLoaded(true);
-            setNotices(result);
-            },
-            error => {
-            setIsLoaded(true);
-            setError(error);
-            }
-        )
-        }
-        
-        
-    }, [categoryType]);
+        if (categoryType === 'sell') {
+            dispatch(getSellAdsFetch());
+        } else if (categoryType === 'for-free') {
+            dispatch(getShareAdsFetch())
+        } else if (categoryType === 'lost-found') {
+            dispatch(getFoundAdsFetch());
+        }        
+    }, [dispatch, categoryType])
 
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-        return <div className={s.loading}>Loading...</div>;
-    } else {
-        return (
-            <ul className={s.noticeList}> 
-                <ModalProvider>  
-                    {notices.map(notice => {
-                        return (
-                            <NoticesCategoriesItem notice={notice} key={notice._id} />
-                        )
-                    })}                    
-                </ModalProvider>
-            </ul>
-        )
-    }
+    return (
+        <ul className={s.noticeList}>
+            <ModalProvider>
+                {categoryType === 'sell' && noticesSell.map(notice => {
+                    return (
+                        <NoticesCategoriesItem notice={notice} key={notice._id} />
+                    )
+                })}
+                {categoryType === 'for-free' && noticesShare.map(notice => {
+                    return (
+                        <NoticesCategoriesItem notice={notice} key={notice._id} />
+                    )
+                })}
+                {categoryType === 'lost-found' && noticesFound.map(notice => {
+                    return (
+                        <NoticesCategoriesItem notice={notice} key={notice._id} />
+                    )
+                })}
+            </ModalProvider>
+        </ul>
+    )
+
 }

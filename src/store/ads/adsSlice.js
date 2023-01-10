@@ -42,7 +42,7 @@ const adsSlice = createSlice({
       state.isLoading = true;
     },
     getShareAdsSuccess: (state, { payload }) => {
-      state.lostFound = payload;
+      state.inGoodHands = payload;
       state.isLoading = false;
       state.error = false;
     },
@@ -54,7 +54,7 @@ const adsSlice = createSlice({
       state.isLoading = true;
     },
     addNewAdsSuccess: (state, { payload }) => {
-      state[payload.category] = [...state[payload.category], payload];
+      state[payload.category] = [payload, ...state[payload.category]];
       state.isLoading = false;
       state.error = false;
     },
