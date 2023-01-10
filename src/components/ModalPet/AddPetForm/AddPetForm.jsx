@@ -68,10 +68,10 @@ const validationSchema = Yup.object({
     .matches(/\D/g, 'Only alphabetic characters are allowed')
     .required('Field is required!'),
   price: Yup.string()
-    .min(2)
+    .min(1)
     .max(10)
     .matches(
-      /^[1-9]+[0-9]*\$$/g,
+      /^([1-9]+[0-9]*)*\$$/,
       'Only number characters and $ are allowed, e.g. 50$'
     )
     .required('Field is required!'),
