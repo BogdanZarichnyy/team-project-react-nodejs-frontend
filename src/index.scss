@@ -1,0 +1,58 @@
+@import-normalize; /*bring in normalize.css styles */
+@import url('./stylesheets/fonts/fonts.css');
+@import './sass/utils/mixins';
+@import './sass/utils/container';
+@import './sass/utils/variables';
+@import './components/Auth/RegisterFormStepTwo/RegisterForm.css';
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  font-family: 'Manrope-Medium', sans-serif;
+  background-color: getColor('clr-bg');
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+}
+
+img,
+svg {
+  display: block;
+  width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.NotScroll {
+  overflow: hidden;
+}

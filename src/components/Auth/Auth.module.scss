@@ -1,0 +1,27 @@
+@import '../../sass/utils/mixins';
+@import '../../sass/utils/variables';
+.form {
+  max-width: 458px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inputBottomMargin {
+  margin-bottom: 16px;
+}
+.inputSecondBottomMargin,
+.inputRestorePassword {
+  margin-bottom: 40px;
+}
+
+.blockLink {
+  display: flex;
+  max-width: 100%;
+  min-width: 90%;
+  margin-bottom: 40px;
+}
+.inputLogin {
+  margin-bottom: 4px;
+}

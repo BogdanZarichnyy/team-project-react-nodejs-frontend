@@ -1,0 +1,25 @@
+@import '../../../sass/utils/variables';
+@import '../../../sass/utils/mixins';
+
+.avatarContainer {
+  margin: 0 7px;
+  width: 233px;
+
+  @include tablet {
+    margin: 0 0 0 52px;
+  }
+}
+
+.avatarImage {
+  filter: $drop-shadow-light;
+}
+
+.avatarField {
+  width: 280px;
+  height: 280px;
+}
+
+.modalBody {
+  width: 280px;
+  height: 280px;
+}

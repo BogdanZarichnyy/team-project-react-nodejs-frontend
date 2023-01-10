@@ -1,0 +1,104 @@
+@import '../../../sass/utils/variables';
+@import '../../../sass/utils/mixins';
+
+.modalBody {
+    padding: 40px 20px;
+}
+
+.buttonThumb {
+    position: fixed;
+    right: 0;
+    bottom: 90px;
+    z-index: 1;
+
+    width: 80px;
+    height: 80px;
+}
+
+.addButton {
+    width: 80px;
+    height: 80px;
+
+    border-radius: 50%;
+    border: none;
+    outline: none;
+
+    background-color:  getColor('clr-accent');
+
+    cursor: pointer;
+
+    @include transition-animation(all);
+
+    &:hover,
+    &:focus {
+        background-color: getColor('clr-accent-active');
+    }
+}
+
+.buttonDescription {
+    position: absolute;
+    left: 18px;
+    bottom: 16px;
+
+    margin: 0;
+
+    font-family: 'Manrope-Medium';
+    font-size: 12px;
+    line-height: 1.33;
+
+    color: getColor('clr-white');
+}
+
+.addIcon {
+    position: absolute;
+    top: 21px;
+    left: 29px;
+
+    width: 21px;
+    height: 21px;
+
+    fill: getColor('clr-white');
+}
+
+@include tablet {
+    .modalBody {
+        padding: 40px 80px;
+    }
+
+    .buttonThumb {
+        position: static;
+
+        display: flex;
+        align-items: center;
+        gap: 22px;
+
+        margin-top: 3.5px;      
+        
+        width: auto;
+        height: auto;
+    }
+
+    .addButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+    }
+
+    .buttonDescription {
+        position: static;
+
+        font-size: 20px;
+        line-height: 1.35;
+
+        color: getColor('clr-black');
+    }
+    
+    .addIcon {
+        position: static;
+
+        width: 16px;
+        height: 16px;
+    }
+}

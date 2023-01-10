@@ -1,0 +1,39 @@
+@import '../../sass/utils/mixins';
+@import '../../sass/utils/variables';
+@import '../../sass/utils/container';
+
+
+.title {
+    margin-top: 0;
+    margin-bottom: 28px;
+
+    text-align: center;
+    font-family: 'Manrope-Bold';
+    font-size: 24px;
+    line-height: 1.38;
+
+    color: getColor('clr-black');        
+}
+
+.formThumb {
+    margin-bottom: 28px;
+}
+
+@include tablet {
+    .title {
+        font-size: 48px;
+    
+        margin-bottom: 40px;
+    }
+
+    .formThumb {
+        margin-bottom: 40px;
+    }
+    
+    .noticesThumb {
+        display: flex;
+        margin-bottom: 60px;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+}

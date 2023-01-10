@@ -1,0 +1,33 @@
+@import '../../sass/utils/mixins';
+@import '../../sass/utils/variables';
+.input {
+  width: 100%;
+  max-width: 458px;
+  padding: 0 11px;
+  line-height: 38px;
+
+  background-color: getColor('clr-bg');
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+
+  font-family: 'Manrope-Regular';
+  font-size: 14px;
+
+  @include transition-animation(all);
+
+  @include tablet {
+    height: 52px;
+    padding: 14px 32px;
+
+    font-size: 18px;
+    line-height: 25px;
+  }
+}
+.input:focus {
+  outline: none;
+  border: 2px solid #f59256;
+}
+
+.ligth {
+  background-color: rgb(192, 182, 182);
+}

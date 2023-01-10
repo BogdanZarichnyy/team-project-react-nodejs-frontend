@@ -1,0 +1,59 @@
+@import '../../sass/utils/variables';
+@import '../../sass/utils/mixins';
+
+.modalBody {
+  padding: 40px 20px;
+  @include tablet {
+    padding: 40px 80px;
+  }
+}
+
+.addPetButton {
+  @include flex-center;
+
+  margin-left: auto;
+  gap: 15px;
+  font-family: 'Manrope-Medium';
+  font-size: 20px;
+  line-height: 27px;
+  color: getColor('clr-black');
+  background-color: transparent;
+  border: none;
+  @include transition-animation(all);
+
+  @include desktop {
+    margin-bottom: 1px;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:active {
+    color: getColor('clr-gray');
+    .addPetIconThumb {
+      background-color: getColor('clr-accent-opacity');
+    }
+
+    .logOutIcon {
+      fill: getColor('clr-gray');
+    }
+  }
+}
+
+.addPetIconThumb {
+  @include flex-center;
+
+  width: 40px;
+  height: 40px;
+  background-color: getColor('clr-accent');
+  border-radius: 50%;
+  @include transition-animation(all);
+}
+
+.addPetIcon {
+  width: 16px;
+  height: 16px;
+  fill: getColor('clr-white');
+  @include transition-animation(all);
+}

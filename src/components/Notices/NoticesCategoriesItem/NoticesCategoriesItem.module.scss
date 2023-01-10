@@ -1,0 +1,264 @@
+@import '../../../sass/utils/variables';
+@import '../../../sass/utils/mixins';
+
+.noticeItem {
+    width: 280px;
+    min-height: 565px;
+
+    background-color: getColor('clr-white');
+    box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+    border-radius: 0px 0px 20px 20px;
+}
+
+.noticeThumb {
+    position: relative;
+
+    width: 280px;
+    height: 288px;
+}
+
+.noticeImage {
+    display: block;
+    object-fit: cover;
+    
+    width: 280px;
+    height: 288px;
+}
+
+.categoryType {
+    position: absolute;
+    top: 20px;
+
+    padding: 6px 50px 7px 20px;
+
+    font-family: 'Manrope-Medium';
+    font-size: 12px;
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+
+    color: getColor('clr-black');
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(2px);
+    border-radius: 0 40px 40px 0;
+}
+
+.noticeFavoriteButtonThumb {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    @include flex-center;
+
+    width: 44px;
+    height: 44px;
+
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(2px);
+    border-radius: 50%;
+}
+
+.favoriteIcon {
+    width: 24px;
+    height: 22px;
+
+    fill: rgba(255, 255, 255, 0.6);
+
+    background-color: transparent;
+
+    @include transition-animation(all);
+
+    .noticeFavoriteButton:hover>&,
+    .noticeFavoriteButton:focus>& {
+        fill: getColor('clr-accent');        
+    }
+}
+
+.removeFavoriteIcon {
+   width: 24px;
+   height: 22px;
+   
+    fill: rgba(17, 17, 17, 0.6);
+
+    @include transition-animation(all);
+
+    .noticeFavoriteButton:hover>&,
+    .noticeFavoriteButton:focus>& {
+        fill: getColor('clr-accent');
+    }
+}
+
+.noticeFavoriteButton {
+    @include flex-center;
+
+    padding: 15px;
+
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.noticeDecription {
+    padding: 20px 16px 32px;
+}
+
+.noticeDecriptionOwner {
+    padding: 20px 16px 12px;
+}
+
+.noticeTitle {
+    margin-bottom: 20px;
+    overflow-wrap: break-word;
+
+    font-family: 'Manrope-Bold';
+    font-size: 28px;
+    line-height: 1.36;
+    letter-spacing: -0.01em;
+
+    color: getColor('clr-black');
+}
+
+.petInfoLItem {
+    display: flex;
+
+    max-width: 296px;
+
+    word-wrap: break-word;
+}
+
+.petInfoList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.petInfoLType,
+.petInfoLValue {
+    font-family: 'Manrope-Medium';
+    font-size: 16px;
+    line-height: 1.38;
+
+    color: getColor('clr-black');
+}
+
+.petInfoLType {
+    width: 90px;
+}
+
+.petInfoLValue {
+    max-width: 155px;
+}
+
+.noticeButtonsThumb,
+.personalNoticeButtonsThumb {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+.noticeButtonsThumb {
+    margin-top: 50px;
+}
+
+.noticeLearnMoreButton,
+.noticeDeleteButton {
+    max-width: 248px;
+    width: 100%;
+    padding: 6px 76px;
+    height: 38px;
+
+    font-family: 'Manrope-Medium';
+    font-size: 16px;
+    line-height: 1.38;
+    letter-spacing: 0.04em;
+    color: getColor('clr-accent');
+
+    background-color: getColor('clr-white');
+    border: 2px solid getColor('clr-accent');
+    border-radius: 40px;
+
+    @include transition-animation(all);
+
+    &:hover,
+    &:focus {
+        color: getColor('clr-accent-active');
+        border: 2px solid getColor('clr-accent-active');
+    }
+}
+
+.noticeDeleteButton {
+    @include flex-center; 
+    gap: 15px;
+
+    &:hover,
+    &:focus {
+        color: getColor('clr-accent-active');
+        border: 2px solid getColor('clr-accent-active');
+    }
+}
+
+.trashIcon {
+    width: 17px;
+    height: 18px;
+
+    fill: getColor('clr-accent');
+    
+    @include transition-animation(all);
+
+    .noticeDeleteButton:hover>&,
+    .noticeDeleteButton:focus>& {
+        fill: getColor('clr-accent-active');
+    }
+}
+
+.modalBody {
+    width: 280px;
+    min-height: 775px;
+}
+
+@include tablet {
+    .noticeItem {
+        width: 336px;
+    }
+        
+    .noticeThumb {
+        width: 336px;        
+    }
+        
+    .noticeImage {
+        width: 336px;
+    }
+        
+    .noticeDecription {
+        padding: 20px 20px 32px;
+    }
+
+    .petInfoLValue {
+        max-width: 205px;
+    }
+
+    .modalBody {
+        width: 704px;
+        min-height: 460px;
+    }
+}
+
+@include desktop {
+    .noticeItem {
+        width: 288px;
+    }
+    
+    .noticeThumb {
+        width: 288px;    
+    }
+    
+    .noticeImage {
+        width: 288px;
+    }
+
+    .petInfoLValue {
+        max-width: 160px;
+    }
+}

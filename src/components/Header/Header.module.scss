@@ -1,0 +1,146 @@
+@import '../../sass/utils/variables';
+@import '../../sass/utils/mixins';
+
+.section {
+  display: flex;
+  align-items: center;
+
+  height: 48px;
+  min-width: 280px !important;
+
+  position: relative;
+  z-index: 100;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.authGroup {
+  margin-left: auto;
+  font-family: 'Manrope-Medium';
+
+  display: flex;
+}
+
+.logo {
+  z-index: 1;
+
+  margin-right: 80px;
+
+  font-family: 'Poppins-Bold';
+
+  font-size: 32px;
+  font-weight: bold;
+  color: getColor('clr-black');
+}
+
+.logo_accent {
+  color: getColor('clr-accent');
+}
+
+.navGroup .MobileNavigation {
+  display: none;
+}
+
+.authGroup .Auth {
+  display: flex;
+  gap: 20px;
+
+  height: 44px;
+}
+
+@include toDesktop {
+  .navGroup .MobileNavigation {
+    display: flex;
+    align-items: center;
+  }
+
+  .navGroup .MobileNavigation .burger {
+    position: absolute;
+    right: 32px;
+    z-index: 1;
+
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+  }
+
+  .navGroup .MobileNavigation .burgerIcon {
+    width: 40px;
+    height: 40px;
+    fill: getColor('clr-black');
+  }
+
+  .navGroup .Navigation {
+    display: none;
+  }
+
+  .navGroup nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    flex-grow: 1;
+
+    width: 100vw;
+
+    height: calc(100vh - 20px);
+
+    margin-left: calc((768px - 100vw) / 2);
+    padding-top: 160px;
+
+    position: absolute;
+    left: 0;
+    top: 0px;
+
+    background-color: #fdf7f2;
+  }
+
+  .navGroup nav ul li span {
+    font-size: 48px;
+  }
+
+  .authGroup {
+    margin-right: 60px;
+  }
+}
+
+@include phone {
+  .section {
+    height: 42px;
+  }
+
+  .logo {
+    font-size: 28px;
+  }
+
+  .navGroup nav ul {
+    top: 0;
+
+    gap: 40px;
+
+    padding-top: 200px;
+
+    margin-left: calc((320px - 100vw) / 2);
+  }
+
+  .navGroup nav ul li span {
+    font-size: 32px;
+  }
+
+  .authGroup .Auth {
+    display: none;
+  }
+
+  .navGroup .MobileNavigation .burger {
+    right: 16px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .navGroup nav ul {
+    margin-left: 0;
+  }
+}

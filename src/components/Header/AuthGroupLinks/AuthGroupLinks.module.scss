@@ -1,0 +1,31 @@
+@import '../../../sass/utils/mixins';
+@import '../../../sass/utils/variables';
+
+.userIcon {
+  width: 28px;
+  height: 28px;
+  fill: getColor('clr-white');
+}
+
+@include toDesktop {
+  .auth_item {
+    padding: 11px 28px;
+    height: 44px;
+
+    font-size: 16px;
+  }
+}
+
+@include phone {
+  .userIcon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .authBtn {
+    padding: 8px 28px !important;
+    height: 35px !important;
+
+    font-size: 14px !important;
+  }
+}

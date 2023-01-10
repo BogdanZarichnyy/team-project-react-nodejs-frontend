@@ -1,0 +1,26 @@
+@import '../../../sass/utils/mixins';
+@import '../../../sass/utils/variables';
+
+.primaryButton {
+  @include flex-center;
+  gap: 12px;
+
+  padding: 10px 28px;
+  font-size: 16px;
+
+  text-decoration: none;
+  color: getColor('clr-white');
+
+  background-color: getColor('clr-accent');
+
+  border: 2px solid getColor('clr-accent');
+  border-radius: 40px;
+
+  cursor: pointer;
+  @include transition-animation(all);
+}
+
+.primaryButton:is(:hover, :focus) {
+  background-color: getColor('clr-accent-active');
+  border: 2px solid getColor('clr-accent-active');
+}

@@ -1,0 +1,77 @@
+@import '../../sass/utils/variables';
+@import '../../sass/utils/mixins';
+
+.containerDesktop {
+  @include desktop {
+    display: flex;
+    gap: 32px;
+  }
+}
+
+.profileContainer {
+  margin-top: 45px;
+}
+
+.profileHeader {
+  font-size: 20px;
+  line-height: 27px;
+  letter-spacing: 0.04em;
+
+  @include tablet {
+    font-size: 28px;
+    line-height: 38px;
+  }
+
+  @include desktop {
+    margin-top: 3px;
+  }
+}
+
+.profileHeaderMod {
+  margin-bottom: 18px;
+
+  @include tablet {
+    margin-bottom: 40px;
+  }
+
+  @include desktop {
+    margin-bottom: 24px;
+  }
+}
+
+.profileThumb {
+  padding: 20px 16px;
+  width: fit-content;
+  text-align: center;
+  background-color: getColor('clr-white');
+  border-radius: 20px;
+  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+
+  @include tablet {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-left: -32px;
+    padding: 24px 40px 24px 32px;
+    border-radius: 0px 40px 40px 0px;
+  }
+
+  @include desktop {
+    flex-direction: column;
+    justify-content: center;
+    margin-left: -16px;
+    padding: 20px 16px;
+  }
+}
+
+.petsHeaderThumb {
+  @include flex-center;
+  margin-bottom: 26px;
+
+  @include tablet {
+    margin-bottom: 22px;
+  }
+
+  @include desktop {
+    margin-bottom: 24px;
+  }
+}

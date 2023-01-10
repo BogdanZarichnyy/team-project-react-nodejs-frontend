@@ -1,0 +1,34 @@
+@font-face {
+  font-family: 'Manrope-Regular';
+  src: local('Manrope-Regular'),
+    url(../../assets/fonts/Manrope-Regular.ttf) format('truetype');
+
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope-Medium';
+  src: local('Manrope-Medium'),
+    url(../../assets/fonts/Manrope-Medium.ttf) format('truetype');
+
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Manrope-Bold';
+
+  src: local('Manrope-Bold'),
+    url(../../assets/fonts/Manrope-Bold.ttf) format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poppins-Bold';
+  src: local('Poppins-Bold'),
+    url(../../assets/fonts/Poppins-Bold.ttf) format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}

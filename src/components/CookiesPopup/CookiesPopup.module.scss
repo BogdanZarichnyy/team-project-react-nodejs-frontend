@@ -1,0 +1,66 @@
+@import '../../sass/utils/variables';
+@import '../../sass/utils/mixins';
+
+.cookiePopupWrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  padding-top: 30px;
+  padding-bottom: 60px;
+
+  color: getColor('clr-white');
+
+  background-color: getColor('clr-text-second');
+}
+.cookiePopupWrapper::before {
+  content: '';
+
+  background-image: url(../../images/CookiesPopup/cookie.webp);
+  background-size: contain;
+
+  position: absolute;
+  top: -10px;
+  left: 40px;
+  width: 110px;
+  height: 110px;
+}
+
+.cookiesBarClose {
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+
+  font-family: 'Manrope-Bold';
+  font-size: 16px;
+  color: getColor('clr-white');
+
+  background-color: transparent;
+  border: none;
+}
+
+.cookiesBarClose::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+
+  width: 100%;
+  border-bottom: 3px solid getColor('clr-white');
+  transition: 250ms;
+}
+
+.cookiesBarClose:hover::after {
+  transform: scaleX(70%);
+}
+
+.message {
+  font-family: 'Manrope-Regular';
+  font-size: 16px;
+  padding-left: 180px;
+  padding-right: 30px;
+}
+
+.messageLink {
+  font-family: 'Manrope-Bold';
+}
