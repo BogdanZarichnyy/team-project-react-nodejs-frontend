@@ -19,7 +19,6 @@ import {
 function* workGetSellAdsFetch({ payload }) {
   try {
     const data = yield call(getSellAds);
-    console.log(data);
     yield put(getSellAdsSuccess(data));
   } catch (error) {
     yield put(getSellAdsFailure(error.message));
@@ -29,7 +28,6 @@ function* workGetSellAdsFetch({ payload }) {
 function* workGetFoundAdsFetch({ payload }) {
   try {
     const data = yield call(getFoundAds);
-    console.log(data);
     yield put(getFoundAdsSuccess(data));
   } catch (error) {
     yield put(getFoundAdsFailure(error.message));
@@ -39,7 +37,6 @@ function* workGetFoundAdsFetch({ payload }) {
 function* workGetShareAdsFetch() {
   try {
     const data = yield call(getShareAds);
-    console.log(data);
     yield put(getShareAdsSuccess(data));
   } catch (error) {
     yield put(getShareAdsFailure(error.message));
