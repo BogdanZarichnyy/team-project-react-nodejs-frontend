@@ -17,6 +17,7 @@ const OurFriendsPages = lazy(() =>
   import('./pages/OurFriendsPages/OurFriendsPages')
 );
 const NoticesPage = lazy(() => import('./pages/NoticesPage'));
+const NoticesCategoryList = lazy(() => import('../src/components/Notices/NoticesCategoriesList'))
 const NewsList = lazy(() => import('./pages/News/NewsList'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
@@ -93,8 +94,40 @@ export const App = () => {
             <Suspense fallback={<Loader />}>
               <NoticesPage />
             </Suspense>
-          }
-        />
+            } >
+          <Route
+            path="sell"
+            element={
+              <NoticesCategoryList categoryType={"sell"} />
+            }
+          />
+          <Route
+            path="lost-found"
+            element={
+              <NoticesCategoryList categoryType={"lost-found"} />
+            }
+          />
+          <Route
+            path="for-free"
+            element={
+              <NoticesCategoryList categoryType={"for-free"} />
+            }
+          />
+            <Route element={<PrivateRoute />}>
+              <Route
+                path="favorite"
+                element={
+                  <NoticesCategoryList />
+                }
+              />
+              <Route
+                path="own"
+                element={
+                  <NoticesCategoryList />
+                }
+              />
+            </Route>            
+          </Route >
       </Route>
 
       <Route path="*" element={<span>Not Found</span>} />

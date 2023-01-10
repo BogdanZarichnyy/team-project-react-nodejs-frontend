@@ -7,21 +7,6 @@
     flex-wrap: wrap;
     
     gap: 32px;
-
-    margin: 0;
-    padding: 0;
-
-    list-style: none;
-}
-
-.modalThumbNoticesPage {
-    width: 280px;
-    min-height: 874px;
-
-    @include tablet {
-        width: 704px;
-        min-height: 540px;
-    }
 }
 
 @include tablet {

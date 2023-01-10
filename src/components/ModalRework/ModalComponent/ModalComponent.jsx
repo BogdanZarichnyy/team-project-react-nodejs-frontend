@@ -10,7 +10,6 @@ const ModalComponent = () => {
   let { modalContent, handleModal, modal, modalStyle, submit } =
     useContext(ModalContext);
 
-
   useEffect(() => {
     function handleToggleModalByEsc(evt) {
       let { code } = evt;
@@ -36,10 +35,8 @@ const ModalComponent = () => {
 
   return modal
     ? createPortal(
-        <div className={s.backdrop} onClick={handleBackdropClick}>
-
+        <div className={s.backdrop} onClick={handleBackdropClick}>        
           <div className={`${s.modalBody} ${modalStyle}`}>
-
             <button
               className={s.modalCloseButton}
               onClick={() => handleModal()}

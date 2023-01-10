@@ -36,7 +36,7 @@ const NavigationLinks = ({ isMobile, closeMobileMenu }) => {
           isMobile && closeMobileMenu();
         }}
       >
-        <NavLink to="/notices" className={s.nav_item}>
+        <NavLink to="/notices/sell" className={s.nav_item}>
           <span>Find pet</span>
         </NavLink>
       </motion.li>
