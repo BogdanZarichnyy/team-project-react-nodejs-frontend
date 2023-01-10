@@ -35,7 +35,7 @@ export const updateCurrentUser = async userData => {
 
 export const updateAvatarUser = async userData => {
   const { data } = await userApi
-    .patch('profile', userData)
+    .post('avatar', userData)
     .catch(apiErrorHandler);
   return data;
 };

@@ -42,7 +42,7 @@ const adsSlice = createSlice({
       state.isLoading = true;
     },
     getShareAdsSuccess: (state, { payload }) => {
-      state.lostFound = payload;
+      state.inGoodHands = payload;
       state.isLoading = false;
       state.error = false;
     },
