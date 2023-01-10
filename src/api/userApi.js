@@ -32,3 +32,10 @@ export const updateCurrentUser = async userData => {
     .catch(apiErrorHandler);
   return data;
 };
+
+export const updateAvatarUser = async userData => {
+  const { data } = await userApi
+    .patch('profile', userData)
+    .catch(apiErrorHandler);
+  return data;
+};

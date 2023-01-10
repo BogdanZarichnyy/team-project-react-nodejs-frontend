@@ -14,7 +14,8 @@ const ProfileAvatar = () => {
   const photo = useSelector(getUserAvatarSelector);
   const [img, setImg] = useState(photo ? photo : null); //TODO проверить работоспособность
   const { handleModal } = useContext(ModalContext);
-
+  console.log('img', img);
+  console.log('img', typeof img);
   // TODO Удалить, если юзстейт работает корректно.
   // useEffect(() => {
   //   photo ?? setImg(photo);
@@ -29,6 +30,7 @@ const ProfileAvatar = () => {
         minCropRadius={50}
         exportQuality={1.0}
         onCrop={onCrop}
+        onFileLoad={onFileLoad}
         onClose={onClose}
         label={'Click or Drag image here!'}
         onBeforeFileLoad={onBeforeFileLoad}
@@ -45,6 +47,10 @@ const ProfileAvatar = () => {
 
   const onCrop = imgPreview => {
     setImg(imgPreview);
+  };
+
+  const onFileLoad = file => {
+    console.log('file', file);
   };
 
   const onBeforeFileLoad = elem => {

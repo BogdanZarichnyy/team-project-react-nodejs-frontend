@@ -5,6 +5,7 @@ import {
   loginUser,
   getCurrentUser,
   updateCurrentUser,
+  updateAvatarUser,
 } from '../../api/userApi';
 import { addNewPet, deletePet } from '../../api/petApi';
 import { getUserTokenSelector } from './userSelectors';
@@ -69,9 +70,14 @@ function* workGetCurrentUser() {
 }
 
 function* workUpdateCurrentUser({ payload }) {
+  let data;
   try {
-    const { user } = yield call(updateCurrentUser, payload);
-    yield put(updateUserSuccess(user));
+    if (payload instanceof FormData) {
+      data = yield call(updateAvatarUser, payload);
+    } else {
+      data = yield call(updateCurrentUser, payload);
+    }
+    yield put(updateUserSuccess(data.user));
   } catch (error) {
     yield put(updateUserFailure(error.message));
   }
