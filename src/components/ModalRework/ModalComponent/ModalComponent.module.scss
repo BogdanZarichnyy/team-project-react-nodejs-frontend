@@ -5,13 +5,13 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.8);
-  z-index: 1200;
+  z-index: 100;
 }
 
 .modalBody {
@@ -19,9 +19,12 @@
 
   @include flex-center;
   background-color: getColor('clr-white');
-  border-radius: 40px;
+  border-radius: 20px;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   overflow: hidden;
+  @include tablet {
+    border-radius: 40px;
+  }
 }
 
 .modalCloseButton {
