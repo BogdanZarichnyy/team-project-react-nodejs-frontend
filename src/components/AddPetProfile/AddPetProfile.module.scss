@@ -67,6 +67,11 @@
   @include tablet {
     margin-bottom: 28px;
   }
+  &::-webkit-inner-spin-button,
+  &::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
 }
 
 .input::placeholder {
