@@ -5,6 +5,7 @@ import {
   loginUser,
   getCurrentUser,
   updateCurrentUser,
+  restorePassword,
 } from '../../api/userApi';
 import { getUserTokenSelector } from './userSelectors';
 import {
@@ -18,6 +19,8 @@ import {
   getUserFailure,
   updateUserSuccess,
   updateUserFailure,
+  restorePasswordFailure,
+  restorePasswordSuccess,
 } from './userSlice';
 
 function* workRegisterUserFetch({ payload }) {
@@ -72,6 +75,16 @@ function* workUpdateCurrentUser({ payload }) {
   }
 }
 
+function* workRestorePasswordUserFetch({ payload }) {
+  try {
+    yield call(restorePassword, payload);
+    yield put(restorePasswordSuccess());
+  } catch (error) {
+    console.log({ error });
+    yield put(restorePasswordFailure(error.message));
+  }
+}
+
 function* watchRegisterUser() {
   yield takeLatest('user/registerUserFetch', workRegisterUserFetch);
 }
@@ -91,6 +104,10 @@ function* watchUpdateCurrentUser() {
   yield takeLatest('user/updateUserFetch', workUpdateCurrentUser);
 }
 
+function* watchRestorePasswordUser() {
+  yield takeLatest('user/restorePasswordFetch', workRestorePasswordUserFetch);
+}
+
 export function* userSagas() {
   yield all([
     call(watchRegisterUser),
@@ -98,5 +115,6 @@ export function* userSagas() {
     call(watchLogOutUser),
     call(watchGetCurrentUser),
     call(watchUpdateCurrentUser),
+    call(watchRestorePasswordUser),
   ]);
 }

@@ -21,6 +21,9 @@ const NewsList = lazy(() => import('./pages/News/NewsList'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const Profile = lazy(() => import('./pages/Profile'));
+const RestorePasswordPage = lazy(() =>
+  import('./pages/LoginPage/RestorePasswordPage')
+);
 
 export const App = () => {
   return (
@@ -55,6 +58,15 @@ export const App = () => {
             element={
               <Suspense fallback={<Loader />}>
                 <RegisterPage />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path="restorePassword"
+            element={
+              <Suspense fallback={<Loader />}>
+                <RestorePasswordPage />
               </Suspense>
             }
           />
