@@ -2,6 +2,7 @@
 @import url('./stylesheets/fonts/fonts.css');
 @import './sass/utils/mixins';
 @import './sass/utils/container';
+@import './sass/utils/variables';
 @import './components/Auth/RegisterFormStepTwo/RegisterForm.css';
 *,
 ::after,
@@ -14,6 +15,7 @@
 
 body {
   font-family: 'Manrope-Medium', sans-serif;
+  background-color: getColor('clr-bg');
 }
 
 h1,
