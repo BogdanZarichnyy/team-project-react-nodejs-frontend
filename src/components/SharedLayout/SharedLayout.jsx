@@ -1,23 +1,15 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import { getUserLoadingSelector } from '../../store/user';
-import { getUserFetch } from '../../store/user/userSlice';
+import { motion } from 'framer-motion';
 
 import CookiesPopup from '../CookiesPopup';
-import Header from '../Header';
 import Loader from '../LoaderV1/Loader';
 
 import style from './SharedLayout.module.scss';
 
 const SharedLayout = () => {
-  const dispatch = useDispatch();
   const isDataLoading = useSelector(getUserLoadingSelector);
-
-  useEffect(() => {
-    dispatch(getUserFetch());
-  }, [dispatch]);
 
   const isSeenCookieBar = document.cookie
     .split('; ')
@@ -25,13 +17,14 @@ const SharedLayout = () => {
 
   return (
     <div className={style.layoutContainer}>
-      <div className={style.headerContainer}>
-        <Header />
-      </div>
-
-      <div className={style.outlets}>
-        {!isDataLoading ? <Outlet /> : <Loader />}
-      </div>
+      <motion.div
+        className={style.outlets}
+        initial={{ opacity: 0, transition: { duration: 0.25 } }}
+        animate={{ opacity: 1, transition: { duration: 0.25 } }}
+        exit={{ opacity: 0, transition: { duration: 0.25 } }}
+      >
+        {isDataLoading ? <Loader /> : <Outlet />}
+      </motion.div>
 
       {!isSeenCookieBar && <CookiesPopup />}
     </div>
