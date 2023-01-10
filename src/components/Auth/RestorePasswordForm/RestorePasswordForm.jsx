@@ -1,22 +1,16 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { NavLink } from 'react-router-dom';
-
-import s from '../Auth.module.scss';
+import ErrorText from '../../ErrorText';
 import InputBase from '../../InputBase/InputBase';
 import ButtonBase from '../../ButtonBase/ButtonBase';
-import ErrorText from '../../ErrorText';
 
-import { loginUserFetch } from '../../../store/user';
+import s from '../Auth.module.scss';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import style from '../../../layouts/AuthLayout/AuthLayout.module.scss';
+import { restorePasswordFetch } from '../../../store/user';
 
 const initialValues = {
   email: '',
-  password: '',
 };
 
 const validationSchema = Yup.object().shape({
@@ -29,20 +23,16 @@ const validationSchema = Yup.object().shape({
     .min(7, 'Email must be at least 7 characters long')
     .max(63, 'Email must be 63 characters maximum')
     .required('Required field to fill!'),
-  password: Yup.string()
-    .min(7, 'Password must be at least 7 characters long')
-    .max(32, 'Password must be 32 characters maximum')
-    .required('Required field to fill!'),
 });
 
-const LoginForm = () => {
+const RestorePasswordForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogin = async values => {
+  const handleMail = async values => {
     try {
-      await dispatch(loginUserFetch(values));
-      navigate('/user');
+      await dispatch(restorePasswordFetch(values));
+      navigate('/login');
     } catch (error) {
       console.log(error);
     }
@@ -54,7 +44,7 @@ const LoginForm = () => {
     validateOnMount: true,
     validateOnChange: true,
     validateOnBlur: true,
-    onSubmit: handleLogin,
+    onSubmit: handleMail,
   });
 
   const { values, handleChange, handleSubmit, handleBlur, touched, errors } =
@@ -64,7 +54,7 @@ const LoginForm = () => {
     <form className={s.form} onSubmit={handleSubmit}>
       {touched.email && errors.email ? <ErrorText text={errors.email} /> : null}
       <InputBase
-        styles={s.inputBottomMargin}
+        styles={s.inputRestorePassword}
         type="email"
         name="email"
         placeholder="Email"
@@ -72,28 +62,9 @@ const LoginForm = () => {
         onChange={handleChange}
         onBlur={handleBlur}
       />
-      {touched.password && errors.password ? (
-        <ErrorText text={errors.password} />
-      ) : null}
-      <InputBase
-        styles={s.inputLogin}
-        type="password"
-        name="password"
-        autocomplete="current-password"
-        id="current-password"
-        placeholder="Password"
-        value={values.password}
-        onChange={handleChange}
-        onBlur={handleBlur}
-      />
-      <div className={s.blockLink}>
-        <NavLink className={style.link} to="/restorePassword">
-          Forgot password
-        </NavLink>
-      </div>
-
-      <ButtonBase type="submit" text="Login" />
+      <ButtonBase type="submit" text="Send new password" />
     </form>
   );
 };
-export default LoginForm;
+
+export default RestorePasswordForm;

@@ -21,15 +21,15 @@ const initialValues = {
   breed: '',
   sex: '',
   location: '',
-  price: '',
+  price: '$',
   photo: {},
   comments: '',
 };
 
 const validationSchema = Yup.object({
   category: Yup.string().required('Category is required!'),
-  titleName: Yup.string().min(2).max(48).required('Field is required!'),
-  petName: Yup.string()
+  addTitle: Yup.string().min(2).max(48).required('Field is required!'),
+  name: Yup.string()
     .min(2)
     .max(16)
     .matches(
@@ -37,7 +37,7 @@ const validationSchema = Yup.object({
       'Only alphabetic characters are allowed'
     )
     .required('Field is required!'),
-  petDayOfBirth: Yup.date()
+  birthDate: Yup.date()
     .test('len', 'Must be exactly DD.MM.YYYY', (value, { originalValue }) => {
       if (originalValue) {
         return originalValue.length === 10;
@@ -88,9 +88,9 @@ const AddPetForm = () => {
   const formik = useFormik({
     initialValues,
     // validationSchema,
-    // validateOnMount: true,
-    // validateOnBlur: true,
-    // validateOnChange: true,
+    validateOnMount: true,
+    validateOnBlur: true,
+    validateOnChange: true,
     onSubmit: values => {
       const keys = Object.keys(values);
       const formData = new FormData();

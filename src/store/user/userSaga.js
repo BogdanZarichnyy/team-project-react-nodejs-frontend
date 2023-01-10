@@ -6,6 +6,7 @@ import {
   getCurrentUser,
   updateCurrentUser,
   updateAvatarUser,
+  restorePassword,
 } from '../../api/userApi';
 import { addNewPet, deletePet, getAllPets } from '../../api/petApi';
 import { getUserTokenSelector } from './userSelectors';
@@ -26,6 +27,8 @@ import {
   deletePetFailure,
   getPetsSuccess,
   getPetsFailure,
+  restorePasswordFailure,
+  restorePasswordSuccess,
 } from './userSlice';
 
 function* workRegisterUserFetch({ payload }) {
@@ -112,6 +115,26 @@ function* workGetPets() {
   }
 }
 
+function* workRestorePasswordUserFetch({ payload }) {
+  try {
+    yield call(restorePassword, payload);
+    yield put(restorePasswordSuccess());
+  } catch (error) {
+    console.log({ error });
+    yield put(restorePasswordFailure(error.message));
+  }
+}
+
+function* workRestorePasswordUserFetch({ payload }) {
+  try {
+    yield call(restorePassword, payload);
+    yield put(restorePasswordSuccess());
+  } catch (error) {
+    console.log({ error });
+    yield put(restorePasswordFailure(error.message));
+  }
+}
+
 function* watchRegisterUser() {
   yield takeLatest('user/registerUserFetch', workRegisterUserFetch);
 }
@@ -130,6 +153,10 @@ function* watchGetCurrentUser() {
 
 function* watchUpdateCurrentUser() {
   yield takeLatest('user/updateUserFetch', workUpdateCurrentUser);
+}
+
+function* watchRestorePasswordUser() {
+  yield takeLatest('user/restorePasswordFetch', workRestorePasswordUserFetch);
 }
 
 function* watchAddPet() {
@@ -151,6 +178,7 @@ export function* userSagas() {
     call(watchLogOutUser),
     call(watchGetCurrentUser),
     call(watchUpdateCurrentUser),
+    call(watchRestorePasswordUser),
     call(watchAddPet),
     call(watchDeletePet),
     call(watchGetPets),

@@ -11,6 +11,17 @@
 .inputBottomMargin {
   margin-bottom: 16px;
 }
-.inputSecondBottomMargin {
+.inputSecondBottomMargin,
+.inputRestorePassword {
   margin-bottom: 40px;
+}
+
+.blockLink {
+  display: flex;
+  max-width: 100%;
+  min-width: 90%;
+  margin-bottom: 40px;
+}
+.inputLogin {
+  margin-bottom: 4px;
 }

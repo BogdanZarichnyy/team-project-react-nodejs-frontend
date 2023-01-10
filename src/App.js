@@ -17,10 +17,14 @@ const OurFriendsPages = lazy(() =>
   import('./pages/OurFriendsPages/OurFriendsPages')
 );
 const NoticesPage = lazy(() => import('./pages/NoticesPage'));
+const NoticesCategoryList = lazy(() => import('../src/components/Notices/NoticesCategoriesList'))
 const NewsList = lazy(() => import('./pages/News/NewsList'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const Profile = lazy(() => import('./pages/Profile'));
+const RestorePasswordPage = lazy(() =>
+  import('./pages/LoginPage/RestorePasswordPage')
+);
 
 export const App = () => {
   return (
@@ -55,6 +59,15 @@ export const App = () => {
             element={
               <Suspense fallback={<Loader />}>
                 <RegisterPage />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path="restorePassword"
+            element={
+              <Suspense fallback={<Loader />}>
+                <RestorePasswordPage />
               </Suspense>
             }
           />
@@ -93,8 +106,40 @@ export const App = () => {
             <Suspense fallback={<Loader />}>
               <NoticesPage />
             </Suspense>
-          }
-        />
+            } >
+          <Route
+            path="sell"
+            element={
+              <NoticesCategoryList categoryType={"sell"} />
+            }
+          />
+          <Route
+            path="lost-found"
+            element={
+              <NoticesCategoryList categoryType={"lost-found"} />
+            }
+          />
+          <Route
+            path="for-free"
+            element={
+              <NoticesCategoryList categoryType={"for-free"} />
+            }
+          />
+            <Route element={<PrivateRoute />}>
+              <Route
+                path="favorite"
+                element={
+                  <NoticesCategoryList />
+                }
+              />
+              <Route
+                path="own"
+                element={
+                  <NoticesCategoryList />
+                }
+              />
+            </Route>            
+          </Route >
       </Route>
 
       <Route path="*" element={<span>Not Found</span>} />

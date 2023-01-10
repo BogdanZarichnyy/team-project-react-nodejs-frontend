@@ -23,6 +23,9 @@ export {
   getPetsFetch,
   getPetsSuccess,
   getPetsFailure,
+  restorePasswordFetch,
+  restorePasswordSuccess,
+  restorePasswordFailure,
 } from './userSlice';
 
 export { userSagas } from './userSaga';

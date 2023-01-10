@@ -12,6 +12,7 @@ import s from './ModalComponent.module.scss';
 const ModalComponent = () => {
   let { modalContent, handleModal, modal, modalStyle, submit } =
     useContext(ModalContext);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
