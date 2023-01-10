@@ -37,7 +37,7 @@ const AddPetProfileFormOne = ({ onNext, formik }) => {
       {isErrors && errors.birthDate && <ErrorText text={errors.birthDate} />}
       <InputBase
         styles={s.input}
-        type="text"
+        type="date"
         id="birthDate"
         name="birthDate"
         placeholder="Type day of birth"
