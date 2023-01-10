@@ -128,6 +128,7 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
           src={previewPhoto}
           alt="Pet"
           onClick={() => photoRef.current.click()}
+          className={s.image}
         />
       ) : (
         <div
@@ -156,7 +157,7 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
         <ErrorText text={errors.comments} />
       ) : null}
       <InputBase
-        styles={s.input}
+        styles={`${s.input} ${s.comments}`}
         type="text"
         name="comments"
         id="comments"

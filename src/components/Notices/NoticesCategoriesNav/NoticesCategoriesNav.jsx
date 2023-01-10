@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+
+import { getUserLoggedSelector } from '../../../store/user';
 
 import s from './NoticesCategoriesNav.module.scss';
 
 export default function NoticesCategoriesNav() {
-    const [isLogedIn, setisLoggedIn] = useState(true);
+    const isLoggedIn = useSelector(getUserLoggedSelector);
 
     return (
         <nav className={s.noticesNavigation}> 
@@ -12,25 +14,25 @@ export default function NoticesCategoriesNav() {
                 <li className={s.noticesListItem}>
                     <NavLink
                         className={({ isActive }) => (isActive ? s.noticesLinkCurrent : s.noticesLink)}
-                        to="/notices/lost-found">
+                        to="lost-found">
                         lost/found
                     </NavLink>
                 </li>
                 <li className={s.noticesListItem}>
                     <NavLink
                         className={({ isActive }) => (isActive ? s.noticesLinkCurrent : s.noticesLink)}
-                        to="/notices/for-free">
+                        to="for-free">
                         in good hands
                     </NavLink>
                 </li>
                 <li className={s.noticesListItem}>
                     <NavLink
                         className={({ isActive }) => (isActive ? s.noticesLinkCurrent : s.noticesLink)}
-                        to="/notices/sell">
+                        to="sell">
                         sell
                     </NavLink>
                 </li>
-                {isLogedIn &&
+                {isLoggedIn &&
                     <>
                         <li className={s.noticesListItem}>
                             <NavLink

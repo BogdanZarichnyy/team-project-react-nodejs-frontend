@@ -1,59 +1,81 @@
-import s from './ModalNotice.module.scss';
-import img from '../../../images/about.png';
-import sprite from '../../../images/sprite.svg';
+import moment from 'moment';
 
-export default function ModalNotice({ isAddedTofavorite, onClick }) {
+import IconComponent from '../../IconComponent';
+
+import s from './ModalNotice.module.scss';
+import defaultImage from '../../../images/defaultImage.png';
+
+export default function ModalNotice({ notice, onClick }) {
+
 
     return (
         <>
             <div className={s.modalThumb}>
                 <div className={s.modalInfoWrapper}>
                     <div className={s.noticeThumb}>
-                        <img className={s.noticeImage} src={img} alt="Pet"/>
-                        <p className={s.categoryType}>In good hands</p>                    
+                        <img className={s.noticeImage} src={notice.photo === '' ? defaultImage : notice.photo} alt="Pet"/>
+                        <p className={s.categoryType}>{notice.category}</p>                    
                     </div>
                     <div className={s.noticeDecription}>
-                        <h3 className={s.noticeTitle}>Сute dog looking for a home</h3>
+                        <h3 className={s.noticeTitle}>{notice.addTitle}</h3>
                         <ul className={s.petInfoList}>
                             <li className={s.petInfoLItem}>
                                 <p className={s.petInfoLType}>Name:</p>
-                                <p className={s.petInfoLValue}>Rich</p>
+                                <p className={s.petInfoLValue}>{notice.name}</p>
                             </li>
                             <li className={s.petInfoLItem}>
                                 <p className={s.petInfoLType}>Birthday:</p>
-                                <p className={s.petInfoLValue}>21.09.2020</p>
+                                <p className={s.petInfoLValue}>{moment(notice.birthDate).format('DD.MM.YYYY')}</p>
                             </li>
+                            {notice.family !== '' &&
+                                <li className={s.petInfoLItem}>
+                                <p className={s.petInfoLType}>Species:</p>
+                                <p className={s.petInfoLValue}>{notice.family}</p>
+                                </li>
+                            }
                             <li className={s.petInfoLItem}>
                                 <p className={s.petInfoLType}>Breed:</p>
-                                <p className={s.petInfoLValue}>Pomeranian</p>
+                                <p className={s.petInfoLValue}>{notice.breed}</p>
                             </li>
                             <li className={s.petInfoLItem}>
-                                <p className={s.petInfoLType}>Location:</p>
-                                <p className={s.petInfoLValue}>Lviv</p>
+                                <p className={s.petInfoLType}>Place:</p>
+                                <p className={s.petInfoLValue}>{notice.location}</p>
                             </li>
                             <li className={s.petInfoLItem}>
                                 <p className={s.petInfoLType}>The sex:</p>
-                                <p className={s.petInfoLValue}>male</p>
+                                <p className={s.petInfoLValue}>{notice.sex}</p>
                             </li>
+                            {notice.passport !== '' &&
+                                <li className={s.petInfoLItem}>
+                                    <p className={s.petInfoLType}>Passport:</p>
+                                    <p className={s.petInfoLValueLink}><a className={s.petInfoLValueLink} href={notice.passport}>View file</a></p>
+                                </li>
+                            }
                             <li className={s.petInfoLItem}>
                                 <p className={s.petInfoLType}>Email:</p>
-                                <p className={s.petInfoLValue}>user@mail.com</p>
+                                <p className={s.petInfoLValue}>{notice?.owner?.email}</p>
                             </li>
                             <li className={s.petInfoLItem}>
                                 <p className={s.petInfoLType}>Phone:</p>
-                                <p className={s.petInfoLValue}>+380971234567</p>
+                                <p className={s.petInfoLValue}>{notice?.owner?.phone}</p>
                             </li>
+                            {notice.price !== null && notice.price !== '' && 
+                                <li className={s.petInfoLItem}>
+                                    <p className={s.petInfoLType}>Sell:</p>
+                                    <p className={s.petInfoLValue}>{notice.price}</p>
+                                </li>
+                            } 
                         </ul>
                     </div>                    
-                </div>               
-                <p className={s.petInfoLTypeComment}>Comments: <span className={s.petInfoLValueComment}>Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur  Lorem ipsum dolor sit amet, consectetur Lorem</span></p>
+                </div>
+                {notice.comments !== '' && 
+                    <p className={s.petInfoLTypeComment}>Comments: <span className={s.petInfoLValueComment}>{notice.comments}</span></p>
+                }                
                 <div className={s.noticeButtonsThumb}>
-                    <a className={s.noticeContactButton} href="tell:+380971234567">Contact</a>
-                    <button className={s.noticeFavoriteButton} onClick={onClick}> {isAddedTofavorite ? 'Remove from' : 'Add to'}
-                        <svg className={s.favoriteIcon}>
-                            <use id="favoriteIcon" href={`${sprite}#favoriteIcon`} ></use>
-                        </svg>
-                     </button>
+                    <a className={s.noticeContactButton} href={`tell:${notice?.owner?.phone}`}>Contact</a>
+                    <button className={s.noticeFavoriteButton} onClick={onClick}>Add to
+                        <IconComponent classname={s.favoriteIcon} iconname="favoriteIcon"/>
+                    </button>
                 </div>
             </div>            
         </>        

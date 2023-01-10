@@ -7,18 +7,21 @@ const NavigationLinks = ({ isMobile, closeMobileMenu }) => {
   const animateFrom = { opacity: 0, y: -40 };
   const animateTo = { opacity: 1, y: 0 };
 
-  const animateFromForUl = { opacity: 0, y: -200 };
+  const animateFromForUl = { y: '-100vh' };
+  const animateExit = { y: '-100vh', duration: 2000 };
 
   return (
     <motion.ul
       initial={animateFromForUl}
       animate={animateTo}
+      exit={animateExit}
+      transition={{ duration: 0.4 }}
       className={s.nav_list}
     >
       <motion.li
         initial={animateFrom}
         animate={animateTo}
-        transition={{ delay: 0.05 }}
+        transition={{ delay: 0.3 }}
         onClick={() => {
           isMobile && closeMobileMenu();
         }}
@@ -31,12 +34,12 @@ const NavigationLinks = ({ isMobile, closeMobileMenu }) => {
       <motion.li
         initial={animateFrom}
         animate={animateTo}
-        transition={{ delay: 0.1 }}
+        transition={{ delay: 0.35 }}
         onClick={() => {
           isMobile && closeMobileMenu();
         }}
       >
-        <NavLink to="/notices" className={s.nav_item}>
+        <NavLink to="/notices/sell" className={s.nav_item}>
           <span>Find pet</span>
         </NavLink>
       </motion.li>
@@ -44,7 +47,7 @@ const NavigationLinks = ({ isMobile, closeMobileMenu }) => {
       <motion.li
         initial={animateFrom}
         animate={animateTo}
-        transition={{ delay: 0.2 }}
+        transition={{ delay: 0.45 }}
         onClick={() => {
           isMobile && closeMobileMenu();
         }}

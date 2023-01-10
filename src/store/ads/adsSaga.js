@@ -19,7 +19,6 @@ import {
 function* workGetSellAdsFetch({ payload }) {
   try {
     const data = yield call(getSellAds);
-    console.log(data);
     yield put(getSellAdsSuccess(data));
   } catch (error) {
     yield put(getSellAdsFailure(error.message));

@@ -7,13 +7,16 @@
     height: 885px;
     width: 608px;
   }
+  @include desktop {
+    height: 1122px;
+  }
 }
 
 .form {
   padding: 40px 20px;
   display: flex;
   height: 100%;
-  width: 100%;
+  width: 280px;
   flex-direction: column;
   font-family: 'Manrope-Regular';
 
@@ -21,6 +24,11 @@
     width: 443px;
     padding: 0;
   }
+}
+
+.image {
+  width: 140px;
+  height: 140px;
 }
 
 .title {
@@ -37,6 +45,9 @@
   margin-bottom: 20px;
   text-align: center;
   @include tablet {
+    font-size: 20px;
+  }
+  @include desktop {
     font-size: 20px;
   }
 }
@@ -95,6 +106,10 @@
   flex-direction: column;
   position: relative;
   cursor: pointer;
+  font-size: 18px;
+  @include tablet {
+    font-size: 24px;
+  }
 }
 
 .sexInput {
@@ -162,6 +177,7 @@
   border: solid 1px #f59256;
   background: #fff;
   color: #111111;
+  margin: 0;
   @include tablet {
     font-size: 20px;
   }
@@ -223,3 +239,5 @@
   appearance: none;
   cursor: pointer;
 }
+
+

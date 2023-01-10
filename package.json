@@ -14,6 +14,7 @@
     "formik": "^2.2.9",
     "framer-motion": "^8.0.2",
     "modern-normalize": "^1.1.0",
+    "moment": "^2.29.4",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-avatar-edit": "^1.2.0",
