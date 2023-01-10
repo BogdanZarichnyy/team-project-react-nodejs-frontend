@@ -32,3 +32,10 @@ export const updateCurrentUser = async userData => {
     .catch(apiErrorHandler);
   return data;
 };
+
+export const restorePassword = async email => {
+  const { data } = await userApi
+    .post('forgot_password', email)
+    .catch(apiErrorHandler);
+  return data;
+};

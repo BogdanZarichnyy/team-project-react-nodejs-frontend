@@ -84,6 +84,18 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
+    restorePasswordFetch: (state, { payload }) => {
+      state.isLoading = true;
+    },
+    restorePasswordSuccess: state => {
+      state.isLoading = false;
+      state.error = false;
+    },
+    restorePasswordFailure: (state, { payload }) => {
+      state.isLoggedIn = false;
+      state.isLoading = false;
+      state.error = payload;
+    },
   },
 });
 
@@ -103,6 +115,9 @@ export const {
   updateUserFetch,
   updateUserSuccess,
   updateUserFailure,
+  restorePasswordFetch,
+  restorePasswordSuccess,
+  restorePasswordFailure,
 } = userSlice.actions;
 
 export default userSlice.reducer;

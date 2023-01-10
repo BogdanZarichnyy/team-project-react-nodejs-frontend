@@ -14,6 +14,9 @@ export {
   updateUserFetch,
   updateUserSuccess,
   updateUserFailure,
+  restorePasswordFetch,
+  restorePasswordSuccess,
+  restorePasswordFailure,
 } from './userSlice';
 
 export { userSagas } from './userSaga';

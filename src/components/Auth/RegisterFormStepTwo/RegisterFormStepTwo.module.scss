@@ -13,6 +13,7 @@
   font-family: 'Manrope-Regular';
   font-size: 14px;
   line-height: 19px;
+  @include transition-animation(all);
 
   @include tablet {
     height: 52px;

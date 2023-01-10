@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; // , { useEffect }
+import React, { useState } from 'react';
 import InputBase from '../../InputBase/InputBase';
 import ButtonBase from '../../ButtonBase/ButtonBase';
 import ErrorText from '../../ErrorText';
