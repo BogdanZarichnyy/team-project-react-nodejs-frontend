@@ -82,6 +82,9 @@ const userSlice = createSlice({
       state.error = false;
     },
     updateUserFailure: (state, { payload }) => {
+      if (payload.response.status < 200 || payload.response.status <= 300) {
+        state.userData = { ...state.userData, avatar: '' };
+      }
       state.isLoading = false;
       state.error = payload;
     },
@@ -95,7 +98,7 @@ const userSlice = createSlice({
     },
     addPetFailure: (state, { payload }) => {
       state.isLoading = false;
-      state.error = payload;
+      state.error = payload.error;
     },
     deletePetFetch: state => {
       state.isLoading = true;

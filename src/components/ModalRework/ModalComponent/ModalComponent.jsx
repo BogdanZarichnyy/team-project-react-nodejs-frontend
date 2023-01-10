@@ -13,7 +13,7 @@ const ModalComponent = () => {
   let { modalContent, handleModal, modal, modalStyle, submit } =
     useContext(ModalContext);
   const dispatch = useDispatch();
-  console.log(submit);
+
   useEffect(() => {
     function handleToggleModalByEsc(evt) {
       let { code } = evt;
@@ -37,9 +37,10 @@ const ModalComponent = () => {
     }
   };
 
-  const handleSubmit = () => {
-    console.log('submit', submit.get('avatar'));
+  const handleSubmit = e => {
+    e.preventDefault();
     dispatch(updateUserFetch(submit));
+    handleModal();
   };
 
   return modal

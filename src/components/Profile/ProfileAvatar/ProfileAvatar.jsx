@@ -13,15 +13,13 @@ import s from './ProfileAvatar.module.scss';
 const ProfileAvatar = () => {
   const photo = useSelector(getUserAvatarSelector);
   const [img, setImg] = useState(photo ? photo : null); //TODO проверить работоспособность
-  const [imgName, setImgName] = useState('');
-  const [imgType, setImgType] = useState('');
   const { handleModal } = useContext(ModalContext);
   const formData = new FormData();
 
   // TODO Удалить, если юзстейт работает корректно.
-  // useEffect(() => {
-  //   photo ?? setImg(photo);
-  // }, [photo]);
+  useEffect(() => {
+    photo ?? setImg(photo);
+  }, [photo]);
 
   const handleClickOpen = () => {
     handleModal(
@@ -32,14 +30,13 @@ const ProfileAvatar = () => {
         minCropRadius={50}
         exportQuality={1.0}
         onCrop={onCrop}
-        onFileLoad={onFileLoad}
         onClose={onClose}
         label={'Click or Drag image here!'}
         onBeforeFileLoad={onBeforeFileLoad}
         className={s.avatarField}
       />,
       s.modalBody,
-      formData //TODO этот компонент заменить на хэндлер отправки картинки на сервер, передам ему img и прокинуть его в кнопку
+      formData
     );
   };
 
@@ -49,14 +46,11 @@ const ProfileAvatar = () => {
 
   const onCrop = imgPreview => {
     setImg(imgPreview);
-    urltoFile(imgPreview, imgName, imgType).then(data =>
-      formData.append('avatar', data, imgName)
-    );
-  };
 
-  const onFileLoad = file => {
-    setImgName(file.type);
-    setImgType(file.name);
+    urltoFile(imgPreview, 'avatar').then(data => {
+      formData.delete('avatar');
+      formData.append('avatar', data, 'avatar');
+    });
   };
 
   const onBeforeFileLoad = elem => {

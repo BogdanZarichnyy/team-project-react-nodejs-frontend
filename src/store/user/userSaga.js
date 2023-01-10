@@ -79,7 +79,12 @@ function* workUpdateCurrentUser({ payload }) {
     }
     yield put(updateUserSuccess(data.user));
   } catch (error) {
-    yield put(updateUserFailure(error.message));
+    // if (payload instanceof FormData) {
+    //   yield put(updateUserFailure({ error: error.message, avatar: true }));
+    // } else {
+    //   yield put(updateUserFailure({ error: error.message, avatar: false }));
+    // }
+    yield put(updateUserFailure(error));
   }
 }
 

@@ -27,15 +27,13 @@ export const getCurrentUser = async persistedToken => {
 };
 
 export const updateCurrentUser = async userData => {
-  const { data } = await userApi
-    .patch('profile', userData)
-    .catch(apiErrorHandler);
+  const { data } = await userApi.patch('profile', userData);
+  // .catch(apiErrorHandler);
   return data;
 };
 
 export const updateAvatarUser = async userData => {
-  const { data } = await userApi
-    .post('avatar', userData)
-    .catch(apiErrorHandler);
+  const { data } = await userApi.post('avatar', userData);
+  // .catch(apiErrorHandler);
   return data;
 };
