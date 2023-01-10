@@ -1,6 +1,13 @@
 @import '../../sass/utils/variables';
 @import '../../sass/utils/mixins';
 
+.modalBody {
+  padding: 40px 20px;
+  @include tablet {
+    padding: 40px 80px;
+  }
+}
+
 .addPetButton {
   @include flex-center;
 

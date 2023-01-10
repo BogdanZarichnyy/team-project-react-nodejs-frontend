@@ -38,7 +38,7 @@ const Profile = () => {
       <section className={s.profileContainer}>
         <div className={s.petsHeaderThumb}>
           <h2 className={s.profileHeader}>My pets:</h2>
-          <AddPetButton handleClick={handleAddPet} />
+          <AddPetButton />
         </div>
         <div className={s.petsThumb}>
           <ul>
