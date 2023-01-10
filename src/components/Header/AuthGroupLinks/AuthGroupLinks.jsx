@@ -14,7 +14,7 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
 
   const animateFrom = { opacity: 0, y: -40 };
   const animateTo = { opacity: 1, y: 0 };
-  const animateExit = { y: '-100vh', duration: 2000 };
+  const animateExit = { y: '-100vh', transition: { duration: 0.25 } };
 
   return (
     <>
