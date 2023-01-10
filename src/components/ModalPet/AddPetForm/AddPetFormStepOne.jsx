@@ -74,7 +74,6 @@ const AddPetFormStepOne = ({ onNext, formik }) => {
         placeholder="Type pet name"
         value={values.addTitle}
         onChange={handleChange}
-        required
       />
       <label className={s.label}>Name pet</label>
       {isErrors && errors.name && <ErrorText text={errors.name} />}
