@@ -17,6 +17,12 @@ export {
   toggleFavoriteFetch,
   toggleFavoriteSuccess,
   toggleFavoriteFailure,
+  getFavoriteAdsFetch,
+  getFavoriteAdsSuccess,
+  getFavoriteAdsFailure,
+  getUserAdsFetch,
+  getUserAdsSuccess,
+  getUserAdsFailure,
 } from './adsSlice';
 
 export { adsSagas } from './adsSaga';

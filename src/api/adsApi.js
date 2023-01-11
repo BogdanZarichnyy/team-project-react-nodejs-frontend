@@ -26,7 +26,6 @@ export const addNewAds = async adsData => {
 
 export const deleteAds = async adsData => {
   const { data } = await adsApi.delete(`${adsData}`).catch(apiErrorHandler);
-  console.log('api', data);
   return data;
 };
 
@@ -34,6 +33,17 @@ export const toggleFavoriteAds = async adsData => {
   const { data } = await adsApi
     .post(`/favorites/${adsData}`)
     .catch(apiErrorHandler);
-  console.log('api', data);
+  return data;
+};
+
+export const getFavoriteAds = async () => {
+  const { data } = await adsApi.get('/favorites').catch(apiErrorHandler);
+  console.log('favorite api', data);
+  return data;
+};
+
+export const getOwnAds = async () => {
+  const { data } = await adsApi.get('/my_notices').catch(apiErrorHandler);
+  console.log('own api', data);
   return data;
 };

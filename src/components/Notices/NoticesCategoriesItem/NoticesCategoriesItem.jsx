@@ -26,7 +26,6 @@ export default function NoticesCategoriesItem({ notice }) {
       return;
     }
     dispatch(toggleFavoriteFetch(notice._id));
-    console.log(notice._id);
     setAddedToFavorite(!addedToFavorite);
     event.currentTarget.blur();
   };
@@ -95,7 +94,8 @@ export default function NoticesCategoriesItem({ notice }) {
             <li className={s.petInfoLItem}>
               <p className={s.petInfoLType}>Age:</p>
               <p className={s.petInfoLValue}>
-                {moment(notice.birthDate).startOf('day').fromNow(true)}
+                {notice.birthDate &&
+                  moment(notice.birthDate).startOf('day').fromNow(true)}
               </p>
             </li>
             {notice.price !== null && notice.price !== '' && (

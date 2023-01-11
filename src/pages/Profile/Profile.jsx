@@ -1,13 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  getSellAdsFetch,
-  getFoundAdsFetch,
-  getShareAdsFetch,
-  deleteAdsFetch,
-} from '../../store/ads/';
-
 import ProfilePet from '../../components/Profile/ProfilePet';
 import ProfileAvatar from '../../components/Profile/ProfileAvatar';
 import ProfileContactsList from '../../components/Profile/ProfileContactsList';
@@ -19,20 +12,18 @@ import s from './Profile.module.scss';
 const Profile = () => {
   const dispatch = useDispatch();
   const petsArr = useSelector(getPetsSelector);
+  const firstLoad = useSelector(state => state.user.firstLoad);
 
   // Постоянный ререндер, несмотря на массив зависимостей!
   // useEffect(() => {
-  //   dispatch(getPetsFetch());
-  // }, []);
-  useEffect(() => {
-    if (!petsArr) {
-      dispatch(getPetsFetch());
-    }
-  }, [dispatch, petsArr]);
+  //   if (firstLoad) {
+  //     dispatch(getPetsFetch());
+  //   }
+  // }, [dispatch, firstLoad]);
 
-  const handleAddPet = async () => {
-    dispatch(getShareAdsFetch());
-  };
+  useEffect(() => {
+    dispatch(getPetsFetch());
+  }, []);
 
   return (
     <section className={`container ${s.containerDesktop}`}>
@@ -63,25 +54,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-//sample data here
-// const petsArr = [
-//   {
-//     _id: 1,
-//     photo: 'https://picsum.photos/300',
-//     name: 'Jack',
-//     date: '22.04.2018',
-//     breed: 'Persian cat',
-//     comments:
-//       'Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur',
-//   },
-//   {
-//     _id: 2,
-//     photo: 'https://picsum.photos/300',
-//     name: 'Black',
-//     date: '26.02.2017',
-//     breed: 'Basenji',
-//     comments:
-//       'Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur',
-//   },
-// ];
