@@ -5,7 +5,10 @@ import {
   loginUser,
   getCurrentUser,
   updateCurrentUser,
+  updateAvatarUser,
+  restorePassword,
 } from '../../api/userApi';
+import { addNewPet, deletePet, getAllPets } from '../../api/petApi';
 import { getUserTokenSelector } from './userSelectors';
 import {
   registerUserSuccess,
@@ -18,6 +21,14 @@ import {
   getUserFailure,
   updateUserSuccess,
   updateUserFailure,
+  addPetSuccess,
+  addPetFailure,
+  deletePetSuccess,
+  deletePetFailure,
+  getPetsSuccess,
+  getPetsFailure,
+  restorePasswordFailure,
+  restorePasswordSuccess,
 } from './userSlice';
 
 function* workRegisterUserFetch({ payload }) {
@@ -64,11 +75,53 @@ function* workGetCurrentUser() {
 }
 
 function* workUpdateCurrentUser({ payload }) {
+  let data;
   try {
-    const { user } = yield call(updateCurrentUser, payload);
-    yield put(updateUserSuccess(user));
+    if (payload instanceof FormData) {
+      data = yield call(updateAvatarUser, payload);
+    } else {
+      data = yield call(updateCurrentUser, payload);
+    }
+    yield put(updateUserSuccess(data.user));
   } catch (error) {
-    yield put(updateUserFailure(error.message));
+    yield put(updateUserFailure(error));
+  }
+}
+
+function* workAddPet({ payload }) {
+  try {
+    const { data } = yield call(addNewPet, payload);
+    yield put(addPetSuccess(data));
+  } catch (error) {
+    yield put(addPetFailure(error.message));
+  }
+}
+
+function* workDeletePet({ payload }) {
+  try {
+    const { ad } = yield call(deletePet, payload);
+    yield put(deletePetSuccess(ad));
+  } catch (error) {
+    yield put(deletePetFailure(error.message));
+  }
+}
+
+function* workGetPets() {
+  try {
+    const data = yield call(getAllPets);
+    yield put(getPetsSuccess(data));
+  } catch (error) {
+    yield put(getPetsFailure(error.message));
+  }
+}
+
+function* workRestorePasswordUserFetch({ payload }) {
+  try {
+    yield call(restorePassword, payload);
+    yield put(restorePasswordSuccess());
+  } catch (error) {
+    console.log({ error });
+    yield put(restorePasswordFailure(error.message));
   }
 }
 
@@ -87,8 +140,25 @@ function* watchLogOutUser() {
 function* watchGetCurrentUser() {
   yield takeLatest('user/getUserFetch', workGetCurrentUser);
 }
+
 function* watchUpdateCurrentUser() {
   yield takeLatest('user/updateUserFetch', workUpdateCurrentUser);
+}
+
+function* watchRestorePasswordUser() {
+  yield takeLatest('user/restorePasswordFetch', workRestorePasswordUserFetch);
+}
+
+function* watchAddPet() {
+  yield takeLatest('user/addPetFetch', workAddPet);
+}
+
+function* watchDeletePet() {
+  yield takeLatest('user/deletePetFetch', workDeletePet);
+}
+
+function* watchGetPets() {
+  yield takeLatest('user/getPetsFetch', workGetPets);
 }
 
 export function* userSagas() {
@@ -98,5 +168,9 @@ export function* userSagas() {
     call(watchLogOutUser),
     call(watchGetCurrentUser),
     call(watchUpdateCurrentUser),
+    call(watchRestorePasswordUser),
+    call(watchAddPet),
+    call(watchDeletePet),
+    call(watchGetPets),
   ]);
 }

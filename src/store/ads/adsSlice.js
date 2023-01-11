@@ -62,6 +62,35 @@ const adsSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
+    deleteAdsFetch: state => {
+      state.isLoading = true;
+    },
+    deleteAdsSuccess: (state, { payload }) => {
+      state[payload.category] = state[payload.category].filter(
+        obj => obj._id !== payload._id
+      );
+      state.isLoading = false;
+      state.error = false;
+    },
+    deleteAdsFailure: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
+    toggleFavoriteFetch: state => {
+      state.isLoading = true;
+    },
+    toggleFavoriteSuccess: (state, { payload }) => {
+      const favoriteItem = state[payload.category].findIndex(
+        obj => obj._id === payload._id
+      );
+      state[payload.category][favoriteItem] = payload;
+      state.isLoading = false;
+      state.error = false;
+    },
+    toggleFavoriteFailure: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
   },
 });
 
@@ -78,6 +107,12 @@ export const {
   addNewAdsFetch,
   addNewAdsSuccess,
   addNewAdsFailure,
+  deleteAdsFetch,
+  deleteAdsSuccess,
+  deleteAdsFailure,
+  toggleFavoriteFetch,
+  toggleFavoriteSuccess,
+  toggleFavoriteFailure,
 } = adsSlice.actions;
 
 export default adsSlice.reducer;

@@ -4,11 +4,11 @@ const ModalHook = () => {
   let [modal, setModal] = useState(false);
   let [modalContent, setModalContent] = useState('');
   let [modalStyle, setModalStyle] = useState('');
-  let [submit, setsubmit] = useState(false);
+  let [submit, setSubmit] = useState(null);
 
-  let handleModal = (component = false, style = null, submit = false) => {
+  let handleModal = (component = false, style = null, submit = null) => {
     setModal(!modal);
-    setsubmit(submit);
+    setSubmit(submit);
     setModalStyle(style);
 
     if (component) {

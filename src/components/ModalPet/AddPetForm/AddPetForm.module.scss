@@ -1,19 +1,12 @@
 @import '../../../sass/utils/variables';
 @import '../../../sass/utils/mixins';
 
-.modalProvider {
-  height: 813px;
-  @include tablet {
-    height: 885px;
-    width: 608px;
-  }
-}
+
 
 .form {
-  padding: 40px 20px;
   display: flex;
   height: 100%;
-  width: 100%;
+  width: 280px;
   flex-direction: column;
   font-family: 'Manrope-Regular';
 
@@ -21,6 +14,11 @@
     width: 443px;
     padding: 0;
   }
+}
+
+.image {
+  width: 140px;
+  height: 140px;
 }
 
 .title {
@@ -37,6 +35,9 @@
   margin-bottom: 20px;
   text-align: center;
   @include tablet {
+    font-size: 20px;
+  }
+  @include desktop {
     font-size: 20px;
   }
 }
@@ -95,6 +96,10 @@
   flex-direction: column;
   position: relative;
   cursor: pointer;
+  font-size: 18px;
+  @include tablet {
+    font-size: 24px;
+  }
 }
 
 .sexInput {
@@ -147,6 +152,11 @@
   @include tablet {
     margin-bottom: 28px;
   }
+  &::-webkit-inner-spin-button,
+  &::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
 }
 
 .input::placeholder {
@@ -162,6 +172,7 @@
   border: solid 1px #f59256;
   background: #fff;
   color: #111111;
+  margin: 0;
   @include tablet {
     font-size: 20px;
   }
@@ -180,6 +191,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  margin-top: 24px;
 
   @include tablet {
     flex-direction: row;
@@ -223,3 +235,37 @@
   appearance: none;
   cursor: pointer;
 }
+
+.textarea {
+  resize: none;
+  overflow: hidden;
+  min-height: 40px;
+  max-height: 137px;
+  padding: 12px 11px;
+
+  background-color: getColor('clr-bg');
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+
+  font-family: 'Manrope-Regular';
+  font-size: 14px;
+
+@include tablet {
+  min-height: 113px;
+  max-height: 191px;
+  padding: 16px 18px;
+
+  font-size: 18px;
+}
+}
+
+.textarea:focus {
+  outline: none;
+  border: 2px solid #f59256;
+}
+
+.ligth {
+  background-color: rgb(192, 182, 182);
+}
+
+

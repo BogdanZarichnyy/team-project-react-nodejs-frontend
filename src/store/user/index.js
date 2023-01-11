@@ -14,6 +14,18 @@ export {
   updateUserFetch,
   updateUserSuccess,
   updateUserFailure,
+  addPetFetch,
+  addPetSuccess,
+  addPetFailure,
+  deletePetFetch,
+  deletePetSuccess,
+  deletePetFailure,
+  getPetsFetch,
+  getPetsSuccess,
+  getPetsFailure,
+  restorePasswordFetch,
+  restorePasswordSuccess,
+  restorePasswordFailure,
 } from './userSlice';
 
 export { userSagas } from './userSaga';
@@ -25,4 +37,5 @@ export {
   getUserAvatarSelector,
   getUserTokenSelector,
   getUserLoggedSelector,
+  getPetsSelector,
 } from './userSelectors';

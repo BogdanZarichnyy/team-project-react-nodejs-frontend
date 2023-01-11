@@ -1,7 +1,9 @@
 import { adsApi, apiErrorHandler } from './main';
 
 export const getShareAds = async () => {
-  const { data } = await adsApi.get('?category=inGoodHands').catch(apiErrorHandler);
+  const { data } = await adsApi
+    .get('?category=inGoodHands')
+    .catch(apiErrorHandler);
   return data;
 };
 
@@ -19,6 +21,19 @@ export const getFoundAds = async () => {
 
 export const addNewAds = async adsData => {
   const { data } = await adsApi.post(null, adsData).catch(apiErrorHandler);
+  return data;
+};
+
+export const deleteAds = async adsData => {
+  const { data } = await adsApi.delete(`${adsData}`).catch(apiErrorHandler);
+  console.log('api', data);
+  return data;
+};
+
+export const toggleFavoriteAds = async adsData => {
+  const { data } = await adsApi
+    .post(`/favorites/${adsData}`)
+    .catch(apiErrorHandler);
   console.log('api', data);
   return data;
 };

@@ -21,15 +21,15 @@ const initialValues = {
   breed: '',
   sex: '',
   location: '',
-  price: '',
+  price: '$',
   photo: {},
   comments: '',
 };
 
 const validationSchema = Yup.object({
   category: Yup.string().required('Category is required!'),
-  titleName: Yup.string().min(2).max(48).required('Field is required!'),
-  petName: Yup.string()
+  addTitle: Yup.string().min(2).max(48).required('Field is required!'),
+  name: Yup.string()
     .min(2)
     .max(16)
     .matches(
@@ -37,7 +37,7 @@ const validationSchema = Yup.object({
       'Only alphabetic characters are allowed'
     )
     .required('Field is required!'),
-  petDayOfBirth: Yup.date()
+  birthDate: Yup.date()
     .test('len', 'Must be exactly DD.MM.YYYY', (value, { originalValue }) => {
       if (originalValue) {
         return originalValue.length === 10;
@@ -68,14 +68,14 @@ const validationSchema = Yup.object({
     .matches(/\D/g, 'Only alphabetic characters are allowed')
     .required('Field is required!'),
   price: Yup.string()
-    .min(2)
+    .min(1)
     .max(10)
     .matches(
-      /^[1-9]+[0-9]*\$$/g,
+      /^([1-9]+[0-9]*)*\$$/,
       'Only number characters and $ are allowed, e.g. 50$'
     )
     .required('Field is required!'),
-  image: Yup.mixed().required('Image is required! (jpg, jpeg, png)'),
+  photo: Yup.mixed().required('Image is required! (jpg, jpeg, png)'),
   comments: Yup.string().min(8).max(120).required('Field is required!'),
 });
 
@@ -87,10 +87,10 @@ const AddPetForm = () => {
 
   const formik = useFormik({
     initialValues,
-    // validationSchema,
-    // validateOnMount: true,
-    // validateOnBlur: true,
-    // validateOnChange: true,
+    validationSchema,
+    validateOnMount: true,
+    validateOnBlur: true,
+    validateOnChange: true,
     onSubmit: values => {
       const keys = Object.keys(values);
       const formData = new FormData();
@@ -101,7 +101,7 @@ const AddPetForm = () => {
 
       dispatch(addNewAdsFetch(formData));
 
-      // handleModal();
+      handleModal();
     },
   });
 

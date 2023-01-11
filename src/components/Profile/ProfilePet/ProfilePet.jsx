@@ -1,10 +1,18 @@
+import { useDispatch } from 'react-redux';
+import { deletePetFetch } from '../../../store/user';
+
 import IconComponent from '../../IconComponent';
 
 import s from './ProfilePet.module.scss';
 
-const ProfilePet = ({ pet: { _id, photo, name, date, breed, comments } }) => {
+const ProfilePet = ({
+  pet: { _id, photo, name, birthDate, breed, comments },
+}) => {
+  const dispatch = useDispatch();
+
   const handleDelete = () => {
-    console.log(_id);
+    // console.log(_id);
+    dispatch(deletePetFetch(_id));
   };
 
   return (
@@ -15,7 +23,10 @@ const ProfilePet = ({ pet: { _id, photo, name, date, breed, comments } }) => {
           Name: <span className={s.petFeatureDetail}>{name}</span>
         </p>
         <p className={s.petFeature}>
-          Date of birth: <span className={s.petFeatureDetail}>{date}</span>
+          Date of birth:{' '}
+          <span className={s.petFeatureDetail}>
+            {birthDate.substring(0, 10)}
+          </span>
         </p>
         <p className={s.petFeature}>
           Breed: <span className={s.petFeatureDetail}>{breed}</span>

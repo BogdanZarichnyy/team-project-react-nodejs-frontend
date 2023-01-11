@@ -12,13 +12,13 @@ import s from './ProfileAvatar.module.scss';
 
 const ProfileAvatar = () => {
   const photo = useSelector(getUserAvatarSelector);
-  const [img, setImg] = useState(photo ? photo : null); //TODO проверить работоспособность
+  const [img, setImg] = useState(photo ? photo : null);
   const { handleModal } = useContext(ModalContext);
+  const formData = new FormData();
 
-  // TODO Удалить, если юзстейт работает корректно.
-  // useEffect(() => {
-  //   photo ?? setImg(photo);
-  // }, [photo]);
+  useEffect(() => {
+    photo ?? setImg(photo);
+  }, [photo]);
 
   const handleClickOpen = () => {
     handleModal(
@@ -35,7 +35,7 @@ const ProfileAvatar = () => {
         className={s.avatarField}
       />,
       s.modalBody,
-      true //TODO этот компонент заменить на хэндлер отправки картинки на сервер, передам ему img и прокинуть его в кнопку
+      formData
     );
   };
 
@@ -45,6 +45,11 @@ const ProfileAvatar = () => {
 
   const onCrop = imgPreview => {
     setImg(imgPreview);
+
+    urltoFile(imgPreview, 'avatar').then(data => {
+      formData.delete('avatar');
+      formData.append('avatar', data, 'avatar');
+    });
   };
 
   const onBeforeFileLoad = elem => {
@@ -53,6 +58,13 @@ const ProfileAvatar = () => {
       elem.target.value = '';
     }
   };
+
+  async function urltoFile(url, filename, mimeType) {
+    mimeType = mimeType || (url.match(/^data:([^;]+);/) || '')[1];
+    const res = await fetch(url);
+    const buf = await res.arrayBuffer();
+    return new File([buf], filename, { type: mimeType });
+  }
 
   return (
     <div className={s.avatarContainer}>

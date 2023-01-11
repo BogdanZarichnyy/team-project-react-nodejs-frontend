@@ -19,7 +19,7 @@ const RegisterFormStepTwo = ({ onNext, formik }) => {
       return;
     }
     const filteredCities = ua.reduce((acc, el) => {
-      if (el.city.toLowerCase().startsWith(value)) {
+      if (el.city.toUpperCase().startsWith(value.toUpperCase())) {
         acc.push({
           value: `${el.city}, ${el.admin_name}`,
           label: `${el.city}, ${el.admin_name}`,

@@ -4,6 +4,8 @@ import {
   getSellAds,
   getFoundAds,
   addNewAds,
+  deleteAds,
+  toggleFavoriteAds,
 } from '../../api/adsApi';
 import {
   getSellAdsSuccess,
@@ -14,12 +16,15 @@ import {
   getShareAdsFailure,
   addNewAdsSuccess,
   addNewAdsFailure,
+  deleteAdsSuccess,
+  deleteAdsFailure,
+  toggleFavoriteSuccess,
+  toggleFavoriteFailure,
 } from './adsSlice';
 
 function* workGetSellAdsFetch({ payload }) {
   try {
     const data = yield call(getSellAds);
-    console.log(data);
     yield put(getSellAdsSuccess(data));
   } catch (error) {
     yield put(getSellAdsFailure(error.message));
@@ -29,7 +34,6 @@ function* workGetSellAdsFetch({ payload }) {
 function* workGetFoundAdsFetch({ payload }) {
   try {
     const data = yield call(getFoundAds);
-    console.log(data);
     yield put(getFoundAdsSuccess(data));
   } catch (error) {
     yield put(getFoundAdsFailure(error.message));
@@ -39,7 +43,6 @@ function* workGetFoundAdsFetch({ payload }) {
 function* workGetShareAdsFetch() {
   try {
     const data = yield call(getShareAds);
-    console.log(data);
     yield put(getShareAdsSuccess(data));
   } catch (error) {
     yield put(getShareAdsFailure(error.message));
@@ -52,6 +55,24 @@ function* workAddNewAdsFetch({ payload }) {
     yield put(addNewAdsSuccess(ad));
   } catch (error) {
     yield put(addNewAdsFailure(error.message));
+  }
+}
+
+function* workDeleteAdsFetch({ payload }) {
+  try {
+    const data = yield call(deleteAds, payload);
+    yield put(deleteAdsSuccess(data));
+  } catch (error) {
+    yield put(deleteAdsFailure(error.message));
+  }
+}
+
+function* workToggleFavoriteFetch({ payload }) {
+  try {
+    const { ad } = yield call(toggleFavoriteAds, payload);
+    yield put(toggleFavoriteSuccess(ad));
+  } catch (error) {
+    yield put(toggleFavoriteFailure(error.message));
   }
 }
 
@@ -71,11 +92,21 @@ function* watchAddNewAds() {
   yield takeLatest('ads/addNewAdsFetch', workAddNewAdsFetch);
 }
 
+function* watchDeleteAds() {
+  yield takeLatest('ads/deleteAdsFetch', workDeleteAdsFetch);
+}
+
+function* watchToggleFavoriteAds() {
+  yield takeLatest('ads/toggleFavoriteFetch', workToggleFavoriteFetch);
+}
+
 export function* adsSagas() {
   yield all([
     call(watchGetSellAds),
     call(watchGetFoundAds),
     call(watchGetShareAds),
     call(watchAddNewAds),
+    call(watchDeleteAds),
+    call(watchToggleFavoriteAds),
   ]);
 }

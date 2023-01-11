@@ -5,6 +5,7 @@ import PhoneAuthGroup from '../PhoneAuthGroup';
 
 import sprite from '../../../images/sprite.svg';
 import s from '../Header.module.scss';
+import { AnimatePresence } from 'framer-motion';
 
 const MobileNavigation = ({ open, setOpen }) => {
   const closeMobileMenu = () => setOpen(false);
@@ -41,12 +42,17 @@ const MobileNavigation = ({ open, setOpen }) => {
         )}
       </button>
 
-      {open && (
-        <>
-          <PhoneAuthGroup closeMobileMenu={closeMobileMenu} />
-          <NavigationLinks isMobile={true} closeMobileMenu={closeMobileMenu} />
-        </>
-      )}
+      <AnimatePresence>
+        {open && (
+          <>
+            <PhoneAuthGroup closeMobileMenu={closeMobileMenu} />
+            <NavigationLinks
+              isMobile={true}
+              closeMobileMenu={closeMobileMenu}
+            />
+          </>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };

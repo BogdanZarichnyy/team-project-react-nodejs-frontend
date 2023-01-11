@@ -1,6 +1,9 @@
 import { useContext, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { useDispatch } from 'react-redux';
+
 import { ModalContext } from '../ModalContext';
+import { updateUserFetch } from '../../../store/user';
 
 import IconComponent from '../../IconComponent';
 
@@ -9,6 +12,8 @@ import s from './ModalComponent.module.scss';
 const ModalComponent = () => {
   let { modalContent, handleModal, modal, modalStyle, submit } =
     useContext(ModalContext);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     function handleToggleModalByEsc(evt) {
@@ -33,9 +38,15 @@ const ModalComponent = () => {
     }
   };
 
+  const handleSubmit = e => {
+    e.preventDefault();
+    dispatch(updateUserFetch(submit));
+    handleModal();
+  };
+
   return modal
     ? createPortal(
-        <div className={s.backdrop} onClick={handleBackdropClick}>        
+        <div className={s.backdrop} onClick={handleBackdropClick}>
           <div className={`${s.modalBody} ${modalStyle}`}>
             <button
               className={s.modalCloseButton}
@@ -48,10 +59,7 @@ const ModalComponent = () => {
             </button>
             <div>{modalContent}</div>
             {submit && (
-              <button
-                className={s.modalConfirmButton}
-                onClick={() => handleModal()}
-              >
+              <button className={s.modalConfirmButton} onClick={handleSubmit}>
                 <IconComponent
                   iconname="checkedIcon"
                   classname={s.modalConfirmIcon}

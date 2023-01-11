@@ -1,57 +1,82 @@
-import sprite from '../../../images/sprite.svg';
+import { motion } from 'framer-motion';
 
-import s from './AuthGroupLinks.module.scss';
-import PrimaryButton from '../../Buttons/PrimaryButton';
-import SecondaryButton from '../../Buttons/SecondaryButton';
 import { useSelector } from 'react-redux';
 import { getUserLoggedSelector } from '../../../store/user/userSelectors';
 
+import PrimaryButton from '../../Buttons/PrimaryButton';
+import SecondaryButton from '../../Buttons/SecondaryButton';
+
+import sprite from '../../../images/sprite.svg';
+import s from './AuthGroupLinks.module.scss';
+
 const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
   const isLoggedIn = useSelector(getUserLoggedSelector);
+
+  const animateFrom = { opacity: 0, y: -40 };
+  const animateTo = { opacity: 1, y: 0 };
+  const animateExit = { y: '-100vh', transition: { duration: 0.25 } };
 
   return (
     <>
       {isLoggedIn && (
         <>
-          <PrimaryButton
-            tag="NavLink"
-            to="/user"
-            className={s.authBtn}
-            onClick={() => {
-              isMobile && closeMobileMenu();
-            }}
+          <motion.div
+            initial={animateFrom}
+            animate={animateTo}
+            exit={animateExit}
           >
-            <svg className={s.userIcon} width="28px" height="28px">
-              <use href={sprite + '#userDefaultCircleIcon'} />
-            </svg>
-            Acсount
-          </PrimaryButton>
+            <PrimaryButton
+              tag="NavLink"
+              to="/user"
+              className={s.authBtn}
+              onClick={() => {
+                isMobile && closeMobileMenu();
+              }}
+            >
+              <svg className={s.userIcon} width="28px" height="28px">
+                <use href={sprite + '#userDefaultCircleIcon'} />
+              </svg>
+              Acсount
+            </PrimaryButton>
+          </motion.div>
         </>
       )}
 
       {!isLoggedIn && (
         <>
-          <PrimaryButton
-            tag="NavLink"
-            to="/login"
-            className={s.authBtn}
-            onClick={() => {
-              isMobile && closeMobileMenu();
-            }}
+          <motion.div
+            initial={animateFrom}
+            animate={animateTo}
+            exit={animateExit}
           >
-            Login
-          </PrimaryButton>
+            <PrimaryButton
+              tag="NavLink"
+              to="/login"
+              className={s.authBtn}
+              onClick={() => {
+                isMobile && closeMobileMenu();
+              }}
+            >
+              Login
+            </PrimaryButton>
+          </motion.div>
 
-          <SecondaryButton
-            tag="NavLink"
-            to="/register"
-            className={s.authBtn}
-            onClick={() => {
-              isMobile && closeMobileMenu();
-            }}
+          <motion.div
+            initial={animateFrom}
+            animate={animateTo}
+            exit={animateExit}
           >
-            Registration
-          </SecondaryButton>
+            <SecondaryButton
+              tag="NavLink"
+              to="/register"
+              className={s.authBtn}
+              onClick={() => {
+                isMobile && closeMobileMenu();
+              }}
+            >
+              Registration
+            </SecondaryButton>
+          </motion.div>
         </>
       )}
     </>

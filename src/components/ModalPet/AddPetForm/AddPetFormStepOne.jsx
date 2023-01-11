@@ -74,7 +74,6 @@ const AddPetFormStepOne = ({ onNext, formik }) => {
         placeholder="Type pet name"
         value={values.addTitle}
         onChange={handleChange}
-        required
       />
       <label className={s.label}>Name pet</label>
       {isErrors && errors.name && <ErrorText text={errors.name} />}
@@ -90,7 +89,7 @@ const AddPetFormStepOne = ({ onNext, formik }) => {
       {isErrors && errors.birthDate && <ErrorText text={errors.birthDate} />}
       <InputBase
         styles={s.input}
-        type="text"
+        type="date"
         id="birthDate"
         name="birthDate"
         placeholder="Type day of birth"
