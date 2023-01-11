@@ -1,16 +1,16 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useFormik } from 'formik';
 import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import s from '../Auth.module.scss';
 import InputBase from '../../InputBase/InputBase';
 import ButtonBase from '../../ButtonBase/ButtonBase';
 import ErrorText from '../../ErrorText';
 
-import { loginUserFetch } from '../../../store/user';
-import { useNavigate } from 'react-router-dom';
+import { getUserLoggedSelector, loginUserFetch } from '../../../store/user';
 import style from '../../../layouts/AuthLayout/AuthLayout.module.scss';
 import { loginFormSchema } from '../../../validation/loginFormSchema';
 
@@ -22,11 +22,18 @@ const initialValues = {
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isLoggedIn = useSelector(getUserLoggedSelector);
+
+  useEffect(() => {
+    if (isLoggedIn === 'success') {
+      navigate('/user');
+    }
+    // eslint-disable-next-line
+  }, [isLoggedIn]);
 
   const handleLogin = async values => {
     try {
-      await dispatch(loginUserFetch(values));
-      navigate('/user');
+      dispatch(loginUserFetch(values));
     } catch (error) {
       console.log(error);
     }

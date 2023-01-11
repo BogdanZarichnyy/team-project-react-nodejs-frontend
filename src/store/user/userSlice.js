@@ -133,7 +133,6 @@ const userSlice = createSlice({
       state.error = false;
     },
     restorePasswordFailure: (state, { payload }) => {
-      state.isLoggedIn = 'rejected';
       state.error = payload;
     },
   },
