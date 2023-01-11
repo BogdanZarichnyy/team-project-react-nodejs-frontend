@@ -74,7 +74,7 @@ const AnimatedRoutes = () => {
               <Route
                 path="restorePassword"
                 element={
-                  <Suspense fallback={<Loader />}>
+                  <Suspense>
                     <RestorePasswordPage />
                   </Suspense>
                 }

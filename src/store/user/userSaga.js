@@ -116,6 +116,7 @@ function* workGetPets() {
 }
 
 function* workRestorePasswordUserFetch({ payload }) {
+  console.log('ccccc');
   try {
     yield call(restorePassword, payload);
     yield put(restorePasswordSuccess());

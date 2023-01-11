@@ -124,16 +124,12 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
-    restorePasswordFetch: (state, { payload }) => {
-      state.isLoading = true;
-    },
+    restorePasswordFetch: (state, { payload }) => {},
     restorePasswordSuccess: state => {
-      state.isLoading = false;
       state.error = false;
     },
     restorePasswordFailure: (state, { payload }) => {
       state.isLoggedIn = false;
-      state.isLoading = false;
       state.error = payload;
     },
   },

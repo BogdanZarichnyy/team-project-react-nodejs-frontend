@@ -6,7 +6,7 @@ import ButtonBase from '../../ButtonBase/ButtonBase';
 
 import s from '../Auth.module.scss';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { restorePasswordFetch } from '../../../store/user';
 import { restorePasswordSchema } from '../../../validation/restorePasswordSchema';
 
@@ -14,14 +14,14 @@ const initialValues = {
   email: '',
 };
 
-const RestorePasswordForm = () => {
+const RestorePasswordForm = ({ onSent }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handleMail = async values => {
     try {
       await dispatch(restorePasswordFetch(values));
-      navigate('/login');
+      console.log('aaaaa');
+      onSent();
     } catch (error) {
       console.log(error);
     }
