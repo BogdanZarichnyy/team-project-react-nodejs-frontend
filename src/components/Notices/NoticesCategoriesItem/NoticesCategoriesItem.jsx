@@ -12,7 +12,8 @@ import s from './NoticesCategoriesItem.module.scss';
 import defaultImage from '../../../images/defaultImage.png';
 import { toggleFavoriteFetch } from '../../../store/ads';
 
-export default function NoticesCategoriesItem({notice}) {
+export default function NoticesCategoriesItem({ notice }) {
+  const dispatch = useDispatch();
   const [addedToFavorite, setAddedToFavorite] = useState(false);
   const isLoggedIn = useSelector(getUserLoggedSelector);
   const user = useSelector(getUserSelector);
