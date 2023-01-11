@@ -1,4 +1,4 @@
-import { Navigate, Outlet, redirect, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 import { getUserLoggedSelector } from '../../store/user';
@@ -11,7 +11,7 @@ const PrivatRoute = () => {
     if (!isLoggedIn) {
       navigate('/login');
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, navigate]);
 
   return (
     <div>
