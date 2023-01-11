@@ -91,7 +91,7 @@ function* workUpdateCurrentUser({ payload }) {
 function* workAddPet({ payload }) {
   try {
     const { data } = yield call(addNewPet, payload);
-    yield put(addPetSuccess(data));
+    yield put(addPetSuccess(data.pet));
   } catch (error) {
     yield put(addPetFailure(error.message));
   }
