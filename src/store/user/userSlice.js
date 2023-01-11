@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   userData: {
-    userId: '',
+    _id: '',
     name: '',
     email: '',
     photo: '',
@@ -12,6 +12,7 @@ const initialState = {
     favoritesAds: [],
     accessToken: '',
   },
+  userPets: null,
   token: '',
   isLoggedIn: false,
   isLoading: false,
@@ -81,6 +82,45 @@ const userSlice = createSlice({
       state.error = false;
     },
     updateUserFailure: (state, { payload }) => {
+      if (payload.response.status < 200 || payload.response.status >= 300) {
+        state.userData = { ...state.userData, avatar: '' };
+      }
+      state.isLoading = false;
+      state.error = payload;
+    },
+    getPetsFetch: state => {
+      state.isLoading = true;
+    },
+    getPetsSuccess: (state, { payload }) => {
+      state.userPets = payload;
+      state.isLoading = false;
+      state.error = false;
+    },
+    getPetsFailure: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
+    addPetFetch: state => {
+      state.isLoading = true;
+    },
+    addPetSuccess: (state, { payload }) => {
+      state.userPets = [payload, ...state.userPets];
+      state.isLoading = false;
+      state.error = false;
+    },
+    addPetFailure: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload.error;
+    },
+    deletePetFetch: state => {
+      state.isLoading = true;
+    },
+    deletePetSuccess: (state, { payload }) => {
+      state.userPets = state.userPets.filter(obj => obj._id !== payload._id);
+      state.isLoading = false;
+      state.error = false;
+    },
+    deletePetFailure: (state, { payload }) => {
       state.isLoading = false;
       state.error = payload;
     },
@@ -115,6 +155,15 @@ export const {
   updateUserFetch,
   updateUserSuccess,
   updateUserFailure,
+  addPetFetch,
+  addPetSuccess,
+  addPetFailure,
+  deletePetFetch,
+  deletePetSuccess,
+  deletePetFailure,
+  getPetsFetch,
+  getPetsSuccess,
+  getPetsFailure,
   restorePasswordFetch,
   restorePasswordSuccess,
   restorePasswordFailure,

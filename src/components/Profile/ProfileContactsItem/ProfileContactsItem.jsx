@@ -19,9 +19,11 @@ const ProfileContactsItem = ({
   const dispatch = useDispatch();
 
   useEffect(() => {
-    /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/.test(value)
-      ? setVal(value.substring(0, 10))
-      : setVal(value);
+    if (value) {
+      /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/.test(value)
+        ? setVal(value.substring(0, 10))
+        : setVal(value);
+    }
   }, [value]);
 
   useEffect(() => {
