@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 
 import AuthLayout from '../../layouts/AuthLayout';
@@ -26,6 +26,13 @@ const RegisterPage = () => {
   const [step, setStep] = useState(1);
   const isLoggedIn = useSelector(getUserLoggedSelector);
 
+  useEffect(() => {
+    if (isLoggedIn === 'success') {
+      navigate('/user');
+    }
+    // eslint-disable-next-line
+  }, [isLoggedIn]);
+
   const handleRegister = async values => {
     const phone = '+' + values.phone;
     const { confirmPassword, ...userData } = values;
@@ -36,9 +43,6 @@ const RegisterPage = () => {
           phone,
         })
       );
-      if (isLoggedIn === 'success') {
-        navigate('/user');
-      }
     } catch (error) {
       console.log(error);
     }
