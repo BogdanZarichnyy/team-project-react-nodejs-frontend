@@ -14,7 +14,12 @@ export default function ModalNotice({ notice, onClick }) {
                 <div className={s.modalInfoWrapper}>
                     <div className={s.noticeThumb}>
                         <img className={s.noticeImage} src={notice.photo === '' ? defaultImage : notice.photo} alt="Pet"/>
-                        <p className={s.categoryType}>{notice.category}</p>                    
+                        <p className={s.categoryType}>
+                            {(notice.category === 'sale' && 'Sell') ||
+                                (notice.category === 'inGoodHands' && 'In good hands') ||
+                                (notice.category === 'lostFound' && 'Lost/found')
+                            }
+                        </p>                    
                     </div>
                     <div className={s.noticeDecription}>
                         <h3 className={s.noticeTitle}>{notice.addTitle}</h3>
@@ -74,7 +79,7 @@ export default function ModalNotice({ notice, onClick }) {
                 <div className={s.noticeButtonsThumb}>
                     <a className={s.noticeContactButton} href={`tell:${notice?.owner?.phone}`}>Contact</a>
                     <button className={s.noticeFavoriteButton} onClick={onClick}>Add to
-                        <IconComponent classname={s.favoriteIcon} iconname="favoriteIcon"/>
+                        <IconComponent classname={s.favoriteIconModal} iconname="favoriteIconModal"/>
                     </button>
                 </div>
             </div>            

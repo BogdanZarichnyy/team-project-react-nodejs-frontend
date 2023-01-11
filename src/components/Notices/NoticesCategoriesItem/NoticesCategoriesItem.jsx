@@ -1,11 +1,12 @@
 import { useState, useContext } from 'react';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
+import { toast } from "react-toastify";
 
 import ModalNotice from '../ModalNotice'
 import IconComponent from '../../IconComponent';
 import { ModalContext } from '../../ModalRework';
-import { getUserTokenSelector, getUserSelector } from '../../../store/user';
+import { getUserLoggedSelector, getUserSelector } from '../../../store/user';
 
 import s from './NoticesCategoriesItem.module.scss';
 import defaultImage from '../../../images/defaultImage.png';
@@ -13,14 +14,14 @@ import defaultImage from '../../../images/defaultImage.png';
 
 export default function NoticesCategoriesItem({notice}) {
     const [addedToFavorite, setAddedToFavorite] = useState(false);
-    const isLogedIn = useSelector(getUserTokenSelector);
+    const isLoggedIn = useSelector(getUserLoggedSelector);
     const user = useSelector(getUserSelector);
 
     const { handleModal } = useContext(ModalContext);
 
     const clickAddFavorite = (event) => {
-        if (!isLogedIn) {
-            alert('Please log in!')
+        if (!isLoggedIn) {
+            toast.warning(`This service is restricted to authorized users only.Please register or log in.`)
             event.currentTarget.blur()
             return
         }
@@ -40,18 +41,15 @@ export default function NoticesCategoriesItem({notice}) {
             <li className={s.noticeItem}>
                 <div className={s.noticeThumb}>
                     <img className={s.noticeImage} src={notice.photo === '' ? defaultImage : notice.photo} alt="Pet"/>
-                    <p className={s.categoryType}>{notice.category}</p>
+                    <p className={s.categoryType}>
+                        {(notice.category === 'sale' && 'Sell') ||
+                            (notice.category === 'inGoodHands' && 'In good hands') ||
+                            (notice.category === 'lostFound' && 'Lost/found')
+                        }
+                    </p>
                     <div className={s.noticeFavoriteButtonThumb}>
                         <button className={s.noticeFavoriteButton} onClick={clickAddFavorite}>
-                            {addedToFavorite ?
-                                <>
-                                    <IconComponent classname={s.removeFavoriteIcon} iconname="trashIcon"/>
-                                </>
-                                :
-                                <>
-                                    <IconComponent classname={s.favoriteIcon} iconname="favoriteIcon"/>
-                                </>
-                            }                            
+                            <IconComponent classname={addedToFavorite ? s.favoriteIconActive : s.favoriteIcon} iconname="favoriteIcon"/>
                         </button>
                     </div>                    
                 </div>
