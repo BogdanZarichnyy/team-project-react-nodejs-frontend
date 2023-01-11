@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 
 import { useDispatch } from 'react-redux';
 import { ModalContext } from '../ModalRework';
-import { addNewAdsFetch } from '../../store/ads';
+import { addPetFetch } from '../../store/user';
 import AddPetProfileFormOne from './AddPetProfileFormOne';
 import AddPetFormStepTwo from './AddPetProfileFormTwo';
 
@@ -46,7 +46,7 @@ const AddPetProfile = () => {
         formData.append(key, values[key]);
       }
 
-      dispatch(addNewAdsFetch(formData));
+      dispatch(addPetFetch(formData));
 
       handleModal();
     },

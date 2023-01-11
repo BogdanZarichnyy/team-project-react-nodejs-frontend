@@ -18,7 +18,7 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
 
   return (
     <>
-      {isLoggedIn && (
+      {isLoggedIn === 'success' && (
         <>
           <motion.div
             initial={animateFrom}
@@ -28,6 +28,7 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
             <PrimaryButton
               tag="NavLink"
               to="/user"
+              padding="8px 28px"
               className={s.authBtn}
               onClick={() => {
                 isMobile && closeMobileMenu();
@@ -42,7 +43,7 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
         </>
       )}
 
-      {!isLoggedIn && (
+      {isLoggedIn === 'rejected' && (
         <>
           <motion.div
             initial={animateFrom}

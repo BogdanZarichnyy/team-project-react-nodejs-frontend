@@ -4,6 +4,8 @@ const userId = state => state.user.userData._id;
 export const getSellAdsSelector = state => state.ads.sale;
 export const getFoundAdsSelector = state => state.ads.lostFound;
 export const getShareAdsSelector = state => state.ads.inGoodHands;
+export const getFavoriteAdsSelector = state => state.ads.favorite;
+export const getPersonalAdsSelector = state => state.ads.personal;
 
 export const createSelectorFunc = params => {
   let selector;
@@ -17,6 +19,10 @@ export const createSelectorFunc = params => {
     case 'lost-found':
       selector = getFoundAdsSelector;
       break;
+    case 'favorite':
+      return getFavoriteAdsSelector;
+    case 'userAds':
+      return getPersonalAdsSelector;
 
     default:
       break;
