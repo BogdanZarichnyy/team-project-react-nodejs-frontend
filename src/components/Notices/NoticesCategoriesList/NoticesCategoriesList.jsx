@@ -10,7 +10,7 @@ export default function NoticeCategoriesList({ categoryType }) {
 
   return (
     <ul className={s.noticeList}>
-      {categoryArray &&
+      {categoryArray.length &&
         categoryArray.map(notice => {
           return <NoticesCategoriesItem notice={notice} key={notice._id} />;
         })}
