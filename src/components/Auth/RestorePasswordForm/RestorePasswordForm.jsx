@@ -1,38 +1,27 @@
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
+
 import ErrorText from '../../ErrorText';
 import InputBase from '../../InputBase/InputBase';
 import ButtonBase from '../../ButtonBase/ButtonBase';
 
 import s from '../Auth.module.scss';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { restorePasswordFetch } from '../../../store/user';
+import { restorePasswordSchema } from '../../../validation/restorePasswordSchema';
 
 const initialValues = {
   email: '',
 };
 
-const validationSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Please enter a valid e-mail')
-    .matches(
-      /^([a-zA-Z0-9._]{1}[a-zA-Z0-9._-]+)+@[a-zA-Z0-9._-]+\.([a-zA-Z0-9._-]*[a-zA-Z0-9._]+)$/,
-      'Is not in correct format'
-    )
-    .min(7, 'Email must be at least 7 characters long')
-    .max(63, 'Email must be 63 characters maximum')
-    .required('Required field to fill!'),
-});
-
-const RestorePasswordForm = () => {
+const RestorePasswordForm = ({ onSent }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handleMail = async values => {
     try {
       await dispatch(restorePasswordFetch(values));
-      navigate('/login');
+      console.log('aaaaa');
+      onSent();
     } catch (error) {
       console.log(error);
     }
@@ -40,7 +29,7 @@ const RestorePasswordForm = () => {
 
   const formik = useFormik({
     initialValues,
-    validationSchema,
+    validationSchema: restorePasswordSchema,
     validateOnMount: true,
     validateOnChange: true,
     validateOnBlur: true,

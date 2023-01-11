@@ -128,16 +128,11 @@ const userSlice = createSlice({
       state.isPetsLoading = false;
       state.error = payload;
     },
-    restorePasswordFetch: state => {
-      state.isPetsLoading = true;
-    },
+    restorePasswordFetch: (state, { payload }) => {},
     restorePasswordSuccess: state => {
-      state.isPetsLoading = false;
       state.error = false;
     },
     restorePasswordFailure: (state, { payload }) => {
-      state.isLoggedIn = 'rejected';
-      state.isLoading = false;
       state.error = payload;
     },
   },
