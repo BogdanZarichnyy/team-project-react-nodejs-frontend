@@ -20,9 +20,11 @@ export const createSelectorFunc = params => {
       selector = getFoundAdsSelector;
       break;
     case 'favorite':
-      return getFavoriteAdsSelector;
-    case 'userAds':
-      return getPersonalAdsSelector;
+      selector = getFavoriteAdsSelector;
+      break;
+    case 'own':
+      selector = getPersonalAdsSelector;
+      break;
 
     default:
       break;

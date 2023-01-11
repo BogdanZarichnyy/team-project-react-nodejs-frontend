@@ -135,7 +135,7 @@ const AnimatedRoutes = () => {
                 />
                 <Route
                   path="own"
-                  element={<NoticesCategoryList categoryType={'userAds'} />}
+                  element={<NoticesCategoryList categoryType={'own'} />}
                 />
               </Route>
             </Route>
