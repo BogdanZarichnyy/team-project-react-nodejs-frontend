@@ -55,6 +55,7 @@ const adsSlice = createSlice({
     },
     addNewAdsSuccess: (state, { payload }) => {
       state[payload.category] = [payload, ...state[payload.category]];
+      state.personal = [payload, ...state.personal];
       state.isLoading = false;
       state.error = false;
     },
@@ -91,6 +92,30 @@ const adsSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
+    getFavoriteAdsFetch: state => {
+      state.isLoading = true;
+    },
+    getFavoriteAdsSuccess: (state, { payload }) => {
+      state.favorite = payload;
+      state.isLoading = false;
+      state.error = false;
+    },
+    getFavoriteAdsFailure: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
+    getUserAdsFetch: state => {
+      state.isLoading = true;
+    },
+    getUserAdsSuccess: (state, { payload }) => {
+      state.personal = payload;
+      state.isLoading = false;
+      state.error = false;
+    },
+    getUserAdsFailure: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
   },
 });
 
@@ -113,6 +138,12 @@ export const {
   toggleFavoriteFetch,
   toggleFavoriteSuccess,
   toggleFavoriteFailure,
+  getFavoriteAdsFetch,
+  getFavoriteAdsSuccess,
+  getFavoriteAdsFailure,
+  getUserAdsFetch,
+  getUserAdsSuccess,
+  getUserAdsFailure,
 } = adsSlice.actions;
 
 export default adsSlice.reducer;

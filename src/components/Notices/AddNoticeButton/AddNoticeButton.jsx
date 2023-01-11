@@ -1,21 +1,23 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { useSelector } from 'react-redux';
+
 import { toast } from "react-toastify";
+
+import { getUserLoggedSelector } from '../../../store/user';
 
 import { ModalContext } from '../../ModalRework';
 import AddPetForm from '../../ModalPet/AddPetForm/AddPetForm';
-import { getUserLoggedSelector } from '../../../store/user';
 import IconComponent from '../../IconComponent';
 
 import s from './AddNoticeButton.module.scss';
 
 export default function AddNoticeButton() {
-  const isLogedIn = useSelector(getUserLoggedSelector);
+  const isLoggedIn = useSelector(getUserLoggedSelector);
 
   const { handleModal } = useContext(ModalContext);
 
   const handleClickOpen = (event) => {
-    if (!isLogedIn) {
+    if (isLoggedIn !== 'success') {
       toast.warning(`This service is restricted to authorized users only.Please register or log in.`)
       event.currentTarget.blur()
       return;

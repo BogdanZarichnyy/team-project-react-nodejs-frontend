@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { Navigate, Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 import { getUserLoggedSelector } from '../../store/user';
 
 const PublicRoute = () => {
   const isLoggedIn = useSelector(getUserLoggedSelector);
+  const navigate = useNavigate();
 
-  return <div>{isLoggedIn ? <Navigate to={'/'} /> : <Outlet />}</div>;
+  useEffect(() => {
+    if (isLoggedIn === 'success') {
+      navigate('/');
+    }
+  }, [isLoggedIn, navigate]);
+
+  return <div>{isLoggedIn === 'rejected' && <Outlet />}</div>;
 };
 
 export default PublicRoute;

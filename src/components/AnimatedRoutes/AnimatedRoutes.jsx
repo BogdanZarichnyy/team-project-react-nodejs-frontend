@@ -105,40 +105,31 @@ const AnimatedRoutes = () => {
               <Suspense fallback={<Loader />}>
                 <NoticesPage />
               </Suspense>
-              } >
+            }
+          >
             <Route
               path="sell"
-              element={ 
-                <NoticesCategoryList categoryType={"sell"} />             
-              }
+              element={<NoticesCategoryList categoryType={'sell'} />}
             />
             <Route
               path="lost-found"
-              element={
-                <NoticesCategoryList categoryType={"lost-found"} />
-              }
+              element={<NoticesCategoryList categoryType={'lost-found'} />}
             />
             <Route
               path="for-free"
-              element={
-                <NoticesCategoryList categoryType={"for-free"} />
-              }
+              element={<NoticesCategoryList categoryType={'for-free'} />}
             />
-              <Route element={<PrivateRoute />}>
-                <Route
-                  path="favorite"
-                  element={
-                    <NoticesCategoryList categoryType={"favorite"}/>
-                  }
-                />
-                <Route
-                  path="own"
-                  element={
-                    <NoticesCategoryList categoryType={"own"}/>
-                  }
-                />
-              </Route>            
-            </Route >
+            <Route element={<PrivateRoute />}>
+              <Route
+                path="favorite"
+                element={<NoticesCategoryList categoryType={'favorite'} />}
+              />
+              <Route
+                path="own"
+                element={<NoticesCategoryList categoryType={'own'} />}
+              />
+            </Route>
+          </Route>
         </Route>
 
         <Route path="*" element={<span>Not Found</span>} />

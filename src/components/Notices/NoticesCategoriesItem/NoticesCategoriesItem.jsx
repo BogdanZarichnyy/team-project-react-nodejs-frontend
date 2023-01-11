@@ -1,41 +1,40 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import moment from 'moment';
 import { toast } from "react-toastify";
+
+import { getUserLoggedSelector, getUserSelector } from '../../../store/user';
+import { toggleFavoriteFetch } from '../../../store/ads';
 
 import ModalNotice from '../ModalNotice';
 import IconComponent from '../../IconComponent';
 import { ModalContext } from '../../ModalRework';
-import { getUserLoggedSelector, getUserSelector } from '../../../store/user';
+import defaultImage from '../../../images/defaultImage.png';
 
 import s from './NoticesCategoriesItem.module.scss';
-import defaultImage from '../../../images/defaultImage.png';
-import { toggleFavoriteFetch } from '../../../store/ads';
 
 export default function NoticesCategoriesItem({ notice }) {
   const dispatch = useDispatch();
-  const [addedToFavorite, setAddedToFavorite] = useState(false);
   const isLoggedIn = useSelector(getUserLoggedSelector);
   const user = useSelector(getUserSelector);
-
-  const { handleModal } = useContext(ModalContext);
+  const { handleModal, modal, setModal } = useContext(ModalContext);
 
   const clickAddFavorite = (event) => {
-    if (!isLoggedIn) {
+    if (isLoggedIn !== 'success') {
       toast.warning(`This service is restricted to authorized users only.Please register or log in.`)
       event.currentTarget.blur()
       return
     }
 
     dispatch(toggleFavoriteFetch(notice._id));
-    console.log(notice._id);
-    setAddedToFavorite(!addedToFavorite);
+    setModal(modal)
     event.currentTarget.blur();
   };
 
   const handleClickOpen = () => {
     handleModal(
-      <ModalNotice onClick={clickAddFavorite} notice={notice} />,
+      <ModalNotice onClick={clickAddFavorite} onClose={handleModal()} notice={notice} />,
       s.modalBody
     );
   };
@@ -54,7 +53,8 @@ export default function NoticesCategoriesItem({ notice }) {
             alt="Pet"
           />
           <p
-            className={s.categoryType}>{(notice.category === 'sale' && 'Sell')
+            className={s.categoryType}>{
+              (notice.category === 'sale' && 'Sell')
               || (notice.category === 'inGoodHands' && 'In good hands')
               || (notice.category === 'lostFound' && 'Lost/found')
             }
@@ -65,7 +65,7 @@ export default function NoticesCategoriesItem({ notice }) {
               onClick={clickAddFavorite}
             >
               <IconComponent
-                classname={addedToFavorite ? s.favoriteIconActive : s.favoriteIcon}
+                classname={notice.isFavorite ? s.favoriteIconActive : s.favoriteIcon}
                 iconname="favoriteIcon"
               />
             </button>
@@ -91,7 +91,8 @@ export default function NoticesCategoriesItem({ notice }) {
             <li className={s.petInfoLItem}>
               <p className={s.petInfoLType}>Age:</p>
               <p className={s.petInfoLValue}>
-                {moment(notice.birthDate).startOf('day').fromNow(true)}
+                {notice.birthDate &&
+                  moment(notice.birthDate).startOf('day').fromNow(true)}
               </p>
             </li>
             {notice.price !== null && notice.price !== '' && (

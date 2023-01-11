@@ -95,6 +95,11 @@
 
 .petInfoLValueLink {
     color: getColor('clr-accent');
+
+    &:hover,
+    &:focus {
+        color: getColor('clr-accent-active');
+    }
 }
 
 .petInfoLTypeComment {
