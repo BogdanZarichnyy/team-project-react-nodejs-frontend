@@ -15,7 +15,7 @@ export default function ModalNotice({ notice, onClick }) {
                         <img
                             className={s.noticeImage}
                             src={notice.photo === '' ? defaultImage : notice.photo}
-                            alt="Pet image" />
+                            alt="Pet" />
                         <p className={s.categoryType}>
                             {(notice.category === 'sale' && 'Sell') ||
                                 (notice.category === 'inGoodHands' && 'In good hands') ||
@@ -63,6 +63,7 @@ export default function ModalNotice({ notice, onClick }) {
                                         className={s.petInfoLValueLink}
                                         href={notice.passport}
                                         target="_blank"
+                                        rel="noopener noreferrer"
                                     >
                                         View file
                                     </a>

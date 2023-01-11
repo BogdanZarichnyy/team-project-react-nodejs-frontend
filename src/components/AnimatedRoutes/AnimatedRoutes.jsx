@@ -25,6 +25,9 @@ const NewsList = lazy(() => import('../../pages/News/NewsList'));
 const LoginPage = lazy(() => import('../../pages/LoginPage/LoginPage'));
 const RegisterPage = lazy(() => import('../../pages/RegisterPage'));
 const Profile = lazy(() => import('../../pages/Profile'));
+const RestorePasswordPage = lazy(() =>
+  import('../../pages/LoginPage/RestorePasswordPage')
+);
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -67,6 +70,14 @@ const AnimatedRoutes = () => {
               element={
                 <Suspense fallback={<Loader />}>
                   <RegisterPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="restorePassword"
+              element={
+                <Suspense>
+                  <RestorePasswordPage />
                 </Suspense>
               }
             />
