@@ -28,6 +28,7 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
             <PrimaryButton
               tag="NavLink"
               to="/user"
+              padding="8px 28px"
               className={s.authBtn}
               onClick={() => {
                 isMobile && closeMobileMenu();
