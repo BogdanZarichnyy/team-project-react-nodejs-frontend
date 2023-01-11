@@ -28,27 +28,27 @@ import {
   getUserAdsFailure,
 } from './adsSlice';
 
-function* workGetSellAdsFetch({ payload }) {
+function* workGetSellAdsFetch(action) {
   try {
-    const data = yield call(getSellAds);
+    const data = yield call(getSellAds, action);
     yield put(getSellAdsSuccess(data));
   } catch (error) {
     yield put(getSellAdsFailure(error.message));
   }
 }
 
-function* workGetFoundAdsFetch({ payload }) {
+function* workGetFoundAdsFetch(action) {
   try {
-    const data = yield call(getFoundAds);
+    const data = yield call(getFoundAds, action);
     yield put(getFoundAdsSuccess(data));
   } catch (error) {
     yield put(getFoundAdsFailure(error.message));
   }
 }
 
-function* workGetShareAdsFetch() {
+function* workGetShareAdsFetch(action) {
   try {
-    const data = yield call(getShareAds);
+    const data = yield call(getShareAds, action);
     yield put(getShareAdsSuccess(data));
   } catch (error) {
     yield put(getShareAdsFailure(error.message));
@@ -82,18 +82,18 @@ function* workToggleFavoriteFetch({ payload }) {
   }
 }
 
-function* workGetFavoriteAdsFetch() {
+function* workGetFavoriteAdsFetch(action) {
   try {
-    const data = yield call(getFavoriteAds);
+    const data = yield call(getFavoriteAds, action);
     yield put(getFavoriteAdsSuccess(data));
   } catch (error) {
     yield put(getFavoriteAdsFailure(error.message));
   }
 }
 
-function* workGetUserAdsFetch() {
+function* workGetUserAdsFetch(action) {
   try {
-    const data = yield call(getOwnAds);
+    const data = yield call(getOwnAds, action);
     yield put(getUserAdsSuccess(data));
   } catch (error) {
     yield put(getUserAdsFailure(error.message));
