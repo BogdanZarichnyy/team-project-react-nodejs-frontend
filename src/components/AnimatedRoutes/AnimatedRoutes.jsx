@@ -118,8 +118,14 @@ const AnimatedRoutes = () => {
                 element={<NoticesCategoryList categoryType={'for-free'} />}
               />
               <Route element={<PrivateRoute />}>
-                <Route path="favorite" element={<NoticesCategoryList />} />
-                <Route path="own" element={<NoticesCategoryList />} />
+                <Route
+                  path="favorite"
+                  element={<NoticesCategoryList categoryType={'favorite'} />}
+                />
+                <Route
+                  path="own"
+                  element={<NoticesCategoryList categoryType={'userAds'} />}
+                />
               </Route>
             </Route>
           </Route>

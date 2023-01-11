@@ -12,8 +12,10 @@ const initialState = {
     favoritesAds: [],
     accessToken: '',
   },
-  userPets: null,
+  userPets: [],
   token: '',
+  firstLoad: true,
+  isPetsLoading: false,
   isLoggedIn: false,
   isLoading: false,
   error: false,
@@ -89,51 +91,52 @@ const userSlice = createSlice({
       state.error = payload;
     },
     getPetsFetch: state => {
-      state.isLoading = true;
+      state.isPetsLoading = true;
     },
     getPetsSuccess: (state, { payload }) => {
       state.userPets = payload;
-      state.isLoading = false;
+      state.firstLoad = false;
+      state.isPetsLoading = false;
       state.error = false;
     },
     getPetsFailure: (state, { payload }) => {
-      state.isLoading = false;
+      state.isPetsLoading = false;
       state.error = payload;
     },
     addPetFetch: state => {
-      state.isLoading = true;
+      state.isPetsLoading = true;
     },
     addPetSuccess: (state, { payload }) => {
       state.userPets = [payload, ...state.userPets];
-      state.isLoading = false;
+      state.isPetsLoading = false;
       state.error = false;
     },
     addPetFailure: (state, { payload }) => {
-      state.isLoading = false;
+      state.isPetsLoading = false;
       state.error = payload.error;
     },
     deletePetFetch: state => {
-      state.isLoading = true;
+      state.isPetsLoading = true;
     },
     deletePetSuccess: (state, { payload }) => {
       state.userPets = state.userPets.filter(obj => obj._id !== payload._id);
-      state.isLoading = false;
+      state.isPetsLoading = false;
       state.error = false;
     },
     deletePetFailure: (state, { payload }) => {
-      state.isLoading = false;
+      state.isPetsLoading = false;
       state.error = payload;
     },
-    restorePasswordFetch: (state, { payload }) => {
-      state.isLoading = true;
+    restorePasswordFetch: state => {
+      state.isPetsLoading = true;
     },
     restorePasswordSuccess: state => {
-      state.isLoading = false;
+      state.isPetsLoading = false;
       state.error = false;
     },
     restorePasswordFailure: (state, { payload }) => {
       state.isLoggedIn = false;
-      state.isLoading = false;
+      state.isPetsLoading = false;
       state.error = payload;
     },
   },
