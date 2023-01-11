@@ -7,6 +7,10 @@
   fill: getColor('clr-white');
 }
 
+.authBtn {
+  height: 44px;
+}
+
 @include toDesktop {
   .auth_item {
     padding: 11px 28px;
@@ -23,7 +27,7 @@
   }
 
   .authBtn {
-    padding: 8px 28px !important;
+    padding: 8px 37px !important;
     height: 35px !important;
 
     font-size: 14px !important;

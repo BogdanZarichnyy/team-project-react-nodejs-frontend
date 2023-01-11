@@ -14,9 +14,9 @@ const initialState = {
   },
   userPets: [],
   token: '',
+  isLoggedIn: 'idle',
   firstLoad: true,
   isPetsLoading: false,
-  isLoggedIn: false,
   isLoading: false,
   error: false,
 };
@@ -30,12 +30,12 @@ const userSlice = createSlice({
     },
     registerUserSuccess: (state, { payload }) => {
       state.userData = payload;
-      state.isLoggedIn = true;
+      state.isLoggedIn = 'success';
       state.isLoading = false;
       state.error = false;
     },
     registerUserFailure: (state, { payload }) => {
-      state.isLoggedIn = true;
+      state.isLoggedIn = 'rejected';
       state.isLoading = false;
       state.error = payload;
     },
@@ -45,12 +45,12 @@ const userSlice = createSlice({
     loginUserSuccess: (state, { payload }) => {
       state.userData = payload;
       state.token = payload.accessToken;
-      state.isLoggedIn = true;
+      state.isLoggedIn = 'success';
       state.isLoading = false;
       state.error = false;
     },
     loginUserFailure: (state, { payload }) => {
-      state.isLoggedIn = false;
+      state.isLoggedIn = 'rejected';
       state.isLoading = false;
       state.error = payload;
     },
@@ -59,12 +59,13 @@ const userSlice = createSlice({
     },
     getUserSuccess: (state, { payload }) => {
       state.userData = payload;
-      state.isLoggedIn = true;
+      state.isLoggedIn = 'success';
       state.isLoading = false;
       state.error = false;
     },
     getUserFailure: (state, { payload }) => {
       state.isLoading = false;
+      state.isLoggedIn = 'rejected';
       state.error = payload;
     },
     logOutUserFetch: state => {
@@ -135,8 +136,8 @@ const userSlice = createSlice({
       state.error = false;
     },
     restorePasswordFailure: (state, { payload }) => {
-      state.isLoggedIn = false;
-      state.isPetsLoading = false;
+      state.isLoggedIn = 'rejected';
+      state.isLoading = false;
       state.error = payload;
     },
   },
