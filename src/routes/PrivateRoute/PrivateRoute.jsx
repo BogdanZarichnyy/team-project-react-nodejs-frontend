@@ -1,12 +1,23 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, redirect, useNavigate } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 import { getUserLoggedSelector } from '../../store/user';
+import { useEffect } from 'react';
 
 const PrivatRoute = () => {
   const isLoggedIn = useSelector(getUserLoggedSelector);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate('/login');
+    }
+  }, [isLoggedIn]);
 
-  return <div>{isLoggedIn ? <Outlet /> : <Navigate to={'/login'} />}</div>;
+  return (
+    <div>
+      <Outlet />
+    </div>
+  );
 };
 
 export default PrivatRoute;
