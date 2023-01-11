@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useFormik } from 'formik';
 
-import * as Yup from 'yup';
 import AuthLayout from '../../layouts/AuthLayout';
 import RegisterFormStepOne from '../../components/Auth/RegisterFormStepOne';
 import RegisterFormStepTwo from '../../components/Auth/RegisterFormStepTwo';
@@ -10,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { registerUserFetch } from '../../store/user';
 
 import s from '../../components/Auth/Auth.module.scss';
+import { registerPageSchema } from '../../validation/registerPageSchema';
 
 const initialValues = {
   email: '',
@@ -19,34 +19,6 @@ const initialValues = {
   city: '',
   phone: '',
 };
-
-const validationSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Please enter a valid e-mail')
-    .matches(
-      /^([a-zA-Z0-9._]{1}[a-zA-Z0-9._-]+)+@[a-zA-Z0-9._-]+\.([a-zA-Z0-9._-]*[a-zA-Z0-9._]+)$/,
-      'Is not in correct format'
-    )
-    .min(7, 'Email must be at least 7 characters long')
-    .max(63, 'Email must be 63 characters maximum')
-    .required('Required field to fill!'),
-  password: Yup.string()
-    .min(7, 'Password must be at least 7 characters long')
-    .max(32, 'Password must be 32 characters maximum')
-    .required('Required field to fill!'),
-  confirmPassword: Yup.string()
-    .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    .required('Required field to fill!'),
-  name: Yup.string()
-    .required('Required field to fill!')
-    .matches(/^[a-zA-z ]+$/, 'In this field must be contain only letters'),
-  city: Yup.string().required(
-    'Required field to fill! Please, choose one option from list!'
-  ),
-  phone: Yup.string()
-    .required('Required field to fill!')
-    .min(12, 'Number must be 12 characters minimum'),
-});
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -71,7 +43,7 @@ const RegisterPage = () => {
 
   const formik = useFormik({
     initialValues,
-    validationSchema,
+    validationSchema: registerPageSchema,
     validateOnMount: true,
     validateOnBlur: true,
     validateOnChange: true,
