@@ -8,16 +8,12 @@ const PrivatRoute = () => {
   const isLoggedIn = useSelector(getUserLoggedSelector);
   const navigate = useNavigate();
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (isLoggedIn === 'rejected') {
       navigate('/login');
     }
   }, [isLoggedIn, navigate]);
 
-  return (
-    <div>
-      <Outlet />
-    </div>
-  );
+  return <div>{isLoggedIn === 'success' && <Outlet />}</div>;
 };
 
 export default PrivatRoute;

@@ -10,16 +10,12 @@ const PublicRoute = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn === 'success') {
       navigate('/');
     }
   }, [isLoggedIn, navigate]);
 
-  return (
-    <div>
-      <Outlet />
-    </div>
-  );
+  return <div>{isLoggedIn === 'rejected' && <Outlet />}</div>;
 };
 
 export default PublicRoute;

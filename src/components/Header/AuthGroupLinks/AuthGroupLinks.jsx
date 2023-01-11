@@ -18,7 +18,7 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
 
   return (
     <>
-      {isLoggedIn && (
+      {isLoggedIn === 'success' && (
         <>
           <motion.div
             initial={animateFrom}
@@ -42,7 +42,7 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
         </>
       )}
 
-      {!isLoggedIn && (
+      {isLoggedIn === 'rejected' && (
         <>
           <motion.div
             initial={animateFrom}
