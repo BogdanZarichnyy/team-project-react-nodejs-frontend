@@ -11,7 +11,7 @@ const PublicRoute = () => {
 
   useEffect(() => {
     if (isLoggedIn === 'success') {
-      navigate('/');
+      navigate('/user');
     }
   }, [isLoggedIn, navigate]);
 
