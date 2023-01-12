@@ -4,7 +4,6 @@ import moment from 'moment';
 
 import { createSelectorFunc, getAdsLoadingSelector } from '../../../store/ads';
 
-import { ModalProvider } from '../../ModalRework';
 import NoticesCategoriesItem from '../NoticesCategoriesItem/NoticesCategoriesItem';
 import Loader from '../../LoaderV1/Loader';
 
