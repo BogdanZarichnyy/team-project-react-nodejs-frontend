@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-import ua from '../../../constants/ua.json';
 import Select from 'react-select';
 
 import InputBase from '../../InputBase/InputBase';
@@ -11,14 +10,30 @@ import ErrorText from '../../ErrorText';
 import s from '../Auth.module.scss';
 
 const RegisterFormStepTwo = ({ onNext, formik }) => {
+  const [cities, setCities] = useState([]);
   const [filteredCities, setFilteredCities] = useState([]);
+
+  useEffect(() => {
+    fetch(
+      'https://test-team-project-react-nodejs-production.up.railway.app/api/cities_of_ukraine'
+    )
+      .then(res => res.json())
+      .then(
+        result => {
+          setCities(result);
+        },
+        error => {
+          setCities(error);
+        }
+      );
+  }, []);
 
   const searchCity = value => {
     if (!value.length) {
       setFilteredCities([]);
       return;
     }
-    const filteredCities = ua.reduce((acc, el) => {
+    const filteredCities = cities.reduce((acc, el) => {
       if (el.city.toUpperCase().startsWith(value.toUpperCase())) {
         acc.push({
           value: `${el.city}, ${el.admin_name}`,

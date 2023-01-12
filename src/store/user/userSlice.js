@@ -27,6 +27,7 @@ const userSlice = createSlice({
   reducers: {
     registerUserFetch: state => {
       state.isLoading = true;
+      state.error = false;
     },
     registerUserSuccess: (state, { payload }) => {
       state.userData = payload;
@@ -41,6 +42,7 @@ const userSlice = createSlice({
     },
     loginUserFetch: state => {
       state.isLoading = true;
+      state.error = false;
     },
     loginUserSuccess: (state, { payload }) => {
       state.userData = payload;
