@@ -6,6 +6,7 @@ export const getFoundAdsSelector = state => state.ads.lostFound;
 export const getShareAdsSelector = state => state.ads.inGoodHands;
 export const getFavoriteAdsSelector = state => state.ads.favorite;
 export const getPersonalAdsSelector = state => state.ads.personal;
+export const getAdsLoadingSelector = state => state.ads.isLoading;
 
 export const createSelectorFunc = params => {
   let selector;

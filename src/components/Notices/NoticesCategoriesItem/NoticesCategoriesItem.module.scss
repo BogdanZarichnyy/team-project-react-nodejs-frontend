@@ -29,7 +29,10 @@
     position: absolute;
     top: 20px;
 
-    padding: 6px 50px 7px 20px;
+    @include flex-center;
+
+    width: 158px;
+    height: 28px;
 
     font-family: 'Manrope-Medium';
     font-size: 12px;
@@ -57,7 +60,8 @@
     border-radius: 50%;
 }
 
-.favoriteIcon {
+.favoriteIcon,
+.favoriteIconActive {
     width: 24px;
     height: 22px;
 
@@ -71,6 +75,10 @@
     .noticeFavoriteButton:focus>& {
         fill: getColor('clr-accent');        
     }
+}
+
+.favoriteIconActive {
+    fill: getColor('clr-accent');
 }
 
 .removeFavoriteIcon {

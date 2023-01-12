@@ -1,19 +1,32 @@
 import { useSelector } from 'react-redux';
 
-import s from './NoticesCategoriesList.module.scss';
-import { createSelectorFunc } from '../../../store/ads';
+import moment from 'moment';
 
+import { createSelectorFunc, getAdsLoadingSelector } from '../../../store/ads';
+
+import { ModalProvider } from '../../ModalRework';
 import NoticesCategoriesItem from '../NoticesCategoriesItem/NoticesCategoriesItem';
+import Loader from '../../LoaderV1/Loader';
+
+import s from './NoticesCategoriesList.module.scss';
 
 export default function NoticeCategoriesList({ categoryType }) {
   const categoryArray = useSelector(createSelectorFunc(categoryType));
+  const isLoading = useSelector(getAdsLoadingSelector);
 
   return (
     <ul className={s.noticeList}>
-      {categoryArray.length &&
-        categoryArray.map(notice => {
-          return <NoticesCategoriesItem notice={notice} key={notice._id} />;
-        })}
+      {isLoading === true ? (
+        <Loader />
+      ) : categoryArray.length !== 0 ? (
+        [...categoryArray]
+          .sort((a, b) => moment(b.createdAt) - moment(a.createdAt))
+          .map(notice => {
+            return <NoticesCategoriesItem notice={notice} key={notice._id} />;
+          })
+      ) : (
+        <h3 className={s.noAdsTitle}>No ads in this category</h3>
+      )}
     </ul>
   );
 }

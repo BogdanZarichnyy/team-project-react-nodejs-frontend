@@ -32,4 +32,5 @@ export {
   getFoundAdsSelector,
   getShareAdsSelector,
   createSelectorFunc,
+  getAdsLoadingSelector,
 } from './adsSelectors';

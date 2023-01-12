@@ -9,8 +9,24 @@
     gap: 32px;
 }
 
+.noAdsTitle {
+    margin-left: auto;
+    margin-right: auto;
+
+    text-align: center;
+    font-family: 'Manrope-Bold';
+    font-size: 20px;
+    line-height: 1.36;
+    
+    color: getColor('clr-black');
+}
+
 @include tablet {
     .noticeList{
         justify-content: flex-start;
-    }    
+    }
+    
+    .noAdsTitle {
+        font-size: 30px;
+    }
 }

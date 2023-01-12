@@ -16,7 +16,7 @@ const ModalHook = () => {
     }
   };
 
-  return { modal, handleModal, modalContent, modalStyle, submit };
+  return { modal, setModal, handleModal, modalContent, modalStyle, submit };
 };
 
 export default ModalHook;

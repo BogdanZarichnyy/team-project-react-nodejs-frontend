@@ -1,8 +1,10 @@
 import React, { useContext, useState } from 'react';
+
 import ButtonBase from '../../ButtonBase/ButtonBase';
 import ErrorText from '../../ErrorText';
 import InputBase from '../../InputBase/InputBase';
 import { ModalContext } from '../../ModalRework';
+
 import s from './AddPetForm.module.scss';
 
 const AddPetFormStepOne = ({ onNext, formik }) => {

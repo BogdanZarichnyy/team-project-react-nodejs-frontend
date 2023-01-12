@@ -32,7 +32,7 @@ export default function NoticesCategoriesNav() {
                         sell
                     </NavLink>
                 </li>
-                {isLoggedIn &&
+                {isLoggedIn === 'success' &&
                     <>
                         <li className={s.noticesListItem}>
                             <NavLink
