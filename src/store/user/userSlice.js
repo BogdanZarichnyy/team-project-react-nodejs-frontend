@@ -87,6 +87,18 @@ const userSlice = createSlice({
       state.error = false;
     },
     updateUserFailure: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
+    updateAvatarFetch: state => {
+      state.isLoading = true;
+    },
+    updateAvatarSuccess: (state, { payload }) => {
+      state.userData = payload;
+      state.isLoading = false;
+      state.error = false;
+    },
+    updateAvatarFailure: (state, { payload }) => {
       if (payload.response.status < 200 || payload.response.status >= 300) {
         state.userData = { ...state.userData, avatar: '' };
       }
@@ -156,6 +168,9 @@ export const {
   updateUserFetch,
   updateUserSuccess,
   updateUserFailure,
+  updateAvatarFetch,
+  updateAvatarSuccess,
+  updateAvatarFailure,
   addPetFetch,
   addPetSuccess,
   addPetFailure,

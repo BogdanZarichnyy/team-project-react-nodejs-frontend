@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 
 import moment from 'moment';
 
-import { createSelectorFunc, getAdsLoadingSelector } from '../../../store/ads/index';
+import { createSelectorFunc, getAdsLoadingSelector } from '../../../store/ads';
 
 import NoticesCategoriesItem from '../NoticesCategoriesItem/NoticesCategoriesItem';
 import Loader from '../../LoaderV1/Loader';
@@ -15,18 +15,17 @@ export default function NoticeCategoriesList({ categoryType }) {
 
   return (
     <ul className={s.noticeList}>
-        {isLoading === true
-          ? <Loader />
-          : (
-            categoryArray.length !== 0 
-              ? [...categoryArray]
-              .sort((a, b) => moment(b.createdAt) - moment(a.createdAt))
-              .map(notice => {
-              return <NoticesCategoriesItem notice={notice} key={notice._id} />;
-              })
-              : <h3 className={s.noAdsTitle}>No ads in this category</h3>
-          )
-        }          
+      {isLoading === true ? (
+        <Loader />
+      ) : categoryArray.length !== 0 ? (
+        [...categoryArray]
+          .sort((a, b) => moment(b.createdAt) - moment(a.createdAt))
+          .map(notice => {
+            return <NoticesCategoriesItem notice={notice} key={notice._id} />;
+          })
+      ) : (
+        <h3 className={s.noAdsTitle}>No ads in this category</h3>
+      )}
     </ul>
   );
 }
