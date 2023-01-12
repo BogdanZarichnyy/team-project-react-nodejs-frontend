@@ -41,7 +41,15 @@ const AddPetForm = () => {
       const formData = new FormData();
 
       for (let key of keys) {
-        formData.append(key, values[key]);
+        if (key === 'photo') {
+          if (values[key] instanceof File) {
+            formData.append(key, values[key]);
+          } else if (values[key] instanceof Object) {
+            formData.append(key, '');
+          }
+        } else {
+          formData.append(key, values[key]);
+        }
       }
 
       dispatch(addNewAdsFetch(formData));

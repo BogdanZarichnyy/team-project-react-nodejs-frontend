@@ -36,6 +36,11 @@
   }
 }
 
+.petPlaceholder {
+  @include flex-center;
+  background-color: getColor('clr-bg');
+}
+
 .petFeature {
   font-size: 14px;
   line-height: 19px;
