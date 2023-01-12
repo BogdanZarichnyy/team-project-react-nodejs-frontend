@@ -81,10 +81,25 @@ const adsSlice = createSlice({
       state.isLoading = true;
     },
     toggleFavoriteSuccess: (state, { payload }) => {
-      const favoriteItem = state[payload.category].findIndex(
+      const ItemCategoryArr = state[payload.category].findIndex(
         obj => obj._id === payload._id
       );
-      state[payload.category][favoriteItem] = payload;
+      const ItemFavArr = state.favorite.findIndex(
+        obj => obj._id === payload._id
+      );
+      const ItemOwnArr = state.personal.findIndex(
+        obj => obj._id === payload._id
+      );
+
+      if (ItemFavArr === -1) {
+        state.favorite = [payload, ...state.favorite];
+      } else {
+        state.favorite = state.favorite.filter(obj => obj._id !== payload._id);
+      }
+      if (ItemOwnArr !== -1) {
+        state.personal[ItemOwnArr] = payload;
+      }
+      state[payload.category][ItemCategoryArr] = payload;
       state.isLoading = false;
       state.error = false;
     },

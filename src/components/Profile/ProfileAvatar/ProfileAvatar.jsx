@@ -17,7 +17,7 @@ const ProfileAvatar = () => {
   const formData = new FormData();
 
   useEffect(() => {
-    photo ?? setImg(photo);
+    setImg(photo);
   }, [photo]);
 
   const handleClickOpen = () => {

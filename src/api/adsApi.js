@@ -1,20 +1,23 @@
 import { adsApi, apiErrorHandler } from './main';
+import { URL } from '../constants';
 
-export const getShareAds = async () => {
+export const getShareAds = async ({ payload }) => {
   const { data } = await adsApi
-    .get('?category=inGoodHands')
+    .get(`${URL.HANDS}&${URL.QUERY}${payload}`)
     .catch(apiErrorHandler);
   return data;
 };
 
-export const getSellAds = async () => {
-  const { data } = await adsApi.get('?category=sale').catch(apiErrorHandler);
+export const getSellAds = async ({ payload }) => {
+  const { data } = await adsApi
+    .get(`${URL.SALE}&${URL.QUERY}${payload}`)
+    .catch(apiErrorHandler);
   return data;
 };
 
-export const getFoundAds = async () => {
+export const getFoundAds = async ({ payload }) => {
   const { data } = await adsApi
-    .get('?category=lostFound')
+    .get(`${URL.FOUND}&${URL.QUERY}${payload}`)
     .catch(apiErrorHandler);
   return data;
 };
@@ -31,19 +34,21 @@ export const deleteAds = async adsData => {
 
 export const toggleFavoriteAds = async adsData => {
   const { data } = await adsApi
-    .post(`/favorites/${adsData}`)
+    .post(`${URL.FAVORITES}/${adsData}`)
     .catch(apiErrorHandler);
   return data;
 };
 
-export const getFavoriteAds = async () => {
-  const { data } = await adsApi.get('/favorites').catch(apiErrorHandler);
-  console.log('favorite api', data);
+export const getFavoriteAds = async ({ payload }) => {
+  const { data } = await adsApi
+    .get(`${URL.FAVORITES}?${URL.QUERY}${payload}`)
+    .catch(apiErrorHandler);
   return data;
 };
 
-export const getOwnAds = async () => {
-  const { data } = await adsApi.get('/my_notices').catch(apiErrorHandler);
-  console.log('own api', data);
+export const getOwnAds = async ({ payload }) => {
+  const { data } = await adsApi
+    .get(`${URL.OWNADS}?${URL.QUERY}${payload}`)
+    .catch(apiErrorHandler);
   return data;
 };

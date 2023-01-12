@@ -1,30 +1,30 @@
 import axios from 'axios';
 
-import { BASE_URL } from '../constants/constants';
+import { URL } from '../constants/constants';
 
 export const userApi = axios.create({
-  // withCredentials: true,
-  baseURL: `${BASE_URL}users/`,
+  // withCredentials: true
+  baseURL: `${URL.BASE}${URL.USERS}`,
 });
 
 export const adsApi = axios.create({
   // withCredentials: true,
-  baseURL: `${BASE_URL}notices`,
+  baseURL: `${URL.BASE}${URL.NOTICES}`,
 });
 
 export const friendsApi = axios.create({
   // withCredentials: true,
-  baseURL: `${BASE_URL}ours_friends/`,
+  baseURL: `${URL.BASE}${URL.FRIENDS}`,
 });
 
 export const newsApi = axios.create({
   // withCredentials: true,
-  baseURL: `${BASE_URL}news/`,
+  baseURL: `${URL.BASE}${URL.NEWS}`,
 });
 
 export const petsApi = axios.create({
   // withCredentials: true,
-  baseURL: `${BASE_URL}pets/`,
+  baseURL: `${URL.BASE}${URL.PETS}`,
 });
 
 const token = () => {
