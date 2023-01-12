@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import s from './OurFriendsPages.module.scss';
 
 const OurFriends = () => {
