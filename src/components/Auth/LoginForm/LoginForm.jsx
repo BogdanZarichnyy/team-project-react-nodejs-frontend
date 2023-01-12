@@ -11,13 +11,11 @@ import InputBase from '../../InputBase/InputBase';
 import ButtonBase from '../../ButtonBase/ButtonBase';
 import ErrorText from '../../ErrorText';
 
-import {
-  getUserLoggedSelector,
-  loginUserFetch,
-  getUserErrorSelector,
-} from '../../../store/user';
+import { loginUserFetch } from '../../../store/user';
 import style from '../../../layouts/AuthLayout/AuthLayout.module.scss';
 import { loginFormSchema } from '../../../validation/loginFormSchema';
+import { getUserAuthSelector } from '../../../store/user/userSelectors';
+import { isAuthFailure } from '../../../store/user/userSlice';
 
 const initialValues = {
   email: '',
@@ -26,21 +24,23 @@ const initialValues = {
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(getUserLoggedSelector);
-  const Error = useSelector(getUserErrorSelector);
+  const isLoggedIn = useSelector(getUserAuthSelector);
+  const options = {
+    onClose: () => dispatch(isAuthFailure(null)),
+  };
 
   useEffect(() => {
-    if (isLoggedIn === 'rejected' && Error) {
-      toast.error(`Please register or log in.`);
+    if (isLoggedIn === false) {
+      toast.error(`Incorrect email or password.`, options);
     }
     // eslint-disable-next-line
-  }, [Error]);
+  }, [isLoggedIn]);
 
   const handleLogin = values => {
     try {
       dispatch(loginUserFetch(values));
     } catch (error) {
-      console.log(error);
+      console.log('error', error);
     }
   };
 

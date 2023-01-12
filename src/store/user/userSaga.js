@@ -31,6 +31,8 @@ import {
   getPetsFailure,
   restorePasswordFailure,
   restorePasswordSuccess,
+  isAuthFailure,
+  isAuthSuccess,
 } from './userSlice';
 
 function* workRegisterUserFetch({ payload }) {
@@ -46,7 +48,9 @@ function* workLoginUserFetch({ payload }) {
   try {
     const { user } = yield call(loginUser, payload);
     yield put(loginUserSuccess(user));
+    yield put(isAuthSuccess());
   } catch (error) {
+    yield put(isAuthFailure(false));
     yield put(loginUserFailure(error.message));
   }
 }
@@ -55,6 +59,7 @@ function* workLogOutUserFetch() {
   try {
     yield call(logOutUser);
     yield put(logOutUserSuccess());
+    yield put(isAuthFailure(null));
   } catch (error) {
     yield put(logOutUserFailure(error.message));
   }
