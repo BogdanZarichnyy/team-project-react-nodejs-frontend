@@ -1,11 +1,12 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import Loader from '../../components/LoaderV1';
+import Loader from "../../components/LoaderV1";
 
 import AddNoticeButton from '../../components/Notices/AddNoticeButton';
 import SearchInput from '../../components/SearchInput';
 import NoticesCategoriesNav from '../../components/Notices/NoticesCategoriesNav';
+
 import s from './NoticesPage.module.scss';
 
 export default function NoticesPage() {
