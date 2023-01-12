@@ -7,7 +7,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  @include flex-center;
+  padding-top: 15vh;
+
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 100;
   overflow-y: auto;
@@ -17,6 +18,8 @@
   position: relative;
 
   @include flex-center;
+  margin: 0 auto;
+  width: fit-content;
   background-color: getColor('clr-white');
   border-radius: 20px;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);

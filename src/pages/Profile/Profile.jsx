@@ -15,7 +15,7 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(getPetsFetch());
-  }, []);
+  }, [dispatch]);
 
   return (
     <section className={`container ${s.containerDesktop}`}>

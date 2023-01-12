@@ -26,9 +26,11 @@ const ModalComponent = () => {
 
     if (modal) {
       window.addEventListener('keydown', handleToggleModalByEsc);
+      document.body.classList.add('NotScroll');
     }
     return () => {
       window.removeEventListener('keydown', handleToggleModalByEsc);
+      document.body.classList.remove('NotScroll');
     };
   }, [handleModal, modal]);
 

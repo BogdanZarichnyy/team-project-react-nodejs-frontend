@@ -11,13 +11,17 @@ const ProfilePet = ({
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    // console.log(_id);
     dispatch(deletePetFetch(_id));
   };
 
   return (
     <li className={s.petItem}>
-      <img src={photo} alt={breed} className={s.petImage} />
+      {photo.length > 0 ? (
+        <img src={photo} alt={breed} className={s.petIamge} />
+      ) : (
+        <div className={`${s.petIamge} ${s.petPlaceholder}`}>No image</div>
+      )}
+
       <div>
         <p className={s.petFeature}>
           Name: <span className={s.petFeatureDetail}>{name}</span>
