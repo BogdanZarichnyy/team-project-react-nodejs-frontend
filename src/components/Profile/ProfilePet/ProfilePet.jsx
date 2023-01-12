@@ -17,7 +17,7 @@ const ProfilePet = ({
   return (
     <li className={s.petItem}>
       {photo.length > 0 ? (
-        <img src={photo} alt={breed} className={s.petIamge} />
+        <img src={photo} alt={breed} className={s.petImage} />
       ) : (
         <div className={`${s.petIamge} ${s.petPlaceholder}`}>No image</div>
       )}
