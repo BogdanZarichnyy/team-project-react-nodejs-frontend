@@ -24,17 +24,17 @@ const initialValues = {
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(getUserAuthSelector);
+  const isAuth = useSelector(getUserAuthSelector);
   const options = {
     onClose: () => dispatch(isAuthFailure(null)),
   };
 
   useEffect(() => {
-    if (isLoggedIn === false) {
+    if (isAuth === false) {
       toast.error(`Incorrect email or password.`, options);
     }
     // eslint-disable-next-line
-  }, [isLoggedIn]);
+  }, [isAuth]);
 
   const handleLogin = values => {
     try {
