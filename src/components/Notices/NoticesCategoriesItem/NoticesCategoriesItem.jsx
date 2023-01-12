@@ -5,7 +5,7 @@ import moment from 'moment';
 import { toast } from "react-toastify";
 
 import { getUserLoggedSelector, getUserSelector } from '../../../store/user';
-import { toggleFavoriteFetch } from '../../../store/ads';
+import { toggleFavoriteFetch, deleteAdsFetch } from '../../../store/ads';
 
 import ModalNotice from '../ModalNotice';
 import IconComponent from '../../IconComponent';
@@ -28,7 +28,7 @@ export default function NoticesCategoriesItem({ notice }) {
     }
 
     dispatch(toggleFavoriteFetch(notice._id));
-    setModal(modal)
+    setModal(modal);
     event.currentTarget.blur();
   };
 
@@ -40,7 +40,7 @@ export default function NoticesCategoriesItem({ notice }) {
   };
 
   const handleDeleteNotice = () => {
-    console.log('DELETE CLICKED');
+    dispatch(deleteAdsFetch(notice._id))
   };
 
   return (
@@ -95,9 +95,9 @@ export default function NoticesCategoriesItem({ notice }) {
                   moment(notice.birthDate).startOf('day').fromNow(true)}
               </p>
             </li>
-            {notice.price !== null && notice.price !== '' && (
+            {notice.price !== '$' && (
               <li className={s.petInfoLItem}>
-                <p className={s.petInfoLType}>Sell:</p>
+                <p className={s.petInfoLType}>Price:</p>
                 <p className={s.petInfoLValue}>{notice.price}</p>
               </li>
             )}
