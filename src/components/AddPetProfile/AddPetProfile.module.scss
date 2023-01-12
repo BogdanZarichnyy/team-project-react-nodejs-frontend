@@ -17,6 +17,9 @@
 .image {
   width: 208px;
   height: 208px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
   @include tablet {
     width: 182px;
     height: 182px;
