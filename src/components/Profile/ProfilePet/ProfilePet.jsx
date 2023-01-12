@@ -17,7 +17,7 @@ const ProfilePet = ({
 
   return (
     <li className={s.petItem}>
-      <img src={photo} alt={breed} className={s.petIamge} />
+      <img src={photo} alt={breed} className={s.petImage} />
       <div>
         <p className={s.petFeature}>
           Name: <span className={s.petFeatureDetail}>{name}</span>

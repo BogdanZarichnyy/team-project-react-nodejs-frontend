@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
+
 import ButtonBase from '../../ButtonBase/ButtonBase';
 import InputBase from '../../InputBase/InputBase';
 import sprite from '../../../images/sprite.svg';
-import s from './AddPetForm.module.scss';
 import ErrorText from '../../ErrorText';
 import IconComponent from '../../IconComponent';
+
+import s from './AddPetForm.module.scss';
 
 const AddPetFormStepTwo = ({ onNext, formik }) => {
   const photoRef = useRef();

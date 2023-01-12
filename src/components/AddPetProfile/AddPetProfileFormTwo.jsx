@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import s from './AddPetProfile.module.scss';
+
 import ErrorText from '../ErrorText';
 import IconComponent from '../IconComponent';
 import ButtonBase from '../ButtonBase/ButtonBase';
+
+import s from './AddPetProfile.module.scss';
 
 const AddPetFormStepTwo = ({ onNext, formik }) => {
   const photoRef = useRef();

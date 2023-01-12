@@ -10,6 +10,9 @@
 
 .profileContainer {
   margin-top: 45px;
+  &:last-child {
+    width: 100%;
+  }
 }
 
 .profileHeader {

@@ -21,6 +21,8 @@ import {
   getUserFailure,
   updateUserSuccess,
   updateUserFailure,
+  updateAvatarSuccess,
+  updateAvatarFailure,
   addPetSuccess,
   addPetFailure,
   deletePetSuccess,
@@ -75,23 +77,27 @@ function* workGetCurrentUser() {
 }
 
 function* workUpdateCurrentUser({ payload }) {
-  let data;
   try {
-    if (payload instanceof FormData) {
-      data = yield call(updateAvatarUser, payload);
-    } else {
-      data = yield call(updateCurrentUser, payload);
-    }
+    const data = yield call(updateCurrentUser, payload);
     yield put(updateUserSuccess(data.user));
   } catch (error) {
     yield put(updateUserFailure(error));
   }
 }
 
+function* workUpdateAvatarUser({ payload }) {
+  try {
+    const data = yield call(updateAvatarUser, payload);
+    yield put(updateAvatarSuccess(data.user));
+  } catch (error) {
+    yield put(updateAvatarFailure(error));
+  }
+}
+
 function* workAddPet({ payload }) {
   try {
-    const { data } = yield call(addNewPet, payload);
-    yield put(addPetSuccess(data.pet));
+    const { pet } = yield call(addNewPet, payload);
+    yield put(addPetSuccess(pet));
   } catch (error) {
     yield put(addPetFailure(error.message));
   }
@@ -145,6 +151,10 @@ function* watchUpdateCurrentUser() {
   yield takeLatest('user/updateUserFetch', workUpdateCurrentUser);
 }
 
+function* watchUpdateAvatarUser() {
+  yield takeLatest('user/updateAvatarFetch', workUpdateAvatarUser);
+}
+
 function* watchRestorePasswordUser() {
   yield takeLatest('user/restorePasswordFetch', workRestorePasswordUserFetch);
 }
@@ -168,6 +178,7 @@ export function* userSagas() {
     call(watchLogOutUser),
     call(watchGetCurrentUser),
     call(watchUpdateCurrentUser),
+    call(watchUpdateAvatarUser),
     call(watchRestorePasswordUser),
     call(watchAddPet),
     call(watchDeletePet),
