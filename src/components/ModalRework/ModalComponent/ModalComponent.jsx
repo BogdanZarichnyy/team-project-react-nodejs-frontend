@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 
 import { ModalContext } from '../ModalContext';
-import { updateUserFetch } from '../../../store/user';
+import { updateAvatarFetch } from '../../../store/user';
 
 import IconComponent from '../../IconComponent';
 
@@ -40,7 +40,7 @@ const ModalComponent = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(updateUserFetch(submit));
+    dispatch(updateAvatarFetch(submit));
     handleModal();
   };
 

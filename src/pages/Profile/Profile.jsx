@@ -12,14 +12,6 @@ import s from './Profile.module.scss';
 const Profile = () => {
   const dispatch = useDispatch();
   const petsArr = useSelector(getPetsSelector);
-  const firstLoad = useSelector(state => state.user.firstLoad);
-
-  // Постоянный ререндер, несмотря на массив зависимостей!
-  // useEffect(() => {
-  //   if (firstLoad) {
-  //     dispatch(getPetsFetch());
-  //   }
-  // }, [dispatch, firstLoad]);
 
   useEffect(() => {
     dispatch(getPetsFetch());

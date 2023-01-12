@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useSearchParams, useLocation } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 import classNames from 'classnames';
 import s from './SearchInput.module.scss';
@@ -15,14 +15,13 @@ import {
   getUserAdsFetch,
 } from '../../store/ads';
 import useDebounce from '../../helpers/useDebounce';
+import { useGetPath } from '../../helpers/useGetPath';
 
 const SearchInput = ({ styles }) => {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('query') ?? '';
-  const location = useLocation();
-  const pathArr = location.pathname.split('/');
-  const currentPath = pathArr[pathArr.length - 1];
+  const currentPath = useGetPath();
 
   let action;
 
