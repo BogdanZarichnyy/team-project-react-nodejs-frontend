@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux';
 
 import s from './NoticesCategoriesList.module.scss';
-import { createSelectorFunc } from '../../../store/ads/index';
+import { createSelectorFunc } from '../../../store/ads';
 
 import NoticesCategoriesItem from '../NoticesCategoriesItem/NoticesCategoriesItem';
 
 export default function NoticeCategoriesList({ categoryType }) {
-  const categoryArray = useSelector(createSelectorFunc(categoryType)); //! Этот селектор можешь использовать для всех категорий массивов.
+  const categoryArray = useSelector(createSelectorFunc(categoryType));
 
   return (
     <ul className={s.noticeList}>

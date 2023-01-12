@@ -88,7 +88,6 @@ const userSlice = createSlice({
     },
     updateUserFailure: (state, { payload }) => {
       if (payload.response.status < 200 || payload.response.status >= 300) {
-        console.log('slice error', payload.response.status);
         state.userData = { ...state.userData, avatar: '' };
       }
       state.isLoading = false;

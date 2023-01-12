@@ -90,8 +90,8 @@ function* workUpdateCurrentUser({ payload }) {
 
 function* workAddPet({ payload }) {
   try {
-    const { data } = yield call(addNewPet, payload);
-    yield put(addPetSuccess(data.pet));
+    const { pet } = yield call(addNewPet, payload);
+    yield put(addPetSuccess(pet));
   } catch (error) {
     yield put(addPetFailure(error.message));
   }
