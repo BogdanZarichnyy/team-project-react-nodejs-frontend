@@ -1,10 +1,9 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import moment from 'moment';
 
 import { createSelectorFunc, getAdsLoadingSelector } from '../../../store/ads/index';
 
-import { ModalProvider } from '../../ModalRework';
 import NoticesCategoriesItem from '../NoticesCategoriesItem/NoticesCategoriesItem';
 import Loader from '../../LoaderV1/Loader';
 
@@ -16,7 +15,6 @@ export default function NoticeCategoriesList({ categoryType }) {
 
   return (
     <ul className={s.noticeList}>
-      <ModalProvider>
         {isLoading === true
           ? <Loader />
           : (
@@ -29,7 +27,6 @@ export default function NoticeCategoriesList({ categoryType }) {
               : <h3 className={s.noAdsTitle}>No ads in this category</h3>
           )
         }          
-      </ModalProvider>
     </ul>
   );
 }
