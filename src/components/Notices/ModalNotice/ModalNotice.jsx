@@ -77,7 +77,7 @@ export default function ModalNotice({ notice, onClick }) {
                                 <p className={s.petInfoLType}>Phone:</p>
                                 <p className={s.petInfoLValue}>{notice?.owner?.phone}</p>
                             </li>
-                            {notice.price !== null && notice.price !== '' && 
+                            {notice.price !== '$' && 
                                 <li className={s.petInfoLItem}>
                                     <p className={s.petInfoLType}>Price:</p>
                                     <p className={s.petInfoLValue}>{notice.price}</p>
