@@ -77,6 +77,7 @@ const ProfileContactsItem = ({
             value={val}
             onChange={setVal}
             disabled={activeContact !== name ? true : false}
+            maxLength={17}
           />
         ) : (
           <input
