@@ -6,7 +6,6 @@ import ButtonBase from '../../ButtonBase/ButtonBase';
 
 import s from '../Auth.module.scss';
 import { useDispatch } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
 import { restorePasswordFetch } from '../../../store/user';
 import { restorePasswordSchema } from '../../../validation/restorePasswordSchema';
 
@@ -19,8 +18,7 @@ const RestorePasswordForm = ({ onSent }) => {
 
   const handleMail = async values => {
     try {
-      await dispatch(restorePasswordFetch(values));
-      console.log('aaaaa');
+      dispatch(restorePasswordFetch(values));
       onSent();
     } catch (error) {
       console.log(error);
@@ -43,7 +41,7 @@ const RestorePasswordForm = ({ onSent }) => {
     <form className={s.form} onSubmit={handleSubmit}>
       {touched.email && errors.email ? <ErrorText text={errors.email} /> : null}
       <InputBase
-        styles={s.inputRestorePassword}
+        styles={s.inputSecondBottomMargin}
         type="email"
         name="email"
         placeholder="Email"

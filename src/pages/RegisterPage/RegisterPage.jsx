@@ -1,12 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useFormik } from 'formik';
 
 import AuthLayout from '../../layouts/AuthLayout';
 import RegisterFormStepOne from '../../components/Auth/RegisterFormStepOne';
 import RegisterFormStepTwo from '../../components/Auth/RegisterFormStepTwo';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { registerUserFetch, getUserLoggedSelector } from '../../store/user';
+import { useDispatch } from 'react-redux';
+import { registerUserFetch } from '../../store/user';
 
 import s from '../../components/Auth/Auth.module.scss';
 import { registerPageSchema } from '../../validation/registerPageSchema';
@@ -22,16 +21,7 @@ const initialValues = {
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [step, setStep] = useState(1);
-  const isLoggedIn = useSelector(getUserLoggedSelector);
-
-  useEffect(() => {
-    if (isLoggedIn === 'success') {
-      navigate('/user');
-    }
-    // eslint-disable-next-line
-  }, [isLoggedIn]);
 
   const handleRegister = async values => {
     const phone = '+' + values.phone;
