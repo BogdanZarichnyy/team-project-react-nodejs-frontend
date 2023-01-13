@@ -29,11 +29,16 @@
   width: 240px;
   height: 240px;
   border-radius: 20px;
-  object-fit: cover;
+  // object-fit: cover;
   @include tablet {
     width: 161px;
     height: 161px;
   }
+}
+
+.petPlaceholder {
+  @include flex-center;
+  background-color: getColor('clr-bg');
 }
 
 .petFeature {

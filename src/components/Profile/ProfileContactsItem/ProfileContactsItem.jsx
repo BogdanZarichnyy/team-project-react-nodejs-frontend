@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { updateUserFetch } from '../../../store/user';
+import {
+  updateUserFetch,
+  getUserErrorSelector,
+  getUserLoadingSelector,
+} from '../../../store/user';
 import IconComponent from '../../IconComponent';
 
 import s from './ProfileContactsItem.module.scss';
@@ -17,6 +21,16 @@ const ProfileContactsItem = ({
   const ref = useRef();
   const [val, setVal] = useState('');
   const dispatch = useDispatch();
+  const isError = useSelector(getUserErrorSelector);
+  const isLoading = useSelector(getUserLoadingSelector);
+
+  useEffect(() => {
+    if (isError && !isLoading) {
+      /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/.test(value)
+        ? setVal(value.substring(0, 10))
+        : setVal(value);
+    }
+  }, [isError, isLoading]);
 
   useEffect(() => {
     if (value) {

@@ -15,7 +15,6 @@ const initialState = {
   userPets: [],
   token: '',
   isLoggedIn: 'idle',
-  firstLoad: true,
   isPetsLoading: false,
   isLoading: false,
   error: false,
@@ -58,6 +57,7 @@ const userSlice = createSlice({
     },
     getUserFetch: state => {
       state.isLoading = true;
+      state.error = false;
     },
     getUserSuccess: (state, { payload }) => {
       state.userData = payload;
@@ -72,16 +72,19 @@ const userSlice = createSlice({
     },
     logOutUserFetch: state => {
       state.isLoading = true;
+      state.error = false;
     },
     logOutUserSuccess: state => {
       state.isLoggedIn = 'rejected';
+      state.error = false;
     },
     logOutUserFailure: (state, { payload }) => {
       state.isLoading = false;
       state.error = payload;
     },
-    updateUserFetch: state => {
+    updateUserFetch: (state, { payload }) => {
       state.isLoading = true;
+      state.error = false;
     },
     updateUserSuccess: (state, { payload }) => {
       state.userData = payload;
@@ -94,6 +97,7 @@ const userSlice = createSlice({
     },
     updateAvatarFetch: state => {
       state.isLoading = true;
+      state.error = false;
     },
     updateAvatarSuccess: (state, { payload }) => {
       state.userData = payload;
@@ -109,10 +113,10 @@ const userSlice = createSlice({
     },
     getPetsFetch: state => {
       state.isPetsLoading = true;
+      state.error = false;
     },
     getPetsSuccess: (state, { payload }) => {
       state.userPets = payload;
-      state.firstLoad = false;
       state.isPetsLoading = false;
       state.error = false;
     },
@@ -122,6 +126,7 @@ const userSlice = createSlice({
     },
     addPetFetch: state => {
       state.isPetsLoading = true;
+      state.error = false;
     },
     addPetSuccess: (state, { payload }) => {
       state.userPets = [payload, ...state.userPets];
@@ -134,6 +139,7 @@ const userSlice = createSlice({
     },
     deletePetFetch: state => {
       state.isPetsLoading = true;
+      state.error = false;
     },
     deletePetSuccess: (state, { payload }) => {
       state.userPets = state.userPets.filter(obj => obj._id !== payload._id);
@@ -144,7 +150,9 @@ const userSlice = createSlice({
       state.isPetsLoading = false;
       state.error = payload;
     },
-    restorePasswordFetch: (state, { payload }) => {},
+    restorePasswordFetch: (state, { payload }) => {
+      state.error = false;
+    },
     restorePasswordSuccess: state => {
       state.error = false;
     },
