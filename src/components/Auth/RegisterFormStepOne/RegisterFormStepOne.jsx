@@ -23,6 +23,7 @@ const RegisterFormStepOne = ({ onNext, formik }) => {
       {isErrors && errors.email && <ErrorText text={errors.email} />}
       <InputBase
         styles={s.inputBottomMargin}
+        id="email"
         type="email"
         name="email"
         placeholder="Email"
@@ -32,26 +33,26 @@ const RegisterFormStepOne = ({ onNext, formik }) => {
       {isErrors && errors.password && <ErrorText text={errors.password} />}
       <InputBase
         styles={s.inputBottomMargin}
+        id="password"
         type="password"
         name="password"
         placeholder="Password"
         value={values.password}
         onChange={handleChange}
         autocomplete="new-password"
-        id="new-password"
       />
       {isErrors && errors.confirmPassword && (
         <ErrorText text={errors.confirmPassword} />
       )}
       <InputBase
         styles={s.inputSecondBottomMargin}
+        id="confirmPassword"
         type="password"
         name="confirmPassword"
         placeholder="Confirm Password"
         value={values.confirmPassword}
         onChange={handleChange}
         autocomplete="new-password"
-        id="new-password"
       />
 
       <ButtonBase onClick={validateFields} type="button" text="Next" />
