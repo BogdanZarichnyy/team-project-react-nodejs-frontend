@@ -2,6 +2,9 @@
 @import '../../../sass/utils/mixins';
 
 .noticeItem {
+    display: flex;
+    flex-direction: column;
+
     width: 280px;
     min-height: 565px;
 
@@ -105,8 +108,13 @@
     outline: none;
 }
 
-.noticeDecription {
-    padding: 20px 16px 32px;
+.noticeDecription,
+.noticeDecriptionOwner {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    padding: 20px 16px 32px;    
 }
 
 .noticeDecriptionOwner {
@@ -125,6 +133,14 @@
     color: getColor('clr-black');
 }
 
+.noticeListButtonsThumb {
+    display: flex;    
+    flex-direction: column;
+    justify-content: space-between;
+
+    flex-grow: 1;
+}
+
 .petInfoLItem {
     display: flex;
 
@@ -133,10 +149,17 @@
     word-wrap: break-word;
 }
 
-.petInfoList {
+.petInfoList,
+.petInfoListOwner {
     display: flex;
     flex-direction: column;
     gap: 8px;
+
+    margin-bottom: 50px;
+}
+
+.petInfoListOwner {
+    margin-bottom: 20px;
 }
 
 .petInfoLType,
@@ -162,12 +185,6 @@
     flex-direction: column;
     align-items: center;
     gap: 12px;
-
-    margin-top: 20px;
-}
-
-.noticeButtonsThumb {
-    margin-top: 50px;
 }
 
 .noticeLearnMoreButton,
