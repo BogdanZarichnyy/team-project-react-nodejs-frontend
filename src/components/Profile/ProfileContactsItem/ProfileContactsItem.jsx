@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 import {
   updateUserFetch,
@@ -41,6 +43,11 @@ const ProfileContactsItem = ({
   }, [value]);
 
   useEffect(() => {
+    // if (valKey === 'phone') {
+    //   ref.current.numberInputRef.focus();
+    // } else {
+    //   ref.current.focus();
+    // }
     ref.current.focus();
   }, [activeContact]);
 
@@ -64,14 +71,32 @@ const ProfileContactsItem = ({
     <li className={s.contactThumb}>
       <p className={s.contactType}>{name}</p>
       <form onSubmit={handleSubmit} className={s.contactForm}>
-        <input
-          type={type}
-          className={s.contactInput}
-          ref={ref}
-          value={val}
-          onChange={handleInput}
-          disabled={activeContact !== name ? true : false}
-        />
+        {valKey === 'phone' ? (
+          <PhoneInput
+            placeholder="Mobile phone"
+            inputProps={{
+              ref: ref,
+              disabled: activeContact !== name ? true : false,
+              value: val,
+              onChange: e => handleInput(e),
+            }}
+            name="phone"
+            containerClass={s.contactInput}
+            country={'ua'}
+            disableDropdown
+            enableAreaCodes={true}
+          />
+        ) : (
+          <input
+            type={type}
+            className={s.contactInput}
+            ref={ref}
+            value={val}
+            onChange={handleInput}
+            disabled={activeContact !== name ? true : false}
+          />
+        )}
+
         {activeContact === name ? (
           <button className={s.contactButton} type="submit">
             <IconComponent
