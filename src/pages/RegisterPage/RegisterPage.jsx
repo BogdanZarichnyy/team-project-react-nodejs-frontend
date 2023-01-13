@@ -9,6 +9,7 @@ import { registerUserFetch } from '../../store/user';
 
 import s from '../../components/Auth/Auth.module.scss';
 import { registerPageSchema } from '../../validation/registerPageSchema';
+import '../../components/Auth/RegisterFormStepTwo/RegisterForm.css';
 
 const initialValues = {
   email: '',
