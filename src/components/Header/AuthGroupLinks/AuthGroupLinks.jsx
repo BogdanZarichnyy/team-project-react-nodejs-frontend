@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 import { useSelector } from 'react-redux';
@@ -10,7 +12,23 @@ import sprite from '../../../images/sprite.svg';
 import s from './AuthGroupLinks.module.scss';
 
 const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
+  const [isPrimaryBtnSelected, setIsPrimaryBtnSelected] = useState(true);
+  const [isSecondaryBtnSelected, setIsSecondaryBtnSelected] = useState(false);
   const isLoggedIn = useSelector(getUserLoggedSelector);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === '/login') {
+      setIsPrimaryBtnSelected(true);
+      setIsSecondaryBtnSelected(false);
+    }
+
+    if (location.pathname === '/register') {
+      setIsSecondaryBtnSelected(true);
+      setIsPrimaryBtnSelected(false);
+    }
+  }, [location]);
 
   const animateFrom = { opacity: 0, y: -40 };
   const animateTo = { opacity: 1, y: 0 };
@@ -50,16 +68,18 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
             animate={animateTo}
             exit={animateExit}
           >
-            <PrimaryButton
+            <SecondaryButton
               tag="NavLink"
               to="/login"
-              className={s.authBtn}
+              className={
+                isPrimaryBtnSelected ? s.authPrimaryBtnSelected : s.authBtn
+              }
               onClick={() => {
                 isMobile && closeMobileMenu();
               }}
             >
               Login
-            </PrimaryButton>
+            </SecondaryButton>
           </motion.div>
 
           <motion.div
@@ -70,7 +90,9 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
             <SecondaryButton
               tag="NavLink"
               to="/register"
-              className={s.authBtn}
+              className={
+                isSecondaryBtnSelected ? s.authPrimaryBtnSelected : s.authBtn
+              }
               onClick={() => {
                 isMobile && closeMobileMenu();
               }}
