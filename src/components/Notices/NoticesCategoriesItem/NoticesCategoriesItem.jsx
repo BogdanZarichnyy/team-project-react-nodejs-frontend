@@ -79,46 +79,48 @@ export default function NoticesCategoriesItem({ notice }) {
           }
         >
           <h3 className={s.noticeTitle}>{notice.addTitle}</h3>
-          <ul className={s.petInfoList}>
-            <li className={s.petInfoLItem}>
-              <p className={s.petInfoLType}>Breed:</p>
-              <p className={s.petInfoLValue}>{notice.breed}</p>
-            </li>
-            <li className={s.petInfoLItem}>
-              <p className={s.petInfoLType}>Place:</p>
-              <p className={s.petInfoLValue}>{notice.location}</p>
-            </li>
-            <li className={s.petInfoLItem}>
-              <p className={s.petInfoLType}>Age:</p>
-              <p className={s.petInfoLValue}>
-                {notice.birthDate &&
-                  moment(notice.birthDate).startOf('day').fromNow(true)}
-              </p>
-            </li>
-            {notice.price !== '$' && (
-              <li className={s.petInfoLItem}>
-                <p className={s.petInfoLType}>Price:</p>
-                <p className={s.petInfoLValue}>{notice.price}</p>
-              </li>
-            )}
-          </ul>
-          <div className={s.noticeButtonsThumb}>
-            <button
-              className={s.noticeLearnMoreButton}
-              onClick={handleClickOpen}
-            >
-              Learn more
-            </button>
-            {user._id === notice?.owner?._id && (
-              <button
-                className={s.noticeDeleteButton}
-                onClick={handleDeleteNotice}
-              >
-                Delete
-                <IconComponent classname={s.trashIcon} iconname="trashIcon" />
-              </button>
-            )}
-          </div>
+          <div className={s.noticeListButtonsThumb}>
+              <ul className={user._id === notice?.owner?._id ? s.petInfoListOwner : s.petInfoList}>
+                <li className={s.petInfoLItem}>
+                  <p className={s.petInfoLType}>Breed:</p>
+                  <p className={s.petInfoLValue}>{notice.breed}</p>
+                </li>
+                <li className={s.petInfoLItem}>
+                  <p className={s.petInfoLType}>Place:</p>
+                  <p className={s.petInfoLValue}>{notice.location}</p>
+                </li>
+                <li className={s.petInfoLItem}>
+                  <p className={s.petInfoLType}>Age:</p>
+                  <p className={s.petInfoLValue}>
+                    {notice.birthDate &&
+                      moment(notice.birthDate).startOf('day').fromNow(true)}
+                  </p>
+                </li>
+                {notice.price !== '$' && (
+                  <li className={s.petInfoLItem}>
+                    <p className={s.petInfoLType}>Price:</p>
+                    <p className={s.petInfoLValue}>{notice.price}</p>
+                  </li>
+                )}
+              </ul>
+              <div className={s.noticeButtonsThumb}>
+                <button
+                  className={s.noticeLearnMoreButton}
+                  onClick={handleClickOpen}
+                >
+                  Learn more
+                </button>
+                {user._id === notice?.owner?._id && (
+                  <button
+                    className={s.noticeDeleteButton}
+                    onClick={handleDeleteNotice}
+                  >
+                    Delete
+                    <IconComponent classname={s.trashIcon} iconname="trashIcon" />
+                  </button>
+                )}
+              </div>
+          </div>          
         </div>
       </li>
     </>
