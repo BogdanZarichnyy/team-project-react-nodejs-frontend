@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import AuthLayout from '../../layouts/AuthLayout';
-import LoginForm from '../../components/Auth/LoginForm';
+import LoginForm from '../../components/Auth/LoginForm/LoginForm';
 
 import { getUserLoggedSelector, getUserErrorSelector, getUserLoadingSelector } from '../../store/user';
 
