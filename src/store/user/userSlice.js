@@ -79,6 +79,8 @@ const userSlice = createSlice({
     logOutUserSuccess: state => {
       localStorage.removeItem('persist:user');
       state.isLoggedIn = 'rejected';
+      state.token = '';
+      localStorage.clear('persist:user');
       state.error = false;
     },
     logOutUserFailure: (state, { payload }) => {
@@ -95,6 +97,7 @@ const userSlice = createSlice({
       state.error = false;
     },
     updateUserFailure: (state, { payload }) => {
+      state.isLoggedIn = 'rejected';
       state.isLoading = false;
       state.error = payload;
     },
@@ -162,6 +165,9 @@ const userSlice = createSlice({
     restorePasswordFailure: (state, { payload }) => {
       state.error = payload;
     },
+    setIsLoggedIn: state => {
+      state.isLoggedIn = 'rejected';
+    },
   },
   // extraReducers: builder => {
   //   builder.addCase(PURGE, state => {
@@ -201,6 +207,7 @@ export const {
   restorePasswordFetch,
   restorePasswordSuccess,
   restorePasswordFailure,
+  setIsLoggedIn,
 } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -7,9 +7,25 @@
   fill: getColor('clr-white');
 }
 
-.authBtn {
-  height: 44px;
+.authPrimaryBtnSelected {
+  background-color: getColor('clr-accent');
+  border: 2px solid getColor('clr-accent');
+
+  color: getColor('clr-white');
+  @include transition-animation(all);
 }
+
+.authPrimaryBtnSelected:hover {
+  background-color: getColor('clr-accent-active');
+  border: 2px solid getColor('clr-accent-active');
+}
+
+// .authSecondaryBtnSelected {
+//   background-color: getColor('clr-accent');
+//   border: 2px solid getColor('clr-accent');
+
+//   color: getColor('clr-white');
+// }
 
 @include toDesktop {
   .auth_item {
@@ -28,8 +44,22 @@
 
   .authBtn {
     padding: 8px 37px !important;
-    height: 35px !important;
-
     font-size: 14px !important;
   }
+
+  .authPrimaryBtnSelected {
+    composes: authBtn;
+    background-color: getColor('clr-accent-active');
+    border: 2px solid getColor('clr-accent-active');
+
+    color: getColor('clr-white');
+  }
+
+  // .authSecondaryBtnSelected {
+  //   composes: authBtn;
+  //   background-color: getColor('clr-accent');
+  //   border: 2px solid getColor('clr-accent');
+
+  //   color: getColor('clr-white');
+  // }
 }

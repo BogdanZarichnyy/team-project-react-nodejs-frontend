@@ -70,6 +70,10 @@ export default function ModalNotice({ notice, onClick }) {
                                 </li>
                             }
                             <li className={s.petInfoLItem}>
+                                <p className={s.petInfoLType}>Owner's name:</p>
+                                <p className={s.petInfoLValue}>{notice?.owner?.name}</p>
+                            </li>
+                            <li className={s.petInfoLItem}>
                                 <p className={s.petInfoLType}>Email:</p>
                                 <p className={s.petInfoLValue}>{notice?.owner?.email}</p>
                             </li>
