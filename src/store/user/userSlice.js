@@ -15,7 +15,6 @@ const initialState = {
   userPets: [],
   token: '',
   isLoggedIn: 'idle',
-  firstLoad: true,
   isPetsLoading: false,
   isLoading: false,
   error: false,
@@ -84,10 +83,6 @@ const userSlice = createSlice({
       state.error = payload;
     },
     updateUserFetch: (state, { payload }) => {
-      // const payloadEntry = Object.entries(payload);
-      // const payloadKey = payloadEntry[0][0];
-      // const payloadVal = payloadEntry[0][1];
-      // state.userData[payloadKey] = payloadVal;
       state.isLoading = true;
       state.error = false;
     },
@@ -122,7 +117,6 @@ const userSlice = createSlice({
     },
     getPetsSuccess: (state, { payload }) => {
       state.userPets = payload;
-      state.firstLoad = false;
       state.isPetsLoading = false;
       state.error = false;
     },
