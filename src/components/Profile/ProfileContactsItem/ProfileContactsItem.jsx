@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import PhoneInput from 'react-phone-number-input/input';
 
 import {
   updateUserFetch,
@@ -46,7 +47,9 @@ const ProfileContactsItem = ({
 
   const handleInput = e => {
     const inputVal = e.target.value;
-    setVal(inputVal);
+    if (valKey !== 'phone') {
+      setVal(inputVal);
+    }
   };
 
   const handleClick = e => {
@@ -64,14 +67,29 @@ const ProfileContactsItem = ({
     <li className={s.contactThumb}>
       <p className={s.contactType}>{name}</p>
       <form onSubmit={handleSubmit} className={s.contactForm}>
-        <input
-          type={type}
-          className={s.contactInput}
-          ref={ref}
-          value={val}
-          onChange={handleInput}
-          disabled={activeContact !== name ? true : false}
-        />
+        {valKey === 'phone' ? (
+          <PhoneInput
+            className={s.contactInput}
+            country="UA"
+            international={true}
+            withCountryCallingCode={true}
+            ref={ref}
+            value={val}
+            onChange={setVal}
+            disabled={activeContact !== name ? true : false}
+            maxLength={16}
+          />
+        ) : (
+          <input
+            type={type}
+            className={s.contactInput}
+            ref={ref}
+            value={val}
+            onChange={handleInput}
+            disabled={activeContact !== name ? true : false}
+          />
+        )}
+
         {activeContact === name ? (
           <button className={s.contactButton} type="submit">
             <IconComponent
