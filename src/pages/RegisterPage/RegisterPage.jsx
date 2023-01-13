@@ -23,19 +23,15 @@ const RegisterPage = () => {
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
 
-  const handleRegister = async values => {
+  const handleRegister = values => {
     const phone = '+' + values.phone;
     const { confirmPassword, ...userData } = values;
-    try {
-      await dispatch(
-        registerUserFetch({
-          ...userData,
-          phone,
-        })
-      );
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(
+      registerUserFetch({
+        ...userData,
+        phone,
+      })
+    );
   };
 
   const formik = useFormik({

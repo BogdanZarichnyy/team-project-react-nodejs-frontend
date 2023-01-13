@@ -32,6 +32,7 @@
   max-width: 608px;
   width: 100%;
   background-color: transparent;
+  margin-bottom: 159px;
 
   border-radius: 30px;
   display: flex;
@@ -39,6 +40,7 @@
   justify-content: center;
   align-items: center;
   @include tablet {
+    margin-bottom: 299px;
     padding: 60px 80px 40px 80px;
     background-color: getColor('clr-white');
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
@@ -46,6 +48,7 @@
   @include desktop {
     padding: 60px 80px;
     max-width: 618px;
+    margin-bottom: 147px;
   }
 }
 

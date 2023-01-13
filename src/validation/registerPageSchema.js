@@ -13,13 +13,15 @@ export const registerPageSchema = Yup.object().shape({
   password: Yup.string()
     .min(7, 'Password must be at least 7 characters long')
     .max(32, 'Password must be 32 characters maximum')
-    .required('Required field to fill!'),
+    .required('Required field to fill!')
+    .matches(/^[^\s]+$/, 'The field must not contain spaces'),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    .required('Required field to fill!'),
+    .required('Required field to fill!')
+    .matches(/^[^\s]+$/, 'The field must not contain spaces'),
   name: Yup.string()
     .required('Required field to fill!')
-    .matches(/^[a-zA-z ]+$/, 'In this field must be contain only letters'),
+    .matches(/^\D*$/, 'The field must contain only Latin characters'),
   city: Yup.string().required(
     'Required field to fill! Please, choose one option from list!'
   ),
