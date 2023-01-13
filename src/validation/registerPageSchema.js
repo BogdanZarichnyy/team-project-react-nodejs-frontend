@@ -19,7 +19,7 @@ export const registerPageSchema = Yup.object().shape({
     .required('Required field to fill!'),
   name: Yup.string()
     .required('Required field to fill!')
-    .matches(/^[a-zA-z ]+$/, 'In this field must be contain only letters'),
+    .matches(/^\D*$/, 'The field must contain only Latin characters'),
   city: Yup.string().required(
     'Required field to fill! Please, choose one option from list!'
   ),
