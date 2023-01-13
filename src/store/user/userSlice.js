@@ -19,7 +19,6 @@ const initialState = {
   isPetsLoading: false,
   isLoading: false,
   error: false,
-  isAuth: null,
 };
 
 const userSlice = createSlice({
@@ -56,12 +55,6 @@ const userSlice = createSlice({
       state.isLoggedIn = 'rejected';
       state.isLoading = false;
       state.error = payload;
-    },
-    isAuthSuccess: state => {
-      state.isAuth = true;
-    },
-    isAuthFailure: (state, { payload }) => {
-      state.isAuth = payload;
     },
     getUserFetch: state => {
       state.isLoading = true;
@@ -168,8 +161,6 @@ export const {
   loginUserFetch,
   loginUserSuccess,
   loginUserFailure,
-  isAuthFailure,
-  isAuthSuccess,
   getUserFetch,
   getUserSuccess,
   getUserFailure,

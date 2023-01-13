@@ -1,21 +1,18 @@
-import React, { useEffect } from 'react';
-
-import { useDispatch, useSelector } from 'react-redux';
-
-import { useFormik } from 'formik';
-import { toast } from 'react-toastify';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import s from '../Auth.module.scss';
+import { useFormik } from 'formik';
+
 import InputBase from '../../InputBase/InputBase';
 import ButtonBase from '../../ButtonBase/ButtonBase';
 import ErrorText from '../../ErrorText';
 
 import { loginUserFetch } from '../../../store/user';
-import style from '../../../layouts/AuthLayout/AuthLayout.module.scss';
 import { loginFormSchema } from '../../../validation/loginFormSchema';
-import { getUserAuthSelector } from '../../../store/user/userSelectors';
-import { isAuthFailure } from '../../../store/user/userSlice';
+
+import style from '../../../layouts/AuthLayout/AuthLayout.module.scss';
+import s from '../Auth.module.scss';
 
 const initialValues = {
   email: '',
@@ -24,17 +21,6 @@ const initialValues = {
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const isAuth = useSelector(getUserAuthSelector);
-  const options = {
-    onClose: () => dispatch(isAuthFailure(null)),
-  };
-
-  useEffect(() => {
-    if (isAuth === false) {
-      toast.error(`Incorrect email or password.`, options);
-    }
-    // eslint-disable-next-line
-  }, [isAuth]);
 
   const handleLogin = values => {
     try {
