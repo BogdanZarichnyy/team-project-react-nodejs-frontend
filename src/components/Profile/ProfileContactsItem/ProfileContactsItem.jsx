@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
+import PhoneInput from 'react-phone-number-input/input';
 
 import {
   updateUserFetch,
@@ -43,17 +42,14 @@ const ProfileContactsItem = ({
   }, [value]);
 
   useEffect(() => {
-    // if (valKey === 'phone') {
-    //   ref.current.numberInputRef.focus();
-    // } else {
-    //   ref.current.focus();
-    // }
     ref.current.focus();
   }, [activeContact]);
 
   const handleInput = e => {
     const inputVal = e.target.value;
-    setVal(inputVal);
+    if (valKey !== 'phone') {
+      setVal(inputVal);
+    }
   };
 
   const handleClick = e => {
@@ -73,18 +69,14 @@ const ProfileContactsItem = ({
       <form onSubmit={handleSubmit} className={s.contactForm}>
         {valKey === 'phone' ? (
           <PhoneInput
-            placeholder="Mobile phone"
-            inputProps={{
-              ref: ref,
-              disabled: activeContact !== name ? true : false,
-              value: val,
-              onChange: e => handleInput(e),
-            }}
-            name="phone"
-            containerClass={s.contactInput}
-            country={'ua'}
-            disableDropdown
-            enableAreaCodes={true}
+            className={s.contactInput}
+            country="UA"
+            international={true}
+            withCountryCallingCode={true}
+            ref={ref}
+            value={val}
+            onChange={setVal}
+            disabled={activeContact !== name ? true : false}
           />
         ) : (
           <input
