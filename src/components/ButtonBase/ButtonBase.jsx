@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import s from './ButtonBase.module.scss';
 
 const ButtonBase = ({
-  disabled,
+  disabled = false,
   type,
   text,
   styles = {},
@@ -14,7 +14,12 @@ const ButtonBase = ({
     <button
       disabled={disabled}
       onClick={onClick}
-      className={classNames(s.button, styles, isLigth && s.ligth)}
+      className={classNames(
+        s.button,
+        styles,
+        isLigth && s.ligth,
+        disabled && s.disabled
+      )}
       type={type}
     >
       {text}

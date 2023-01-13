@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-import ua from '../../../constants/ua.json';
 import Select from 'react-select';
+import citiesArray from '../../../constants/citiesArray';
 
 import InputBase from '../../InputBase/InputBase';
 import ButtonBase from '../../ButtonBase/ButtonBase';
 import ErrorText from '../../ErrorText';
 
 import s from '../Auth.module.scss';
-
 const RegisterFormStepTwo = ({ onNext, formik }) => {
   const [filteredCities, setFilteredCities] = useState([]);
 
@@ -18,7 +17,7 @@ const RegisterFormStepTwo = ({ onNext, formik }) => {
       setFilteredCities([]);
       return;
     }
-    const filteredCities = ua.reduce((acc, el) => {
+    const filteredCities = citiesArray.reduce((acc, el) => {
       if (el.city.toUpperCase().startsWith(value.toUpperCase())) {
         acc.push({
           value: `${el.city}, ${el.admin_name}`,

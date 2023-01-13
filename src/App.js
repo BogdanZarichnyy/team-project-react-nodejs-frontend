@@ -1,14 +1,24 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import AnimatedRoutes from './components/AnimatedRoutes/AnimatedRoutes';
-import { getUserFetch } from './store/user';
+import {
+  getUserFetch,
+  setIsLoggedIn,
+  getUserTokenSelector,
+} from './store/user';
 
 export const App = () => {
   const dispatch = useDispatch();
+  const token = useSelector(getUserTokenSelector);
 
   useEffect(() => {
-    dispatch(getUserFetch());
+    if (token) {
+      dispatch(getUserFetch());
+    } else {
+      dispatch(setIsLoggedIn());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   return <AnimatedRoutes />;

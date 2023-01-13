@@ -28,6 +28,7 @@ const Profile = lazy(() => import('../../pages/Profile'));
 const RestorePasswordPage = lazy(() =>
   import('../../pages/LoginPage/RestorePasswordPage')
 );
+const NotFound = lazy(() => import('../NotFound/NotFound'));
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -39,112 +40,119 @@ const AnimatedRoutes = () => {
       </div>
 
       <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-         <Route path="/" element={<SharedLayout />}>
-           <Route
-            index
-            element={
-              <Suspense fallback={<Loader />}>
-                <Home />
-              </Suspense>
-            }
-          />
-
-          <Route
-            element={
-              <Suspense fallback={<Loader />}>
-                <PublicRoute />
-              </Suspense>
-            }
-          >
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<SharedLayout />}>
             <Route
-              path="login"
+              index
               element={
                 <Suspense fallback={<Loader />}>
-                  <LoginPage />
+                  <Home />
                 </Suspense>
               }
             />
+
             <Route
-              path="register"
               element={
                 <Suspense fallback={<Loader />}>
-                  <RegisterPage />
+                  <PublicRoute />
                 </Suspense>
               }
-            />
-            <Route
-              path="restorePassword"
-              element={
-                <Suspense>
-                  <RestorePasswordPage />
-                </Suspense>
-              }
-            />
-          </Route>
-
-          <Route element={<PrivateRoute />}>
-            <Route
-              path="user"
-              element={
-                <Suspense fallback={<Loader />}>
-                  <Profile />
-                </Suspense>
-              }
-            />
-          </Route>
-
-          <Route
-            path="friends"
-            element={
-              <Suspense fallback={<Loader />}>
-                <OurFriendsPages />
-              </Suspense>
-            }
-          />
-          <Route
-            path="news"
-            element={
-              <Suspense fallback={<Loader />}>
-                <NewsList />
-              </Suspense>
-            }
-          />
-          <Route
-            path="notices"
-            element={
-              <Suspense fallback={<Loader />}>
-                <NoticesPage />
-              </Suspense>
-            }
-          >
-            <Route
-              path="sell"
-              element={<NoticesCategoryList categoryType={'sell'} />}
-            />
-            <Route
-              path="lost-found"
-              element={<NoticesCategoryList categoryType={'lost-found'} />}
-            />
-            <Route
-              path="for-free"
-              element={<NoticesCategoryList categoryType={'for-free'} />}
-            />
-            <Route element={<PrivateRoute />}>
+            >
               <Route
-                path="favorite"
-                element={<NoticesCategoryList categoryType={'favorite'} />}
+                path="login"
+                element={
+                  <Suspense fallback={<Loader />}>
+                    <LoginPage />
+                  </Suspense>
+                }
               />
               <Route
-                path="own"
-                element={<NoticesCategoryList categoryType={'own'} />}
+                path="register"
+                element={
+                  <Suspense fallback={<Loader />}>
+                    <RegisterPage />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="restorePassword"
+                element={
+                  <Suspense>
+                    <RestorePasswordPage />
+                  </Suspense>
+                }
               />
             </Route>
-          </Route>
-        </Route>
 
-        <Route path="*" element={<span>Not Found</span>} />
-      </Routes>
+            <Route element={<PrivateRoute />}>
+              <Route
+                path="user"
+                element={
+                  <Suspense fallback={<Loader />}>
+                    <Profile />
+                  </Suspense>
+                }
+              />
+            </Route>
+
+            <Route
+              path="friends"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <OurFriendsPages />
+                </Suspense>
+              }
+            />
+            <Route
+              path="news"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <NewsList />
+                </Suspense>
+              }
+            />
+            <Route
+              path="notices"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <NoticesPage />
+                </Suspense>
+              }
+            >
+              <Route
+                path="sell"
+                element={<NoticesCategoryList categoryType={'sell'} />}
+              />
+              <Route
+                path="lost-found"
+                element={<NoticesCategoryList categoryType={'lost-found'} />}
+              />
+              <Route
+                path="for-free"
+                element={<NoticesCategoryList categoryType={'for-free'} />}
+              />
+              <Route element={<PrivateRoute />}>
+                <Route
+                  path="favorite"
+                  element={<NoticesCategoryList categoryType={'favorite'} />}
+                />
+                <Route
+                  path="own"
+                  element={<NoticesCategoryList categoryType={'own'} />}
+                />
+              </Route>
+            </Route>
+          </Route>
+
+          <Route
+            path="*"
+            element={
+              <Suspense fallback={<Loader />}>
+                <NotFound />
+              </Suspense>
+            }
+          />
+        </Routes>
       </AnimatePresence>
       <ToastContainer autoClose={3000} theme="colored" />
     </>

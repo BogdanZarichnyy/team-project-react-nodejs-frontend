@@ -24,7 +24,7 @@ const ProfileContactsList = () => {
         {contactTypes &&
           contactTypes.map(({ name, type, value, valKey }) => (
             <ProfileContactsItem
-              key={name}
+              key={valKey}
               {...{
                 name,
                 type,
