@@ -14,7 +14,7 @@ import s from './AuthGroupLinks.module.scss';
 const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
   const [isPrimaryBtnSelected, setIsPrimaryBtnSelected] = useState(true);
   const [isSecondaryBtnSelected, setIsSecondaryBtnSelected] = useState(false);
-  const isLoggedIn = useSelector(getUserLoggedSelector);
+  const loginStatus = useSelector(getUserLoggedSelector);
 
   const location = useLocation();
 
@@ -36,7 +36,7 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
 
   return (
     <>
-      {isLoggedIn === 'success' && (
+      {loginStatus === 'success' && (
         <>
           <motion.div
             initial={animateFrom}
@@ -61,7 +61,7 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
         </>
       )}
 
-      {isLoggedIn === 'rejected' && (
+      {loginStatus === 'rejected' && (
         <>
           <motion.div
             initial={animateFrom}
