@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 import {
-  getNewsSelector,
   getLoadingdNewsSelector,
   getErrorNewsSelector,
+  sortedNewsSelector,
 } from '../../store/news';
 
 import Loader from '../../components/LoaderV1';
@@ -11,7 +11,7 @@ import SearchInput from '../../components/SearchInput';
 import s from './NewsList.module.scss';
 
 const NewsList = () => {
-  const newsArr = useSelector(getNewsSelector);
+  const sortedNewsArr = useSelector(sortedNewsSelector);
   const newsIsLoading = useSelector(getLoadingdNewsSelector);
   const newsError = useSelector(getErrorNewsSelector);
 
@@ -24,15 +24,15 @@ const NewsList = () => {
       {newsError ? <div>Error: {newsError}</div> : null}
 
       <ul className={s.articlelist}>
-        {newsArr.length
-          ? newsArr.map(({ _id, title, url, info, date }) => (
+        {sortedNewsArr.length
+          ? sortedNewsArr.map(({ _id, title, url, info, date, dateISO }) => (
               <li className={s.articleItem} key={_id}>
                 <span className={s.gradient}></span>
                 <h3 className={s.articleTitle}>{title}</h3>
                 <p className={s.articleDescription}>{info}</p>
                 <p className={s.articleMeta}>
                   <span className={s.metaDate}>
-                    {date?.split('T').shift().split('-').join('/')}
+                    {new Date(dateISO).toLocaleString().split(',').shift()}
                   </span>
                   <a
                     href={url}
@@ -46,7 +46,7 @@ const NewsList = () => {
               </li>
             ))
           : null}
-        {!newsArr.length && !newsError && !newsIsLoading ? (
+        {!sortedNewsArr.length && !newsError && !newsIsLoading ? (
           <li>Ooops... Nothing was found</li>
         ) : null}
       </ul>
