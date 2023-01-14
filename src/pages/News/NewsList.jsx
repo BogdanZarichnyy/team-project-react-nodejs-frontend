@@ -4,8 +4,11 @@ import {
   getLoadingdNewsSelector,
   getErrorNewsSelector,
 } from '../../store/news';
-import s from './NewsList.module.scss';
+
+import Loader from '../../components/LoaderV1';
 import SearchInput from '../../components/SearchInput';
+
+import s from './NewsList.module.scss';
 
 const NewsList = () => {
   const newsArr = useSelector(getNewsSelector);
@@ -15,9 +18,11 @@ const NewsList = () => {
   return (
     <div className={s.container}>
       <h2 className={s.title}>News</h2>
+
       <SearchInput />
+
       {newsError ? <div>Error: {newsError}</div> : null}
-      {newsIsLoading ? <div className={s.loading}>Loading...</div> : null}
+
       <ul className={s.articlelist}>
         {newsArr.length
           ? newsArr.map(({ _id, title, url, info, date }) => (
@@ -45,6 +50,7 @@ const NewsList = () => {
           <li>Ooops... Nothing was found</li>
         ) : null}
       </ul>
+      {newsIsLoading ? <Loader /> : null}
     </div>
   );
 };
