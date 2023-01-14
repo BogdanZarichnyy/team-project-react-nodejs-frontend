@@ -53,6 +53,7 @@ const RegisterPage = () => {
       textDescription="Already have an account?"
       nawLink="/login"
       textNawLink="Login"
+      pageType="register"
     >
       <form className={s.form} onSubmit={formik.handleSubmit}>
         {step === 1 ? (
