@@ -17,7 +17,6 @@ const NewsList = () => {
       <h2 className={s.title}>News</h2>
       <SearchInput />
       {newsError ? <div>Error: {newsError}</div> : null}
-      {newsIsLoading ? <div className={s.loading}>Loading...</div> : null}
       <ul className={s.articlelist}>
         {newsArr.length
           ? newsArr.map(({ _id, title, url, info, date }) => (

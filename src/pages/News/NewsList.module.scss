@@ -11,6 +11,13 @@
 .container {
     padding-top: 26px;
     padding-bottom: 100px;
+    @include tablet {
+        width: 800px;
+
+    @include desktop {
+        width: 1280px;
+    }
+    }
 }
 
 .articleTitle {
@@ -50,11 +57,12 @@
         flex-direction: row;
 
         flex-wrap: wrap;
-        gap: 60px 32px;
+        gap: 60px 34px;
     }
 
     @include desktop {
         justify-content: center;
+        gap: 60px 38px;
     }
 }
 
@@ -71,7 +79,7 @@
 
 .gradient {
     display: block;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
     width: 200px;
     height: 4px;
     background: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
