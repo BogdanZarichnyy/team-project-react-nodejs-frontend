@@ -80,10 +80,10 @@ background-color: getColor('clr-white');
 
 .wrapper {
     display: flex;
-    gap: 12px;
+    gap: 4px;
     align-items: flex-start;
     @include tablet {
-        gap: 14px;
+        gap: 4px;
     }
     @include desktop {
         gap: 32px;
@@ -97,12 +97,9 @@ background-color: getColor('clr-white');
 .subtittle {
     text-align: center;
     margin-bottom: 12px;
-    text-decoration-line: underline;
-    @include transition-animation(all);
-    &:hover, 
-    &:focus {
     color: getColor('clr-accent');
-    }   
+    text-decoration-line: underline;
+    
 }
 
 .image {
@@ -121,10 +118,10 @@ background-color: getColor('clr-white');
 .listCard {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 10px;
     @include transition-animation(all);
     @include tablet {
-        gap: 8px;
+        gap: 18px;
     }
 
 }
