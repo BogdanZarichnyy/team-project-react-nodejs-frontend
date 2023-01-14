@@ -5,15 +5,15 @@ import { getUserLoggedSelector } from '../../store/user';
 import { useEffect } from 'react';
 
 const PrivatRoute = () => {
-  const isLoggedIn = useSelector(getUserLoggedSelector);
+  const loginStatus = useSelector(getUserLoggedSelector);
   const navigate = useNavigate();
   useEffect(() => {
-    if (isLoggedIn === 'rejected') {
+    if (loginStatus === 'rejected') {
       navigate('/login');
     }
-  }, [isLoggedIn, navigate]);
+  }, [loginStatus, navigate]);
 
-  return <div>{isLoggedIn === 'success' && <Outlet />}</div>;
+  return <div>{loginStatus === 'success' && <Outlet />}</div>;
 };
 
 export default PrivatRoute;

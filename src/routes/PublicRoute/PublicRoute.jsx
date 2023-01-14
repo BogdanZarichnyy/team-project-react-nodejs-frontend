@@ -7,16 +7,16 @@ import { getUserLoggedSelector } from '../../store/user';
 
 const PublicRoute = () => {
   const navigate = useNavigate();
-  const isLoggedIn = useSelector(getUserLoggedSelector);
+  const loginStatus = useSelector(getUserLoggedSelector);
 
   useEffect(() => {
-    if (isLoggedIn === 'success') {
+    if (loginStatus === 'success') {
       toast.success('Welcome');
       navigate('/user');
     }
-  }, [isLoggedIn, navigate]);
+  }, [loginStatus, navigate]);
 
-  return <div>{isLoggedIn === 'rejected' && <Outlet />}</div>;
+  return <div>{loginStatus === 'rejected' && <Outlet />}</div>;
 };
 
 export default PublicRoute;

@@ -4,7 +4,7 @@ import './App.css';
 import AnimatedRoutes from './components/AnimatedRoutes/AnimatedRoutes';
 import {
   getUserFetch,
-  setIsLoggedIn,
+  setRejectedLoginStatus,
   getUserTokenSelector,
 } from './store/user';
 
@@ -16,7 +16,7 @@ export const App = () => {
     if (token) {
       dispatch(getUserFetch());
     } else {
-      dispatch(setIsLoggedIn());
+      dispatch(setRejectedLoginStatus());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
