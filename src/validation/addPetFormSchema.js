@@ -1,7 +1,8 @@
 import * as Yup from 'yup';
 import { parse } from 'date-fns';
 
-const today = new Date().toLocaleDateString();
+const now = new Date();
+const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
 export const addPetFormSchema = Yup.object().shape({
   category: Yup.string().required('Category is required!'),
