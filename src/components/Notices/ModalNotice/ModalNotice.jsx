@@ -98,7 +98,7 @@ export default function ModalNotice({ notice, onClick }) {
                 <div className={s.noticeButtonsThumb}>
                     <a
                         className={s.noticeContactButton}
-                        href={`tell:${notice?.owner?.phone}`}
+                        href={`tel:${notice?.owner?.phone}`}
                     >
                         Contact
                     </a>

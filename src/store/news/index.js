@@ -6,4 +6,5 @@ export {
   getNewsSelector,
   getLoadingdNewsSelector,
   getErrorNewsSelector,
+  sortedNewsSelector,
 } from './newsSelectors';
