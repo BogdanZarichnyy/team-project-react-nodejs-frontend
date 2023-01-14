@@ -21,12 +21,37 @@ const OurFriends = () => {
       <h2 className={s.tittle}>Our friends</h2>
       <ul className={s.list}>
         {friendsArr.map(
-          ({ _id, name, logo, workTime, address, url, email, phone }) => (
+          ({
+            _id,
+            name,
+            link,
+            logo,
+            workTime,
+            address,
+            url,
+            email,
+            phone,
+            phoneNumber,
+          }) => (
             <li key={_id} className={s.item}>
-              <h3 className={s.subtittle}>{name}</h3>
+              <h3 className={s.subtittle}>
+                <a
+                  href={link}
+                  target="_blank"
+                  rel="noreferrer noopener nofollow"
+                >
+                  {name}
+                </a>
+              </h3>
               <div className={s.wrapper}>
                 <div className={s.wrapperImage}>
-                  <img src={logo} alt="Logo" className={s.image} />
+                  <a
+                    href={link}
+                    target="_blank"
+                    rel="noreferrer noopener nofollow"
+                  >
+                    <img src={logo} alt="Logo" className={s.image} />
+                  </a>
                 </div>
                 <ul className={s.listCard}>
                   {!workTime.length ? (
@@ -80,7 +105,10 @@ const OurFriends = () => {
                   )}
                   <li className={s.itemCard}>
                     <p>Email:</p>
-                    <a href="mailto:{email}" className={s.link}>
+                    <a
+                      href={email ? 'mailto:' + email : null}
+                      className={s.link}
+                    >
                       {email}
                     </a>
                   </li>
@@ -92,7 +120,10 @@ const OurFriends = () => {
                   ) : (
                     <li className={s.itemCard}>
                       <p>Phone:</p>
-                      <a href="tel:{phone}" className={s.link}>
+                      <a
+                        href={phoneNumber ? 'tel:' + phoneNumber : null}
+                        className={s.link}
+                      >
                         {phone}
                       </a>
                     </li>
