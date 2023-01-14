@@ -6,9 +6,10 @@
   background-size: contain;
   background-position: bottom;
   width: 100%;
-  height: calc(100vh - 168px);
+  height: calc(100vh - 80px);
   @include tablet {
     background-image: url('./img/font_tabletSize.svg');
+    height: calc(100vh - 30px);
   }
   @include desktop {
     background-image: url('./img/font_desktopSize.svg');
@@ -16,15 +17,15 @@
 }
 
 .containerForm {
-  margin-top: 42px;
+  padding: 42px 0 103px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   @include tablet {
-    margin-top: 204px;
+    padding: 169px 0 266px 0;
   }
   @include desktop {
-    margin-top: 80px;
+    padding: 46px 0 113px 0;
   }
 }
 
@@ -32,7 +33,6 @@
   max-width: 608px;
   width: 100%;
   background-color: transparent;
-  margin-bottom: 159px;
 
   border-radius: 30px;
   display: flex;
@@ -40,7 +40,6 @@
   justify-content: center;
   align-items: center;
   @include tablet {
-    margin-bottom: 299px;
     padding: 60px 80px 40px 80px;
     background-color: getColor('clr-white');
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
@@ -48,7 +47,6 @@
   @include desktop {
     padding: 60px 80px;
     max-width: 618px;
-    margin-bottom: 147px;
   }
 }
 

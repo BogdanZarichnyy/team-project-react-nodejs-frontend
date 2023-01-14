@@ -7,7 +7,7 @@
   line-height: 38px;
 
   background-color: getColor('clr-bg');
-  border: 1px solid rgba(245, 146, 86, 0.5);
+  border: 1px solid getColor('clr-accent-opacity');
   border-radius: 40px;
 
   font-family: 'Manrope-Regular';
@@ -25,7 +25,7 @@
 }
 .input:focus {
   outline: none;
-  border: 2px solid #f59256;
+  border: 2px solid getColor('clr-accent');
 }
 
 .ligth {
