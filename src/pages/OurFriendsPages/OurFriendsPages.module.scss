@@ -97,8 +97,12 @@ background-color: getColor('clr-white');
 .subtittle {
     text-align: center;
     margin-bottom: 12px;
-    color: getColor('clr-accent');
     text-decoration-line: underline;
+    &:hover,
+    &:focus {
+        color: getColor('clr-accent');
+        @include transition-animation(all);
+    }
     
 }
 
@@ -118,10 +122,10 @@ background-color: getColor('clr-white');
 .listCard {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     @include transition-animation(all);
     @include tablet {
-        gap: 18px;
+        gap: 16px;
     }
 
 }
@@ -130,6 +134,7 @@ background-color: getColor('clr-white');
     &:hover,
     &:focus {
         color: getColor('clr-accent');
+        @include transition-animation(all);
     }
 }
 

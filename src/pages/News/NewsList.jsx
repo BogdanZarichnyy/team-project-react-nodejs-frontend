@@ -22,7 +22,6 @@ const NewsList = () => {
       <SearchInput />
 
       {newsError ? <div>Error: {newsError}</div> : null}
-
       <ul className={s.articlelist}>
         {sortedNewsArr.length
           ? sortedNewsArr.map(({ _id, title, url, info, date, dateISO }) => (
