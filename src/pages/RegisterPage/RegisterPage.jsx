@@ -1,14 +1,17 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import { useFormik } from 'formik';
 
 import AuthLayout from '../../layouts/AuthLayout';
 import RegisterFormStepOne from '../../components/Auth/RegisterFormStepOne';
 import RegisterFormStepTwo from '../../components/Auth/RegisterFormStepTwo';
-import { useDispatch } from 'react-redux';
+
 import { registerUserFetch } from '../../store/user';
 
-import s from '../../components/Auth/Auth.module.scss';
 import { registerPageSchema } from '../../validation/registerPageSchema';
+
+import s from '../../components/Auth/Auth.module.scss';
 import '../../components/Auth/RegisterFormStepTwo/RegisterForm.css';
 
 const initialValues = {
