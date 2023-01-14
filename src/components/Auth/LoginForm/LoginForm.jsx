@@ -1,14 +1,13 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-
 import { useFormik } from 'formik';
 
 import InputBase from '../../InputBase/InputBase';
 import ButtonBase from '../../ButtonBase/ButtonBase';
 import ErrorText from '../../ErrorText';
 
-import { loginUserFetch } from '../../../store/user';
+import { getUserLoadingSelector, loginUserFetch } from '../../../store/user';
 import { loginFormSchema } from '../../../validation/loginFormSchema';
 
 import style from '../../../layouts/AuthLayout/AuthLayout.module.scss';
@@ -21,13 +20,10 @@ const initialValues = {
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(getUserLoadingSelector);
 
   const handleLogin = values => {
-    try {
-      dispatch(loginUserFetch(values));
-    } catch (error) {
-      console.log('error', error);
-    }
+    dispatch(loginUserFetch(values));
   };
 
   const formik = useFormik({
@@ -74,7 +70,8 @@ const LoginForm = () => {
         </NavLink>
       </div>
 
-      <ButtonBase type="submit" text="Login" />
+      <ButtonBase type="submit" text="Login" disabled={isLoading} />
+
     </form>
   );
 };

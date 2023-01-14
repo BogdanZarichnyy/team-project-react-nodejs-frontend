@@ -1,5 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
+import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
 
@@ -16,6 +17,7 @@ const persistConfig = {
   key: 'user',
   storage,
   whitelist: ['token'],
+  stateReconciler: autoMergeLevel2,
 };
 
 const combinedReducer = combineReducers({
@@ -31,6 +33,28 @@ const rootReducer = (state, action) => {
   }
   return combinedReducer(state, action);
 };
+
+// const persistConfig = {
+//   key: 'user',
+//   storage,
+//   whitelist: ['user'],
+// };
+
+// const combinedReducer = combineReducers({
+//   user: userReducer,
+//   ads: adsSlice,
+//   news: newsSlice,
+//   friends: friendsSlice,
+// });
+
+// const persistedReducer = persistReducer(persistConfig, combinedReducer);
+
+// const rootReducer = (state, action) => {
+//   if (action.type === 'user/logOutUserSuccess') {
+//     state = undefined;
+//   }
+//   return persistedReducer(state, action);
+// };
 
 export const store = configureStore({
   reducer: rootReducer,

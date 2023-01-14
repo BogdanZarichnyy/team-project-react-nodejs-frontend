@@ -29,38 +29,45 @@ const OurFriends = () => {
                   <img src={logo} alt="Logo" className={s.image} />
                 </div>
                 <ul className={s.listCard}>
-                  <li className={s.itemCard}>
-                    <div className={s.dropdown}>
-                      <p className={s.dropdownSbt}>Time:</p>
-                      <p>
-                        {!workTime.length ? (
-                          <span>----------------------------------</span>
-                        ) : (
+                  {!workTime.length ? (
+                    <li>
+                      <p>Time:</p>
+                      <span>----------------------------------</span>
+                    </li>
+                  ) : (
+                    <li className={s.itemCard}>
+                      <div className={s.dropdown}>
+                        <p className={s.dropdownSbt}>Time:</p>
+                        <p>
                           <span>
                             {workTime[getNowDate() - 1].open} -
                             {workTime[getNowDate() - 1].close}
                           </span>
+                        </p>
+                        {!!workTime.length && (
+                          <ul className={s.dropdownContent}>
+                            {workTime.map(({ day, open, close }) => (
+                              <li className={s.dropdownItem} key={day}>
+                                <span>{day}</span>
+                                <span>
+                                  {open}-{close}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
                         )}
-                      </p>
-                      {!!workTime.length && (
-                        <ul className={s.dropdownContent}>
-                          {workTime.map(({ day, open, close }) => (
-                            <li className={s.dropdownItem} key={day}>
-                              <span>{day}</span>
-                              <span>
-                                {open}-{close}
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  </li>
-                  <li className={s.itemCard}>
-                    <p>Address:</p>
-                    {!address.length ? (
+                      </div>
+                    </li>
+                  )}
+
+                  {!address.length ? (
+                    <li>
+                      <p>Address:</p>
                       <span>----------------------------------</span>
-                    ) : (
+                    </li>
+                  ) : (
+                    <li className={s.itemCard}>
+                      <p>Address:</p>
                       <a
                         href={url}
                         target="_blank"
@@ -69,24 +76,27 @@ const OurFriends = () => {
                       >
                         {address}
                       </a>
-                    )}
-                  </li>
+                    </li>
+                  )}
                   <li className={s.itemCard}>
                     <p>Email:</p>
                     <a href="mailto:{email}" className={s.link}>
                       {email}
                     </a>
                   </li>
-                  <li className={s.itemCard}>
-                    <p>Phone:</p>
-                    {!phone.length ? (
+                  {!phone.length ? (
+                    <li>
+                      <p>Phone: </p>
                       <span>----------------------------------</span>
-                    ) : (
+                    </li>
+                  ) : (
+                    <li className={s.itemCard}>
+                      <p>Phone:</p>
                       <a href="tel:{phone}" className={s.link}>
                         {phone}
                       </a>
-                    )}
-                  </li>
+                    </li>
+                  )}
                 </ul>
               </div>
             </li>
