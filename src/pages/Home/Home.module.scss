@@ -1,9 +1,9 @@
 @import '../../sass/utils/mixins';
 
 .layout {
-  max-width: 1600px;
+  // max-width: 1600px;
   margin-inline: auto;
-  height: calc(100vh - 148px);
+  height: calc(100vh - 88px);
   background-image: url('../../images/home/home_desktop@1x.webp');
   background-repeat: no-repeat;
   background-size: cover;
@@ -23,7 +23,7 @@
   }
 
   @include phone {
-    height: calc(100vh - 142px);
+    height: calc(100vh - 82px);
     background-image: url('../../images/home/home_mobile@1x.webp');
     background-position: top;
 
@@ -34,6 +34,7 @@
 }
 
 .title {
+  padding-top: 70px;
   width: 600px;
   margin-left: 16px;
 
@@ -41,7 +42,12 @@
   font-size: 68px;
   line-height: 100px;
 
+  @include tablet {
+    padding-top: 60px;
+  }
+
   @include phone {
+    padding-top: 50px;
     width: 280px;
 
     font-size: 32px;
