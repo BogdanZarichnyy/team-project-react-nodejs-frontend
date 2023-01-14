@@ -8,6 +8,7 @@ import {
   getUserLoadingSelector,
 } from '../../../store/user';
 import IconComponent from '../../IconComponent';
+import ProfileContactItemCity from '../ProfileContactItemCity';
 
 import s from './ProfileContactsItem.module.scss';
 
@@ -24,6 +25,7 @@ const ProfileContactsItem = ({
   const dispatch = useDispatch();
   const isError = useSelector(getUserErrorSelector);
   const isLoading = useSelector(getUserLoadingSelector);
+  const isDisabled = activeContact !== name ? true : false;
 
   useEffect(() => {
     if (isError && !isLoading) {
@@ -76,8 +78,17 @@ const ProfileContactsItem = ({
             ref={ref}
             value={val}
             onChange={setVal}
-            disabled={activeContact !== name ? true : false}
+            disabled={isDisabled}
             maxLength={16}
+          />
+        ) : valKey === 'city' ? (
+          <ProfileContactItemCity
+            style={s.contactInput}
+            isDisabled={isDisabled}
+            ref={ref}
+            val={val}
+            setVal={setVal}
+            isLoading={isLoading}
           />
         ) : (
           <input
@@ -86,7 +97,7 @@ const ProfileContactsItem = ({
             ref={ref}
             value={val}
             onChange={handleInput}
-            disabled={activeContact !== name ? true : false}
+            disabled={isDisabled}
           />
         )}
 
