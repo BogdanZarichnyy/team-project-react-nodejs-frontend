@@ -9,7 +9,11 @@ import ButtonBase from '../../ButtonBase/ButtonBase';
 import ErrorText from '../../ErrorText';
 
 import s from '../Auth.module.scss';
+import { useSelector } from 'react-redux';
+import { getUserLoadingSelector } from '../../../store/user';
+
 const RegisterFormStepTwo = ({ onNext, formik }) => {
+  const isLoading = useSelector(getUserLoadingSelector);
   const [filteredCities, setFilteredCities] = useState([]);
 
   const searchCity = value => {
@@ -30,13 +34,21 @@ const RegisterFormStepTwo = ({ onNext, formik }) => {
     setFilteredCities(filteredCities);
   };
 
-  const { values, handleChange, errors, touched, setFieldValue } = formik;
+  const { values, handleChange, errors, touched, setFieldValue, handleSubmit } =
+    formik;
+
+  const handleKeyDown = e => {
+    if (e.key === 'Enter') {
+      handleSubmit();
+    }
+  };
 
   return (
     <>
       {touched.name && errors.name ? <ErrorText text={errors.name} /> : null}
       <InputBase
         styles={s.inputBottomMargin}
+        id="name"
         type="name"
         name="name"
         placeholder="Name"
@@ -45,6 +57,7 @@ const RegisterFormStepTwo = ({ onNext, formik }) => {
       />
       {touched.city && errors.city ? <ErrorText text={errors.city} /> : null}
       <Select
+        id="city"
         name="city"
         placeholder="City, region"
         isClearable={false}
@@ -60,16 +73,19 @@ const RegisterFormStepTwo = ({ onNext, formik }) => {
       {touched.phone && errors.phone ? <ErrorText text={errors.phone} /> : null}
 
       <PhoneInput
+        id="phone"
         placeholder="Mobile phone"
         name="phone"
         country={'ua'}
         disableDropdown
+        onKeyDown={handleKeyDown}
+        enableClickOutside={false}
         enableAreaCodes={true}
         value={values.phone}
         onChange={value => setFieldValue('phone', value, true)}
       />
 
-      <ButtonBase type="submit" text="Register" />
+      <ButtonBase type="submit" text="Register" disabled={isLoading} />
       <ButtonBase onClick={onNext} type="button" text="Back" isLigth />
     </>
   );

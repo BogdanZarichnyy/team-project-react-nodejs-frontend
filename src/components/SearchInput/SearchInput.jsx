@@ -4,7 +4,6 @@ import { useSearchParams } from 'react-router-dom';
 
 import classNames from 'classnames';
 import s from './SearchInput.module.scss';
-import InputBase from '../InputBase/InputBase';
 import sprite from '../../images/sprite.svg';
 import { getNewsFetch } from '../../store/news';
 import {
@@ -65,11 +64,11 @@ const SearchInput = ({ styles }) => {
   return (
     <form className={classNames(s.form, styles)} onSubmit={handleSubmit}>
       <div className={s.formSearch}>
-        <InputBase
+        <input
           type="text"
           name="search"
           placeholder="Search"
-          styles={s.inputSearch}
+          className={s.inputSearch}
           value={searchQuery}
           onChange={handleChange}
         />

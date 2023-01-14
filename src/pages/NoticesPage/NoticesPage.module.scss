@@ -3,7 +3,7 @@
 @import '../../sass/utils/container';
 
 .container {
-    padding-top: 26px;
+    padding-top: 22px;
     padding-bottom: 100px;
 }
 
@@ -24,6 +24,10 @@
 }
 
 @include tablet {
+    .container {
+        padding-top: 70px;
+    }
+
     .title {
         font-size: 48px;
     
@@ -40,5 +44,11 @@
         align-items: flex-start;
 
         margin-bottom: 60px;        
+    }
+}
+
+@include desktop {
+    .container {
+        padding-top: 50px;
     }
 }

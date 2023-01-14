@@ -21,46 +21,78 @@ const OurFriends = () => {
       <h2 className={s.tittle}>Our friends</h2>
       <ul className={s.list}>
         {friendsArr.map(
-          ({ _id, name, logo, workTime, address, url, email, phone }) => (
+          ({
+            _id,
+            name,
+            link,
+            logo,
+            workTime,
+            address,
+            url,
+            email,
+            phone,
+            phoneNumber,
+          }) => (
             <li key={_id} className={s.item}>
-              <h3 className={s.subtittle}>{name}</h3>
+              <h3 className={s.subtittle}>
+                <a
+                  href={link}
+                  target="_blank"
+                  rel="noreferrer noopener nofollow"
+                >
+                  {name}
+                </a>
+              </h3>
               <div className={s.wrapper}>
                 <div className={s.wrapperImage}>
-                  <img src={logo} alt="Logo" className={s.image} />
+                  <a
+                    href={link}
+                    target="_blank"
+                    rel="noreferrer noopener nofollow"
+                  >
+                    <img src={logo} alt="Logo" className={s.image} />
+                  </a>
                 </div>
                 <ul className={s.listCard}>
-                  <li className={s.itemCard}>
-                    <div className={s.dropdown}>
-                      <p className={s.dropdownSbt}>Time:</p>
-                      <p>
-                        {!workTime.length ? (
-                          <span>----------------------------------</span>
-                        ) : (
+                  {!workTime.length ? (
+                    <li>
+                      <p>Time:</p>
+                      <span>----------------------------------</span>
+                    </li>
+                  ) : (
+                    <li className={s.itemCard}>
+                      <div className={s.dropdown}>
+                        <p className={s.dropdownSbt}>Time:</p>
+                        <p>
                           <span>
                             {workTime[getNowDate() - 1].open} -
                             {workTime[getNowDate() - 1].close}
                           </span>
+                        </p>
+                        {!!workTime.length && (
+                          <ul className={s.dropdownContent}>
+                            {workTime.map(({ day, open, close }) => (
+                              <li className={s.dropdownItem} key={day}>
+                                <span>{day}</span>
+                                <span>
+                                  {open}-{close}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
                         )}
-                      </p>
-                      {!!workTime.length && (
-                        <ul className={s.dropdownContent}>
-                          {workTime.map(({ day, open, close }) => (
-                            <li className={s.dropdownItem} key={day}>
-                              <span>{day}</span>
-                              <span>
-                                {open}-{close}
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  </li>
-                  <li className={s.itemCard}>
-                    <p>Address:</p>
-                    {!address.length ? (
+                      </div>
+                    </li>
+                  )}
+
+                  {!address.length ? (
+                    <li>
+                      <p>Address:</p>
                       <span>----------------------------------</span>
-                    ) : (
+                    </li>
+                  ) : (
+                    <li className={s.itemCard}>
+                      <p>Address:</p>
                       <a
                         href={url}
                         target="_blank"
@@ -69,24 +101,33 @@ const OurFriends = () => {
                       >
                         {address}
                       </a>
-                    )}
-                  </li>
+                    </li>
+                  )}
                   <li className={s.itemCard}>
                     <p>Email:</p>
-                    <a href="mailto:{email}" className={s.link}>
+                    <a
+                      href={email ? 'mailto:' + email : null}
+                      className={s.link}
+                    >
                       {email}
                     </a>
                   </li>
-                  <li className={s.itemCard}>
-                    <p>Phone:</p>
-                    {!phone.length ? (
+                  {!phone.length ? (
+                    <li>
+                      <p>Phone: </p>
                       <span>----------------------------------</span>
-                    ) : (
-                      <a href="tel:{phone}" className={s.link}>
+                    </li>
+                  ) : (
+                    <li className={s.itemCard}>
+                      <p>Phone:</p>
+                      <a
+                        href={phoneNumber ? 'tel:' + phoneNumber : null}
+                        className={s.link}
+                      >
                         {phone}
                       </a>
-                    )}
-                  </li>
+                    </li>
+                  )}
                 </ul>
               </div>
             </li>

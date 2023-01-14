@@ -96,6 +96,7 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
         placeholder="Type comment"
         value={values.comments}
         onChange={handleChange}
+        maxLength="120"
       />
       <div className={s.buttonWrapper}>
         <ButtonBase

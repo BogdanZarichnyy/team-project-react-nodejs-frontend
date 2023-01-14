@@ -6,9 +6,11 @@
   background-size: contain;
   background-position: bottom;
   width: 100%;
-  height: calc(100vh - 168px);
+  height: calc(100vh - 82px);
+
   @include tablet {
     background-image: url('./img/font_tabletSize.svg');
+    height: calc(100vh - 88px);
   }
   @include desktop {
     background-image: url('./img/font_desktopSize.svg');
@@ -16,15 +18,27 @@
 }
 
 .containerForm {
-  margin-top: 42px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  @include tablet {
-    margin-top: 204px;
+
+  &.login {
+    padding-top: 42px;
+    @include tablet {
+      padding-top: 204px;
+    }
+    @include desktop {
+      padding-top: 80px;
+    }
   }
-  @include desktop {
-    margin-top: 80px;
+  &.register {
+    padding-top: 42px;
+    @include tablet {
+      padding-top: 169px;
+    }
+    @include desktop {
+      padding-top: 46px;
+    }
   }
 }
 

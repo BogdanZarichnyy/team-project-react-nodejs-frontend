@@ -1,14 +1,18 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import { useFormik } from 'formik';
 
 import AuthLayout from '../../layouts/AuthLayout';
 import RegisterFormStepOne from '../../components/Auth/RegisterFormStepOne';
 import RegisterFormStepTwo from '../../components/Auth/RegisterFormStepTwo';
-import { useDispatch } from 'react-redux';
+
 import { registerUserFetch } from '../../store/user';
 
-import s from '../../components/Auth/Auth.module.scss';
 import { registerPageSchema } from '../../validation/registerPageSchema';
+
+import s from '../../components/Auth/Auth.module.scss';
+import '../../components/Auth/RegisterFormStepTwo/RegisterForm.css';
 
 const initialValues = {
   email: '',
@@ -23,19 +27,15 @@ const RegisterPage = () => {
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
 
-  const handleRegister = async values => {
+  const handleRegister = values => {
     const phone = '+' + values.phone;
     const { confirmPassword, ...userData } = values;
-    try {
-      await dispatch(
-        registerUserFetch({
-          ...userData,
-          phone,
-        })
-      );
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(
+      registerUserFetch({
+        ...userData,
+        phone,
+      })
+    );
   };
 
   const formik = useFormik({
@@ -53,6 +53,7 @@ const RegisterPage = () => {
       textDescription="Already have an account?"
       nawLink="/login"
       textNawLink="Login"
+      pageType="register"
     >
       <form className={s.form} onSubmit={formik.handleSubmit}>
         {step === 1 ? (

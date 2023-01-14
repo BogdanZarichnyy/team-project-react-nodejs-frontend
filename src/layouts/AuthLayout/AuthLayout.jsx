@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import cn from 'classnames';
 import s from '../../layouts/AuthLayout/AuthLayout.module.scss';
 
 const AuthLayout = ({
@@ -7,11 +8,12 @@ const AuthLayout = ({
   textNawLink,
   nawLink,
   children,
+  pageType = 'login' | 'register',
 }) => {
   return (
     <div className={s.layout}>
       <div className="container">
-        <div className={s.containerForm}>
+        <div className={cn(s.containerForm, s[pageType])}>
           <div className={s.card}>
             {title && <h1 className={s.title}>{title}</h1>}
             {children}
