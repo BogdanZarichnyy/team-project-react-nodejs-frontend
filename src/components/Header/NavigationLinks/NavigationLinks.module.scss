@@ -20,3 +20,8 @@
 .nav_item:is(:hover, :focus) {
   color: getColor('clr-accent');
 }
+
+.active {
+  color: getColor('clr-accent');
+  text-decoration: underline;
+}
