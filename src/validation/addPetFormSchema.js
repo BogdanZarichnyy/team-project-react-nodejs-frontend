@@ -56,6 +56,9 @@ export const addPetFormSchema = Yup.object().shape({
   comments: Yup.string()
     .min(8)
     .max(120)
-    .matches(/^(?=.{2,16}$)([A-Za-z])*$/, 'Latin only, min 8, max 120')
+    .matches(
+      /^[A-Za-z0-9\s!@#$%^&*()_+=-`~\\\]';:/.,?><]*$/,
+      'Latin only, min 8, max 120'
+    )
     .required('Field is required!'),
 });
