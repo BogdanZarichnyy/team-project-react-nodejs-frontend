@@ -15,7 +15,12 @@ export const validateUser = {
     .matches(regExp.email, 'Not correct email format')
     .min(7, 'Must be at least 7 characters long')
     .max(63, 'Must be 63 characters maximum'),
-  city: yup.string().required('Please enter valid city name'),
+  city: yup
+    .string()
+    .min(2)
+    .max(48)
+    .matches(regExp.string, 'Only alphabetic characters are allowed')
+    .required('Field is required!'),
   date: yup
     .date()
     .test('len', 'Must be exactly DD.MM.YYYY', (value, { originalValue }) => {

@@ -47,7 +47,7 @@ const ProfileContactsItem = ({
         : setVal(value);
     }
   }, [value]);
-  console.log(date);
+
   useEffect(() => {
     ref.current.focus();
   }, [activeContact]);
@@ -90,6 +90,16 @@ const ProfileContactsItem = ({
     if (valKey === 'birthday') {
       try {
         await validateUser.date.validate(val);
+        setValidationError(null);
+      } catch (err) {
+        setValidationError(err.message);
+        errName = err.name;
+      }
+      if (errName === 'ValidationError') return;
+    }
+    if (valKey === 'city') {
+      try {
+        await validateUser.city.validate(val);
         setValidationError(null);
       } catch (err) {
         setValidationError(err.message);

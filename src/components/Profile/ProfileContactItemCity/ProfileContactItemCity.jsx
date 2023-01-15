@@ -5,8 +5,26 @@ import './ProfileContactItemCity.scss';
 
 const ProfileContactItemCity = forwardRef(
   ({ isDisabled, val, setVal }, ref) => {
+    const [filteredCities, setFilteredCities] = useState([]);
     const value = { label: String(val), value: String(val) };
-    console.log(value);
+
+    const searchCity = value => {
+      if (!value.length) {
+        setFilteredCities([]);
+        return;
+      }
+      const filteredCities = citiesArray.reduce((acc, el) => {
+        if (el.city.toUpperCase().startsWith(value.toUpperCase())) {
+          acc.push({
+            value: `${el.city}, ${el.admin_name}`,
+            label: `${el.city}, ${el.admin_name}`,
+          });
+          return acc;
+        }
+        return acc;
+      }, []);
+      setFilteredCities(filteredCities);
+    };
 
     return (
       <Select
@@ -16,13 +34,10 @@ const ProfileContactItemCity = forwardRef(
         isClearable={true}
         isSearchable={true}
         ref={ref}
-        value={[value]}
-        // defaultValue={value}
-        // inputValue={val}
-        onChange={({ city }) => setVal(city)}
-        options={citiesArray}
-        getOptionValue={({ city }) => city}
-        getOptionLabel={({ city }) => city}
+        value={value}
+        onInputChange={searchCity}
+        onChange={({ label }) => setVal(label)}
+        options={filteredCities}
         noOptionsMessage={() => 'City not found'}
         components={{
           DropdownIndicator: () => null,
