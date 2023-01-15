@@ -117,6 +117,7 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
             value="female"
             onChange={handleChange}
             error={errors.options}
+            required
           />
           <span className={s.sexIcon}>
             <svg>
