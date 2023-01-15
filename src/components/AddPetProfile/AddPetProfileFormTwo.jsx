@@ -51,9 +51,7 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
   return (
     <>
       <h2 className={s.title}>Add pet</h2>
-      <p className={s.subtitle}>
-        Add photo and some comments:<span className={s.labelStar}>*</span>
-      </p>
+      <p className={s.subtitle}>Add photo and some comments:</p>
       <label className={s.label} htmlFor="photo"></label>
       {previewPhoto ? (
         <img

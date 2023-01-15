@@ -161,7 +161,7 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
         </>
       )}
       <label className={s.label} htmlFor="photo">
-        Load the pet’s photo:<span className={s.labelStar}>*</span>
+        Load the pet’s photo:
       </label>
       {previewPhoto ? (
         <img
@@ -191,7 +191,7 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
         ref={photoRef}
       />
       <label className={s.label} htmlFor="passport">
-        Load the pet’s passport:<span className={s.labelStar}>*</span>
+        Load the pet’s passport:
       </label>
       {previewPassport ? (
         <img
