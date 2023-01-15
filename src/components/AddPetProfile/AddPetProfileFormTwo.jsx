@@ -9,8 +9,10 @@ import s from './AddPetProfile.module.scss';
 const AddPetFormStepTwo = ({ onNext, formik }) => {
   const photoRef = useRef();
   const autoGrowRef = useRef();
+
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewPhoto, setPreviewPhoto] = useState(null);
+
   const [fileName, setFileName] = useState('');
   const { values, handleChange, errors, touched, setFieldValue } = formik;
 
@@ -53,6 +55,8 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
       <h2 className={s.title}>Add pet</h2>
       <p className={s.subtitle}>Add photo and some comments:</p>
       <label className={s.label} htmlFor="photo"></label>
+      {touched.photo && errors.photo ? <ErrorText text={errors.photo} /> : null}
+
       {previewPhoto ? (
         <img
           src={previewPhoto}

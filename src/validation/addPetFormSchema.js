@@ -9,7 +9,10 @@ export const addPetFormSchema = Yup.object().shape({
   addTitle: Yup.string()
     .min(2)
     .max(48)
-    .matches(/^(?=.{2,16}$)([A-Za-z])*$/, 'Latin only, min 2, max 48')
+    .matches(
+      /^[A-Za-z0-9\s!@#$%^&*()_+=-`~\\\]';:/.,?><]*$/,
+      'Latin only, min 2, max 48'
+    )
     .required('Field is required!'),
   name: Yup.string()
     .min(2)
@@ -52,7 +55,16 @@ export const addPetFormSchema = Yup.object().shape({
       'Only number characters and $ are allowed, e.g. 50$'
     )
     .required('Field is required!'),
-  photo: Yup.mixed().required('Image is required! (jpg, jpeg, png)'),
+  photo: Yup.mixed().test(
+    'fileSize',
+    'File no larger than 1Mb',
+    value => value.size <= 1048576
+  ),
+  passport: Yup.mixed().test(
+    'fileSize',
+    'File no larger than 1Mb',
+    value => value.size <= 1048576
+  ),
   comments: Yup.string()
     .min(8)
     .max(120)

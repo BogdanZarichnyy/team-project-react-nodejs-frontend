@@ -164,6 +164,7 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
       <label className={s.label} htmlFor="photo">
         Load the pet’s photo:
       </label>
+      {touched.photo && errors.photo ? <ErrorText text={errors.photo} /> : null}
       {previewPhoto ? (
         <img
           src={previewPhoto}
@@ -194,6 +195,9 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
       <label className={s.label} htmlFor="passport">
         Load the pet’s passport:
       </label>
+      {touched.passport && errors.passport ? (
+        <ErrorText text={errors.passport} />
+      ) : null}
       {previewPassport ? (
         <img
           src={previewPassport}

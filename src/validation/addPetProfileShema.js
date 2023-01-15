@@ -32,7 +32,11 @@ export const addPetProfileSchema = Yup.object().shape({
     .max(16)
     .matches(/^(?=.{2,16}$)([A-Za-z])*$/, 'Latin only, min 2, max 16')
     .required('Field is required!'),
-  photo: Yup.mixed().required('Image is required! (jpg, jpeg, png)'),
+  photo: Yup.mixed().test(
+    'fileSize',
+    'File no larger than 1Mb',
+    value => value.size <= 1048576
+  ),
   comments: Yup.string()
     .min(8)
     .max(120)
