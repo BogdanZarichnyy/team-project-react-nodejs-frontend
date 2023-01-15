@@ -78,6 +78,7 @@ const RegisterFormStepTwo = ({ onNext, formik }) => {
         name="phone"
         country={'ua'}
         disableDropdown
+        countryCodeEditable={false}
         onKeyDown={handleKeyDown}
         enableClickOutside={false}
         enableAreaCodes={true}

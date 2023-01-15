@@ -1,18 +1,23 @@
 import * as Yup from 'yup';
 import { parse } from 'date-fns';
 
-const today = new Date().toLocaleDateString();
+const now = new Date();
+const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
 export const addPetFormSchema = Yup.object().shape({
   category: Yup.string().required('Category is required!'),
-  addTitle: Yup.string().min(2).max(48).required('Field is required!'),
+  addTitle: Yup.string()
+    .min(2)
+    .max(48)
+    .matches(
+      /^[A-Za-z0-9\s!@#$%^&*()_+=-`~\\\]';:/.,?><]*$/,
+      'Latin only, min 2, max 48'
+    )
+    .required('Field is required!'),
   name: Yup.string()
     .min(2)
     .max(16)
-    .matches(
-      /^([А-Яа-яЁёЇїІіЄєҐґ'\s]+|[a-zA-Z\s]+){2,}$/,
-      'Only alphabetic characters are allowed'
-    )
+    .matches(/^(?=.{2,16}$)([A-Za-z])*$/, 'Latin only, min 2, max 16')
     .required('Field is required!'),
   birthDate: Yup.date()
     .test('len', 'Must be exactly DD.MM.YYYY', (value, { originalValue }) => {
@@ -32,11 +37,9 @@ export const addPetFormSchema = Yup.object().shape({
     .min('1960-01-01', 'Date is too early')
     .max(today),
   breed: Yup.string()
+    .min(2)
     .max(16)
-    .matches(
-      /^([А-Яа-яЁёЇїІіЄєҐґ'\s]+|[a-zA-Z\s]+){2,}$/,
-      'Only alphabetic characters are allowed'
-    )
+    .matches(/^(?=.{2,16}$)([A-Za-z])*$/, 'Latin only, min 2, max 16')
     .required('Field is required!'),
   sex: Yup.string().required('Field is required!'),
   location: Yup.string()
@@ -52,6 +55,22 @@ export const addPetFormSchema = Yup.object().shape({
       'Only number characters and $ are allowed, e.g. 50$'
     )
     .required('Field is required!'),
-  photo: Yup.mixed().required('Image is required! (jpg, jpeg, png)'),
-  comments: Yup.string().min(8).max(120).required('Field is required!'),
+  photo: Yup.mixed().test(
+    'fileSize',
+    'File no larger than 1Mb',
+    value => value.size <= 1048576
+  ),
+  passport: Yup.mixed().test(
+    'fileSize',
+    'File no larger than 1Mb',
+    value => value.size <= 1048576
+  ),
+  comments: Yup.string()
+    .min(8)
+    .max(120)
+    .matches(
+      /^[A-Za-z0-9\s!@#$%^&*()_+=-`~\\\]';:/.,?><]*$/,
+      'Latin only, min 8, max 120'
+    )
+    .required('Field is required!'),
 });

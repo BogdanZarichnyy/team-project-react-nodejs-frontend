@@ -14,7 +14,7 @@ const initialState = {
   },
   userPets: [],
   token: '',
-  isLoggedIn: 'idle',
+  loginStatus: 'idle',
   isPetsLoading: false,
   isLoading: false,
   error: false,
@@ -30,12 +30,12 @@ const userSlice = createSlice({
     },
     registerUserSuccess: (state, { payload }) => {
       state.userData = payload;
-      state.isLoggedIn = 'success';
+      state.loginStatus = 'success';
       state.isLoading = false;
       state.error = false;
     },
     registerUserFailure: (state, { payload }) => {
-      state.isLoggedIn = 'rejected';
+      state.loginStatus = 'rejected';
       state.isLoading = false;
       state.error = payload;
     },
@@ -46,12 +46,12 @@ const userSlice = createSlice({
     loginUserSuccess: (state, { payload }) => {
       state.userData = payload;
       state.token = payload.accessToken;
-      state.isLoggedIn = 'success';
+      state.loginStatus = 'success';
       state.isLoading = false;
       state.error = false;
     },
     loginUserFailure: (state, { payload }) => {
-      state.isLoggedIn = 'rejected';
+      state.loginStatus = 'rejected';
       state.isLoading = false;
       state.error = payload;
     },
@@ -61,13 +61,13 @@ const userSlice = createSlice({
     },
     getUserSuccess: (state, { payload }) => {
       state.userData = payload;
-      state.isLoggedIn = 'success';
+      state.loginStatus = 'success';
       state.isLoading = false;
       state.error = false;
     },
     getUserFailure: (state, { payload }) => {
       state.isLoading = false;
-      state.isLoggedIn = 'rejected';
+      state.loginStatus = 'rejected';
       state.error = payload;
     },
     logOutUserFetch: state => {
@@ -75,10 +75,11 @@ const userSlice = createSlice({
       state.error = false;
     },
     logOutUserSuccess: state => {
-      // state.isLoggedIn = 'rejected';
-      // state.token = '';
-      // state.error = false;
-      return (state = initialState);
+      localStorage.removeItem('persist:user');
+      state.loginStatus = 'rejected';
+      state.token = '';
+      localStorage.clear('persist:user');
+      state.error = false;
     },
     logOutUserFailure: (state, { payload }) => {
       state.isLoading = false;
@@ -94,7 +95,7 @@ const userSlice = createSlice({
       state.error = false;
     },
     updateUserFailure: (state, { payload }) => {
-      state.isLoggedIn = 'rejected';
+      state.loginStatus = 'rejected';
       state.isLoading = false;
       state.error = payload;
     },
@@ -162,8 +163,8 @@ const userSlice = createSlice({
     restorePasswordFailure: (state, { payload }) => {
       state.error = payload;
     },
-    setIsLoggedIn: state => {
-      state.isLoggedIn = 'rejected';
+    setRejectedLoginStatus: state => {
+      state.loginStatus = 'rejected';
     },
   },
 });
@@ -199,7 +200,7 @@ export const {
   restorePasswordFetch,
   restorePasswordSuccess,
   restorePasswordFailure,
-  setIsLoggedIn,
+  setRejectedLoginStatus,
 } = userSlice.actions;
 
 export default userSlice.reducer;

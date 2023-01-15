@@ -29,7 +29,7 @@ export {
   restorePasswordFetch,
   restorePasswordSuccess,
   restorePasswordFailure,
-  setIsLoggedIn,
+  setRejectedLoginStatus,
 } from './userSlice';
 
 export { userSagas } from './userSaga';

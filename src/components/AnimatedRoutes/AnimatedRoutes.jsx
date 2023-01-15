@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import PublicRoute from '../../routes/PublicRoute';
 import PrivateRoute from '../../routes/PrivateRoute';
 
+import ErrorBoundary from '../ErrorBoundary';
 import SharedLayout from '../SharedLayout';
 import Loader from '../LoaderV1';
 import Home from '../../pages/Home';
@@ -36,7 +37,9 @@ const AnimatedRoutes = () => {
   return (
     <>
       <div className={s.headerContainer}>
-        <Header />
+        <ErrorBoundary>
+          <Header />
+        </ErrorBoundary>
       </div>
 
       <AnimatePresence mode="wait">
@@ -46,7 +49,9 @@ const AnimatedRoutes = () => {
               index
               element={
                 <Suspense fallback={<Loader />}>
-                  <Home />
+                  <ErrorBoundary>
+                    <Home />
+                  </ErrorBoundary>
                 </Suspense>
               }
             />
@@ -62,7 +67,9 @@ const AnimatedRoutes = () => {
                 path="login"
                 element={
                   <Suspense fallback={<Loader />}>
-                    <LoginPage />
+                    <ErrorBoundary>
+                      <LoginPage />
+                    </ErrorBoundary>
                   </Suspense>
                 }
               />
@@ -70,7 +77,9 @@ const AnimatedRoutes = () => {
                 path="register"
                 element={
                   <Suspense fallback={<Loader />}>
-                    <RegisterPage />
+                    <ErrorBoundary>
+                      <RegisterPage />
+                    </ErrorBoundary>
                   </Suspense>
                 }
               />
@@ -78,7 +87,9 @@ const AnimatedRoutes = () => {
                 path="restorePassword"
                 element={
                   <Suspense>
-                    <RestorePasswordPage />
+                    <ErrorBoundary>
+                      <RestorePasswordPage />
+                    </ErrorBoundary>
                   </Suspense>
                 }
               />
@@ -89,7 +100,9 @@ const AnimatedRoutes = () => {
                 path="user"
                 element={
                   <Suspense fallback={<Loader />}>
-                    <Profile />
+                    <ErrorBoundary>
+                      <Profile />
+                    </ErrorBoundary>
                   </Suspense>
                 }
               />
@@ -99,7 +112,9 @@ const AnimatedRoutes = () => {
               path="friends"
               element={
                 <Suspense fallback={<Loader />}>
-                  <OurFriendsPages />
+                  <ErrorBoundary>
+                    <OurFriendsPages />
+                  </ErrorBoundary>
                 </Suspense>
               }
             />
@@ -107,7 +122,9 @@ const AnimatedRoutes = () => {
               path="news"
               element={
                 <Suspense fallback={<Loader />}>
-                  <NewsList />
+                  <ErrorBoundary>
+                    <NewsList />
+                  </ErrorBoundary>
                 </Suspense>
               }
             />
@@ -115,7 +132,9 @@ const AnimatedRoutes = () => {
               path="notices"
               element={
                 <Suspense fallback={<Loader />}>
-                  <NoticesPage />
+                  <ErrorBoundary>
+                    <NoticesPage />
+                  </ErrorBoundary>
                 </Suspense>
               }
             >
@@ -148,7 +167,9 @@ const AnimatedRoutes = () => {
             path="*"
             element={
               <Suspense fallback={<Loader />}>
-                <NotFound />
+                <ErrorBoundary>
+                  <NotFound />
+                </ErrorBoundary>
               </Suspense>
             }
           />

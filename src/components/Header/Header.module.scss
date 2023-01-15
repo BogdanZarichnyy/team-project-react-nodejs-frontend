@@ -86,14 +86,14 @@
 
     width: 100vw;
 
-    height: calc(100vh - 20px);
+    height: calc(100vh);
 
     margin-left: calc((768px - 100vw) / 2);
     padding-top: 160px;
 
     position: absolute;
     left: 0;
-    top: 0px;
+    top: -20px;
 
     background-color: #fdf7f2;
   }
@@ -117,8 +117,6 @@
   }
 
   .navGroup nav ul {
-    top: 0;
-
     gap: 40px;
 
     padding-top: 170px;

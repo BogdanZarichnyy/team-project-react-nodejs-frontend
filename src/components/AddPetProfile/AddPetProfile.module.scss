@@ -20,6 +20,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
+  object-fit: cover;
   @include tablet {
     width: 182px;
     height: 182px;
@@ -158,9 +159,16 @@
   margin-left: auto;
   margin-right: auto;
   @include flex-center;
-
+  flex-direction: column;
+  cursor: pointer;
   border-radius: 20px;
   background-color: getColor('clr-bg');
+  &:hover .avatarIcon,
+  &:focus .avatarIcon {
+    width: 72px;
+    height: 72px;
+    fill: getColor('clr-accent');
+  }
   @include tablet {
     width: 182px;
     height: 182px;
@@ -171,6 +179,10 @@
   width: 48px;
   height: 48px;
   color: rgba(17, 17, 17, 0.6);
+}
+
+.iconSubtitle {
+  font-size: 8px;
 }
 
 .avatarInput {

@@ -10,9 +10,12 @@ import s from './AddPetForm.module.scss';
 
 const AddPetFormStepTwo = ({ onNext, formik }) => {
   const photoRef = useRef();
+  const passportRef = useRef();
   const autoGrowRef = useRef();
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewPhoto, setPreviewPhoto] = useState(null);
+  const [selectedPassport, setSelectedPassport] = useState(null);
+  const [previewPassport, setPreviewPassport] = useState(null);
   const [fileName, setFileName] = useState('');
   const { values, handleChange, errors, touched, setFieldValue } = formik;
 
@@ -27,6 +30,18 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
 
     return () => URL.revokeObjectURL(objUrl);
   }, [selectedFile]);
+
+  useEffect(() => {
+    if (!selectedPassport) {
+      setPreviewPassport(null);
+      return;
+    }
+
+    const objUrl = URL.createObjectURL(selectedPassport);
+    setPreviewPassport(objUrl);
+
+    return () => URL.revokeObjectURL(objUrl);
+  }, [selectedPassport]);
 
   const handlePhotoChange = e => {
     const file = e.target.files[0];
@@ -45,6 +60,23 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
     }
   };
 
+  const handlePassportChange = e => {
+    const file = e.target.files[0];
+    if (!e.target.files || e.target.files.length === 0) {
+      setSelectedPassport(null);
+      return;
+    }
+    setSelectedPassport(file);
+
+    const reader = new FileReader();
+
+    reader.onloadend = () => setFileName(file.name);
+    if (file.name !== fileName) {
+      reader.readAsDataURL(file);
+      setFieldValue('passport', file);
+    }
+  };
+
   const autoGrow = () => {
     autoGrowRef.current.style.height = '5px';
     autoGrowRef.current.style.height = autoGrowRef.current.scrollHeight + 'px';
@@ -55,7 +87,7 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
       <h2 className={s.title}>Add pet</h2>
       <fieldset className={s.sexWrapper}>
         <legend className={s.label}>
-          The sex<span className={s.labelStar}>*</span>:
+          The sex:<span className={s.labelStar}>*</span>
         </legend>
         <label htmlFor="male" className={s.sexLabel}>
           <input
@@ -85,6 +117,7 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
             value="female"
             onChange={handleChange}
             error={errors.options}
+            required
           />
           <span className={s.sexIcon}>
             <svg>
@@ -131,6 +164,7 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
       <label className={s.label} htmlFor="photo">
         Load the pet’s photo:
       </label>
+      {touched.photo && errors.photo ? <ErrorText text={errors.photo} /> : null}
       {previewPhoto ? (
         <img
           src={previewPhoto}
@@ -144,6 +178,7 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
           onClick={() => photoRef.current.click()}
         >
           <IconComponent iconname="i-cross-lg4" classname={s.avatarIcon} />
+          <span className={s.iconSubtitle}>'File no larger than 1Mb'</span>
         </div>
       )}
       <input
@@ -158,8 +193,42 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
         }}
         ref={photoRef}
       />
+      <label className={s.label} htmlFor="passport">
+        Load the pet’s passport:
+      </label>
+      {touched.passport && errors.passport ? (
+        <ErrorText text={errors.passport} />
+      ) : null}
+      {previewPassport ? (
+        <img
+          src={previewPassport}
+          alt="Pet"
+          onClick={() => passportRef.current.click()}
+          className={s.image}
+        />
+      ) : (
+        <div
+          className={s.avatarWrapper}
+          onClick={() => passportRef.current.click()}
+        >
+          <IconComponent iconname="i-cross-lg4" classname={s.avatarIcon} />
+          <span className={s.iconSubtitle}>'File no larger than 1Mb'</span>
+        </div>
+      )}
+      <input
+        className={s.avatarInput}
+        type="file"
+        id="passport"
+        name="passport"
+        accept=".jpg,.png,.pdf"
+        onChange={e => {
+          handleChange(e);
+          handlePassportChange(e);
+        }}
+        ref={passportRef}
+      />
       <label className={s.label} htmlFor="comments">
-        Comments
+        Comments<span className={s.labelStar}>*</span>
       </label>
       {touched.comments && errors.comments ? (
         <ErrorText text={errors.comments} />
