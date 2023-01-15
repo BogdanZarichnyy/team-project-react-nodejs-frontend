@@ -65,8 +65,8 @@ const OurFriends = () => {
                         <p className={s.dropdownSbt}>Time:</p>
                         <p>
                           <span>
-                            {workTime[getNowDate() - 1].open} -
-                            {workTime[getNowDate() - 1].close}
+                            {workTime[getNowDate()].open} -
+                            {workTime[getNowDate()].close}
                           </span>
                         </p>
                         {!!workTime.length && (
