@@ -34,8 +34,8 @@ export const addPetFormSchema = Yup.object().shape({
     })
     .typeError('Please enter a valid date')
     .required('Field is required!')
-    .min('1960-01-01', 'Date is too early'),
-  // .max(today),
+    .min('1960-01-01', 'Date is too early')
+    .max(today),
   breed: Yup.string()
     .min(2)
     .max(16)
@@ -55,16 +55,24 @@ export const addPetFormSchema = Yup.object().shape({
       'Only number characters and $ are allowed, e.g. 50$'
     )
     .required('Field is required!'),
-  photo: Yup.mixed().test(
-    'fileSize',
-    'File no larger than 1Mb',
-    value => value.size <= 1048576
-  ),
-  passport: Yup.mixed().test(
-    'fileSize',
-    'File no larger than 1Mb',
-    value => value.size <= 1048576
-  ),
+  photo: Yup.mixed().test('fileSize', 'File no larger than 1Mb', value => {
+    const size = value.size;
+    if (size) {
+      return size <= 1048576;
+    }
+    if (!size) {
+      return true;
+    }
+  }),
+  passport: Yup.mixed().test('fileSize', 'File no larger than 1Mb', value => {
+    const size = value.size;
+    if (size) {
+      return size <= 1048576;
+    }
+    if (!size) {
+      return true;
+    }
+  }),
   comments: Yup.string()
     .min(8)
     .max(120)
