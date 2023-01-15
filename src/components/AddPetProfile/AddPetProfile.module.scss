@@ -20,6 +20,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
+  object-fit: cover;
   @include tablet {
     width: 182px;
     height: 182px;
