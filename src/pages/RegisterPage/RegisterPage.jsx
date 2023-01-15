@@ -1,13 +1,20 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useFormik } from 'formik';
+import { toast } from 'react-toastify';
 
 import AuthLayout from '../../layouts/AuthLayout';
 import RegisterFormStepOne from '../../components/Auth/RegisterFormStepOne';
 import RegisterFormStepTwo from '../../components/Auth/RegisterFormStepTwo';
 
 import { registerUserFetch } from '../../store/user';
+
+import {
+  getUserLoggedSelector,
+  getUserErrorSelector,
+  getUserLoadingSelector,
+} from '../../store/user';
 
 import { registerPageSchema } from '../../validation/registerPageSchema';
 
@@ -24,8 +31,22 @@ const initialValues = {
 };
 
 const RegisterPage = () => {
+  const isLogin = useSelector(getUserLoggedSelector);
+  const isError = useSelector(getUserErrorSelector);
+  const isLoading = useSelector(getUserLoadingSelector);
+
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
+
+  useEffect(() => {
+    if (
+      (isLogin === 'rejected') &
+      (isError !== false) &
+      (isLoading === false)
+    ) {
+      toast.error('A user with such an email is already registered');
+    }
+  }, [isLogin, isError, isLoading]);
 
   const handleRegister = values => {
     const phone = '+' + values.phone;
