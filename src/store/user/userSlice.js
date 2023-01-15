@@ -75,10 +75,7 @@ const userSlice = createSlice({
       state.error = false;
     },
     logOutUserSuccess: state => {
-      // state.isLoggedIn = 'rejected';
-      // state.token = '';
-      // state.error = false;
-      return (state = initialState);
+      return (state = { ...initialState, isLoggedIn: 'rejected' });
     },
     logOutUserFailure: (state, { payload }) => {
       state.isLoading = false;
@@ -94,7 +91,6 @@ const userSlice = createSlice({
       state.error = false;
     },
     updateUserFailure: (state, { payload }) => {
-      state.isLoggedIn = 'rejected';
       state.isLoading = false;
       state.error = payload;
     },

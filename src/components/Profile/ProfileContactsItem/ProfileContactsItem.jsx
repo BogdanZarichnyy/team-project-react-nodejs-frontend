@@ -70,6 +70,7 @@ const ProfileContactsItem = ({
     if (valKey === 'name') {
       try {
         await validateUser.name.validate(val);
+
         setValidationError(null);
       } catch (err) {
         setValidationError(err.message);

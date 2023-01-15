@@ -7,7 +7,7 @@ export const validateUser = {
     .string()
     .min(2)
     .max(16)
-    .matches(regExp.nameRegExp, 'Only alphabetic characters are allowed')
+    .matches(regExp.name, 'Only alphabetic characters are allowed')
     .required('Field is required!'),
   email: yup
     .string()

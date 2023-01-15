@@ -23,6 +23,7 @@ export {
   getUserAdsFetch,
   getUserAdsSuccess,
   getUserAdsFailure,
+  logOutAdsSuccess,
 } from './adsSlice';
 
 export { adsSagas } from './adsSaga';
