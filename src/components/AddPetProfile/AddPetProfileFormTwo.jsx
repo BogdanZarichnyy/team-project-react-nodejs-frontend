@@ -70,6 +70,7 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
           onClick={() => photoRef.current.click()}
         >
           <IconComponent iconname="i-cross-lg4" classname={s.avatarIcon} />
+          <span className={s.iconSubtitle}>'File no larger than 1Mb'</span>
         </div>
       )}
       <input
