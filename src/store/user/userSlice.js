@@ -1,6 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { PURGE } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 
 const initialState = {
   userData: {
@@ -169,11 +167,6 @@ const userSlice = createSlice({
       state.loginStatus = 'rejected';
     },
   },
-  // extraReducers: builder => {
-  //   builder.addCase(PURGE, state => {
-  //     storage.remove('user');
-  //   });
-  // },
 });
 
 export const {
