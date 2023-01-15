@@ -131,6 +131,9 @@ const adsSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
+    logOutAdsSuccess: state => {
+      return (state = { ...initialState });
+    },
   },
 });
 
@@ -159,6 +162,7 @@ export const {
   getUserAdsFetch,
   getUserAdsSuccess,
   getUserAdsFailure,
+  logOutAdsSuccess,
 } = adsSlice.actions;
 
 export default adsSlice.reducer;

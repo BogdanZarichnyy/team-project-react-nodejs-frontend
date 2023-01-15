@@ -1,43 +1,14 @@
 import axios from 'axios';
-
-import { URL } from '../constants/constants';
-
-export const userApi = axios.create({
-  // withCredentials: true
-  baseURL: `${URL.BASE}${URL.USERS}`,
-});
-
-export const adsApi = axios.create({
-  // withCredentials: true,
-  baseURL: `${URL.BASE}${URL.NOTICES}`,
-});
-
-export const friendsApi = axios.create({
-  // withCredentials: true,
-  baseURL: `${URL.BASE}${URL.FRIENDS}`,
-});
-
-export const newsApi = axios.create({
-  // withCredentials: true,
-  baseURL: `${URL.BASE}${URL.NEWS}`,
-});
-
-export const petsApi = axios.create({
-  // withCredentials: true,
-  baseURL: `${URL.BASE}${URL.PETS}`,
-});
+import { store } from '../store';
+import { setRejectedLoginStatus } from '../store/user';
 
 const token = () => {
   const setToken = token => {
-    userApi.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    adsApi.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    petsApi.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   };
 
   const unsetToken = () => {
-    userApi.defaults.headers.common['Authorization'] = '';
-    adsApi.defaults.headers.common['Authorization'] = '';
-    petsApi.defaults.headers.common['Authorization'] = '';
+    axios.defaults.headers.common['Authorization'] = '';
   };
 
   return { setToken, unsetToken };
@@ -45,6 +16,31 @@ const token = () => {
 
 export const { setToken, unsetToken } = token();
 
+axios.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  function (error) {
+    console.log('intercepter error');
+    if (error.response.status === 401) {
+      store.dispatch(setRejectedLoginStatus());
+    }
+
+    return Promise.reject(error);
+  }
+);
+
+export function apiErrorHandler(error) {
+  if (error.response) {
+    if (error.response) {
+      throw new Error(error.response.status);
+    } else if (error.request) {
+      throw new Error(error.request);
+    } else {
+      throw new Error(error.message);
+    }
+  }
+}
 // TODO activate interceptor with refresh tokens
 
 // userApi.interceptors.response.use(
@@ -76,15 +72,3 @@ export const { setToken, unsetToken } = token();
 //     throw new Error(e);
 //   }
 // };
-
-export function apiErrorHandler(error) {
-  if (error.response) {
-    if (error.response) {
-      throw new Error(error.response.status);
-    } else if (error.request) {
-      throw new Error(error.request);
-    } else {
-      throw new Error(error.message);
-    }
-  }
-}

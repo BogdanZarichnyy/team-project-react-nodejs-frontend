@@ -1,4 +1,9 @@
-export { getNewsFetch, getNewsSuccess, getNewsFailure } from './newsSlice';
+export {
+  getNewsFetch,
+  getNewsSuccess,
+  getNewsFailure,
+  logOutNewsSuccess,
+} from './newsSlice';
 
 export { newsSagas } from './newsSaga';
 

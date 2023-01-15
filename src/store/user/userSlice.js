@@ -75,11 +75,7 @@ const userSlice = createSlice({
       state.error = false;
     },
     logOutUserSuccess: state => {
-      localStorage.removeItem('persist:user');
-      state.loginStatus = 'rejected';
-      state.token = '';
-      localStorage.clear('persist:user');
-      state.error = false;
+      return (state = { ...initialState, loginStatus: 'rejected' });
     },
     logOutUserFailure: (state, { payload }) => {
       state.isLoading = false;
@@ -95,7 +91,6 @@ const userSlice = createSlice({
       state.error = false;
     },
     updateUserFailure: (state, { payload }) => {
-      state.loginStatus = 'rejected';
       state.isLoading = false;
       state.error = payload;
     },

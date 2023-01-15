@@ -22,10 +22,17 @@ const friendsSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
+    logOutFriendsSuccess: state => {
+      return (state = { ...initialState });
+    },
   },
 });
 
-export const { getFriendsFetch, getFriendsSuccess, getFriendsFailure } =
-  friendsSlice.actions;
+export const {
+  getFriendsFetch,
+  getFriendsSuccess,
+  getFriendsFailure,
+  logOutFriendsSuccess,
+} = friendsSlice.actions;
 
 export default friendsSlice.reducer;

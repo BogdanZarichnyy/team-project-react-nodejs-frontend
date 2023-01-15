@@ -55,16 +55,24 @@ export const addPetFormSchema = Yup.object().shape({
       'Only number characters and $ are allowed, e.g. 50$'
     )
     .required('Field is required!'),
-  photo: Yup.mixed().test(
-    'fileSize',
-    'File no larger than 1Mb',
-    value => value.size <= 1048576
-  ),
-  passport: Yup.mixed().test(
-    'fileSize',
-    'File no larger than 1Mb',
-    value => value.size <= 1048576
-  ),
+  photo: Yup.mixed().test('fileSize', 'File no larger than 1Mb', value => {
+    const size = value.size;
+    if (size) {
+      return size <= 1048576;
+    }
+    if (!size) {
+      return true;
+    }
+  }),
+  passport: Yup.mixed().test('fileSize', 'File no larger than 1Mb', value => {
+    const size = value.size;
+    if (size) {
+      return size <= 1048576;
+    }
+    if (!size) {
+      return true;
+    }
+  }),
   comments: Yup.string()
     .min(8)
     .max(120)

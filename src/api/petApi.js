@@ -1,16 +1,21 @@
-import { petsApi, apiErrorHandler } from './main';
+import axios from 'axios';
+import { URL } from '../constants';
+
+const userPetsUrl = `${URL.BASE}${URL.PETS}`;
 
 export const getAllPets = async () => {
-  const { data } = await petsApi.get().catch(apiErrorHandler);
+  const { data } = await axios.get(userPetsUrl);
   return data;
 };
 
 export const addNewPet = async adsData => {
-  const { data } = await petsApi.post(null, adsData).catch(apiErrorHandler);
+  const { data } = await axios.post(userPetsUrl, adsData);
+
   return data;
 };
 
 export const deletePet = async adsData => {
-  const { data } = await petsApi.delete(`${adsData}`).catch(apiErrorHandler);
+  const { data } = await axios.delete(`${userPetsUrl}/${adsData}`);
+
   return data;
 };
