@@ -24,10 +24,7 @@ const AddPetFormStepOne = ({ onNext, formik }) => {
   return (
     <>
       <h2 className={s.title}>Add pet</h2>
-      <p className={s.subtitle}>
-        Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-        consectetur
-      </p>
+      <p className={s.subtitle}>Write some information about your notice</p>
 
       <div className={s.listButton} role="group">
         <label htmlFor="lost-found">
@@ -66,7 +63,7 @@ const AddPetFormStepOne = ({ onNext, formik }) => {
       </div>
 
       <label className={s.label}>
-        Tittle of ad<span className={s.labelStar}>*</span>
+        Tittle of ad:<span className={s.labelStar}>*</span>
       </label>
       {isErrors && errors.addTitle && <ErrorText text={errors.addTitle} />}
       <InputBase
@@ -77,7 +74,9 @@ const AddPetFormStepOne = ({ onNext, formik }) => {
         value={values.addTitle}
         onChange={handleChange}
       />
-      <label className={s.label}>Name pet</label>
+      <label className={s.label}>
+        Name pet:<span className={s.labelStar}>*</span>
+      </label>
       {isErrors && errors.name && <ErrorText text={errors.name} />}
       <InputBase
         styles={s.input}
@@ -87,7 +86,9 @@ const AddPetFormStepOne = ({ onNext, formik }) => {
         value={values.name}
         onChange={handleChange}
       />
-      <label className={s.label}>Day of birth</label>
+      <label className={s.label}>
+        Day of birth:<span className={s.labelStar}>*</span>
+      </label>
       {isErrors && errors.birthDate && <ErrorText text={errors.birthDate} />}
       <InputBase
         styles={s.input}
@@ -100,7 +101,9 @@ const AddPetFormStepOne = ({ onNext, formik }) => {
         onChange={handleChange}
       />
 
-      <label className={s.label}>Breed</label>
+      <label className={s.label}>
+        Breed:<span className={s.labelStar}>*</span>
+      </label>
       {isErrors && errors.breed && <ErrorText text={errors.breed} />}
       <InputBase
         styles={s.input}

@@ -87,7 +87,7 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
       <h2 className={s.title}>Add pet</h2>
       <fieldset className={s.sexWrapper}>
         <legend className={s.label}>
-          The sex<span className={s.labelStar}>*</span>:
+          The sex:<span className={s.labelStar}>*</span>
         </legend>
         <label htmlFor="male" className={s.sexLabel}>
           <input
@@ -221,7 +221,7 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
         ref={passportRef}
       />
       <label className={s.label} htmlFor="comments">
-        Comments
+        Comments<span className={s.labelStar}>*</span>
       </label>
       {touched.comments && errors.comments ? (
         <ErrorText text={errors.comments} />
