@@ -158,9 +158,15 @@
   margin-left: auto;
   margin-right: auto;
   @include flex-center;
-
+  cursor: pointer;
   border-radius: 20px;
   background-color: getColor('clr-bg');
+  &:hover .avatarIcon,
+  &:focus .avatarIcon {
+    width: 72px;
+    height: 72px;
+    fill: getColor('clr-accent');
+  }
   @include tablet {
     width: 182px;
     height: 182px;

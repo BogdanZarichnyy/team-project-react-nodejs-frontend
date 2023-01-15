@@ -10,9 +10,12 @@ import s from './AddPetForm.module.scss';
 
 const AddPetFormStepTwo = ({ onNext, formik }) => {
   const photoRef = useRef();
+  const passportRef = useRef();
   const autoGrowRef = useRef();
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewPhoto, setPreviewPhoto] = useState(null);
+  const [selectedPassport, setSelectedPassport] = useState(null);
+  const [previewPassport, setPreviewPassport] = useState(null);
   const [fileName, setFileName] = useState('');
   const { values, handleChange, errors, touched, setFieldValue } = formik;
 
@@ -28,6 +31,18 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
     return () => URL.revokeObjectURL(objUrl);
   }, [selectedFile]);
 
+  useEffect(() => {
+    if (!selectedPassport) {
+      setPreviewPassport(null);
+      return;
+    }
+
+    const objUrl = URL.createObjectURL(selectedPassport);
+    setPreviewPassport(objUrl);
+
+    return () => URL.revokeObjectURL(objUrl);
+  }, [selectedPassport]);
+
   const handlePhotoChange = e => {
     const file = e.target.files[0];
     if (!e.target.files || e.target.files.length === 0) {
@@ -42,6 +57,23 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
     if (file.name !== fileName) {
       reader.readAsDataURL(file);
       setFieldValue('photo', file);
+    }
+  };
+
+  const handlePassportChange = e => {
+    const file = e.target.files[0];
+    if (!e.target.files || e.target.files.length === 0) {
+      setSelectedPassport(null);
+      return;
+    }
+    setSelectedPassport(file);
+
+    const reader = new FileReader();
+
+    reader.onloadend = () => setFileName(file.name);
+    if (file.name !== fileName) {
+      reader.readAsDataURL(file);
+      setFieldValue('passport', file);
     }
   };
 
@@ -157,6 +189,36 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
           handlePhotoChange(e);
         }}
         ref={photoRef}
+      />
+      <label className={s.label} htmlFor="passport">
+        Load the pet’s passport:
+      </label>
+      {previewPassport ? (
+        <img
+          src={previewPassport}
+          alt="Pet"
+          onClick={() => passportRef.current.click()}
+          className={s.image}
+        />
+      ) : (
+        <div
+          className={s.avatarWrapper}
+          onClick={() => passportRef.current.click()}
+        >
+          <IconComponent iconname="i-cross-lg4" classname={s.avatarIcon} />
+        </div>
+      )}
+      <input
+        className={s.avatarInput}
+        type="file"
+        id="passport"
+        name="passport"
+        accept=".jpg,.png,.pdf"
+        onChange={e => {
+          handleChange(e);
+          handlePassportChange(e);
+        }}
+        ref={passportRef}
       />
       <label className={s.label} htmlFor="comments">
         Comments
