@@ -167,7 +167,9 @@ const AnimatedRoutes = () => {
             path="*"
             element={
               <Suspense fallback={<Loader />}>
-                <NotFound />
+                <ErrorBoundary>
+                  <NotFound />
+                </ErrorBoundary>
               </Suspense>
             }
           />
