@@ -21,6 +21,7 @@ const initialValues = {
   location: '',
   price: '$',
   photo: {},
+  passport: {},
   comments: '',
 };
 

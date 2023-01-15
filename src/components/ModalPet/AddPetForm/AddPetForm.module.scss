@@ -208,6 +208,7 @@
   height: 116px;
   margin-bottom: 28px;
   display: flex;
+  flex-direction: column;
   border-radius: 20px;
   background-color: getColor('clr-bg');
   cursor: pointer;
@@ -228,8 +229,11 @@
 .avatarIcon {
   width: 48px;
   height: 48px;
-  color: rgba(17, 17, 17, 0.6);
-  
+  color: rgba(17, 17, 17, 0.6); 
+}
+
+.iconSubtitle {
+  font-size: 8px;
 }
 
 .avatarInput {
