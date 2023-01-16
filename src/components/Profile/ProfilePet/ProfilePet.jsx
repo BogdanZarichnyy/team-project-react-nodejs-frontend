@@ -16,7 +16,7 @@ const ProfilePet = ({
   const handleDelete = () => {
     dispatch(deletePetFetch(_id));
   };
-  console.log('toggleDelete', toggleDelete);
+
   return (
     <li className={s.petItem}>
       {photo.length > 0 ? (
