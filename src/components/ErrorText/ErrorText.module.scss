@@ -3,11 +3,13 @@
   font-size: 11px;
   color: red;
   position: absolute;
-  top: -20px;
-  left: 8%;
+  top: -15px;
+  left: 3%;
 }
 @include tablet {
   .text {
     font-size: 15px;
+    top: -20px;
+    left: 8%;
   }
 }
