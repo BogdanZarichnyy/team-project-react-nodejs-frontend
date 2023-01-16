@@ -17,6 +17,8 @@ export const registerPageSchema = Yup.object().shape({
     .matches(/^[^\s]+$/, 'The field must not contain spaces'),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
+    .min(7, 'Confirm password must be at least 7 characters long')
+    .max(32, 'Confirm password must be 32 characters maximum')
     .required('Required field to fill!')
     .matches(/^[^\s]+$/, 'The field must not contain spaces'),
   name: Yup.string()

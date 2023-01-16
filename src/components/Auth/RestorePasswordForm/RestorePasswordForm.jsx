@@ -39,16 +39,21 @@ const RestorePasswordForm = ({ onSent }) => {
 
   return (
     <form className={s.form} onSubmit={handleSubmit}>
-      {touched.email && errors.email ? <ErrorText text={errors.email} /> : null}
-      <InputBase
-        styles={s.inputSecondBottomMargin}
-        type="email"
-        name="email"
-        placeholder="Email"
-        value={values.email}
-        onChange={handleChange}
-        onBlur={handleBlur}
-      />
+      <div className={s.input__container}>
+        <InputBase
+          styles={s.inputSecondBottomMargin}
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={values.email}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        {touched.email && errors.email ? (
+          <ErrorText text={errors.email} />
+        ) : null}
+      </div>
+
       <ButtonBase type="submit" text="Send new password" />
     </form>
   );

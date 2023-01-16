@@ -12,7 +12,7 @@
 
 .inputBottomMargin,
 .restorePasswordTitle {
-  margin-bottom: 16px;
+  margin-bottom: 30px;
 }
 .inputSecondBottomMargin {
   margin-bottom: 40px;
@@ -26,4 +26,9 @@
 }
 .inputLogin {
   margin-bottom: 4px;
+}
+
+.input__container {
+  position: relative;
+  width: 100%;
 }

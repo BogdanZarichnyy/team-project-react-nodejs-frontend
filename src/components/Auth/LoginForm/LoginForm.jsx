@@ -40,30 +40,36 @@ const LoginForm = () => {
 
   return (
     <form className={s.form} onSubmit={handleSubmit}>
-      {touched.email && errors.email ? <ErrorText text={errors.email} /> : null}
-      <InputBase
-        styles={s.inputBottomMargin}
-        type="email"
-        name="email"
-        placeholder="Email"
-        value={values.email}
-        onChange={handleChange}
-        onBlur={handleBlur}
-      />
-      {touched.password && errors.password ? (
-        <ErrorText text={errors.password} />
-      ) : null}
-      <InputBase
-        styles={s.inputLogin}
-        type="password"
-        name="password"
-        autocomplete="current-password"
-        id="current-password"
-        placeholder="Password"
-        value={values.password}
-        onChange={handleChange}
-        onBlur={handleBlur}
-      />
+      <div className={s.input__container}>
+        <InputBase
+          styles={s.inputBottomMargin}
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={values.email}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        {touched.email && errors.email ? (
+          <ErrorText text={errors.email} />
+        ) : null}
+      </div>
+      <div className={s.input__container}>
+        <InputBase
+          styles={s.inputLogin}
+          type="password"
+          name="password"
+          autocomplete="current-password"
+          id="current-password"
+          placeholder="Password"
+          value={values.password}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        {touched.password && errors.password ? (
+          <ErrorText text={errors.password} />
+        ) : null}
+      </div>
       <div className={s.blockLink}>
         <NavLink className={style.link} to="/restorePassword">
           Forgot password
@@ -71,7 +77,6 @@ const LoginForm = () => {
       </div>
 
       <ButtonBase type="submit" text="Login" disabled={isLoading} />
-
     </form>
   );
 };
