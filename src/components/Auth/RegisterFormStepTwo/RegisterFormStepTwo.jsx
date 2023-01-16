@@ -45,46 +45,56 @@ const RegisterFormStepTwo = ({ onNext, formik }) => {
 
   return (
     <>
-      {touched.name && errors.name ? <ErrorText text={errors.name} /> : null}
-      <InputBase
-        styles={s.inputBottomMargin}
-        id="name"
-        type="name"
-        name="name"
-        placeholder="Name"
-        value={values.name}
-        onChange={handleChange}
-      />
-      {touched.city && errors.city ? <ErrorText text={errors.city} /> : null}
-      <Select
-        id="city"
-        name="city"
-        placeholder="City, region"
-        isClearable={false}
-        onChange={({ value }) => setFieldValue('city', value, true)}
-        onInputChange={searchCity}
-        options={filteredCities}
-        closeMenuOnSelect
-        loadingMessage={true}
-        className="city-select-container"
-        classNamePrefix="city-select"
-        showNewOptionAtTop={false}
-      />
-      {touched.phone && errors.phone ? <ErrorText text={errors.phone} /> : null}
+      <div className={s.input__container}>
+        {' '}
+        <InputBase
+          styles={s.inputBottomMargin}
+          id="name"
+          type="name"
+          name="name"
+          placeholder="Name"
+          value={values.name}
+          onChange={handleChange}
+        />
+        {touched.name && errors.name ? <ErrorText text={errors.name} /> : null}
+      </div>
 
-      <PhoneInput
-        id="phone"
-        placeholder="Mobile phone"
-        name="phone"
-        country={'ua'}
-        disableDropdown
-        countryCodeEditable={false}
-        onKeyDown={handleKeyDown}
-        enableClickOutside={false}
-        enableAreaCodes={true}
-        value={values.phone}
-        onChange={value => setFieldValue('phone', value, true)}
-      />
+      <div className={s.input__container}>
+        <Select
+          id="city"
+          name="city"
+          placeholder="City, region"
+          isClearable={false}
+          onChange={({ value }) => setFieldValue('city', value, true)}
+          onInputChange={searchCity}
+          options={filteredCities}
+          closeMenuOnSelect
+          loadingMessage={true}
+          className="city-select-container"
+          classNamePrefix="city-select"
+          showNewOptionAtTop={false}
+        />
+        {touched.city && errors.city ? <ErrorText text={errors.city} /> : null}
+      </div>
+
+      <div className={s.input__container}>
+        <PhoneInput
+          id="phone"
+          placeholder="Mobile phone"
+          name="phone"
+          country={'ua'}
+          disableDropdown
+          countryCodeEditable={false}
+          onKeyDown={handleKeyDown}
+          enableClickOutside={false}
+          enableAreaCodes={true}
+          value={values.phone}
+          onChange={value => setFieldValue('phone', value, true)}
+        />
+        {touched.phone && errors.phone ? (
+          <ErrorText text={errors.phone} />
+        ) : null}
+      </div>
 
       <ButtonBase type="submit" text="Register" disabled={isLoading} />
       <ButtonBase onClick={onNext} type="button" text="Back" isLigth />

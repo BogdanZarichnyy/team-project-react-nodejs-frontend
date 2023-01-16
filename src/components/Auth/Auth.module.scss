@@ -1,5 +1,6 @@
 @import '../../sass/utils/mixins';
 @import '../../sass/utils/variables';
+@import '../../sass/utils/mixins';
 
 .form,
 .restorePasswordContainer {
@@ -12,7 +13,7 @@
 
 .inputBottomMargin,
 .restorePasswordTitle {
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 .inputSecondBottomMargin {
   margin-bottom: 40px;
@@ -26,4 +27,15 @@
 }
 .inputLogin {
   margin-bottom: 4px;
+}
+
+.input__container {
+  position: relative;
+  width: 100%;
+}
+@include tablet {
+  .inputBottomMargin,
+  .restorePasswordTitle {
+    margin-bottom: 30px;
+  }
 }
