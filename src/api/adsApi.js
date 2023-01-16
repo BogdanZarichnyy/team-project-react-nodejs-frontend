@@ -34,7 +34,7 @@ export const addNewAds = async adsData => {
 };
 
 export const deleteAds = async adsData => {
-  const { data } = await axios.delete(`${adsBaseUrl}${adsData}`);
+  const { data } = await axios.delete(`${adsBaseUrl}/${adsData}`);
 
   return data;
 };
