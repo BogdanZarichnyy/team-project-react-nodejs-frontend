@@ -1,6 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { PURGE } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 
 const initialState = {
   userData: {
@@ -77,11 +75,7 @@ const userSlice = createSlice({
       state.error = false;
     },
     logOutUserSuccess: state => {
-      localStorage.removeItem('persist:user');
-      state.loginStatus = 'rejected';
-      state.token = '';
-      localStorage.clear('persist:user');
-      state.error = false;
+      return (state = { ...initialState, loginStatus: 'rejected' });
     },
     logOutUserFailure: (state, { payload }) => {
       state.isLoading = false;
@@ -97,7 +91,6 @@ const userSlice = createSlice({
       state.error = false;
     },
     updateUserFailure: (state, { payload }) => {
-      state.loginStatus = 'rejected';
       state.isLoading = false;
       state.error = payload;
     },
@@ -169,11 +162,6 @@ const userSlice = createSlice({
       state.loginStatus = 'rejected';
     },
   },
-  // extraReducers: builder => {
-  //   builder.addCase(PURGE, state => {
-  //     storage.remove('user');
-  //   });
-  // },
 });
 
 export const {

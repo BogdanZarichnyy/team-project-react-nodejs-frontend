@@ -42,4 +42,5 @@ export {
   getUserTokenSelector,
   getUserLoggedSelector,
   getPetsSelector,
+  getPetsLoadingSelector,
 } from './userSelectors';

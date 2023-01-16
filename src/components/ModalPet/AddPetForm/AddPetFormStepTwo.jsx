@@ -164,6 +164,7 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
       <label className={s.label} htmlFor="photo">
         Load the pet’s photo:
       </label>
+      {touched.photo && errors.photo ? <ErrorText text={errors.photo} /> : null}
       {previewPhoto ? (
         <img
           src={previewPhoto}
@@ -177,6 +178,7 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
           onClick={() => photoRef.current.click()}
         >
           <IconComponent iconname="i-cross-lg4" classname={s.avatarIcon} />
+          <span className={s.iconSubtitle}>'File no larger than 1Mb'</span>
         </div>
       )}
       <input
@@ -194,6 +196,9 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
       <label className={s.label} htmlFor="passport">
         Load the pet’s passport:
       </label>
+      {touched.passport && errors.passport ? (
+        <ErrorText text={errors.passport} />
+      ) : null}
       {previewPassport ? (
         <img
           src={previewPassport}
@@ -207,6 +212,7 @@ const AddPetFormStepTwo = ({ onNext, formik }) => {
           onClick={() => passportRef.current.click()}
         >
           <IconComponent iconname="i-cross-lg4" classname={s.avatarIcon} />
+          <span className={s.iconSubtitle}>'File no larger than 1Mb'</span>
         </div>
       )}
       <input

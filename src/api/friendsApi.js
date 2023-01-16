@@ -1,6 +1,9 @@
-import { friendsApi, apiErrorHandler } from './main';
+import { URL } from '../constants';
+import axios from 'axios';
+
+const userNewsUrl = `${URL.BASE}${URL.FRIENDS}`;
 
 export const getFriends = async () => {
-  const { data } = await friendsApi.get().catch(apiErrorHandler);
+  const { data } = await axios.get(userNewsUrl);
   return data;
 };

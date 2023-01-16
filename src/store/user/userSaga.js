@@ -33,6 +33,10 @@ import {
   restorePasswordSuccess,
 } from './userSlice';
 
+import { logOutAdsSuccess } from '../ads';
+import { logOutNewsSuccess } from '../news';
+import { logOutFriendsSuccess } from '../friends';
+
 function* workRegisterUserFetch({ payload }) {
   try {
     const { user } = yield call(registerUser, payload);
@@ -55,6 +59,9 @@ function* workLogOutUserFetch() {
   try {
     yield call(logOutUser);
     yield put(logOutUserSuccess());
+    yield put(logOutAdsSuccess());
+    yield put(logOutNewsSuccess());
+    yield put(logOutFriendsSuccess());
   } catch (error) {
     yield put(logOutUserFailure(error.message));
   }

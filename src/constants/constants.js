@@ -19,3 +19,6 @@ export const URL = {
   AVATAR: '/avatar',
   FORGOT: '/forgot_password',
 };
+
+export const CITIES_URL =
+  'https://test-team-project-react-nodejs-production.up.railway.app/api/cities_of_ukraine';
