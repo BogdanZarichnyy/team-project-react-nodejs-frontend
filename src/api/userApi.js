@@ -6,7 +6,7 @@ const userBaseUrl = `${URL.BASE}${URL.USERS}`;
 
 export const registerUser = async userData => {
   const { data } = await axios.post(
-    `${userBaseUrl}${URL.REGISTRATION}`,
+    `${userBaseUrl}/${URL.REGISTRATION}`,
     userData
   );
   setToken(data.user.accessToken);
