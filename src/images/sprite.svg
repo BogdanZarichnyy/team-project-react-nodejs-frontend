@@ -7,8 +7,8 @@
 <path d="M18.051 16l12.058-12.058c0.238-0.278 0.363-0.636 0.349-1.002s-0.166-0.713-0.425-0.972c-0.259-0.259-0.606-0.411-0.972-0.425s-0.724 0.11-1.002 0.349l-12.058 12.058-12.058-12.073c-0.274-0.274-0.645-0.428-1.033-0.428s-0.759 0.154-1.033 0.428c-0.274 0.274-0.428 0.645-0.428 1.033s0.154 0.759 0.428 1.033l12.073 12.058-12.073 12.058c-0.152 0.13-0.276 0.291-0.363 0.471s-0.136 0.377-0.144 0.577 0.026 0.4 0.099 0.587c0.073 0.187 0.184 0.356 0.326 0.498s0.311 0.253 0.498 0.326 0.386 0.107 0.587 0.099c0.2-0.008 0.397-0.057 0.577-0.144s0.341-0.211 0.471-0.363l12.073-12.058 12.058 12.058c0.278 0.238 0.636 0.363 1.002 0.349s0.713-0.166 0.972-0.425c0.259-0.259 0.411-0.606 0.425-0.972s-0.11-0.724-0.349-1.002l-12.058-12.058z"></path>
 </symbol>
 <symbol id="crossIconCloseHomeModal" viewBox="4 3 32 32">
-<path d="M30 10L10 30" stroke="#ff6101" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M10 10L30 30" stroke="#ff6101" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M30 10L10 30" stroke="#212121" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10 10L30 30" stroke="#212121" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 </symbol>
 <symbol id="BIGPlusIconadding-pets-pic" viewBox="0 0 32 32">
 <path stroke-linejoin="miter" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.2549" d="M16 30.85v-14.85M16 16v-14.85M16 16h14.85M16 16h-14.85"></path>
