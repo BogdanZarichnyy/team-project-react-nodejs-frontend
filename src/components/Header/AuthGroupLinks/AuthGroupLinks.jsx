@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 import { useSelector } from 'react-redux';
@@ -10,15 +12,31 @@ import sprite from '../../../images/sprite.svg';
 import s from './AuthGroupLinks.module.scss';
 
 const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
-  const isLoggedIn = useSelector(getUserLoggedSelector);
+  const [isPrimaryBtnSelected, setIsPrimaryBtnSelected] = useState(true);
+  const [isSecondaryBtnSelected, setIsSecondaryBtnSelected] = useState(false);
+  const loginStatus = useSelector(getUserLoggedSelector);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === '/login') {
+      setIsPrimaryBtnSelected(true);
+      setIsSecondaryBtnSelected(false);
+    }
+
+    if (location.pathname === '/register') {
+      setIsSecondaryBtnSelected(true);
+      setIsPrimaryBtnSelected(false);
+    }
+  }, [location]);
 
   const animateFrom = { opacity: 0, y: -40 };
   const animateTo = { opacity: 1, y: 0 };
-  const animateExit = { y: '-100vh', duration: 2000 };
+  const animateExit = { y: '-100vh', transition: { duration: 0.25 } };
 
   return (
     <>
-      {isLoggedIn && (
+      {loginStatus === 'success' && (
         <>
           <motion.div
             initial={animateFrom}
@@ -28,6 +46,7 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
             <PrimaryButton
               tag="NavLink"
               to="/user"
+              padding="8px 28px"
               className={s.authBtn}
               onClick={() => {
                 isMobile && closeMobileMenu();
@@ -42,23 +61,25 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
         </>
       )}
 
-      {!isLoggedIn && (
+      {loginStatus === 'rejected' && (
         <>
           <motion.div
             initial={animateFrom}
             animate={animateTo}
             exit={animateExit}
           >
-            <PrimaryButton
+            <SecondaryButton
               tag="NavLink"
               to="/login"
-              className={s.authBtn}
+              className={
+                isPrimaryBtnSelected ? s.authPrimaryBtnSelected : s.authBtn
+              }
               onClick={() => {
                 isMobile && closeMobileMenu();
               }}
             >
               Login
-            </PrimaryButton>
+            </SecondaryButton>
           </motion.div>
 
           <motion.div
@@ -69,7 +90,9 @@ const AuthGroupLinks = ({ isMobile, closeMobileMenu }) => {
             <SecondaryButton
               tag="NavLink"
               to="/register"
-              className={s.authBtn}
+              className={
+                isSecondaryBtnSelected ? s.authPrimaryBtnSelected : s.authBtn
+              }
               onClick={() => {
                 isMobile && closeMobileMenu();
               }}

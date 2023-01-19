@@ -1,15 +1,25 @@
-import { useState } from 'react';
-import { useFormik } from 'formik';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import * as Yup from 'yup';
+import { useFormik } from 'formik';
+import { toast } from 'react-toastify';
+
 import AuthLayout from '../../layouts/AuthLayout';
 import RegisterFormStepOne from '../../components/Auth/RegisterFormStepOne';
 import RegisterFormStepTwo from '../../components/Auth/RegisterFormStepTwo';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+
 import { registerUserFetch } from '../../store/user';
 
+import {
+  getUserLoggedSelector,
+  getUserErrorSelector,
+  getUserLoadingSelector,
+} from '../../store/user';
+
+import { registerPageSchema } from '../../validation/registerPageSchema';
+
 import s from '../../components/Auth/Auth.module.scss';
+import '../../components/Auth/RegisterFormStepTwo/RegisterForm.css';
 
 const initialValues = {
   email: '',
@@ -20,58 +30,38 @@ const initialValues = {
   phone: '',
 };
 
-const validationSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Please enter a valid e-mail')
-    .matches(
-      /^([a-zA-Z0-9._]{1}[a-zA-Z0-9._-]+)+@[a-zA-Z0-9._-]+\.([a-zA-Z0-9._-]*[a-zA-Z0-9._]+)$/,
-      'Is not in correct format'
-    )
-    .min(7, 'Email must be at least 7 characters long')
-    .max(63, 'Email must be 63 characters maximum')
-    .required('Required field to fill!'),
-  password: Yup.string()
-    .min(7, 'Password must be at least 7 characters long')
-    .max(32, 'Password must be 32 characters maximum')
-    .required('Required field to fill!'),
-  confirmPassword: Yup.string()
-    .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    .required('Required field to fill!'),
-  name: Yup.string()
-    .required('Required field to fill!')
-    .matches(/^[a-zA-z ]+$/, 'In this field must be contain only letters'),
-  city: Yup.string().required(
-    'Required field to fill! Please, choose one option from list!'
-  ),
-  phone: Yup.string()
-    .required('Required field to fill!')
-    .min(12, 'Number must be 12 characters minimum'),
-});
-
 const RegisterPage = () => {
+  const isLogin = useSelector(getUserLoggedSelector);
+  const isError = useSelector(getUserErrorSelector);
+  const isLoading = useSelector(getUserLoadingSelector);
+
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [step, setStep] = useState(1);
 
-  const handleRegister = async values => {
+  useEffect(() => {
+    if (
+      (isLogin === 'rejected') &
+      (isError !== false) &
+      (isLoading === false)
+    ) {
+      toast.error('A user with such an email is already registered');
+    }
+  }, [isLogin, isError, isLoading]);
+
+  const handleRegister = values => {
     const phone = '+' + values.phone;
     const { confirmPassword, ...userData } = values;
-    try {
-      await dispatch(
-        registerUserFetch({
-          ...userData,
-          phone,
-        })
-      );
-      navigate('/user');
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(
+      registerUserFetch({
+        ...userData,
+        phone,
+      })
+    );
   };
 
   const formik = useFormik({
     initialValues,
-    validationSchema,
+    validationSchema: registerPageSchema,
     validateOnMount: true,
     validateOnBlur: true,
     validateOnChange: true,
@@ -84,6 +74,7 @@ const RegisterPage = () => {
       textDescription="Already have an account?"
       nawLink="/login"
       textNawLink="Login"
+      pageType="register"
     >
       <form className={s.form} onSubmit={formik.handleSubmit}>
         {step === 1 ? (

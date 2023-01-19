@@ -1,6 +1,9 @@
-import { newsApi, apiErrorHandler } from './main';
+import { URL } from '../constants';
+import axios from 'axios';
 
-export const getNews = async () => {
-  const { data } = await newsApi.get().catch(apiErrorHandler);
+const userNewsUrl = `${URL.BASE}${URL.NEWS}`;
+
+export const getNews = async (searchData = '') => {
+  const { data } = await axios.get(`${userNewsUrl}?${URL.QUERY}${searchData}`);
   return data;
 };

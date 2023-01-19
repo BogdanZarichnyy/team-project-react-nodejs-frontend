@@ -25,15 +25,8 @@ const combinedReducer = combineReducers({
   friends: friendsSlice,
 });
 
-const rootReducer = (state, action) => {
-  if (action.type === 'user/logOutUserSuccess') {
-    state = undefined;
-  }
-  return combinedReducer(state, action);
-};
-
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: combinedReducer,
   middleware,
   devTools: process.env.NODE_ENV === 'development',
 });

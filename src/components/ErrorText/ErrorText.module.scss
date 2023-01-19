@@ -1,5 +1,15 @@
+@import '../../sass/utils/mixins';
 .text {
+  font-size: 11px;
   color: red;
-  margin-bottom: 3px;
-  font-size: 8px;
+  position: absolute;
+  top: -15px;
+  left: 3%;
+}
+@include tablet {
+  .text {
+    font-size: 15px;
+    top: -20px;
+    left: 8%;
+  }
 }

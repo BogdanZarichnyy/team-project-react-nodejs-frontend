@@ -1,28 +1,21 @@
-import { useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import {
-  getSellAdsFetch,
-  getFoundAdsFetch,
-  getShareAdsFetch,
-  addNewAdsFetch,
-} from '../../store/ads/';
-
-import { getFriendsFetch } from '../../store/friends';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ProfilePet from '../../components/Profile/ProfilePet';
 import ProfileAvatar from '../../components/Profile/ProfileAvatar';
 import ProfileContactsList from '../../components/Profile/ProfileContactsList';
 import AddPetButton from '../../components/AddPetButton';
+import { getPetsFetch, getPetsSelector } from '../../store/user';
 
 import s from './Profile.module.scss';
-import axios from 'axios';
 
 const Profile = () => {
   const dispatch = useDispatch();
+  const petsArr = useSelector(getPetsSelector);
 
-  const handleAddPet = async () => {
-    dispatch(getFoundAdsFetch());
-  };
+  useEffect(() => {
+    dispatch(getPetsFetch());
+  }, [dispatch]);
 
   return (
     <section className={`container ${s.containerDesktop}`}>
@@ -43,6 +36,7 @@ const Profile = () => {
         <div className={s.petsThumb}>
           <ul>
             {petsArr &&
+              petsArr.length > 0 &&
               petsArr.map(pet => <ProfilePet key={pet._id} {...{ pet }} />)}
           </ul>
         </div>
@@ -52,25 +46,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-//sample data here
-const petsArr = [
-  {
-    _id: 1,
-    photo: 'https://picsum.photos/300',
-    name: 'Jack',
-    date: '22.04.2018',
-    breed: 'Persian cat',
-    comments:
-      'Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur',
-  },
-  {
-    _id: 2,
-    photo: 'https://picsum.photos/300',
-    name: 'Black',
-    date: '26.02.2017',
-    breed: 'Basenji',
-    comments:
-      'Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur',
-  },
-];

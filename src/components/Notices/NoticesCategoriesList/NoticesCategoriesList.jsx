@@ -1,50 +1,31 @@
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+
+import moment from 'moment';
+
+import { createSelectorFunc, getAdsLoadingSelector } from '../../../store/ads';
+
+import NoticesCategoriesItem from '../NoticesCategoriesItem/NoticesCategoriesItem';
+import Loader from '../../LoaderV1/Loader';
 
 import s from './NoticesCategoriesList.module.scss';
-import { ModalProvider } from '../../ModalRework';
-import { getSellAdsSelector, getFoundAdsSelector, getShareAdsSelector } from '../../../store/ads/index';
-import { getSellAdsFetch, getShareAdsFetch, getFoundAdsFetch  } from '../../../store/ads';
-import NoticesCategoriesItem from '../NoticesCategoriesItem/NoticesCategoriesItem';
 
 export default function NoticeCategoriesList({ categoryType }) {
-    const dispatch = useDispatch();
-    const noticesSell = useSelector(getSellAdsSelector);
-    const noticesFound = useSelector(getFoundAdsSelector);
-    const noticesShare = useSelector(getShareAdsSelector);
-    
+  const categoryArray = useSelector(createSelectorFunc(categoryType));
+  const isLoading = useSelector(getAdsLoadingSelector);
 
-    useEffect(() => {
-        if (categoryType === 'sell') {
-            dispatch(getSellAdsFetch());
-        } else if (categoryType === 'for-free') {
-            dispatch(getShareAdsFetch())
-        } else if (categoryType === 'lost-found') {
-            dispatch(getFoundAdsFetch());
-        }        
-    }, [dispatch, categoryType])
-
-    return (
-        <ul className={s.noticeList}>
-            <ModalProvider>
-                {categoryType === 'sell' && noticesSell.map(notice => {
-                    return (
-                        <NoticesCategoriesItem notice={notice} key={notice._id} />
-                    )
-                })}
-                {categoryType === 'for-free' && noticesShare.map(notice => {
-                    return (
-                        <NoticesCategoriesItem notice={notice} key={notice._id} />
-                    )
-                })}
-                {categoryType === 'lost-found' && noticesFound.map(notice => {
-                    return (
-                        <NoticesCategoriesItem notice={notice} key={notice._id} />
-                    )
-                })}
-            </ModalProvider>
-        </ul>
-    )
-
+  return (
+    <ul className={s.noticeList}>
+      {isLoading === true ? (
+        <Loader />
+      ) : categoryArray.length !== 0 ? (
+        [...categoryArray]
+          .sort((a, b) => moment(b.createdAt) - moment(a.createdAt))
+          .map(notice => {
+            return <NoticesCategoriesItem notice={notice} key={notice._id} />;
+          })
+      ) : (
+        <h3 className={s.noAdsTitle}>No ads in this category</h3>
+      )}
+    </ul>
+  );
 }

@@ -24,14 +24,6 @@ export const sampleUser2 = {
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjVlZGIyM2RiMDk3YjdlNGI1OWI0ZSIsImlhdCI6MTY3Mjg2NzI1MCwiZXhwIjoxNjcyODY4MTUwfQ.ql2x8W_Hf_Pu20I_1Gj2aCZ6KROWhPxgBmHMW1xYnug',
 };
 
-export const adsCategories = ['sale', 'inGoodHands', 'lostFound'];
-
-//Добавил isLogged
-//Исправил error
-//Добавил получение 'sale', 'inGoodHands', 'lostFound'
-//Бодавил получение друзей и новостей
-//Перенести validationSchema в отдельный файл в формах
-
 //1. Register New User
 // To register new user import dependecies and pass dispatch function into button handler:
 
@@ -103,7 +95,7 @@ export const adsCategories = ['sale', 'inGoodHands', 'lostFound'];
 
 // dispatch(getFriendsFetch());
 
-// 6. Get Lost/Found pets
+// 6. Get inGoodHands pets
 
 // import { useDispatch } from 'react-redux';
 // import { getShareAdsFetch } from '../../store/ads';
@@ -129,6 +121,34 @@ export const adsCategories = ['sale', 'inGoodHands', 'lostFound'];
 // const dispatch = useDispatch();
 
 // dispatch(getFoundAdsFetch());
+
+// 8. Delete Ad
+
+// import { useDispatch } from 'react-redux';
+// import { deleteAdsFetch } from '../../store/ads';
+
+// const dispatch = useDispatch();
+
+// dispatch(deleteAdsFetch({_id: 63b768119348e50277b8ed04})); // Передаем id объявления
+
+// 9. Add user pet
+
+// import { useDispatch } from 'react-redux';
+// import { addPetFetch } from '../../store/user';
+
+// const dispatch = useDispatch();
+
+// dispatch(addPetFetch({"name": "Dugy", "breed": "Dvornyazhka","comments": "",
+//   "birthDate": "2001-11-12T00:00:00.000Z","photo": "",})); // Передаем формдату объявления
+
+// 8. Delete user pet
+
+// import { useDispatch } from 'react-redux';
+// import { deletePetFetch } from '../../store/ads';
+
+// const dispatch = useDispatch();
+
+// dispatch(deletePetFetch({_id: 63b768119348e50277b8ed04})); // Передаем id объявления
 
 //===============================================================
 // Sale ad response example

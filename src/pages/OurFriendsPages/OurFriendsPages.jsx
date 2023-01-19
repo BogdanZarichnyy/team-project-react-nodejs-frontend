@@ -1,61 +1,73 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getFriendsSelector, getFriendsFetch } from '../../store/friends';
+
 import s from './OurFriendsPages.module.scss';
 
 const OurFriends = () => {
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [friends, setFriends] = useState([]);
+  const friendsArr = useSelector(getFriendsSelector);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    fetch(
-      'https://test-team-project-react-nodejs-production.up.railway.app/api/ours_friends'
-    )
-      .then(res => res.json())
-      .then(
-        result => {
-          setIsLoaded(true);
-          setFriends(result);
-        },
-        error => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      );
-  }, []);
+    dispatch(getFriendsFetch());
+  }, [dispatch]);
 
   function getNowDate() {
     return new Date().getDay();
   }
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  } else if (!isLoaded) {
-    return <div className={s.loading}>Loading...</div>;
-  } else {
-    return (
-      <div className={s.container}>
-        <h2 className={s.tittle}>Our friends</h2>
-        <ul className={s.list}>
-          {friends.map(
-            ({ _id, name, logo, workTime, address, url, email, phone }) => (
-              <li key={_id} className={s.item}>
-                <h3 className={s.subtittle}>{name}</h3>
-                <div className={s.wrapper}>
-                  <div className={s.wrapperImage}>
+  return (
+    <div className={s.container}>
+      <h2 className={s.tittle}>Our friends</h2>
+      <ul className={s.list}>
+        {friendsArr.map(
+          ({
+            _id,
+            name,
+            link,
+            logo,
+            workTime,
+            address,
+            url,
+            email,
+            phone,
+            phoneNumber,
+          }) => (
+            <li key={_id} className={s.item}>
+              <h3 className={s.subtittle}>
+                <a
+                  href={link}
+                  target="_blank"
+                  rel="noreferrer noopener nofollow"
+                >
+                  {name}
+                </a>
+              </h3>
+              <div className={s.wrapper}>
+                <div className={s.wrapperImage}>
+                  <a
+                    href={link}
+                    target="_blank"
+                    rel="noreferrer noopener nofollow"
+                  >
                     <img src={logo} alt="Logo" className={s.image} />
-                  </div>
-                  <ul className={s.listCard}>
+                  </a>
+                </div>
+                <ul className={s.listCard}>
+                  {!workTime.length ? (
+                    <li>
+                      <p>Time:</p>
+                      <span>----------------------------------</span>
+                    </li>
+                  ) : (
                     <li className={s.itemCard}>
                       <div className={s.dropdown}>
                         <p className={s.dropdownSbt}>Time:</p>
                         <p>
-                          {!workTime.length ? (
-                            <span>----------------------------------</span>
-                          ) : (
-                            <span>
-                              {workTime[getNowDate() - 1].open} -
-                              {workTime[getNowDate() - 1].close}
-                            </span>
-                          )}
+                          <span>
+                            {workTime[getNowDate()].open} -
+                            {workTime[getNowDate()].close}
+                          </span>
                         </p>
                         {!!workTime.length && (
                           <ul className={s.dropdownContent}>
@@ -71,46 +83,58 @@ const OurFriends = () => {
                         )}
                       </div>
                     </li>
+                  )}
+
+                  {!address.length ? (
+                    <li>
+                      <p>Address:</p>
+                      <span>----------------------------------</span>
+                    </li>
+                  ) : (
                     <li className={s.itemCard}>
                       <p>Address:</p>
-                      {!address.length ? (
-                        <span>----------------------------------</span>
-                      ) : (
-                        <a
-                          href={url}
-                          target="_blank"
-                          rel="noopener nofollow noreferrer"
-                          className={s.link}
-                        >
-                          {address}
-                        </a>
-                      )}
-                    </li>
-                    <li className={s.itemCard}>
-                      <p>Email:</p>
-                      <a href="mailto:{email}" className={s.link}>
-                        {email}
+                      <a
+                        href={url}
+                        target="_blank"
+                        rel="noopener nofollow noreferrer"
+                        className={s.link}
+                      >
+                        {address}
                       </a>
                     </li>
+                  )}
+                  <li className={s.itemCard}>
+                    <p>Email:</p>
+                    <a
+                      href={email ? 'mailto:' + email : null}
+                      className={s.link}
+                    >
+                      {email}
+                    </a>
+                  </li>
+                  {!phone.length ? (
+                    <li>
+                      <p>Phone: </p>
+                      <span>----------------------------------</span>
+                    </li>
+                  ) : (
                     <li className={s.itemCard}>
                       <p>Phone:</p>
-                      {!phone.length ? (
-                        <span>----------------------------------</span>
-                      ) : (
-                        <a href="tel:{phone}" className={s.link}>
-                          {phone}
-                        </a>
-                      )}
+                      <a
+                        href={phoneNumber ? 'tel:' + phoneNumber : null}
+                        className={s.link}
+                      >
+                        {phone}
+                      </a>
                     </li>
-                  </ul>
-                </div>
-              </li>
-            )
-          )}
-        </ul>
-      </div>
-    );
-  }
+                  )}
+                </ul>
+              </div>
+            </li>
+          )
+        )}
+      </ul>
+    </div>
+  );
 };
-
 export default OurFriends;

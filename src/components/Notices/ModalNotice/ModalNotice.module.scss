@@ -27,8 +27,11 @@
 .categoryType {
     position: absolute;
     top: 20px;
+    
+    @include flex-center;
 
-    padding: 6px 53px 6px 20px;
+    width: 158px;
+    height: 28px;
 
     font-family: 'Manrope-Medium';
     font-size: 12px;
@@ -92,6 +95,11 @@
 
 .petInfoLValueLink {
     color: getColor('clr-accent');
+
+    &:hover,
+    &:focus {
+        color: getColor('clr-accent-active');
+    }
 }
 
 .petInfoLTypeComment {
@@ -141,7 +149,7 @@
 
     color: getColor('clr-black');
     background-color: getColor('clr-white');
-
+    
     &:hover,
     &:focus {
         background-color: getColor('clr-white');
@@ -149,11 +157,18 @@
     }
 }
 
-.favoriteIcon {
-    width: 16px;
-    height: 16px;
+.favoriteIconModal {
+    width: 20px;
+    height: 20px;
 
     fill: getColor('clr-accent');
+
+    @include transition-animation(all);
+
+    .noticeFavoriteButton:hover>&,
+    .noticeFavoriteButton:focus>& {
+        fill: getColor('clr-accent-active');
+    }
 }
 
 @include tablet {

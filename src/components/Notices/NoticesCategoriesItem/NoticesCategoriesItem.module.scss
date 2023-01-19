@@ -2,6 +2,9 @@
 @import '../../../sass/utils/mixins';
 
 .noticeItem {
+    display: flex;
+    flex-direction: column;
+
     width: 280px;
     min-height: 565px;
 
@@ -29,7 +32,10 @@
     position: absolute;
     top: 20px;
 
-    padding: 6px 50px 7px 20px;
+    @include flex-center;
+
+    width: 158px;
+    height: 28px;
 
     font-family: 'Manrope-Medium';
     font-size: 12px;
@@ -57,7 +63,8 @@
     border-radius: 50%;
 }
 
-.favoriteIcon {
+.favoriteIcon,
+.favoriteIconActive {
     width: 24px;
     height: 22px;
 
@@ -71,6 +78,10 @@
     .noticeFavoriteButton:focus>& {
         fill: getColor('clr-accent');        
     }
+}
+
+.favoriteIconActive {
+    fill: getColor('clr-accent');
 }
 
 .removeFavoriteIcon {
@@ -97,8 +108,13 @@
     outline: none;
 }
 
-.noticeDecription {
-    padding: 20px 16px 32px;
+.noticeDecription,
+.noticeDecriptionOwner {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    padding: 20px 16px 32px;    
 }
 
 .noticeDecriptionOwner {
@@ -117,6 +133,14 @@
     color: getColor('clr-black');
 }
 
+.noticeListButtonsThumb {
+    display: flex;    
+    flex-direction: column;
+    justify-content: space-between;
+
+    flex-grow: 1;
+}
+
 .petInfoLItem {
     display: flex;
 
@@ -125,10 +149,17 @@
     word-wrap: break-word;
 }
 
-.petInfoList {
+.petInfoList,
+.petInfoListOwner {
     display: flex;
     flex-direction: column;
     gap: 8px;
+
+    margin-bottom: 50px;
+}
+
+.petInfoListOwner {
+    margin-bottom: 20px;
 }
 
 .petInfoLType,
@@ -154,12 +185,6 @@
     flex-direction: column;
     align-items: center;
     gap: 12px;
-
-    margin-top: 20px;
-}
-
-.noticeButtonsThumb {
-    margin-top: 50px;
 }
 
 .noticeLearnMoreButton,

@@ -22,10 +22,17 @@ const newsSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
+    logOutNewsSuccess: state => {
+      return (state = { ...initialState });
+    },
   },
 });
 
-export const { getNewsFetch, getNewsSuccess, getNewsFailure } =
-  newsSlice.actions;
+export const {
+  getNewsFetch,
+  getNewsSuccess,
+  getNewsFailure,
+  logOutNewsSuccess,
+} = newsSlice.actions;
 
 export default newsSlice.reducer;

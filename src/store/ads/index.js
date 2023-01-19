@@ -11,6 +11,19 @@ export {
   addNewAdsFetch,
   addNewAdsSuccess,
   addNewAdsFailure,
+  deleteAdsFetch,
+  deleteAdsSuccess,
+  deleteAdsFailure,
+  toggleFavoriteFetch,
+  toggleFavoriteSuccess,
+  toggleFavoriteFailure,
+  getFavoriteAdsFetch,
+  getFavoriteAdsSuccess,
+  getFavoriteAdsFailure,
+  getUserAdsFetch,
+  getUserAdsSuccess,
+  getUserAdsFailure,
+  logOutAdsSuccess,
 } from './adsSlice';
 
 export { adsSagas } from './adsSaga';
@@ -19,4 +32,6 @@ export {
   getSellAdsSelector,
   getFoundAdsSelector,
   getShareAdsSelector,
+  createSelectorFunc,
+  getAdsLoadingSelector,
 } from './adsSelectors';

@@ -55,12 +55,84 @@ const adsSlice = createSlice({
     },
     addNewAdsSuccess: (state, { payload }) => {
       state[payload.category] = [payload, ...state[payload.category]];
+      state.personal = [payload, ...state.personal];
       state.isLoading = false;
       state.error = false;
     },
     addNewAdsFailure: (state, { payload }) => {
       state.isLoading = false;
       state.error = payload;
+    },
+    deleteAdsFetch: state => {
+      state.isLoading = true;
+    },
+    deleteAdsSuccess: (state, { payload }) => {
+      state[payload.category] = state[payload.category].filter(
+        obj => obj._id !== payload._id
+      );
+      state.isLoading = false;
+      state.error = false;
+    },
+    deleteAdsFailure: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
+    toggleFavoriteFetch: state => {
+      state.isLoading = true;
+    },
+    toggleFavoriteSuccess: (state, { payload }) => {
+      const ItemCategoryArr = state[payload.category].findIndex(
+        obj => obj._id === payload._id
+      );
+      const ItemFavArr = state.favorite.findIndex(
+        obj => obj._id === payload._id
+      );
+      const ItemOwnArr = state.personal.findIndex(
+        obj => obj._id === payload._id
+      );
+
+      if (ItemFavArr === -1) {
+        state.favorite = [payload, ...state.favorite];
+      } else {
+        state.favorite = state.favorite.filter(obj => obj._id !== payload._id);
+      }
+      if (ItemOwnArr !== -1) {
+        state.personal[ItemOwnArr] = payload;
+      }
+      state[payload.category][ItemCategoryArr] = payload;
+      state.isLoading = false;
+      state.error = false;
+    },
+    toggleFavoriteFailure: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
+    getFavoriteAdsFetch: state => {
+      state.isLoading = true;
+    },
+    getFavoriteAdsSuccess: (state, { payload }) => {
+      state.favorite = payload;
+      state.isLoading = false;
+      state.error = false;
+    },
+    getFavoriteAdsFailure: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
+    getUserAdsFetch: state => {
+      state.isLoading = true;
+    },
+    getUserAdsSuccess: (state, { payload }) => {
+      state.personal = payload;
+      state.isLoading = false;
+      state.error = false;
+    },
+    getUserAdsFailure: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
+    logOutAdsSuccess: state => {
+      return (state = { ...initialState });
     },
   },
 });
@@ -78,6 +150,19 @@ export const {
   addNewAdsFetch,
   addNewAdsSuccess,
   addNewAdsFailure,
+  deleteAdsFetch,
+  deleteAdsSuccess,
+  deleteAdsFailure,
+  toggleFavoriteFetch,
+  toggleFavoriteSuccess,
+  toggleFavoriteFailure,
+  getFavoriteAdsFetch,
+  getFavoriteAdsSuccess,
+  getFavoriteAdsFailure,
+  getUserAdsFetch,
+  getUserAdsSuccess,
+  getUserAdsFailure,
+  logOutAdsSuccess,
 } = adsSlice.actions;
 
 export default adsSlice.reducer;

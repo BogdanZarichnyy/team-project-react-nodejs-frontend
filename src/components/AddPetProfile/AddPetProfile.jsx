@@ -1,10 +1,10 @@
 import { useContext, useRef, useState } from 'react';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
-
 import { useDispatch } from 'react-redux';
+
 import { ModalContext } from '../ModalRework';
-import { addNewAdsFetch } from '../../store/ads';
+import { addPetFetch } from '../../store/user';
+import { addPetProfileSchema } from '../../validation/addPetProfileShema';
 import AddPetProfileFormOne from './AddPetProfileFormOne';
 import AddPetFormStepTwo from './AddPetProfileFormTwo';
 
@@ -18,14 +18,6 @@ const initialValues = {
   comments: '',
 };
 
-const validationSchema = Yup.object({
-  name: Yup.string().required('Required field to fill'),
-  birthDate: Yup.string().required('Required field to fill'),
-  breed: Yup.string().required('Required field to fill'),
-  photo: Yup.mixed().required('Image is required! (jpg, jpeg, png)'),
-  comments: Yup.string().min(8).max(120).required('Field is required!'),
-});
-
 const AddPetProfile = () => {
   const [step, setStep] = useState(1);
   const formRef = useRef();
@@ -34,7 +26,7 @@ const AddPetProfile = () => {
 
   const formik = useFormik({
     initialValues,
-    validationSchema,
+    validationSchema: addPetProfileSchema,
     validateOnMount: true,
     validateOnBlur: true,
     validateOnChange: true,
@@ -43,10 +35,18 @@ const AddPetProfile = () => {
       const formData = new FormData();
 
       for (let key of keys) {
-        formData.append(key, values[key]);
+        if (key === 'photo') {
+          if (values[key] instanceof File) {
+            formData.append(key, values[key]);
+          } else if (values[key] instanceof Object) {
+            formData.append(key, '');
+          }
+        } else {
+          formData.append(key, values[key]);
+        }
       }
 
-      dispatch(addNewAdsFetch(formData));
+      dispatch(addPetFetch(formData));
 
       handleModal();
     },

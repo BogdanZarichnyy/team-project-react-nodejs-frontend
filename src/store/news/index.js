@@ -1,5 +1,15 @@
-export { getNewsFetch, getNewsSuccess, getNewsFailure } from './newsSlice';
+export {
+  getNewsFetch,
+  getNewsSuccess,
+  getNewsFailure,
+  logOutNewsSuccess,
+} from './newsSlice';
 
 export { newsSagas } from './newsSaga';
 
-export { getNewsSelector } from './newsSelectors';
+export {
+  getNewsSelector,
+  getLoadingdNewsSelector,
+  getErrorNewsSelector,
+  sortedNewsSelector,
+} from './newsSelectors';
