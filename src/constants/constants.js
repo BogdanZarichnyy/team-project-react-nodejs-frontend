@@ -1,5 +1,5 @@
 export const URL = {
-  BASE: 'https://test-team-project-react-nodejs-production.up.railway.app/api',
+  BASE: 'https://team-project-react-nodejs-backend.onrender.com/api',
   USERS: '/users',
   NOTICES: '/notices',
   FRIENDS: '/ours_friends',
@@ -21,4 +21,4 @@ export const URL = {
 };
 
 export const CITIES_URL =
-  'https://test-team-project-react-nodejs-production.up.railway.app/api/cities_of_ukraine';
+  'https://team-project-react-nodejs-backend.onrender.com/api/cities_of_ukraine';
