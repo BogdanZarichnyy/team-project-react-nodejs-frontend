@@ -54,7 +54,7 @@ const SearchInput = ({ styles }) => {
 
   useEffect(() => {
     dispatch(action(debouncedQuery.toLowerCase()));
-  }, [dispatch, debouncedQuery]);
+  }, [dispatch, debouncedQuery, action]);
 
   const handleSubmit = e => {
     e.preventDefault();
