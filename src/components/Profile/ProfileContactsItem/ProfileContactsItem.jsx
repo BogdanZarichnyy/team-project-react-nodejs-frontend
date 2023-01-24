@@ -38,7 +38,7 @@ const ProfileContactsItem = ({
         ? setVal(value.substring(0, 10))
         : setVal(value);
     }
-  }, [isError, isLoading]);
+  }, [value, isError, isLoading]);
 
   useEffect(() => {
     if (value) {
