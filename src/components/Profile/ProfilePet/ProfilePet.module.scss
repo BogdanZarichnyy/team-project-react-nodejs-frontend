@@ -45,6 +45,8 @@
   font-size: 14px;
   line-height: 19px;
   letter-spacing: 0.04em;
+  overflow: hidden;
+  white-space: nowrap;
 
   &:not(:last-child) {
     margin-bottom: 12px;
@@ -61,6 +63,7 @@
   font-size: 14px;
   line-height: 22px;
   letter-spacing: 0.04em;
+  border: none;
 
   @include tablet {
     font-size: 16px;
@@ -170,4 +173,9 @@
   fill: getColor('clr-accent-active');
   scale: 1.1;
   transform: rotate(45deg);
+}
+
+.petForm {
+  display: flex;
+  flex-direction: column;
 }

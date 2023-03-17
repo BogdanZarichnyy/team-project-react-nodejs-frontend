@@ -136,6 +136,20 @@ const userSlice = createSlice({
       state.isPetsLoading = false;
       state.error = payload.error;
     },
+    editPetFetch: state => {
+      state.isPetsLoading = true;
+      state.error = false;
+    },
+    editPetSuccess: (state, { payload }) => {
+      const petIndex = state.userPets.findIndex(obj => obj._id === payload._id);
+      state.userPets[petIndex] = payload;
+      state.isPetsLoading = false;
+      state.error = false;
+    },
+    editPetFailure: (state, { payload }) => {
+      state.isPetsLoading = false;
+      state.error = payload.error;
+    },
     deletePetFetch: state => {
       state.isPetsLoading = true;
       state.error = false;
@@ -186,6 +200,9 @@ export const {
   addPetFetch,
   addPetSuccess,
   addPetFailure,
+  editPetFetch,
+  editPetSuccess,
+  editPetFailure,
   deletePetFetch,
   deletePetSuccess,
   deletePetFailure,

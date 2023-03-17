@@ -47,7 +47,7 @@ const AddPetForm = () => {
             formData.append(key, values[key]);
           } else if (values[key] instanceof Object) {
             formData.append(key, '');
-          }
+          } // сделать проверку на строку(ссылку) если ссылка, то перескочить на следующий цикл.
         } else {
           formData.append(key, values[key]);
         }

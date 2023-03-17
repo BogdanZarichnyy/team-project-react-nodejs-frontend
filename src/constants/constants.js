@@ -11,7 +11,7 @@ export const URL = {
   SALE: '?category=sale',
   FOUND: '?category=lostFound',
   HANDS: '?category=inGoodHands',
-  REGISTRATION: 'registration',
+  REGISTRATION: '/registration',
   LOGIN: '/login',
   LOGOUT: '/logout',
   CURRENT: '/current',

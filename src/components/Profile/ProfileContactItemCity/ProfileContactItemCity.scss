@@ -1,23 +1,23 @@
 @import '../../../sass/utils/variables';
 @import '../../../sass/utils/mixins';
 
-.city-select-container {
+.city-selector-container {
   padding-top: 0;
   padding-bottom: 0;
   height: 24px;
   min-height: 24px;
 
-  .city-select__control--is-disabled {
+  .city-selector__control--is-disabled {
     background-color: transparent;
     border: none;
     color: rgb(84, 84, 84);
 
-    .city-select__single-value--is-disabled {
+    .city-selector__single-value--is-disabled {
       color: rgb(84, 84, 84);
     }
   }
 
-  .city-select__control {
+  .city-selector__control {
     width: 155px;
     height: 24px;
     min-height: 24px;
@@ -36,28 +36,28 @@
       padding-left: 12px;
     }
 
-    .city-select__value-container {
+    .city-selector__value-container {
       justify-items: start;
       padding: 0;
       height: 24px;
     }
 
-    .city-select__placeholder,
-    .city-select__indicators {
+    .city-selector__placeholder,
+    .city-selector__indicators {
       display: none;
       height: 24px;
     }
 
-    .city-select__dropdownIndicator,
-    .city-select__indicatorsContainer,
-    .city-select__valueContainer,
-    .city-select__clearIndicator {
+    .city-selector__dropdownIndicator,
+    .city-selector__indicatorsContainer,
+    .city-selector__valueContainer,
+    .city-selector__clearIndicator {
       min-height: 24px;
       height: 24px;
       padding: 0;
     }
 
-    &.city-select__control--is-focused {
+    &.city-selector__control--is-focused {
       border: 1px solid getColor('clr-accent-opacity');
       background-color: getColor('clr-bg');
       outline: none;
@@ -65,17 +65,17 @@
     }
   }
 
-  .city-select__menu {
+  .city-selector__menu {
     font-size: 12px;
   }
 
-  .city-select__option {
+  .city-selector__option {
     //styles
   }
-  .city-select__option--is-focused {
+  .city-selector__option--is-focused {
     //styles
   }
-  .city-select__option--is-selected {
+  .city-selector__option--is-selected {
     //styles
   }
 }

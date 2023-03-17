@@ -17,6 +17,10 @@ const ProfilePet = ({
     dispatch(deletePetFetch(_id));
   };
 
+  const editPet = () => {
+    console.log('edit');
+  };
+
   return (
     <li className={s.petItem}>
       {photo.length > 0 ? (
@@ -24,7 +28,7 @@ const ProfilePet = ({
       ) : (
         <div className={`${s.petImage} ${s.petPlaceholder}`}>No image</div>
       )}
-      <div>
+      {/* <div>
         <p className={s.petFeature}>
           Name: <span className={s.petFeatureDetail}>{name}</span>
         </p>
@@ -40,7 +44,28 @@ const ProfilePet = ({
         <p className={s.petFeature}>
           Comments: <span className={s.petFeatureDetail}>{comments}</span>
         </p>
-      </div>
+      </div> */}
+      <form className={s.petForm}>
+        <label className={s.petFeature}>
+          Name:
+          <input className={s.petFeatureDetail} val={name} />
+        </label>
+        <label className={s.petFeature}>
+          Date of birth:
+          <input
+            className={s.petFeatureDetail}
+            val={birthDate.substring(0, 10)}
+          />
+        </label>
+        <label className={s.petFeature}>
+          Breed:
+          <input className={s.petFeatureDetail} val={breed} />
+        </label>
+        <label className={s.petFeature}>
+          Comments:
+          <input className={s.petFeatureDetail} val={comments} />
+        </label>
+      </form>
 
       {toggleDelete ? (
         <div className={s.deleteHandlerContainer}>
@@ -65,12 +90,27 @@ const ProfilePet = ({
           </button>
         </div>
       ) : (
-        <button
-          className={s.petDeleteButton}
-          onClick={() => setToggleDelete(true)}
-        >
-          <IconComponent iconname="trashIconGrey" classname={s.petDeleteIcon} />
-        </button>
+        <div className={s.deleteHandlerContainer}>
+          <button
+            className={s.petDeleteHandler}
+            onClick={() => console.log('edit')}
+            disabled={isPetsLoading}
+          >
+            <IconComponent
+              iconname="editPenIcon"
+              classname={`${s.petDeleteIcon} ${s.petDeleteIconAccent}`}
+            />
+          </button>
+          <button
+            className={s.petDeleteHandler}
+            onClick={() => setToggleDelete(true)}
+          >
+            <IconComponent
+              iconname="trashIconGrey"
+              classname={s.petDeleteIcon}
+            />
+          </button>
+        </div>
       )}
     </li>
   );

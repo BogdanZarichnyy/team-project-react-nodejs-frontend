@@ -28,8 +28,8 @@ const ProfileContactItemCity = forwardRef(
 
     return (
       <Select
-        className="city-select-container"
-        classNamePrefix="city-select"
+        className="city-selector-container"
+        classNamePrefix="city-selector"
         isDisabled={isDisabled}
         isClearable={true}
         isSearchable={true}
